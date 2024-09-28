@@ -24,10 +24,10 @@ namespace Ocean.Core.BrowserDetective
         public Result results { get; set; }
         public bool Success { get; set; } = false;
 
-        public virtual List<KeyValuePair<string, int>> Debug(int level)
+        public virtual List<KeyValuePair<Browser, int>> Debug(int level)
         {
-            List<KeyValuePair<string, int>> NodesUsed = new List<KeyValuePair<string, int>>();
-            NodesUsed.Add(new KeyValuePair<string, int>($"{browser.Type}:{browser.Name}\t{browser.parentID}", level));
+            List<KeyValuePair<Browser, int>> NodesUsed = new List<KeyValuePair<Browser, int>>();
+            NodesUsed.Add(new KeyValuePair<Browser, int>(browser, level));
             foreach (var item in Childern)
             {
                 NodesUsed.AddRange(item.Debug(level + 1));

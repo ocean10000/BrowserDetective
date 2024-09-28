@@ -31,7 +31,7 @@ foreach (var item in context.Raw)
         var nodes = h.Debug(0);
         foreach (var n in nodes)
         {
-            var d = new BrowserNode() { Raw_ID = item.ID, Node = n.Key, Index= n.Value };
+            var d = new BrowserNode() { Raw_ID = item.ID, Node_ID = n.Key.Id, Index= n.Value };
             resultContext.Nodes.Add(d);
         }
         foreach (var key in h.results.Keys)

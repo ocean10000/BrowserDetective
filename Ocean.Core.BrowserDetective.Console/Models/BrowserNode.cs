@@ -8,9 +8,9 @@ namespace Ocean.Core.BrowserDetective.Console.Models
 {
     public class BrowserNode
     {
-        public int ID { get; set; }
+        public int ID { get; set; } 
         public long Raw_ID { get; set; }
-        public string Node { get; set; } = string.Empty;
+        public long Node_ID { get; set; }
         public int Index { get; set; }
     }
 }

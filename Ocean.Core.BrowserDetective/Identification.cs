@@ -1,5 +1,4 @@
-﻿using Ocean.Core.BrowserDetective.Models;
-using System.IO;
+﻿using Ocean.Core.BrowserDetective.Data.Models;
 using System.Text.RegularExpressions;
 
 namespace Ocean.Core.BrowserDetective
@@ -7,11 +6,11 @@ namespace Ocean.Core.BrowserDetective
 
     public class Identification
     {
-        private Models.ICapture _Capture;
+        private ICapture _Capture;
         private Regex _RegexPattern;
         private Match? _PatternMatch = null;
 #pragma warning disable CS8618
-        public Identification(Models.ICapture Capture)
+        public Identification(ICapture Capture)
         {
             _Capture = Capture;
             if (string.IsNullOrEmpty(_Capture.Match) == false)

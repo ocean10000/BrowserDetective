@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Ocean.Core.BrowserDetective.Models;
 
-namespace Ocean.Core.BrowserDetective.DataContext;
+namespace Ocean.Core.BrowserDetective.Data.Context;
 
 public partial class BrowserCapsContext : DbContext
 {

@@ -1,4 +1,4 @@
-﻿namespace Ocean.Core.BrowserDetective.Models
+﻿namespace Ocean.Core.BrowserDetective.Data.Models
 {
     public class Header
     {

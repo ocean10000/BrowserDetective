@@ -1,13 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Ocean.Core.BrowserDetective.DataContext;
+using Ocean.Core.BrowserDetective.Data.Context;
+using Ocean.Core.BrowserDetective.Data.Models;
+using Ocean.Core.BrowserDetective.Extentions;
+
 
 namespace Ocean.Core.BrowserDetective
 {
     public class Process
     {
         ILogger? _logger;
-        public Models.Browser? DefaultBrowser = null;
+        public Browser? DefaultBrowser = null;
         private void Log(LogLevel level, string message)
         {
             if (_logger == null)
@@ -33,7 +36,7 @@ namespace Ocean.Core.BrowserDetective
             //and I prefer a database interface to access data, so I dumped the Definition
             //files which I hand coded into a SQL Lite Database format, to make it easier 
             //for me to work with the data. It also pushes this away from the Microsoft
-            //controled formate of the past.
+            //controled format of the past.
             //-----------------------------------------------------------------------------
             //Ok We are going to download all the browser Objects stored in the Database.
             //no changes are going to be made this is just to dump to useable ojects.

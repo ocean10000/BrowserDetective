@@ -1,20 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using Ocean.Core.BrowserDetective.Models;
+using Ocean.Core.BrowserDetective.Data.Models;
+using System.Configuration;
 
-namespace Ocean.Core.BrowserDetective.Console.DataContext
+namespace Ocean.Core.BrowserDetective.Data.Context
 {
     public partial class HeaderContext : DbContext
     {
         public HeaderContext()
         {
         }
+        public HeaderContext(string connString)
+        {
+            this.Database.SetConnectionString(connString);
+        }
 
         public HeaderContext(DbContextOptions<HeaderContext> options) : base(options)
         {
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlite("Data Source=G:\\My Drive\\Databases\\Headers.DB");
+            => optionsBuilder.UseSqlite(ConfigurationManager.ConnectionStrings["Headers"].ConnectionString);
         public virtual DbSet<Header> Headers { get; set; }
         public virtual DbSet<HeaderRaw> Raw { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

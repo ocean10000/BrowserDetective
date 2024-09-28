@@ -1,25 +1,33 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Ocean.Core.BrowserDetective.Data.Models;
+using System.Configuration;
 
-namespace Ocean.Core.BrowserDetective.Console.DataContext
+namespace Ocean.Core.BrowserDetective.Data.Context
 {
     public partial class ResultContext : DbContext
     {
+
         public ResultContext()
         {
+        }
+        public ResultContext(string connString)
+        {
+            this.Database.SetConnectionString(connString);
         }
 
         public ResultContext(DbContextOptions<ResultContext> options) : base(options)
         {
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    => optionsBuilder.UseSqlite("Data Source=C:\\local\\Core.Results.db");
+    => optionsBuilder.UseSqlite(ConfigurationManager.ConnectionStrings["Results"].ConnectionString);
 
-        public virtual DbSet<Models.ResultItem> Results { get; set; }
+        public virtual DbSet<ResultItem> Results { get; set; }
 
-        public virtual DbSet<Models.BrowserNode> Nodes { get; set; }
+        public virtual DbSet<BrowserNode> Nodes { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Models.ResultItem>(entity =>
+            modelBuilder.Entity<ResultItem>(entity =>
             {
                 entity.ToTable("Results");
                 entity.HasIndex(e => e.ID, "IX_Result_ID").IsUnique();

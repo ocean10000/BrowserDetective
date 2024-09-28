@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Ocean.Core.BrowserDetective.Models;
 
-namespace Ocean.Core.BrowserDetective.DataContext
+namespace Ocean.Core.BrowserDetective.Console.DataContext
 {
     public partial class HeaderContext : DbContext
     {
@@ -14,11 +15,11 @@ namespace Ocean.Core.BrowserDetective.DataContext
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder.UseSqlite("Data Source=G:\\My Drive\\Databases\\Headers.DB");
-        public virtual DbSet<Models.Header> Headers { get; set; }
-        public virtual DbSet<Models.HeaderRaw> Raw { get; set; }
+        public virtual DbSet<Header> Headers { get; set; }
+        public virtual DbSet<HeaderRaw> Raw { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Models.Header>(entity =>
+            modelBuilder.Entity<Header>(entity =>
             {
                 entity.ToTable("Headers");
                 entity.HasIndex(e => e.ID, "IX_Header_ID").IsUnique();
@@ -31,7 +32,7 @@ namespace Ocean.Core.BrowserDetective.DataContext
                 entity.HasOne(e => e.Raw).WithMany(e => e.Headers)
                 .HasForeignKey(e => e.Raw_ID);
             });
-            modelBuilder.Entity<Models.HeaderRaw>(entity =>
+            modelBuilder.Entity<HeaderRaw>(entity =>
             {
                 entity.ToTable("RawHeadersData");
                 entity.HasIndex(e => e.ID, "IX_RawHeadersData_ID").IsUnique();

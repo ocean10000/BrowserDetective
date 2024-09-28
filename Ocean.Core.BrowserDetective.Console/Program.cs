@@ -1,15 +1,16 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using Microsoft.Extensions.Logging;
+using Ocean.Core.BrowserDetective.Console.Models;
 
 using ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
 ILogger logger = factory.CreateLogger(typeof(Ocean.Core.BrowserDetective.Process));
 
-Ocean.Core.BrowserDetective.DataContext.HeaderContext context = new Ocean.Core.BrowserDetective.DataContext.HeaderContext();
+Ocean.Core.BrowserDetective.Console.DataContext.HeaderContext context = new Ocean.Core.BrowserDetective.Console.DataContext.HeaderContext();
+Ocean.Core.BrowserDetective.Console.DataContext.ResultContext resultContext = new Ocean.Core.BrowserDetective.Console.DataContext.ResultContext();
 var detective = new Ocean.Core.BrowserDetective.Process(logger);
 
 Console.WriteLine(detective.DefaultBrowser.Debug(0));
-
 
 foreach (var item in context.Raw)
 {
@@ -25,15 +26,22 @@ foreach (var item in context.Raw)
     Console.WriteLine("---------------------------Start Results-------------------------------");
     if (dic.Count > 0)
     {
-        //var result = detective.ProcessData(dic);
         var h = detective.DefaultBrowser.Process(dic);
 
-        Console.WriteLine(h.Debug(0));
+        var nodes = h.Debug(0);
+        foreach (var n in nodes)
+        {
+            var d = new BrowserNode() { Raw_ID = item.ID, Node = n.Key, Index= n.Value };
+            resultContext.Nodes.Add(d);
+        }
         foreach (var key in h.results.Keys)
         {
+            var r = new Ocean.Core.BrowserDetective.Console.Models.ResultItem() { Raw_ID= item.ID, Name = key, Value = h.results[key] };
+            resultContext.Results.Add(r);
             Console.WriteLine($"{key}\t{h.results[key]}");
         }
     }
+    resultContext.SaveChanges();
     Console.WriteLine("----------------------------End Results--------------------------------");
 
 }

@@ -14,7 +14,7 @@ public static class BrowserExtention
             Console.WriteLine("\t");
         }
         Console.WriteLine($"{browser.Name}");
-        if (!result.ContainsKey(string.Empty))
+        if (!result.ContainsKey(string.Empty) && header.ContainsKey("User-Agent"))
         {
             result.Add(string.Empty, header["User-Agent"]);
         }
@@ -69,7 +69,8 @@ public static class BrowserExtention
             //make sure we have a non-Null/non-empty value
             if (string.IsNullOrEmpty(item.Value) == false)
             {
-                if (item.Value.Contains("${"))
+                //makes sure we have something to work with at least.
+                if (item.Value.Contains("${") && Historyitem.MatchList.Count > 0 && Historyitem.MatchList.First(x => x.Success == true) != null)
                 {
                     string v = Historyitem.MatchList.First(x => x.Success == true).Result(item.Value);
                     //empty or null means no valid convertion option available.
@@ -90,7 +91,7 @@ public static class BrowserExtention
         //need to figure out why.
         foreach (var item in browser.InverseParent.Where(X => X.Type == BrowserType.GateWay))
         {
-            ResultBrowserItem ChildHistoryitem = item.Process(header, Historyitem.results, level+1);
+            ResultBrowserItem ChildHistoryitem = item.Process(header, Historyitem.results, level + 1);
 
             //First sucessful, ignore the rest. (basicly treate all items at the same level as a simple if structure.)
             if (ChildHistoryitem.Success == true)

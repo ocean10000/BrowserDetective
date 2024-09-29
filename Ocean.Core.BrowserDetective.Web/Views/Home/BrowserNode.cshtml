@@ -1,0 +1,47 @@
+﻿@model Ocean.Core.BrowserDetective.Data.Models.Browser
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+@Model.Name
+<br />
+@Model.Parent?.Name
+<br />
+@Model.Type
+<br />
+@Model.Prority
+<br />
+<hr />
+
+<fieldset>
+    <legend>Identifications</legend>
+    @foreach (var ident in Model.Identifications)
+    {
+        <partial name="Identification.cshtml" for="@ident" />
+    }
+</fieldset>
+<hr />
+<fieldset>
+    <legend>Captures</legend>
+    @foreach (var Caps in Model.Captures)
+    {
+        <partial name="Captures.cshtml" for="@Caps" />
+    }
+</fieldset>
+<hr />
+<fieldset>
+    <legend>Capabilities</legend>
+    @foreach (var abilities in Model.Capabilities)
+    {
+        <partial name="Capabilities.cshtml" for="@abilities" />
+    }
+</fieldset>
+<hr />
+<fieldset>
+    <legend>Children</legend>
+    @foreach (var children in Model.InverseParent)
+    {
+        <a asp-controller="Home" asp-action="BrowserNode" asp-route-ID="@children.Id">@children.Name</a>
+        <br />
+    }
+</fieldset>

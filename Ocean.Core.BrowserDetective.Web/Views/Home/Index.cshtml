@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Ocean.Core.BrowserDetective.Data.Models.Browser>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,3 +7,11 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+<table>
+    @foreach(var b  in Model)
+    {
+        <tr>
+            <td><a asp-controller="Home" asp-action="BrowserNode" asp-route-ID="@b.Id">@b.Name</a></td>
+        </tr>
+    }
+</table>

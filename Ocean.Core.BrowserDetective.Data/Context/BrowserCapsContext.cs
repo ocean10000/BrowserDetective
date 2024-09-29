@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System.Configuration;
 
 namespace Ocean.Core.BrowserDetective.Data.Context;
@@ -7,6 +8,11 @@ public partial class BrowserCapsContext : DbContext
 {
     public BrowserCapsContext()
     {
+    }
+    public BrowserCapsContext(string ConnectionString)
+    {
+        if (string.IsNullOrEmpty(ConnectionString) == false)
+            this.Database.SetConnectionString(ConnectionString);
     }
 
     public BrowserCapsContext(DbContextOptions<BrowserCapsContext> options)
@@ -28,7 +34,11 @@ public partial class BrowserCapsContext : DbContext
     {
         if (ConfigurationManager.ConnectionStrings["BrowserCaps"] == null || string.IsNullOrWhiteSpace(ConfigurationManager.ConnectionStrings["BrowserCaps"].ConnectionString))
         {
-            optionsBuilder.UseSqlite("DataSource=BrowserCaps.DB");
+            System.IO.FileInfo file = new FileInfo("BrowserCaps.DB");
+            if (file.Exists)
+                optionsBuilder.UseSqlite("DataSource=" + file.FullName);
+            else
+                optionsBuilder.UseSqlite();
         }
         else
         {

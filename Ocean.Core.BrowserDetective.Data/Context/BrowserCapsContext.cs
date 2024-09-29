@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 namespace Ocean.Core.BrowserDetective.Data.Context;
 
@@ -24,7 +25,16 @@ public partial class BrowserCapsContext : DbContext
     public virtual DbSet<Models.SampleHeader> SampleHeaders { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlite("DataSource=BrowserCaps.DB");
+    {
+        if (ConfigurationManager.ConnectionStrings["BrowserCaps"] == null || string.IsNullOrWhiteSpace(ConfigurationManager.ConnectionStrings["BrowserCaps"].ConnectionString))
+        {
+            optionsBuilder.UseSqlite("DataSource=BrowserCaps.DB");
+        }
+        else
+        {
+            optionsBuilder.UseSqlite(ConfigurationManager.ConnectionStrings["BrowserCaps"].ConnectionString);
+        }
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

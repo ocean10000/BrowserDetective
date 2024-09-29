@@ -2,11 +2,19 @@
 {
     public class Result : Dictionary<string, string>
     {
+        public Result() : base() 
+        { 
+            this["browser"] = string.Empty;
+            this["os"] = string.Empty;
+        }
         public string OS
         {
             get
             {
-                return this["OS"];
+                if (this.ContainsKey("os"))
+                    return this["OS"];
+                else
+                    return string.Empty;
             }
         }
 
@@ -14,7 +22,10 @@
         {
             get
             {
-                return this[string.Empty];
+                if (this.ContainsKey(string.Empty))
+                    return this[string.Empty];
+                else
+                    return string.Empty;
             }
         }
 
@@ -22,7 +33,10 @@
         {
             get
             {
-                return this["browser"];
+                if (this.ContainsKey("browser"))
+                    return this["browser"];
+                else
+                    return string.Empty;
             }
         }
 
@@ -38,7 +52,7 @@
             }
         }
 
-        public Version version 
+        public Version version
         {
             get
             {
@@ -88,7 +102,8 @@
             {
                 if (isMobileDevice == true)
                 {
-                    return this["mobileDeviceManufacturer"];
+                    if (this.ContainsKey("mobileDeviceManufacturer"))
+                        return this["mobileDeviceManufacturer"];
                 }
                 return string.Empty;
             }
@@ -100,7 +115,8 @@
             {
                 if (isMobileDevice == true)
                 {
-                    return this["mobileDeviceModel"];
+                    if (this.ContainsKey("mobileDeviceModel"))
+                        return this["mobileDeviceModel"];
                 }
                 return string.Empty;
             }
@@ -110,7 +126,10 @@
         {
             get
             {
-                return this["platform"];
+                if (this.ContainsKey("platform"))
+                    return this["platform"];
+                else
+                    return string.Empty;
             }
         }
 

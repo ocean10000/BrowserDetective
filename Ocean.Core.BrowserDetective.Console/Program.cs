@@ -37,7 +37,7 @@ if (detective.DefaultBrowser != null)
         Console.WriteLine("---------------------------Start Results-------------------------------");
         if (dic.Count > 0)
         {
-            var h = detective.DefaultBrowser.Process(dic);
+            var h = detective.DefaultBrowser.Process( dic);
 
             nodes = h.Debug(0);
             foreach (var n in nodes)

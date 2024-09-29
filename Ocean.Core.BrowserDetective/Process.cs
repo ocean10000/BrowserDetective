@@ -11,12 +11,6 @@ namespace Ocean.Core.BrowserDetective
     {
         ILogger? _logger;
         public Browser? DefaultBrowser = null;
-        private void Log(LogLevel level, string message)
-        {
-            if (_logger == null)
-                return;
-            _logger.Log(level, message);
-        }
 
         public Process(ILogger logger)
         {
@@ -51,21 +45,21 @@ namespace Ocean.Core.BrowserDetective
             //-----------------------------------------------------------------------------
             //Setting the Logger for each browser detection.
             //-----------------------------------------------------------------------------
-            browsers.ForEach(X=>X._logger = _logger);
+            browsers.ForEach(X => X._logger = _logger);
 
-            Log(LogLevel.Trace,$"Browser Count {browsers.Count()}");
+            logger.Log(LogLevel.Trace, $"Browser Count {browsers.Count()}");
 
             var identifications = Context.Identifications.AsNoTracking().ToList();
-            Log(LogLevel.Trace, $"identifications Count {identifications.Count()}");
+            logger.Log(LogLevel.Trace, $"identifications Count {identifications.Count()}");
 
             var captures = Context.Captures.AsNoTracking().ToList();
-            Log(LogLevel.Trace, $"captures Count {captures.Count()}");
+            logger.Log(LogLevel.Trace, $"captures Count {captures.Count()}");
 
             var capabilities = Context.Capabilities.AsNoTracking().ToList();
-            Log(LogLevel.Trace, $"capabilities Count {capabilities.Count()}");
+            logger.Log(LogLevel.Trace, $"capabilities Count {capabilities.Count()}");
 
             var sampleHeaders = Context.SampleHeaders.AsNoTracking().ToList();
-            Log(LogLevel.Trace, $"SampleHeaders Count {sampleHeaders.Count()}");
+            logger.Log(LogLevel.Trace, $"SampleHeaders Count {sampleHeaders.Count()}");
 
             //-----------------------------------------------------------------------------
             //Loops though all the Browsers and builds the Browser Tree.
@@ -77,9 +71,10 @@ namespace Ocean.Core.BrowserDetective
                 b.Capabilities = capabilities.Where(c => c.BrowserId == b.Id).ToList();
                 b.Samples = sampleHeaders.Where(c => c.BrowserId == b.Id).ToList();
                 b.InverseParent = browsers.Where(c => c.ParentId == b.Id).ToList();
-                if (b.ParentId == null && b.ParentId > 0)
+                if (b.ParentId != null && b.ParentId > 0)
                 {
                     b.Parent = browsers.FirstOrDefault(x => x.Id == b.ParentId);
+                    b.parentID = b.Parent.Name;
                 }
             }
 
@@ -112,6 +107,22 @@ namespace Ocean.Core.BrowserDetective
             if (DefaultBrowser == null)
                 return new Result();
             var h = DefaultBrowser.Process(header);
+            return h.results;
+        }
+        //This is more of a way to allow conversion from older version of unit test and code pre
+        //dot.net core.
+        public Result ProcessData(System.Collections.Specialized.NameValueCollection header)
+        {
+            if (DefaultBrowser == null)
+                return new Result();
+
+            IDictionary<string, string> header2 = new Dictionary<string, string>();
+            foreach (var k in header.AllKeys)
+            {
+                header2.Add(k, header[k]);
+            }
+
+            var h = DefaultBrowser.Process(header2);
             return h.results;
         }
     }

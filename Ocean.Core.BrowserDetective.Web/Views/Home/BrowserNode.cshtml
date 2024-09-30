@@ -51,10 +51,37 @@
 </fieldset>
 <hr />
 <fieldset>
-    <legend>Samples</legend>
+    <legend><a asp-action="Samples" asp-route-ID="0" asp-route-BrowserId="@Model.Id">Add</a> Samples</legend>
+
+    <div class="row">
+        <div class="form-group col-md-2">
+            <label class="control-label">Name</label>
+        </div>
+        <div class="form-group col-md-7">
+            <label class="control-label">Value</label>
+        </div>
+        <div class="form-group col-md-2">
+            <label class="control-label">Action</label>
+        </div>
+    </div>
+
     @foreach (var Header in Model.Samples)
     {
-        <partial name="Header.cshtml" for="@Header" />
+        <div class="row">
+            <div class="form-group col-md-2">
+                [@Header.Name]
+            </div>
+            <div class="form-group col-md-7">
+                [@Header.Value]
+            </div>
+            <div class="form-group col-md-2">
+                @if (Model.Id > 0)
+                {
+                    <a asp-action="Samples" asp-route-ID="@Header.Id" asp-route-BrowserId="@Header.BrowserId">Edit</a>
+                    <a asp-action="DeleteSamples" asp-route-ID="@Header.Id">Delete</a>
+                }
+            </div>
+        </div>
     }
 </fieldset>
 <hr />
@@ -81,20 +108,17 @@
                 @ident.Type
             </div>
             <div class="form-group col-md-2">
-                @ident.Name
+                [@ident.Name]
             </div>
             <div class="form-group col-md-6">
-                @if (!string.IsNullOrWhiteSpace(ident.Match))
-                { 
+                [@if (!string.IsNullOrWhiteSpace(ident.Match))
+                {
                     @ident.Match
-                } 
-                else 
-                { 
-                    @ident.NonMatch 
                 }
-            </div>
-            <div class="form-group col-md-6">
-                @ident.NonMatch
+                else
+                {
+                    @ident.NonMatch
+                }]
             </div>
             <div class="form-group col-md-2">
                 @if (Model.Id > 0)
@@ -130,17 +154,17 @@
                 @Caps.Type
             </div>
             <div class="form-group col-md-2">
-                @Caps.Name
+                [@Caps.Name]
             </div>
             <div class="form-group col-md-6">
-                @if (!string.IsNullOrWhiteSpace(Caps.Match))
+                [@if (!string.IsNullOrWhiteSpace(Caps.Match))
                 {
                     @Caps.Match
                 }
                 else
                 {
                     @Caps.NonMatch
-                }
+                }]
             </div>
             <div class="form-group col-md-2">
                 @if (Model.Id > 0)
@@ -170,10 +194,10 @@
     {
         <div class="row">
             <div class="form-group col-md-2">
-                @abilities.Name
+                [@abilities.Name]
             </div>
             <div class="form-group col-md-2">
-                @abilities.Value
+                [@abilities.Value]
             </div>
             <div class="form-group col-md-2">
                 @if (Model.Id > 0)

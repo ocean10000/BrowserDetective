@@ -62,6 +62,9 @@ public static class BrowserExtention
             }
         }
         Historyitem.Success = Success;
+        browser._logger.Log(LogLevel.Information, sb.ToString());
+        sb = new System.Text.StringBuilder();
+        sb.AppendLine($"{level}:{browser.Type}:{browser.Name}");
         //Must all pass so to apply tranformation methods.
         if (Success == true)
         {

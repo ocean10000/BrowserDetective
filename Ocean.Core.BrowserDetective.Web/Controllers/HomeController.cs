@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Ocean.Core.BrowserDetective.Data.Context;
 using Ocean.Core.BrowserDetective.Data.Models;
 using Ocean.Core.BrowserDetective.Web.Models;
 using System.Diagnostics;
@@ -18,7 +19,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
         {
             _logger = logger;
             BrowserCapsContext = new Data.Context.BrowserCapsContext(configuration.GetConnectionString("BrowserCaps"));
-            BrowserList = BrowserCapsContext.Browsers.ToList();
+            BrowserList = BrowserCapsContext.Browsers.OrderBy(X => X.Name).ToList();
             BrowserList.ForEach(X => X._logger = _logger);
 
             var identifications = BrowserCapsContext.Identifications.AsNoTracking().ToList();
@@ -53,7 +54,14 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
         public IActionResult BrowserNode(long ID)
         {
             ViewBag.BrowserNodes = BrowserNodes;
-            return View(BrowserList.FirstOrDefault(X => X.Id == ID));
+            if (ID > 0)
+            {
+                return View("BrowserNode", BrowserList.FirstOrDefault(X => X.Id == ID));
+            }
+            else
+            {
+                return View("BrowserNode", new Browser() { Id = 0, Name = "Sample", Type = BrowserType.Browser, _logger = this._logger });
+            }
         }
 
         public IActionResult BrowserNodeUpSert(Browser Model)
@@ -121,7 +129,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
             }
             else
             {
-                ident = BrowserCapsContext.Identifications.FirstOrDefault(X => X.Id == ID && X.BrowserId == BrowserId);
+                ident = BrowserCapsContext.Identifications.AsNoTracking().FirstOrDefault(X => X.Id == ID && X.BrowserId == BrowserId);
             }
 
             if (ident != null)
@@ -144,10 +152,10 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
 
             if (m != null)
             {
-                m.Identifications = BrowserCapsContext.Identifications.Where(X => X.BrowserId == Model.BrowserId).ToList();
+                m.Identifications = BrowserCapsContext.Identifications.AsNoTracking().Where(X => X.BrowserId == Model.BrowserId).ToList();
             }
 
-            return View(Model);
+            return View("Identification", Model);
         }
         [Route("~/Home/Identification/Deleted/{ID}/")]
         public IActionResult DeleteIdentification(long ID)
@@ -180,7 +188,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
             }
             else
             {
-                ident = BrowserCapsContext.Captures.FirstOrDefault(X => X.Id == ID && X.BrowserId == BrowserId);
+                ident = BrowserCapsContext.Captures.AsNoTracking().FirstOrDefault(X => X.Id == ID && X.BrowserId == BrowserId);
             }
 
             if (ident != null)
@@ -203,10 +211,10 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
 
             if (m != null)
             {
-                m.Captures = BrowserCapsContext.Captures.Where(X => X.BrowserId == Model.BrowserId).ToList();
+                m.Captures = BrowserCapsContext.Captures.AsNoTracking().Where(X => X.BrowserId == Model.BrowserId).ToList();
             }
 
-            return View(Model);
+            return View("Captures", Model);
         }
         [Route("~/Home/Captures/Deleted/{ID}/")]
         public IActionResult DeleteCaptures(long ID)
@@ -239,7 +247,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
             }
             else
             {
-                Cap = BrowserCapsContext.Capabilities.FirstOrDefault(X => X.Id == ID && X.BrowserId == BrowserId);
+                Cap = BrowserCapsContext.Capabilities.AsNoTracking().FirstOrDefault(X => X.Id == ID && X.BrowserId == BrowserId);
             }
 
             if (Cap != null)
@@ -252,25 +260,36 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
         public IActionResult CapabilitiesUpSert(Data.Models.Capability Model)
         {
             if (Model.Id > 0)
-                BrowserCapsContext.Capabilities.Update(Model);
-            else
-                BrowserCapsContext.Capabilities.Add(Model);
+            {
+                var m1 = BrowserCapsContext.Capabilities.AsNoTracking().FirstOrDefault(X => X.Id == Model.Id);
+                if (m1 != null)
+                {
+                    m1.Name = Model.Name;
+                    m1.Value = Model.Value;
+                    m1.BrowserId = Model.BrowserId;
 
+                    BrowserCapsContext.Capabilities.Update(m1);
+                }
+            }
+            else
+            {
+                BrowserCapsContext.Capabilities.Add(Model);
+            }
             BrowserCapsContext.SaveChanges();
 
             var m = BrowserList.FirstOrDefault(X => X.Id == Model.Id);
 
             if (m != null)
             {
-                m.Capabilities = BrowserCapsContext.Capabilities.Where(X => X.BrowserId == Model.BrowserId).ToList();
+                m.Capabilities = BrowserCapsContext.Capabilities.AsNoTracking().Where(X => X.BrowserId == Model.BrowserId).ToList();
             }
 
-            return View(Model);
+            return View("Capabilities", Model);
         }
         [Route("~/Home/Capabilities/Deleted/{ID}/")]
         public IActionResult DeleteCapabilities(long ID)
         {
-            var ident = BrowserCapsContext.Capabilities.FirstOrDefault(X => X.Id == ID);
+            var ident = BrowserCapsContext.Capabilities.AsNoTracking().FirstOrDefault(X => X.Id == ID);
 
             if (ident != null)
             {
@@ -298,12 +317,12 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
             }
             else
             {
-                Cap = BrowserCapsContext.SampleHeaders.FirstOrDefault(X => X.Id == ID && X.BrowserId == BrowserId);
+                Cap = BrowserCapsContext.SampleHeaders.AsNoTracking().FirstOrDefault(X => X.Id == ID && X.BrowserId == BrowserId);
             }
 
             if (Cap != null)
             {
-                return View(Cap);
+                return View("Samples", Cap);
             }
 
             return NotFound();
@@ -321,15 +340,15 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
 
             if (m != null)
             {
-                m.Samples = BrowserCapsContext.SampleHeaders.Where(X => X.BrowserId == Model.BrowserId).ToList();
+                m.Samples = BrowserCapsContext.SampleHeaders.AsNoTracking().Where(X => X.BrowserId == Model.BrowserId).ToList();
             }
 
-            return View(Model);
+            return View("Samples", Model);
         }
         [Route("~/Home/Sample/Deleted/{ID}/")]
         public IActionResult DeleteSamples(long ID)
         {
-            var ident = BrowserCapsContext.SampleHeaders.FirstOrDefault(X => X.Id == ID);
+            var ident = BrowserCapsContext.SampleHeaders.AsNoTracking().FirstOrDefault(X => X.Id == ID);
 
             if (ident != null)
             {

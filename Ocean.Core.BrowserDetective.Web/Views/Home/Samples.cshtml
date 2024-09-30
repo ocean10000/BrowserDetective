@@ -1,16 +1,15 @@
-﻿@model Ocean.Core.BrowserDetective.Data.Models.Capability
-
-<form asp-action="CapabilitiesUpSert">
+﻿@model Ocean.Core.BrowserDetective.Data.Models.SampleHeader
+<form asp-action="SamplesUpSert">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="Id" />
     <input type="hidden" asp-for="BrowserId" />
     <div class="row">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group col-md-4">
             <label asp-for="Name" class="control-label">Name</label>
             <input asp-for="Name" class="form-control" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-6">
             <label asp-for="Value" class="control-label"></label>
             <input asp-for="Value" class="form-control" />
             <span asp-validation-for="Value" class="text-danger"></span>
@@ -20,7 +19,7 @@
             @if (Model.Id > 0)
             {
                 <input type="submit" value="Update" />
-                <button type="button" onclick="location.href='@Url.Action("DeleteCapabilities", "HomeController",new { ID=Model.Id})'">Delete</button>
+                <button type="button" onclick="location.href='@Url.Action("DeleteSamples", "HomeController",new { ID=Model.Id})'">Delete</button>
             }
             else
             {

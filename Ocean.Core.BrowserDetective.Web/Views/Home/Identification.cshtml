@@ -1,31 +1,48 @@
 ﻿@model Ocean.Core.BrowserDetective.Data.Models.Identification
-
-<form>
+@{
+    List<SelectListItem> CaptureType = new List<SelectListItem>();
+    CaptureType.Add(new SelectListItem() { Text = "Header", Value = "1" });
+    CaptureType.Add(new SelectListItem() { Text = "capability", Value = "2" });
+}
+<form asp-action="IdentificationUpSert">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="BrowserId" />
     <div class="row">
-        <div class="col-md-4">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <input type="hidden" asp-for="BrowserId" />
-            <div class="form-group">
-                <label asp-for="Type" class="control-label">Name</label>
-                <input asp-for="Type" class="form-control" />
-                <span asp-validation-for="Type" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label">Name</label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Match" class="control-label"></label>
-                <input asp-for="Match" class="form-control" />
-                <span asp-validation-for="Match" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NonMatch" class="control-label"></label>
-                <input asp-for="NonMatch" class="form-control" />
-                <span asp-validation-for="NonMatch" class="text-danger"></span>
-            </div>
+        <div class="form-group col-md-3">
+            <label asp-for="Type" class="control-label">Type</label>
+            <select asp-for="Type" class="form-control" asp-items="CaptureType">
+            </select>
+            <span asp-validation-for="Type" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="Name" class="control-label">Name</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-2">
+            <label class="control-label">Action</label><br />
+            @if (Model.Id > 0)
+            {
+                <input type="submit" value="Update" />
+                <button type="button" onclick="location.href='@Url.Action("DeleteIdentification", "HomeController",new { ID=Model.Id})'">Delete</button>
+            }
+            else
+            {
+                <input type="submit" value="Add" />
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-5">
+            <label asp-for="Match" class="control-label"></label>
+            <input asp-for="Match" class="form-control" />
+            <span asp-validation-for="Match" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-5">
+            <label asp-for="NonMatch" class="control-label"></label>
+            <input asp-for="NonMatch" class="form-control" />
+            <span asp-validation-for="NonMatch" class="text-danger"></span>
         </div>
     </div>
 </form>

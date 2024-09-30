@@ -1,39 +1,188 @@
 ﻿@model Ocean.Core.BrowserDetective.Data.Models.Browser
 @{
     ViewData["Title"] = Model.Name;
+    List<SelectListItem> BrowserType = new List<SelectListItem>();
+    BrowserType.Add(new SelectListItem() { Text = "Browser", Value = "1" });
+    BrowserType.Add(new SelectListItem() { Text = "GateWay", Value = "2" });
 }
-
-@Model.Name
-<br />
-@Model.Parent?.Name
-<br />
-@Model.Type
-<br />
-@Model.Prority
-<br />
-<hr />
-
 <fieldset>
-    <legend>Identifications</legend>
+    <legend>Brower Details</legend>
+    <form asp-action="BrowserNodeUpSert" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div>
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <label asp-for="Name" class="control-label">Name</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-2">
+                    <label asp-for="ParentId" class="control-label">Parent</label>
+                    <select asp-for="ParentId" class="form-control" asp-items="ViewBag.BrowserNodes">
+                    </select>
+                    <span asp-validation-for="ParentId" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-2">
+                    <label asp-for="Type" class="control-label">Type</label>
+                    <select asp-for="Type" class="form-control" asp-items="BrowserType">
+                    </select>
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-2">
+                    <label asp-for="Prority" class="control-label">Prority</label>
+                    <input asp-for="Prority" class="form-control" />
+                    <span asp-validation-for="Prority" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="control-label">Action</label><br />
+                    @if (Model.Id > 0)
+                    {
+                        <input type="submit" value="Update" />
+                        <button type="button" onclick="location.href='@Url.Action("DeleteBrowserNode", "HomeController",new { ID=Model.Id})'">Delete</button>
+                    }
+                    else
+                    {
+                        <input type="submit" value="Add" />
+                    }
+                </div>
+            </div>
+        </div>
+    </form>
+</fieldset>
+<hr />
+<fieldset>
+    <legend>Samples</legend>
+    @foreach (var Header in Model.Samples)
+    {
+        <partial name="Header.cshtml" for="@Header" />
+    }
+</fieldset>
+<hr />
+<fieldset>
+    <legend><a asp-action="Identification" asp-route-ID="0" asp-route-BrowserId="@Model.Id">Add</a> Identifications</legend>
+    <div class="row">
+        <div class="form-group col-md-1">
+            <label class="control-label">Type</label><br />
+        </div>
+        <div class="form-group col-md-2">
+            <label class="control-label">Name</label><br />
+        </div>
+        <div class="form-group col-md-6">
+            <label class="control-label">Match/NonMatch</label><br />
+        </div>
+        <div class="form-group col-md-2">
+            <label class="control-label">Action</label><br />
+        </div>
+    </div>
     @foreach (var ident in Model.Identifications)
     {
-        <partial name="Identification.cshtml" for="@ident" />
+        <div class="row">
+            <div class="form-group col-md-1">
+                @ident.Type
+            </div>
+            <div class="form-group col-md-2">
+                @ident.Name
+            </div>
+            <div class="form-group col-md-6">
+                @if (!string.IsNullOrWhiteSpace(ident.Match))
+                { 
+                    @ident.Match
+                } 
+                else 
+                { 
+                    @ident.NonMatch 
+                }
+            </div>
+            <div class="form-group col-md-6">
+                @ident.NonMatch
+            </div>
+            <div class="form-group col-md-2">
+                @if (Model.Id > 0)
+                {
+                    <a asp-action="Identification" asp-route-ID="@ident.Id" asp-route-BrowserId="@ident.BrowserId">Edit</a>
+                    <a asp-action="DeleteIdentification" asp-route-ID="@ident.Id">Delete</a>
+                }
+            </div>
+        </div>
     }
 </fieldset>
 <hr />
 <fieldset>
-    <legend>Captures</legend>
+    <legend><a asp-action="Captures" asp-route-ID="0" asp-route-BrowserId="@Model.Id">Add</a> Captures</legend>
+    <div class="row">
+        <div class="form-group col-md-1">
+            <label class="control-label">Type</label><br />
+        </div>
+        <div class="form-group col-md-2">
+            <label class="control-label">Name</label><br />
+        </div>
+        <div class="form-group col-md-6">
+            <label class="control-label">Match/NonMatch</label><br />
+        </div>
+        <div class="form-group col-md-2">
+            <label class="control-label">Action</label><br />
+        </div>
+    </div>
     @foreach (var Caps in Model.Captures)
     {
-        <partial name="Captures.cshtml" for="@Caps" />
+        <div class="row">
+            <div class="form-group col-md-1">
+                @Caps.Type
+            </div>
+            <div class="form-group col-md-2">
+                @Caps.Name
+            </div>
+            <div class="form-group col-md-6">
+                @if (!string.IsNullOrWhiteSpace(Caps.Match))
+                {
+                    @Caps.Match
+                }
+                else
+                {
+                    @Caps.NonMatch
+                }
+            </div>
+            <div class="form-group col-md-2">
+                @if (Model.Id > 0)
+                {
+                    <a asp-action="Captures" asp-route-ID="@Caps.Id" asp-route-BrowserId="@Caps.BrowserId">Edit</a>
+                    <a asp-action="DeleteCaptures" asp-route-ID="@Caps.Id">Delete</a>
+                }
+            </div>
+        </div>
     }
 </fieldset>
 <hr />
 <fieldset>
-    <legend>Capabilities</legend>
+    <legend><a asp-action="Capabilities" asp-route-ID="0" asp-route-BrowserId="@Model.Id">Add</a> Capabilities</legend>
+    <div class="row">
+        <div class="form-group col-md-2">
+            <label class="control-label">Name</label>
+        </div>
+        <div class="form-group col-md-2">
+            <label class="control-label">Value</label>
+        </div>
+        <div class="form-group col-md-2">
+            <label class="control-label">Action</label>
+        </div>
+    </div>
     @foreach (var abilities in Model.Capabilities)
     {
-        <partial name="Capabilities.cshtml" for="@abilities" />
+        <div class="row">
+            <div class="form-group col-md-2">
+                @abilities.Name
+            </div>
+            <div class="form-group col-md-2">
+                @abilities.Value
+            </div>
+            <div class="form-group col-md-2">
+                @if (Model.Id > 0)
+                {
+                    <a asp-action="Capabilities" asp-route-ID="@abilities.Id" asp-route-BrowserId="@abilities.BrowserId">Edit</a>
+                    <a asp-action="DeleteCapabilities" asp-route-ID="@abilities.Id">Delete</a>
+                }
+            </div>
+        </div>
     }
 </fieldset>
 <hr />

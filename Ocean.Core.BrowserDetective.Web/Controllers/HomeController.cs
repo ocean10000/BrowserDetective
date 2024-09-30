@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using Ocean.Core.BrowserDetective.Web.Models;
-using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Ocean.Core.BrowserDetective.Data.Models;
+using Ocean.Core.BrowserDetective.Web.Models;
+using System.Diagnostics;
 
 
 namespace Ocean.Core.BrowserDetective.Web.Controllers
@@ -51,7 +52,298 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
 
         public IActionResult BrowserNode(long ID)
         {
-            return View(BrowserList.FirstOrDefault(X=>X.Id == ID));
+            ViewBag.BrowserNodes = BrowserNodes;
+            return View(BrowserList.FirstOrDefault(X => X.Id == ID));
+        }
+
+        public IActionResult BrowserNodeUpSert(Browser Model)
+        {
+            if (Model.Id > 0)
+                BrowserCapsContext.Browsers.Update(Model);
+            else
+                BrowserCapsContext.Browsers.Add(Model);
+
+            BrowserCapsContext.SaveChanges();
+
+            var m = BrowserList.FirstOrDefault(X => X.Id == Model.Id);
+
+            if (m != null)
+            {
+                Model.InverseParent = m.InverseParent;
+                Model.Identifications = m.Identifications;
+                Model.Capabilities = m.Capabilities;
+                Model.Captures = m.Captures;
+                Model.Samples = m.Samples;
+                Model._logger = m._logger;
+
+                BrowserList.Remove(m);
+            }
+            BrowserList.Add(Model);
+
+            return BrowserNode(Model.Id);
+        }
+
+        public IActionResult DeleteBrowserNode(long ID)
+        {
+            var m = BrowserList.FirstOrDefault(X => X.Id == ID);
+            if (m != null && m.InverseParent.Count == 0)
+            {
+                foreach (var m2 in m.Capabilities)
+                {
+                    BrowserCapsContext.Capabilities.Remove(m2);
+                }
+                foreach (var m2 in m.Captures)
+                {
+                    BrowserCapsContext.Captures.Remove(m2);
+                }
+                foreach (var m2 in m.Identifications)
+                {
+                    BrowserCapsContext.Identifications.Remove(m2);
+                }
+                foreach (var m2 in m.Samples)
+                {
+                    BrowserCapsContext.SampleHeaders.Remove(m2);
+                }
+
+                BrowserCapsContext.SaveChanges();
+            }
+            return Redirect("/");
+        }
+
+        [Route("~/Home/Identification/{ID}/{BrowserId}/")]
+        public IActionResult Identification(long ID, long BrowserId)
+        {
+            Data.Models.Identification? ident;
+
+            if (ID == 0 && BrowserId != 0)
+            {
+                ident = new Data.Models.Identification() { Id = 0, BrowserId = BrowserId, Match = string.Empty, NonMatch = string.Empty, Type = CaptureType.Header };
+            }
+            else
+            {
+                ident = BrowserCapsContext.Identifications.FirstOrDefault(X => X.Id == ID && X.BrowserId == BrowserId);
+            }
+
+            if (ident != null)
+            {
+                return View(ident);
+            }
+
+            return NotFound();
+        }
+        public IActionResult IdentificationUpSert(Data.Models.Identification Model)
+        {
+            if (Model.Id > 0)
+                BrowserCapsContext.Identifications.Update(Model);
+            else
+                BrowserCapsContext.Identifications.Add(Model);
+
+            BrowserCapsContext.SaveChanges();
+
+            var m = BrowserList.FirstOrDefault(X => X.Id == Model.Id);
+
+            if (m != null)
+            {
+                m.Identifications = BrowserCapsContext.Identifications.Where(X => X.BrowserId == Model.BrowserId).ToList();
+            }
+
+            return View(Model);
+        }
+        [Route("~/Home/Identification/Deleted/{ID}/")]
+        public IActionResult DeleteIdentification(long ID)
+        {
+            var ident = BrowserCapsContext.Identifications.FirstOrDefault(X => X.Id == ID);
+
+            if (ident != null)
+            {
+                var m = BrowserList.FirstOrDefault(X => X.Id == ident.BrowserId);
+                if (m != null)
+                {
+                    m.Identifications.Remove(ident);
+                    BrowserCapsContext.Identifications.Remove(ident);
+                    BrowserCapsContext.SaveChanges();
+                    return BrowserNode(m.Id);
+                }
+            }
+
+            return NotFound();
+        }
+
+        [Route("~/Home/Captures/{ID}/{BrowserId}/")]
+        public IActionResult Captures(long ID, long BrowserId)
+        {
+            Data.Models.Capture? ident;
+
+            if (ID == 0 && BrowserId != 0)
+            {
+                ident = new Data.Models.Capture() { Id = 0, BrowserId = BrowserId, Match = string.Empty, NonMatch = string.Empty, Type = CaptureType.Header };
+            }
+            else
+            {
+                ident = BrowserCapsContext.Captures.FirstOrDefault(X => X.Id == ID && X.BrowserId == BrowserId);
+            }
+
+            if (ident != null)
+            {
+                return View(ident);
+            }
+
+            return NotFound();
+        }
+        public IActionResult CapturesUpSert(Data.Models.Capture Model)
+        {
+            if (Model.Id > 0)
+                BrowserCapsContext.Captures.Update(Model);
+            else
+                BrowserCapsContext.Captures.Add(Model);
+
+            BrowserCapsContext.SaveChanges();
+
+            var m = BrowserList.FirstOrDefault(X => X.Id == Model.Id);
+
+            if (m != null)
+            {
+                m.Captures = BrowserCapsContext.Captures.Where(X => X.BrowserId == Model.BrowserId).ToList();
+            }
+
+            return View(Model);
+        }
+        [Route("~/Home/Captures/Deleted/{ID}/")]
+        public IActionResult DeleteCaptures(long ID)
+        {
+            var ident = BrowserCapsContext.Identifications.FirstOrDefault(X => X.Id == ID);
+
+            if (ident != null)
+            {
+                var m = BrowserList.FirstOrDefault(X => X.Id == ident.BrowserId);
+                if (m != null)
+                {
+                    m.Identifications.Remove(ident);
+                    BrowserCapsContext.Identifications.Remove(ident);
+                    BrowserCapsContext.SaveChanges();
+                    return BrowserNode(m.Id);
+                }
+            }
+
+            return NotFound();
+        }
+
+        [Route("~/Home/Capabilities/{ID}/{BrowserId}/")]
+        public IActionResult Capabilities(long ID, long BrowserId)
+        {
+            Data.Models.Capability? Cap;
+
+            if (ID == 0 && BrowserId != 0)
+            {
+                Cap = new Data.Models.Capability() { Id = 0, BrowserId = BrowserId, Name = string.Empty, Value = string.Empty };
+            }
+            else
+            {
+                Cap = BrowserCapsContext.Capabilities.FirstOrDefault(X => X.Id == ID && X.BrowserId == BrowserId);
+            }
+
+            if (Cap != null)
+            {
+                return View(Cap);
+            }
+
+            return NotFound();
+        }
+        public IActionResult CapabilitiesUpSert(Data.Models.Capability Model)
+        {
+            if (Model.Id > 0)
+                BrowserCapsContext.Capabilities.Update(Model);
+            else
+                BrowserCapsContext.Capabilities.Add(Model);
+
+            BrowserCapsContext.SaveChanges();
+
+            var m = BrowserList.FirstOrDefault(X => X.Id == Model.Id);
+
+            if (m != null)
+            {
+                m.Capabilities = BrowserCapsContext.Capabilities.Where(X => X.BrowserId == Model.BrowserId).ToList();
+            }
+
+            return View(Model);
+        }
+        [Route("~/Home/Capabilities/Deleted/{ID}/")]
+        public IActionResult DeleteCapabilities(long ID)
+        {
+            var ident = BrowserCapsContext.Capabilities.FirstOrDefault(X => X.Id == ID);
+
+            if (ident != null)
+            {
+                var m = BrowserList.FirstOrDefault(X => X.Id == ident.BrowserId);
+                if (m != null)
+                {
+                    m.Capabilities.Remove(ident);
+                    BrowserCapsContext.Capabilities.Remove(ident);
+                    BrowserCapsContext.SaveChanges();
+                    return BrowserNode(m.Id);
+                }
+            }
+
+            return NotFound();
+        }
+
+        [Route("~/Home/Sample/{ID}/{BrowserId}/")]
+        public IActionResult Samples(long ID, long BrowserId)
+        {
+            Data.Models.SampleHeader? Cap;
+
+            if (ID == 0 && BrowserId != 0)
+            {
+                Cap = new Data.Models.SampleHeader() { Id = 0, BrowserId = BrowserId, Name = string.Empty, Value = string.Empty };
+            }
+            else
+            {
+                Cap = BrowserCapsContext.SampleHeaders.FirstOrDefault(X => X.Id == ID && X.BrowserId == BrowserId);
+            }
+
+            if (Cap != null)
+            {
+                return View(Cap);
+            }
+
+            return NotFound();
+        }
+        public IActionResult SamplesUpSert(Data.Models.SampleHeader Model)
+        {
+            if (Model.Id > 0)
+                BrowserCapsContext.SampleHeaders.Update(Model);
+            else
+                BrowserCapsContext.SampleHeaders.Add(Model);
+
+            BrowserCapsContext.SaveChanges();
+
+            var m = BrowserList.FirstOrDefault(X => X.Id == Model.Id);
+
+            if (m != null)
+            {
+                m.Samples = BrowserCapsContext.SampleHeaders.Where(X => X.BrowserId == Model.BrowserId).ToList();
+            }
+
+            return View(Model);
+        }
+        [Route("~/Home/Sample/Deleted/{ID}/")]
+        public IActionResult DeleteSamples(long ID)
+        {
+            var ident = BrowserCapsContext.SampleHeaders.FirstOrDefault(X => X.Id == ID);
+
+            if (ident != null)
+            {
+                var m = BrowserList.FirstOrDefault(X => X.Id == ident.BrowserId);
+                if (m != null)
+                {
+                    m.Samples.Remove(ident);
+                    BrowserCapsContext.SampleHeaders.Remove(ident);
+                    BrowserCapsContext.SaveChanges();
+                    return BrowserNode(m.Id);
+                }
+            }
+
+            return NotFound();
         }
 
         public IActionResult Privacy()
@@ -63,6 +355,20 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        private List<SelectListItem> BrowserNodes
+        {
+            get
+            {
+                List<SelectListItem> item = new List<SelectListItem>();
+                foreach (var node in BrowserList)
+                {
+                    item.Add(new SelectListItem() { Text = node.Name, Value = node.Id.ToString() });
+                }
+
+                return item;
+            }
         }
     }
 }

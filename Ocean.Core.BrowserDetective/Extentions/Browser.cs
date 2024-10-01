@@ -4,26 +4,22 @@ namespace Ocean.Core.BrowserDetective.Extentions;
 
 public static class BrowserExtention
 {
-    public static ResultBrowserItem Process(this Data.Models.Browser browser, IDictionary<string, string> header)
+    public static Result Process(this Data.Models.Browser browser, IDictionary<string, string> header)
     {
         return Process(browser, header, new Result());
     }
-    public static ResultBrowserItem Process(this Data.Models.Browser browser, IDictionary<string, string> header, Result result, int level = 0)
+    public static Result Process(this Data.Models.Browser browser, IDictionary<string, string> header, Result result, int level = 0)
     {
+        LinkedList<Identification> MatchList = new LinkedList<Identification>();
         System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
         sb.AppendLine($"{level}:{browser.Type}:{browser.Name}");
-
 
         if (!result.ContainsKey(string.Empty) && header.ContainsKey("User-Agent"))
         {
             result.Add(string.Empty, header["User-Agent"]);
             sb.AppendLine($"User-Agent:\"{header["User-Agent"]}\"");
         }
-        ResultBrowserItem Historyitem = new ResultBrowserItem(browser);
-
-        Historyitem.Success = true; //Assume it will Pass (Default)
-        Historyitem.results = result;
 
         //this is setup to Allow the group to fail. by one item.
         bool Success = true;
@@ -42,18 +38,16 @@ public static class BrowserExtention
             // only continue precessing if they all pass.
             if (id.Success)
             {
-                Historyitem.MatchList.AddLast(id);
+                MatchList.AddLast(id);
                 sb.AppendLine("Pass");
             }
             else if (browser.Type == BrowserType.Browser)
             {
                 //Marks the Item as failed match.
-                Historyitem.NotMatchedList.AddLast(id);
                 Success = false;
-                Historyitem.Success = false;
                 sb.AppendLine("Fail");
                 browser._logger.Log(LogLevel.Information, sb.ToString());
-                return Historyitem;
+                return result;
             }
             else if (browser.Type == BrowserType.GateWay)
             {
@@ -61,10 +55,6 @@ public static class BrowserExtention
                 sb.AppendLine("Fail");
             }
         }
-        Historyitem.Success = Success;
-        browser._logger.Log(LogLevel.Information, sb.ToString());
-        sb = new System.Text.StringBuilder();
-        sb.AppendLine($"{level}:{browser.Type}:{browser.Name}");
         //Must all pass so to apply tranformation methods.
         if (Success == true)
         {
@@ -76,7 +66,7 @@ public static class BrowserExtention
                 //Only care about the sucessfull ones, ignore the other ones.
                 if (id.Success)
                 {
-                    Historyitem.MatchList.AddLast(id);
+                    MatchList.AddLast(id);
                 }
             }
             foreach (var item in browser.Capabilities)
@@ -85,51 +75,54 @@ public static class BrowserExtention
                 if (string.IsNullOrEmpty(item.Value) == false)
                 {
                     //makes sure we have something to work with at least.
-                    if (item.Value.Contains("${") && Historyitem.MatchList.Count > 0 && Historyitem.MatchList.First(x => x.Success == true) != null)
+                    if (item.Value.Contains("${") && MatchList.Count > 0 && MatchList.First(x => x.Success == true) != null)
                     {
-                        string v = Historyitem.MatchList.First(x => x.Success == true).Result(item.Value);
+                        string v = MatchList.First(x => x.Success == true).Result(item.Value);
                         //empty or null means no valid convertion option available.
                         if (String.IsNullOrWhiteSpace(v) == false)
-                            Historyitem.results[item.Name] = v;
+                        {
+                            result.Trace.Add(new Data.Models.Trackitem() { BrowserID = browser.Id, BrowserName= browser.Name, Name = item.Name, Value = v });
+                            result[item.Name] = v;
+                        }
                         else if (result.ContainsKey(item.Name))
-                            Historyitem.results[item.Name] = result[item.Name];
+                        {
+                            result.Trace.Add(new Data.Models.Trackitem() { BrowserID = browser.Id, BrowserName = browser.Name, Name = item.Name, Value = result[item.Name] });
+                        }
                         else
-                            Historyitem.results[item.Name] = string.Empty;
+                        {
+                            result.Trace.Add(new Data.Models.Trackitem() { BrowserID = browser.Id, BrowserName = browser.Name, Name = item.Name, Value = string.Empty });
+                            result[item.Name] = string.Empty;
+                        }
                     }
                     else
                     {
-                        Historyitem.results[item.Name] = item.Value;
+                        result.Trace.Add(new Data.Models.Trackitem() { BrowserID = browser.Id, BrowserName = browser.Name, Name = item.Name, Value = item.Value });
+                        result[item.Name] = item.Value;
                     }
-                    sb.AppendLine($"{browser.Name}:Result[{item.Name}]=\"{Historyitem.results[item.Name]}\"");
+                    sb.AppendLine($"{browser.Name}:Result[{item.Name}]=\"{result[item.Name]}\"");
                 }
             }
-            //The wiping out of the Results has to happen after this point.
-            //need to figure out why.
+            //cheap way to sent it up the chain that this level was a sucess (even if there are no Capabilities at this level)
+            result.Trace.Add(new Data.Models.Trackitem() { BrowserID = browser.Id, BrowserName = browser.Name, Name = "Success", Value = bool.TrueString });
+
+
             foreach (var item in browser.InverseParent.Where(X => X.Type == BrowserType.GateWay && X.ParentId == browser.Id))
             {
-                ResultBrowserItem ChildHistoryitem = item.Process(header, Historyitem.results, level + 1);
-
-                if (ChildHistoryitem.Success == true)
-                {
-                    Historyitem.Childern.Add(ChildHistoryitem);
-                    Historyitem.results = ChildHistoryitem.results;
-                }
+                result = item.Process(header, result, level + 1);
             }
 
             foreach (var item in browser.InverseParent.Where(X => X.Type == BrowserType.Browser && X.ParentId == browser.Id))
             {
-                ResultBrowserItem ChildHistoryitem = item.Process(header, Historyitem.results, level + 1);
+                result = item.Process(header, result, level + 1);
 
                 //First sucessful, ignore the rest. (basicly treate all items at the same level as a massive if /else if.)
-                if (ChildHistoryitem.Success == true)
+                if (result.Trace.Any(X => X.BrowserID == item.Id))
                 {
-                    Historyitem.Childern.Add(ChildHistoryitem);
-                    Historyitem.results = ChildHistoryitem.results;
                     break;
                 }
             }
         }
-        browser._logger.Log(LogLevel.Information, sb.ToString());
-        return Historyitem;
+        // browser._logger.Log(LogLevel.Information, sb.ToString());
+        return result;
     }
 }

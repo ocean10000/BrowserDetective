@@ -103,6 +103,20 @@ namespace Ocean.Core.BrowserDetective.Data.Models
         public virtual string? Name { get; set; }
 
         public virtual string? Value { get; set; }
+    }
+    //this is to allow us to track Resulting changes by Browser Id. 
+    //for easier out when items changed easier.
+    public partial class Trackitem
+    {
+        public virtual long BrowserID { get; set; }
+        public virtual string? BrowserName { get; set; }
+        public virtual string? Name { get; set; }
 
+        public virtual string? Value { get; set; }
+
+        public override string ToString()
+        {
+            return $"{BrowserID}, {BrowserName}, {Name}, {Value}";
+        }
     }
 }

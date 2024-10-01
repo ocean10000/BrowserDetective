@@ -89,8 +89,6 @@ namespace Ocean.Core.BrowserDetective
             //Microsoft Browser Files from Dot.net 1.X to 4.7X.)
             //-----------------------------------------------------------------------------
             DefaultBrowser = browsers.Where(x => x.Name == "Default").FirstOrDefault();
-            if (DefaultBrowser == null)
-                return;
         }
         public Result ProcessData(string userAgent)
         {
@@ -106,8 +104,7 @@ namespace Ocean.Core.BrowserDetective
         {
             if (DefaultBrowser == null)
                 return new Result();
-            var h = DefaultBrowser.Process(header);
-            return h.results;
+            return DefaultBrowser.Process(header);
         }
         //This is more of a way to allow conversion from older version of unit test and code pre
         //dot.net core.
@@ -122,8 +119,7 @@ namespace Ocean.Core.BrowserDetective
                 header2.Add(k, header[k]);
             }
 
-            var h = DefaultBrowser.Process(header2);
-            return h.results;
+            return DefaultBrowser.Process(header2);
         }
     }
 }

@@ -11,7 +11,7 @@
         {
             get
             {
-                if (this.ContainsKey("os"))
+                if (this.ContainsKey("OS"))
                     return this["OS"];
                 else
                     return string.Empty;
@@ -122,16 +122,7 @@
             }
         }
 
-        public string platform
-        {
-            get
-            {
-                if (this.ContainsKey("platform"))
-                    return this["platform"];
-                else
-                    return string.Empty;
-            }
-        }
-
+        public System.Collections.Generic.List<Ocean.Core.BrowserDetective.Data.Models.Trackitem> Trace
+        { get; set; } = new List<Data.Models.Trackitem>();
     }
 }

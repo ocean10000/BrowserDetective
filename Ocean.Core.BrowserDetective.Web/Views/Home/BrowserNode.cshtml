@@ -5,6 +5,15 @@
     BrowserType.Add(new SelectListItem() { Text = "Browser", Value = "1" });
     BrowserType.Add(new SelectListItem() { Text = "GateWay", Value = "2" });
 }
+@if (Model.ParentId > 0)
+{
+    <fieldset>
+        <legend>Parent</legend>
+        <a asp-controller="Home" asp-action="BrowserNode" asp-route-ID="@Model.ParentId">@Model.Parent.Name</a>
+        <br />
+    </fieldset>
+    <hr />
+}
 <fieldset>
     <legend>Brower Details</legend>
     <form asp-action="BrowserNodeUpSert" method="post">

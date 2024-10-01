@@ -37,19 +37,18 @@ if (detective.DefaultBrowser != null)
         Console.WriteLine("---------------------------Start Results-------------------------------");
         if (dic.Count > 0)
         {
-            var h = detective.DefaultBrowser.Process( dic);
+            var h = detective.DefaultBrowser.Process(dic);
 
-            nodes = h.Debug(0);
-            foreach (var n in nodes)
+            foreach (var n in h.Trace)
             {
-                var d = new BrowserNode() { Raw_ID = item.ID, Node_ID = n.Key.Id, Index = n.Value };
+                var d = new BrowserNode() { Raw_ID = item.ID, Node_ID = n.Key, Index = 0 };
                 resultContext.Nodes.Add(d);
             }
-            foreach (var key in h.results.Keys)
+            foreach (var key in h.Keys)
             {
-                var r = new ResultItem() { Raw_ID = item.ID, Name = key, Value = h.results[key] };
+                var r = new ResultItem() { Raw_ID = item.ID, Name = key, Value = h[key] };
                 resultContext.Results.Add(r);
-                Console.WriteLine($"{key}\t{h.results[key]}");
+                Console.WriteLine($"{key}\t{h[key]}");
             }
         }
         resultContext.SaveChanges();

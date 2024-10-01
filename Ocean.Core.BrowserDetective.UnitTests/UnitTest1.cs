@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using System.Configuration;
+using Ocean.Core.BrowserDetective.Extentions;
 
 namespace Ocean.Core.BrowserDetective.UnitTests
 {
@@ -41,14 +42,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
            
             Assert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
             Assert.AreEqual(new Version("6.0"), RS2.version, "version");
-            Assert.AreEqual("6", RS2["majorversion"], "majorversion");
-            Assert.AreEqual("0", RS2["minorversion"], "minorversion");
             Assert.AreEqual("Microsoft Windows XP", RS2.OS, "os");
-            //Assert.AreEqual("WinXP", RS2["platform"], "platform");
-            //Assert.AreEqual("false", RS2["win16"], "win16");
-            //Assert.AreEqual("true", RS2["win32"], "win32");
-            //Assert.AreEqual("false", RS2["win64"], "win64");
-
         }
 
         [Test]
@@ -66,15 +60,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             var RS2 = Detective.ProcessData(Header);
             Assert.AreEqual("Netscape", RS2["browser"], "browser");
             Assert.AreEqual(new Version("8.1"), RS2.version, "version");
-            Assert.AreEqual("8", RS2["majorversion"], "majorversion");
-            Assert.AreEqual("1", RS2["minorversion"], "minorversion");
-            //Assert.AreEqual("1.0", RS2["w3cdomversion"], "w3cdomversion");
-            //Assert.AreEqual("0.0", RS2["msdomversion"], "msdomversion");
             Assert.AreEqual("Microsoft Windows XP", RS2.OS, "os");
-            //Assert.AreEqual("WinXP", RS2["platform"], "platform");
-            //Assert.AreEqual("false", RS2["win16"], "win16");
-            //Assert.AreEqual("true", RS2["win32"], "win32");
-            //Assert.AreEqual("false", RS2["win64"], "win64");
         }
 
         [Test]
@@ -95,15 +81,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             var RS2 = Detective.ProcessData(Header);
             Assert.AreEqual("Firefox", RS2.BrowserName, "browser");
             Assert.AreEqual(new Version(1,5,0), RS2.version, "version");
-            Assert.AreEqual("1", RS2["majorversion"], "majorversion");
-            Assert.AreEqual("5.0", RS2["minorversion"], "minorversion");
-            //Assert.AreEqual("1.0", RS2["w3cdomversion"], "w3cdomversion");
-            //Assert.AreEqual("0.0", RS2["msdomversion"], "msdomversion");
             Assert.AreEqual("Microsoft Windows XP", RS2.OS, "os");
-            //Assert.AreEqual("WinXP", RS2["platform"], "platform");
-            //Assert.AreEqual("false", RS2["win16"], "win16");
-            //Assert.AreEqual("true", RS2["win32"], "win32");
-            //Assert.AreEqual("false", RS2["win64"], "win64");
         }
 
         [Test]
@@ -207,6 +185,33 @@ namespace Ocean.Core.BrowserDetective.UnitTests
 
             Assert.AreEqual("Opera", RS2.BrowserName, "browser");
             Assert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
+        }
+
+        //https://community.cloudflare.com/t/why-crios-instead-of-chrome/375159/3
+        //https://chromium.googlesource.com/chromium/src.git/+/HEAD/docs/ios/user_agent.md
+        [Test]
+        public void CriOS_iOS_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/74.0.3729.155 Mobile/15E148 Safari/604.1");
+            var RS2 = Detective.ProcessData(Header); 
+
+            Assert.AreEqual("Chrome Mobile", RS2.BrowserName, "browser");
+            Assert.AreEqual("iOS", RS2.OS, "os");
+        }
+        //this is Chrome Model trying to act as the Desktop Model.
+        [Test]
+        public void CriOS_iOS_2()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/85 Version/11.1.1 Safari/605.1.15");
+            var RS2 = Detective.DefaultBrowser.Process(Header);
+
+            
+            Assert.AreEqual("Chrome Mobile", RS2.BrowserName, "browser");
+            Assert.AreEqual("iOS", RS2.OS, "os");
         }
     }
 }

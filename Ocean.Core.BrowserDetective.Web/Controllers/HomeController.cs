@@ -19,7 +19,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
         {
             _logger = logger;
             BrowserCapsContext = new Data.Context.BrowserCapsContext(configuration.GetConnectionString("BrowserCaps"));
-            BrowserList = BrowserCapsContext.Browsers.OrderBy(X => X.Name).ToList();
+            BrowserList = BrowserCapsContext.Browsers.AsNoTracking().OrderBy(X => X.Name).ToList();
             BrowserList.ForEach(X => X._logger = _logger);
 
             var identifications = BrowserCapsContext.Identifications.AsNoTracking().ToList();
@@ -160,7 +160,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
         [Route("~/Home/Identification/Deleted/{ID}/")]
         public IActionResult DeleteIdentification(long ID)
         {
-            var ident = BrowserCapsContext.Identifications.FirstOrDefault(X => X.Id == ID);
+            var ident = BrowserCapsContext.Identifications.AsNoTracking().FirstOrDefault(X => X.Id == ID);
 
             if (ident != null)
             {
@@ -219,15 +219,15 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
         [Route("~/Home/Captures/Deleted/{ID}/")]
         public IActionResult DeleteCaptures(long ID)
         {
-            var ident = BrowserCapsContext.Identifications.FirstOrDefault(X => X.Id == ID);
+            var ident = BrowserCapsContext.Captures.AsNoTracking().FirstOrDefault(X => X.Id == ID);
 
             if (ident != null)
             {
                 var m = BrowserList.FirstOrDefault(X => X.Id == ident.BrowserId);
                 if (m != null)
                 {
-                    m.Identifications.Remove(ident);
-                    BrowserCapsContext.Identifications.Remove(ident);
+                    m.Captures.Remove(ident);
+                    BrowserCapsContext.Captures.Remove(ident);
                     BrowserCapsContext.SaveChanges();
                     return BrowserNode(m.Id);
                 }

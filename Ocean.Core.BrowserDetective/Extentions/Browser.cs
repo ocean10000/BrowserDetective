@@ -75,13 +75,13 @@ public static class BrowserExtention
                 if (string.IsNullOrEmpty(item.Value) == false)
                 {
                     //makes sure we have something to work with at least.
-                    if (item.Value.Contains("${") && MatchList.Count > 0 && MatchList.First(x => x.Success == true) != null)
+                    if (item.Value.Contains("${") && MatchList.Count > 0 && MatchList.FirstOrDefault(x => x.Success == true && string.IsNullOrWhiteSpace(x.Result(item.Value)) == false) != null)
                     {
-                        string v = MatchList.First(x => x.Success == true).Result(item.Value);
+                        string v = MatchList.First(x => x.Success == true && x.HasCaptureGroups && string.IsNullOrWhiteSpace(x.Result(item.Value)) == false).Result(item.Value);
                         //empty or null means no valid convertion option available.
                         if (String.IsNullOrWhiteSpace(v) == false)
                         {
-                            result.Trace.Add(new Data.Models.Trackitem() { BrowserID = browser.Id, BrowserName= browser.Name, Name = item.Name, Value = v });
+                            result.Trace.Add(new Data.Models.Trackitem() { BrowserID = browser.Id, BrowserName = browser.Name, Name = item.Name, Value = v });
                             result[item.Name] = v;
                         }
                         else if (result.ContainsKey(item.Name))
@@ -104,7 +104,7 @@ public static class BrowserExtention
             }
             //cheap way to sent it up the chain that this level was a sucess (even if there are no Capabilities at this level)
             result.Trace.Add(new Data.Models.Trackitem() { BrowserID = browser.Id, BrowserName = browser.Name, Name = "Success", Value = bool.TrueString });
-
+            browser._logger.Log(LogLevel.Information, sb.ToString());
 
             foreach (var item in browser.InverseParent.Where(X => X.Type == BrowserType.GateWay && X.ParentId == browser.Id))
             {
@@ -122,7 +122,6 @@ public static class BrowserExtention
                 }
             }
         }
-        // browser._logger.Log(LogLevel.Information, sb.ToString());
         return result;
     }
 }

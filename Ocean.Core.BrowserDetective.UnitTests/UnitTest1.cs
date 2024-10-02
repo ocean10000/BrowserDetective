@@ -93,6 +93,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             var RS2 = Detective.ProcessData(Header);
 
             Assert.AreEqual("Chrome", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("94.0.4606"), RS2.version, "version");
             Assert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
         }
         [Test]
@@ -104,6 +105,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             var RS2 = Detective.ProcessData(Header);
 
             Assert.AreEqual("Chrome", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("94.0.4606"), RS2.version, "version");
             Assert.AreEqual("Macintosh OS X", RS2.OS, "os");
         }
 
@@ -116,6 +118,21 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             var RS2 = Detective.ProcessData(Header);
 
             Assert.AreEqual("Chrome", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("94.0.4606"), RS2.version, "version");
+            Assert.AreEqual("Android", RS2.OS, "os");
+        }
+
+
+        [Test]
+        public void GoogleChrome_Android_2()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Mozilla/5.0 (Linux; Android 7.0; Redmi Note 4 Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Mobile Safari/537.36");
+            var RS2 = Detective.ProcessData(Header);
+
+            Assert.AreEqual("Chrome", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("67.0.3396"), RS2.version, "version");
             Assert.AreEqual("Android", RS2.OS, "os");
         }
 
@@ -139,6 +156,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             var RS2 = Detective.ProcessData(Header);
 
             Assert.AreEqual("Firefox", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("93.0"), RS2.version, "version");
             Assert.AreEqual("Macintosh OS X", RS2.OS, "os");
         }
         [Test]
@@ -150,6 +168,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             var RS2 = Detective.ProcessData(Header);
 
             Assert.AreEqual("Safari", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("15.0"), RS2.version, "version");
             Assert.AreEqual("Macintosh OS X", RS2.OS, "os");
         }
 
@@ -162,6 +181,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             var RS2 = Detective.ProcessData(Header);
 
             Assert.AreEqual("Safari", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("15.0"), RS2.version, "version");
             Assert.AreEqual("iOS", RS2.OS, "os");
         }
         [Test]
@@ -172,7 +192,13 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36 Edg/94.0.992.47");
             var RS2 = Detective.ProcessData(Header);
 
+            foreach (var item in RS2.Trace)
+            {
+                Console.WriteLine(item);
+            }
+
             Assert.AreEqual("Microsoft Edge", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("94.0.992"), RS2.version, "version");
             Assert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
         }
         [Test]
@@ -184,7 +210,26 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             var RS2 = Detective.ProcessData(Header);
 
             Assert.AreEqual("Opera", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("80.0.4170"), RS2.version, "version");
             Assert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
+        }
+        [Test]
+        public void Opera_Linux_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Mozilla/4.0 (compatible; MSIE 6.0; X11; Linux i686; de) Opera 10.10");
+            var RS2 = Detective.ProcessData(Header);
+
+
+            foreach (var item in RS2.Trace)
+            {
+                Console.WriteLine(item);
+            }
+
+            Assert.AreEqual("Opera", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("10.10"), RS2.version, "version");
+            Assert.AreEqual("Linux", RS2.OS, "os");
         }
 
         //https://community.cloudflare.com/t/why-crios-instead-of-chrome/375159/3
@@ -198,6 +243,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             var RS2 = Detective.ProcessData(Header); 
 
             Assert.AreEqual("Chrome Mobile", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("74.0.3729"), RS2.version, "version");
             Assert.AreEqual("iOS", RS2.OS, "os");
         }
         //this is Chrome Model trying to act as the Desktop Model.
@@ -209,9 +255,68 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/85 Version/11.1.1 Safari/605.1.15");
             var RS2 = Detective.DefaultBrowser.Process(Header);
 
-            
+
+            foreach (var item in RS2.Trace)
+            {
+                Console.WriteLine(item);
+            }
+
             Assert.AreEqual("Chrome Mobile", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("85.0"), RS2.version, "version");
             Assert.AreEqual("iOS", RS2.OS, "os");
         }
+
+        //this is Chrome Model trying to act as the Desktop Model.
+        [Test]
+        public void Bytespider_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Mozilla/5.0 (Linux; Android 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Safari/537.36 (compatible; Bytespider; spider-feedback@bytedance.com)");
+            var RS2 = Detective.DefaultBrowser.Process(Header);
+
+            Assert.AreEqual("Bytespider", RS2.BrowserName, "browser");
+            Assert.AreEqual(true, RS2.Crawler, "Crawler");
+        }
+
+        [Test]
+        public void QQBrowser_Windows_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2776.145 Safari/537.36 Core/1.70.3722.400 QQBrowser/10.5.3739.400");
+            var RS2 = Detective.DefaultBrowser.Process(Header);
+
+            Assert.AreEqual("QQBrowser", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("10.5.3739"), RS2.version, "version");
+            Assert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
+        }
+
+        [Test]
+        public void MQQBrowser_Android_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Mozilla/5.0 (Linux; U; Android 7.1.1; zh-cn; Mi Note 3 Build/NMF26X) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/8.5 Mobile Safari/537.36");
+            var RS2 = Detective.DefaultBrowser.Process(Header);
+
+            Assert.AreEqual("QQBrowser", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("8.5"), RS2.version, "version");
+            Assert.AreEqual("Android", RS2.OS, "os");
+        }
+
+        [Test]
+        public void YaBrowser_macOS_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 YaBrowser/22.11.3.824 Yowser/2.5 Safari/537.36");
+            var RS2 = Detective.ProcessData(Header);
+
+            Assert.AreEqual("YaBrowser", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("22.11.3"), RS2.version, "version");
+            Assert.AreEqual("Macintosh OS X", RS2.OS, "os");
+        }
+
     }
 }

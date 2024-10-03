@@ -27,7 +27,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
         }
 
         [Test]
-        public void Test1()
+        public void MSIE_Windows_1()
         {
             System.Collections.Generic.Dictionary<string,string> Header;
             Header = new Dictionary<string, string>();
@@ -119,9 +119,8 @@ namespace Ocean.Core.BrowserDetective.UnitTests
 
             Assert.AreEqual("Chrome", RS2.BrowserName, "browser");
             Assert.AreEqual(new Version("94.0.4606"), RS2.version, "version");
-            Assert.AreEqual("Android", RS2.OS, "os");
+            Assert.AreEqual("Android 11", RS2.OS, "os");
         }
-
 
         [Test]
         public void GoogleChrome_Android_2()
@@ -133,7 +132,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
 
             Assert.AreEqual("Chrome", RS2.BrowserName, "browser");
             Assert.AreEqual(new Version("67.0.3396"), RS2.version, "version");
-            Assert.AreEqual("Android", RS2.OS, "os");
+            Assert.AreEqual("Android 7.0", RS2.OS, "os");
         }
 
         [Test]
@@ -279,6 +278,19 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Assert.AreEqual(true, RS2.Crawler, "Crawler");
         }
 
+        //this is Chrome Model trying to act as the Desktop Model.
+        [Test]
+        public void Bytespider_2()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Mozilla/5.0 (Linux; Android 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Safari/537.36 (compatible; Bytespider; https://zhanzhang.toutiao.com/)");
+            var RS2 = Detective.DefaultBrowser.Process(Header);
+
+            Assert.AreEqual("Bytespider", RS2.BrowserName, "browser");
+            Assert.AreEqual(true, RS2.Crawler, "Crawler");
+        }
+
         [Test]
         public void QQBrowser_Windows_1()
         {
@@ -302,7 +314,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
 
             Assert.AreEqual("QQBrowser", RS2.BrowserName, "browser");
             Assert.AreEqual(new Version("8.5"), RS2.version, "version");
-            Assert.AreEqual("Android", RS2.OS, "os");
+            Assert.AreEqual("Android 7.1.1", RS2.OS, "os");
         }
 
         [Test]
@@ -318,5 +330,188 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Assert.AreEqual("Macintosh OS X", RS2.OS, "os");
         }
 
+        [Test]
+        public void certifytheweb_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"cf-worker", @"certifytheweb.com");
+            var RS2 = Detective.ProcessData(Header);
+
+            Assert.AreEqual("certifytheweb.com", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("0.0"), RS2.version, "version");
+            Assert.AreEqual(string.Empty, RS2.OS, "os");
+            Assert.AreEqual(true, RS2.Crawler, "Crawler");
+            Assert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+
+        }
+
+        [Test]
+        public void es50_SymbianOS_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Mozilla/5.0 (SymbianOS/9.1; U; en-us) AppleWebKit/413 (KHTML, like Gecko) Safari/413 es50");
+            var RS2 = Detective.ProcessData(Header);
+
+            foreach (var item in RS2.Trace)
+            {
+                Console.WriteLine(item);
+            }
+
+            Assert.AreEqual("Nokia", RS2.BrowserName, "browser");
+            Assert.AreEqual(false, RS2.Crawler, "Crawler");
+            Assert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
+            Assert.AreEqual("Nokia es50", RS2.mobileDeviceModel, "mobileDeviceModel");
+            Assert.AreEqual("Nokia", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            Assert.AreEqual(new Version("0.0"), RS2.version, "version");
+            Assert.AreEqual("SymbianOS 9.1", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+        }
+        [Test]
+        public void es70_SymbianOS_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Mozilla/5.0 (SymbianOS/9.1; U; en-us) AppleWebKit/413 (KHTML, like Gecko) Safari/413 es70");
+            var RS2 = Detective.ProcessData(Header);
+
+            foreach (var item in RS2.Trace)
+            {
+                Console.WriteLine(item);
+            }
+
+            Assert.AreEqual("Nokia", RS2.BrowserName, "browser");
+            Assert.AreEqual(false, RS2.Crawler, "Crawler");
+            Assert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
+            Assert.AreEqual("Nokia es70", RS2.mobileDeviceModel, "mobileDeviceModel");
+            Assert.AreEqual("Nokia", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            Assert.AreEqual(new Version("0.0"), RS2.version, "version");
+            Assert.AreEqual("SymbianOS 9.1", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+
+        }
+        [Test]
+        public void es90_SymbianOS_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Mozilla/5.0 (SymbianOS/9.2; U; Series60/3.1 NokiaE90-1/07.24.0.3; Profile/MIDP-2.0 Configuration/CLDC-1.1 ) AppleWebKit/413 (KHTML, like Gecko) Safari/413 UP.Link/6.2.3.18.0");
+            var RS2 = Detective.ProcessData(Header);
+
+            foreach (var item in RS2.Trace)
+            {
+                Console.WriteLine(item);
+            }
+
+            Assert.AreEqual("Nokia", RS2.BrowserName, "browser");
+            Assert.AreEqual(false, RS2.Crawler, "Crawler");
+            Assert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
+            Assert.AreEqual("Nokia E90-1", RS2.mobileDeviceModel, "mobileDeviceModel");
+            Assert.AreEqual("Nokia", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            Assert.AreEqual(new Version("7.24.0"), RS2.version, "version");
+            Assert.AreEqual("SymbianOS 9.2", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+
+        }
+
+        [Test]
+        public void Unknown_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Uzbl (Webkit 1.3) (Linux i686 [i686])");
+            var RS2 = Detective.ProcessData(Header);
+
+            foreach (var item in RS2.Trace)
+            {
+                Console.WriteLine(item);
+            }
+
+            Assert.AreEqual("Unknown", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("0.0"), RS2.version, "version");
+            Assert.AreEqual("Linux", RS2.OS, "os");
+
+        }
+        [Test]
+        public void Unknown_2()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Mozilla/5.0 (SymbianOS/9.1; U; en-us) AppleWebKit/413 (KHTML, like Gecko) Safari/413");
+            var RS2 = Detective.ProcessData(Header);
+
+            foreach (var item in RS2.Trace)
+            {
+                Console.WriteLine(item);
+            }
+
+            Assert.AreEqual("Unknown", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("0.0"), RS2.version, "version");
+            Assert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
+            Assert.AreEqual("SymbianOS 9.1", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+
+        }
+
+        [Test]
+        public void GPTBot_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.0; +https://openai.com/gptbot)");
+            var RS2 = Detective.ProcessData(Header);
+
+            foreach (var item in RS2.Trace)
+            {
+                Console.WriteLine(item);
+            }
+
+            Assert.AreEqual("GPTBot", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("1.0"), RS2.version, "version");
+            Assert.AreEqual(true, RS2.Crawler, "Crawler");
+            Assert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            Assert.AreEqual("Unknown", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+
+        }
+
+        [Test]
+        public void bingbot_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/116.0.1938.76 Safari/537.36");
+            var RS2 = Detective.ProcessData(Header);
+
+            foreach (var item in RS2.Trace)
+            {
+                Console.WriteLine(item);
+            }
+
+            Assert.AreEqual("bingbot", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("2.0"), RS2.version, "version");
+            Assert.AreEqual(true, RS2.Crawler, "Crawler");
+            Assert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            Assert.AreEqual("Unknown", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+
+        }
+
+
+        [Test]
+        public void UCBrowser_Android_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Mozilla/5.0 (Linux; U; Android 7.0; zh-CN; KNT-AL20 Build/HUAWEIKNT-AL20) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 UCBrowser/11.9.4.974 UWS/2.14.0.2 Mobile Safari/537.36 AliApp(TB/7.7.5) UCBS/2.11.1.1 TTID/227200@taobao_android_7.7.5 WindVane/8.3.0 1440X2427");
+            var RS2 = Detective.ProcessData(Header);
+
+
+            foreach (var item in RS2.Trace)
+            {
+                Console.WriteLine(item);
+            }
+            Assert.AreEqual("Android 7.0", RS2.OS, "os");
+            Assert.AreEqual("UCBrowser", RS2.BrowserName, "browser");
+            Assert.AreEqual(new Version("11.9.4"), RS2.version, "version");
+        
+        }
+
+        //https://github.com/codewatchorg/Burp-UserAgent/blob/master/useragents.xml
     }
 }

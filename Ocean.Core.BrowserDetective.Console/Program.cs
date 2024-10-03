@@ -5,6 +5,7 @@ using Ocean.Core.BrowserDetective.Extentions;
 using Ocean.Core.BrowserDetective.Data.Extentions;
 using Ocean.Core.BrowserDetective.Data.Models;
 using System.Configuration;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 using ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
 ILogger logger = factory.CreateLogger(typeof(Ocean.Core.BrowserDetective.Process));
@@ -23,7 +24,7 @@ if (detective.DefaultBrowser != null)
         Console.WriteLine($"{n.Key.Type}: {n.Key.Name}\t{n.Value}");
     }
 
-    foreach (var item in context.Raw)
+    foreach (var item in context.Raw.Where(X=>X.Stamp.Year>=2023))
     {
         var headers = context.Headers.Where(X => X.Raw_ID == item.ID).ToList();
         IDictionary<string, string> dic = new Dictionary<string, string>();
@@ -41,7 +42,7 @@ if (detective.DefaultBrowser != null)
 
             foreach (var n in h.Trace)
             {
-                var d = new BrowserNode() { Raw_ID = item.ID, Node_ID = n.Key, Index = 0 };
+                var d = new BrowserNode() { Raw_ID = item.ID, Node_ID = n.BrowserID, Name = n.Name, Value= n.Value};
                 resultContext.Nodes.Add(d);
             }
             foreach (var key in h.Keys)

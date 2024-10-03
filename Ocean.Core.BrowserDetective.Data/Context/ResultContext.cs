@@ -46,7 +46,8 @@ namespace Ocean.Core.BrowserDetective.Data.Context
                 entity.Property(e => e.ID).HasColumnName("ID");
                 entity.Property(e => e.Raw_ID).HasColumnName("Raw_ID");
                 entity.Property(e => e.Node_ID).HasColumnName("BrowserNode_ID");
-                entity.Property(e => e.Index).HasColumnName("Index");
+                entity.Property(e => e.Name).HasColumnName("Name");
+                entity.Property(e => e.Value).HasColumnName("Value");
 
             });
         }

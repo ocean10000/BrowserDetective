@@ -8,6 +8,10 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Ocean's BrowserCap Interpreter</Title>
     <Copyright>2024</Copyright>
+    <Version>1.0.1</Version>
+    <RepositoryType>GIT</RepositoryType>
+    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <FileVersion>1.0.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,7 +23,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\Ocean.Core.BrowserDetective.Data\Ocean.Core.BrowserDetective.Data.csproj" />
+    <PackageReference Include="Ocean.Core.BrowserDetective.Data" Version="1.0.0" />
   </ItemGroup>
 </Project>

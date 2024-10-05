@@ -99,12 +99,12 @@ public static class BrowserExtention
             browser._logger.Log(LogLevel.Information, sb.ToString());
             sb = new System.Text.StringBuilder();
 
-            foreach (var item in browser.InverseParent.Where(X => X.Type == BrowserType.GateWay && X.ParentId == browser.Id))
+            foreach (var item in browser.InverseParent.Where(X => X.Type == BrowserType.GateWay && X.ParentId == browser.Id).OrderBy(X=>X.Prority).ThenBy(X=>X.Name))
             {
                 result = item.Process(header, result, level + 1);
             }
 
-            foreach (var item in browser.InverseParent.Where(X => X.Type == BrowserType.Browser && X.ParentId == browser.Id))
+            foreach (var item in browser.InverseParent.Where(X => X.Type == BrowserType.Browser && X.ParentId == browser.Id).OrderBy(X => X.Prority).ThenBy(X => X.Name))
             {
                 result = item.Process(header, result, level + 1);
 

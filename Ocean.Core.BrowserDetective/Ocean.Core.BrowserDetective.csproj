@@ -5,6 +5,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Ocean's BrowserCap Interpreter</Title>
+    <Copyright>2024</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

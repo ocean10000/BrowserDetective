@@ -24,7 +24,7 @@ if (detective.DefaultBrowser != null)
         Console.WriteLine($"{n.Key.Type}: {n.Key.Name}\t{n.Value}");
     }
 
-    foreach (var item in context.Raw.Where(X=>X.Stamp.Year>=2023))
+    foreach (var item in context.Raw)
     {
         var headers = context.Headers.Where(X => X.Raw_ID == item.ID).ToList();
         IDictionary<string, string> dic = new Dictionary<string, string>();

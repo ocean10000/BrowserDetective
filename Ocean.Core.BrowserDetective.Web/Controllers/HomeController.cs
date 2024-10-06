@@ -18,7 +18,14 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
         public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
             _logger = logger;
-            BrowserCapsContext = new Data.Context.BrowserCapsContext(configuration.GetConnectionString("BrowserCaps"));
+            if (string.IsNullOrEmpty(configuration.GetConnectionString("BrowserCaps")) == false)
+            {
+                BrowserCapsContext = new Data.Context.BrowserCapsContext(configuration.GetConnectionString("BrowserCaps"));
+            }
+            else
+            {
+                BrowserCapsContext = new Data.Context.BrowserCapsContext();
+            }
             BrowserList = BrowserCapsContext.Browsers.AsNoTracking().OrderBy(X => X.Name).ToList();
             BrowserList.ForEach(X => X._logger = _logger);
 
@@ -121,7 +128,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
         [Route("~/Home/Identification/{ID}/{BrowserId}/")]
         public IActionResult Identification(long ID, long BrowserId)
         {
-            Data.Models.Identification? ident;
+            Data.Models.Identification ident;
 
             if (ID == 0 && BrowserId != 0)
             {
@@ -180,7 +187,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
         [Route("~/Home/Captures/{ID}/{BrowserId}/")]
         public IActionResult Captures(long ID, long BrowserId)
         {
-            Data.Models.Capture? ident;
+            Data.Models.Capture ident;
 
             if (ID == 0 && BrowserId != 0)
             {
@@ -239,7 +246,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
         [Route("~/Home/Capabilities/{ID}/{BrowserId}/")]
         public IActionResult Capabilities(long ID, long BrowserId)
         {
-            Data.Models.Capability? Cap;
+            Data.Models.Capability Cap;
 
             if (ID == 0 && BrowserId != 0)
             {
@@ -309,7 +316,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
         [Route("~/Home/Sample/{ID}/{BrowserId}/")]
         public IActionResult Samples(long ID, long BrowserId)
         {
-            Data.Models.SampleHeader? Cap;
+            Data.Models.SampleHeader Cap;
 
             if (ID == 0 && BrowserId != 0)
             {

@@ -24,7 +24,10 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'!='Release'">
+    <ProjectReference Include="..\Ocean.Core.BrowserDetective.Data\Ocean.Core.BrowserDetective.Data.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='Release'">
     <PackageReference Include="Ocean.Core.BrowserDetective.Data" Version="1.0.0" />
   </ItemGroup>
 </Project>

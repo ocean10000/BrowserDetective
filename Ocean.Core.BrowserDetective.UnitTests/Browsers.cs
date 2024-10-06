@@ -2,12 +2,13 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using System.Configuration;
 using Ocean.Core.BrowserDetective.Extentions;
+using NUnit.Framework.Legacy;
 
 namespace Ocean.Core.BrowserDetective.UnitTests
 {
     //This is removing a anoying warnings.
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Assertion",
-    "NUnit2005:Consider using Assert.That(actual, Is.EqualTo(expected)) instead of ClassicAssert.AreEqual(expected, actual)",
+    "NUnit2005:Consider using ClassicAssert.That(actual, Is.EqualTo(expected)) instead of ClassicClassicAssert.AreEqual(expected, actual)",
     Justification = "Reason...")]
     public class BrowsersTests
     {
@@ -34,9 +35,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36 OPR/80.0.4170.63");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("Opera", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("80.0.4170"), RS2.version, "version");
-            Assert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
+            ClassicAssert.AreEqual("Opera", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("80.0.4170"), RS2.version, "version");
+            ClassicAssert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
         }
         [Test]
         public void Opera_Linux_1()
@@ -52,9 +53,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Opera", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("10.10"), RS2.version, "version");
-            Assert.AreEqual("Linux", RS2.OS, "os");
+            ClassicAssert.AreEqual("Opera", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("10.10"), RS2.version, "version");
+            ClassicAssert.AreEqual("Linux", RS2.OS, "os");
         }
         #endregion
 
@@ -71,9 +72,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             {
                 Console.WriteLine(item);
             }
-            Assert.AreEqual("Android 7.0", RS2.OS, "os");
-            Assert.AreEqual("UCBrowser", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("11.9.4"), RS2.version, "version");
+            ClassicAssert.AreEqual("Android 7.0", RS2.OS, "os");
+            ClassicAssert.AreEqual("UCBrowser", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("11.9.4"), RS2.version, "version");
         }
         [Test]
         public void QQBrowser_Windows_1()
@@ -83,9 +84,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2776.145 Safari/537.36 Core/1.70.3722.400 QQBrowser/10.5.3739.400");
             var RS2 = Detective.DefaultBrowser.Process(Header);
 
-            Assert.AreEqual("QQBrowser", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("10.5.3739"), RS2.version, "version");
-            Assert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
+            ClassicAssert.AreEqual("QQBrowser", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("10.5.3739"), RS2.version, "version");
+            ClassicAssert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
         }
 
         [Test]
@@ -96,9 +97,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Linux; U; Android 7.1.1; zh-cn; Mi Note 3 Build/NMF26X) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/8.5 Mobile Safari/537.36");
             var RS2 = Detective.DefaultBrowser.Process(Header);
 
-            Assert.AreEqual("QQBrowser", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("8.5"), RS2.version, "version");
-            Assert.AreEqual("Android 7.1.1", RS2.OS, "os");
+            ClassicAssert.AreEqual("QQBrowser", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("8.5"), RS2.version, "version");
+            ClassicAssert.AreEqual("Android 7.1.1", RS2.OS, "os");
         }
 
         [Test]
@@ -109,9 +110,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 YaBrowser/22.11.3.824 Yowser/2.5 Safari/537.36");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("YaBrowser", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("22.11.3"), RS2.version, "version");
-            Assert.AreEqual("Macintosh OS X", RS2.OS, "os");
+            ClassicAssert.AreEqual("YaBrowser", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("22.11.3"), RS2.version, "version");
+            ClassicAssert.AreEqual("Macintosh OS X", RS2.OS, "os");
         }
 
         [Test]
@@ -127,13 +128,13 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Nokia", RS2.BrowserName, "browser");
-            Assert.AreEqual(false, RS2.Crawler, "Crawler");
-            Assert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
-            Assert.AreEqual("Nokia es50", RS2.mobileDeviceModel, "mobileDeviceModel");
-            Assert.AreEqual("Nokia", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
-            Assert.AreEqual(new Version("0.0"), RS2.version, "version");
-            Assert.AreEqual("SymbianOS 9.1", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+            ClassicAssert.AreEqual("Nokia", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("Nokia es50", RS2.mobileDeviceModel, "mobileDeviceModel");
+            ClassicAssert.AreEqual("Nokia", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("SymbianOS 9.1", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
         }
         [Test]
         public void es70_SymbianOS_1()
@@ -148,13 +149,13 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Nokia", RS2.BrowserName, "browser");
-            Assert.AreEqual(false, RS2.Crawler, "Crawler");
-            Assert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
-            Assert.AreEqual("Nokia es70", RS2.mobileDeviceModel, "mobileDeviceModel");
-            Assert.AreEqual("Nokia", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
-            Assert.AreEqual(new Version("0.0"), RS2.version, "version");
-            Assert.AreEqual("SymbianOS 9.1", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+            ClassicAssert.AreEqual("Nokia", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("Nokia es70", RS2.mobileDeviceModel, "mobileDeviceModel");
+            ClassicAssert.AreEqual("Nokia", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("SymbianOS 9.1", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
 
         }
         [Test]
@@ -170,13 +171,13 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Nokia", RS2.BrowserName, "browser");
-            Assert.AreEqual(false, RS2.Crawler, "Crawler");
-            Assert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
-            Assert.AreEqual("Nokia E90-1", RS2.mobileDeviceModel, "mobileDeviceModel");
-            Assert.AreEqual("Nokia", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
-            Assert.AreEqual(new Version("7.24.0"), RS2.version, "version");
-            Assert.AreEqual("SymbianOS 9.2", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+            ClassicAssert.AreEqual("Nokia", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("Nokia E90-1", RS2.mobileDeviceModel, "mobileDeviceModel");
+            ClassicAssert.AreEqual("Nokia", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(new Version("7.24.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("SymbianOS 9.2", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
 
         }
 
@@ -193,9 +194,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Unknown", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("0.0"), RS2.version, "version");
-            Assert.AreEqual("Linux", RS2.OS, "os");
+            ClassicAssert.AreEqual("Unknown", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("Linux", RS2.OS, "os");
 
         }
         [Test]
@@ -211,10 +212,10 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Unknown", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("0.0"), RS2.version, "version");
-            Assert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
-            Assert.AreEqual("SymbianOS 9.1", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+            ClassicAssert.AreEqual("Unknown", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
+            ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("SymbianOS 9.1", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
 
         }
 

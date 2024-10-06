@@ -9,8 +9,8 @@ namespace Ocean.Core.BrowserDetective
 {
     public class Process
     {
-        ILogger? _logger;
-        public Browser? DefaultBrowser = null;
+        ILogger _logger;
+        public Browser DefaultBrowser = null;
 
         public Process(ILogger logger)
         {

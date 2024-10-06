@@ -2,12 +2,13 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using System.Configuration;
 using Ocean.Core.BrowserDetective.Extentions;
+using NUnit.Framework.Legacy;
 
 namespace Ocean.Core.BrowserDetective.UnitTests
 {
     //This is removing a anoying warnings.
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Assertion",
-    "NUnit2005:Consider using Assert.That(actual, Is.EqualTo(expected)) instead of ClassicAssert.AreEqual(expected, actual)",
+    "NUnit2005:Consider using ClassicAssert.That(actual, Is.EqualTo(expected)) instead of ClassicClassicAssert.AreEqual(expected, actual)",
     Justification = "Reason...")]
     public class FireFoxBrowsersTests
     {
@@ -38,9 +39,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.5) Gecko/20060127 Netscape/8.1");
             Header.Add(@"---------------", @"------------");
             var RS2 = Detective.ProcessData(Header);
-            Assert.AreEqual("Netscape", RS2["browser"], "browser");
-            Assert.AreEqual(new Version("8.1"), RS2.version, "version");
-            Assert.AreEqual("Microsoft Windows XP", RS2.OS, "os");
+            ClassicAssert.AreEqual("Netscape", RS2["browser"], "browser");
+            ClassicAssert.AreEqual(new Version("8.1"), RS2.version, "version");
+            ClassicAssert.AreEqual("Microsoft Windows XP", RS2.OS, "os");
         }
         #region Firefox
         [Test]
@@ -51,8 +52,8 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("Firefox", RS2.BrowserName, "browser");
-            Assert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
+            ClassicAssert.AreEqual("Firefox", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
         }
         [Test]
         public void MozillaFirefox_Windows_2()
@@ -70,9 +71,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.0.1) Gecko/20060111 Firefox/1.5.0.1");
             Header.Add(@"X-Forwarded-For", @"unknown");
             var RS2 = Detective.ProcessData(Header);
-            Assert.AreEqual("Firefox", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version(1, 5, 0), RS2.version, "version");
-            Assert.AreEqual("Microsoft Windows XP", RS2.OS, "os");
+            ClassicAssert.AreEqual("Firefox", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version(1, 5, 0), RS2.version, "version");
+            ClassicAssert.AreEqual("Microsoft Windows XP", RS2.OS, "os");
         }
         [Test]
         public void MozillaFirefox_macOS_1()
@@ -82,9 +83,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7; rv:93.0) Gecko/20100101 Firefox/93.0");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("Firefox", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("93.0"), RS2.version, "version");
-            Assert.AreEqual("Macintosh OS X", RS2.OS, "os");
+            ClassicAssert.AreEqual("Firefox", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("93.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("Macintosh OS X", RS2.OS, "os");
         }
         #endregion
     }

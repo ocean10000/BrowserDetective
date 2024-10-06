@@ -2,12 +2,13 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using System.Configuration;
 using Ocean.Core.BrowserDetective.Extentions;
+using NUnit.Framework.Legacy;
 
 namespace Ocean.Core.BrowserDetective.UnitTests
 {
     //This is removing a anoying warnings.
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Assertion",
-    "NUnit2005:Consider using Assert.That(actual, Is.EqualTo(expected)) instead of ClassicAssert.AreEqual(expected, actual)",
+    "NUnit2005:Consider using ClassicAssert.That(actual, Is.EqualTo(expected)) instead of ClassicClassicAssert.AreEqual(expected, actual)",
     Justification = "Reason...")]
     public class CrawlersTests
     {
@@ -41,14 +42,14 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Mozlila", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("5.0"), RS2.version, "version");
-            Assert.AreEqual(string.Empty, RS2.OS, "os");
+            ClassicAssert.AreEqual("Mozlila", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("5.0"), RS2.version, "version");
+            ClassicAssert.AreEqual(string.Empty, RS2.OS, "os");
 
-            Assert.AreEqual(true, RS2.Crawler, "Crawler");
-            Assert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
-            Assert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
-            Assert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
+            ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
         }
 
         [Test]
@@ -65,14 +66,14 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("PetalBot", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("0.0"), RS2.version, "version");
-            Assert.AreEqual(string.Empty, RS2.OS, "os");
+            ClassicAssert.AreEqual("PetalBot", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
+            ClassicAssert.AreEqual(string.Empty, RS2.OS, "os");
 
-            Assert.AreEqual(true, RS2.Crawler, "Crawler");
-            Assert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
-            Assert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
-            Assert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
+            ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
         }
 
 
@@ -90,14 +91,14 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("PetalBot", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("0.0"), RS2.version, "version");
-            Assert.AreEqual(string.Empty, RS2.OS, "os");
+            ClassicAssert.AreEqual("PetalBot", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
+            ClassicAssert.AreEqual(string.Empty, RS2.OS, "os");
 
-            Assert.AreEqual(true, RS2.Crawler, "Crawler");
-            Assert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
-            Assert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
-            Assert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
+            ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
         }
 
         [Test]
@@ -114,14 +115,14 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("SemanticScholarBot", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("0.0"), RS2.version, "version");
-            Assert.AreEqual(string.Empty, RS2.OS, "os");
+            ClassicAssert.AreEqual("SemanticScholarBot", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
+            ClassicAssert.AreEqual(string.Empty, RS2.OS, "os");
 
-            Assert.AreEqual(true, RS2.Crawler, "Crawler");
-            Assert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
-            Assert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
-            Assert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
+            ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
         }
 
         [Test]
@@ -138,14 +139,14 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Screaming Frog SEO Spider", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("14.3"), RS2.version, "version");
-            Assert.AreEqual(string.Empty, RS2.OS, "os");
+            ClassicAssert.AreEqual("Screaming Frog SEO Spider", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("14.3"), RS2.version, "version");
+            ClassicAssert.AreEqual(string.Empty, RS2.OS, "os");
 
-            Assert.AreEqual(true, RS2.Crawler, "Crawler");
-            Assert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
-            Assert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
-            Assert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
+            ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
         }
 
 
@@ -163,14 +164,14 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Mail.RU_Bot", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("2.0"), RS2.version, "version");
-            Assert.AreEqual(string.Empty, RS2.OS, "os");
+            ClassicAssert.AreEqual("Mail.RU_Bot", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("2.0"), RS2.version, "version");
+            ClassicAssert.AreEqual(string.Empty, RS2.OS, "os");
 
-            Assert.AreEqual(true, RS2.Crawler, "Crawler");
-            Assert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
-            Assert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
-            Assert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
+            ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
         }
 
 
@@ -188,14 +189,14 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Amazonbot", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("0.1"), RS2.version, "version");
-            Assert.AreEqual(string.Empty, RS2.OS, "os");
+            ClassicAssert.AreEqual("Amazonbot", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.1"), RS2.version, "version");
+            ClassicAssert.AreEqual(string.Empty, RS2.OS, "os");
 
-            Assert.AreEqual(true, RS2.Crawler, "Crawler");
-            Assert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
-            Assert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
-            Assert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
+            ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
         }
 
 
@@ -213,14 +214,14 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Nicecrawler", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("1.1"), RS2.version, "version");
-            Assert.AreEqual(string.Empty, RS2.OS, "os");
+            ClassicAssert.AreEqual("Nicecrawler", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("1.1"), RS2.version, "version");
+            ClassicAssert.AreEqual(string.Empty, RS2.OS, "os");
 
-            Assert.AreEqual(true, RS2.Crawler, "Crawler");
-            Assert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
-            Assert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
-            Assert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
+            ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
         }
 
         public void Bytespider_1()
@@ -230,8 +231,8 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Linux; Android 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Safari/537.36 (compatible; Bytespider; spider-feedback@bytedance.com)");
             var RS2 = Detective.DefaultBrowser.Process(Header);
 
-            Assert.AreEqual("Bytespider", RS2.BrowserName, "browser");
-            Assert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual("Bytespider", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
         }
 
         //this is Chrome Model trying to act as the Desktop Model.
@@ -243,8 +244,8 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Linux; Android 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Safari/537.36 (compatible; Bytespider; https://zhanzhang.toutiao.com/)");
             var RS2 = Detective.DefaultBrowser.Process(Header);
 
-            Assert.AreEqual("Bytespider", RS2.BrowserName, "browser");
-            Assert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual("Bytespider", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
         }
 
         [Test]
@@ -255,11 +256,11 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"cf-worker", @"certifytheweb.com");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("certifytheweb.com", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("0.0"), RS2.version, "version");
-            Assert.AreEqual(string.Empty, RS2.OS, "os");
-            Assert.AreEqual(true, RS2.Crawler, "Crawler");
-            Assert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("certifytheweb.com", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
+            ClassicAssert.AreEqual(string.Empty, RS2.OS, "os");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
 
         }
         [Test]
@@ -275,9 +276,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Unknown", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("0.0"), RS2.version, "version");
-            Assert.AreEqual("Linux", RS2.OS, "os");
+            ClassicAssert.AreEqual("Unknown", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("Linux", RS2.OS, "os");
 
         }
         [Test]
@@ -293,10 +294,10 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Unknown", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("0.0"), RS2.version, "version");
-            Assert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
-            Assert.AreEqual("SymbianOS 9.1", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+            ClassicAssert.AreEqual("Unknown", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
+            ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("SymbianOS 9.1", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
 
         }
 
@@ -313,11 +314,11 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("GPTBot", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("1.0"), RS2.version, "version");
-            Assert.AreEqual(true, RS2.Crawler, "Crawler");
-            Assert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
-            Assert.AreEqual(string.Empty, RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+            ClassicAssert.AreEqual("GPTBot", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("1.0"), RS2.version, "version");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual(string.Empty, RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
 
         }
 
@@ -334,11 +335,11 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("bingbot", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("2.0"), RS2.version, "version");
-            Assert.AreEqual(true, RS2.Crawler, "Crawler");
-            Assert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
-            Assert.AreEqual(string.Empty, RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+            ClassicAssert.AreEqual("bingbot", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("2.0"), RS2.version, "version");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual(string.Empty, RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
 
         }
 
@@ -356,11 +357,11 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("IonCrawl", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("0.0"), RS2.version, "version");
-            Assert.AreEqual(true, RS2.Crawler, "Crawler");
-            Assert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
-            Assert.AreEqual(string.Empty, RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+            ClassicAssert.AreEqual("IonCrawl", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual(string.Empty, RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
 
         }
 
@@ -377,11 +378,11 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("DomCopBot", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("0.0"), RS2.version, "version");
-            Assert.AreEqual(true, RS2.Crawler, "Crawler");
-            Assert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
-            Assert.AreEqual(string.Empty, RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+            ClassicAssert.AreEqual("DomCopBot", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual(string.Empty, RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
 
         }
 

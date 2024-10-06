@@ -2,12 +2,13 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using System.Configuration;
 using Ocean.Core.BrowserDetective.Extentions;
+using NUnit.Framework.Legacy;
 
 namespace Ocean.Core.BrowserDetective.UnitTests
 {
     //This is removing a anoying warnings.
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Assertion",
-    "NUnit2005:Consider using Assert.That(actual, Is.EqualTo(expected)) instead of ClassicAssert.AreEqual(expected, actual)",
+    "NUnit2005:Consider using ClassicAssert.That(actual, Is.EqualTo(expected)) instead of ClassicClassicAssert.AreEqual(expected, actual)",
     Justification = "Reason...")]
     public class MicrosoftBrowsersTests
     {
@@ -40,9 +41,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("11.0"), RS2.version, "version");
-            Assert.AreEqual("Microsoft Windows 7", RS2.OS, "os");
+            ClassicAssert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("11.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("Microsoft Windows 7", RS2.OS, "os");
         }
         [Test]
         public void InternetExplorer11_0_Windows_2()
@@ -52,9 +53,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (compatible, MSIE 11, Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("11.0"), RS2.version, "version");
-            Assert.AreEqual("Microsoft Windows 8.1", RS2.OS, "os");
+            ClassicAssert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("11.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("Microsoft Windows 8.1", RS2.OS, "os");
         }
 
         [Test]
@@ -65,9 +66,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (compatible; MSIE 10.6; Windows NT 6.1; Trident/5.0; InfoPath.2; SLCC1; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729; .NET CLR 2.0.50727) 3gpp-gba UNTRUSTED/1.0");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("9.0"), RS2.version, "version");
-            Assert.AreEqual("Microsoft Windows 7", RS2.OS, "os");
+            ClassicAssert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("9.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("Microsoft Windows 7", RS2.OS, "os");
         }
 
         [Test]
@@ -78,9 +79,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("10.0"), RS2.version, "version");
-            Assert.AreEqual("Microsoft Windows 7", RS2.OS, "os");
+            ClassicAssert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("10.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("Microsoft Windows 7", RS2.OS, "os");
         }
         [Test]
         public void InternetExplorer09_Windows_1()
@@ -90,9 +91,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; Media Center PC 6.0; InfoPath.3; MS-RTC LM 8; Zune 4.7)");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("9.0"), RS2.version, "version");
-            Assert.AreEqual("Microsoft Windows 7", RS2.OS, "os");
+            ClassicAssert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("9.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("Microsoft Windows 7", RS2.OS, "os");
         }
 
         [Test]
@@ -103,9 +104,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0; .NET CLR 2.7.58687; SLCC2; Media Center PC 5.0; Zune 3.4; Tablet PC 3.6; InfoPath.3)");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("8.0"), RS2.version, "version");
-            Assert.AreEqual("Microsoft Windows Vista", RS2.OS, "os");
+            ClassicAssert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("8.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("Microsoft Windows Vista", RS2.OS, "os");
         }
 
         [Test]
@@ -116,9 +117,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 5.0; Trident/4.0; InfoPath.1; SV1; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729; .NET CLR 3.0.04506.30)");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("8.0"), RS2.version, "version");
-            Assert.AreEqual("Microsoft Windows 2000", RS2.OS, "os");
+            ClassicAssert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("8.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("Microsoft Windows 2000", RS2.OS, "os");
         }
         [Test]
         public void InternetExplorer07_0_Windows_1()
@@ -128,9 +129,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Win64; x64; Trident/4.0; .NET CLR 2.0.50727; SLCC2; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E; CMDTDFJS; f9J; InfoPath.3)");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("7.0"), RS2.version, "version");
-            Assert.AreEqual("Microsoft Windows 7", RS2.OS, "os");
+            ClassicAssert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("7.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("Microsoft Windows 7", RS2.OS, "os");
         }
         [Test]
         public void InternetExplorer6_0_Windows_1()
@@ -146,9 +147,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"X-Forwarded-For", @"192.168.1.63");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("6.0"), RS2.version, "version");
-            Assert.AreEqual("Microsoft Windows XP", RS2.OS, "os");
+            ClassicAssert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("6.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("Microsoft Windows XP", RS2.OS, "os");
         }
         [Test]
         public void InternetExplorer05_0_Windows_1()
@@ -158,9 +159,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("5.01"), RS2.version, "version");
-            Assert.AreEqual("Microsoft Windows 2000", RS2.OS, "os");
+            ClassicAssert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("5.01"), RS2.version, "version");
+            ClassicAssert.AreEqual("Microsoft Windows 2000", RS2.OS, "os");
         }
         [Test]
         public void InternetExplorer05_15_MacintoshPPC_1()
@@ -170,9 +171,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/4.0 (compatible; MSIE 5.15; Mac_PowerPC)");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("5.15"), RS2.version, "version");
-            Assert.AreEqual("Macintosh PPC", RS2.OS, "os");
+            ClassicAssert.AreEqual("Microsoft Internet Explorer", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("5.15"), RS2.version, "version");
+            ClassicAssert.AreEqual("Macintosh PPC", RS2.OS, "os");
         }
         #endregion
         #region Edge
@@ -189,9 +190,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Microsoft Edge", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("16.16299"), RS2.version, "version");
-            Assert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
+            ClassicAssert.AreEqual("Microsoft Edge", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("16.16299"), RS2.version, "version");
+            ClassicAssert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
         }
         [Test]
         public void MicrosoftEdge94_Windows_1()
@@ -206,9 +207,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Microsoft Edge", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("94.0.992"), RS2.version, "version");
-            Assert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
+            ClassicAssert.AreEqual("Microsoft Edge", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("94.0.992"), RS2.version, "version");
+            ClassicAssert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
         }
         [Test]
         public void MicrosoftEdge107_MacintoshOSX_1()
@@ -223,9 +224,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Microsoft Edge", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("107.0.1418"), RS2.version, "version");
-            Assert.AreEqual("Macintosh OS X", RS2.OS, "os");
+            ClassicAssert.AreEqual("Microsoft Edge", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("107.0.1418"), RS2.version, "version");
+            ClassicAssert.AreEqual("Macintosh OS X", RS2.OS, "os");
         }
         [Test]
         public void MicrosoftEdge_Android_1()
@@ -240,9 +241,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Microsoft Edge", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("41.0.0"), RS2.version, "version");
-            Assert.AreEqual("Android 7.1.1", RS2.OS, "os");
+            ClassicAssert.AreEqual("Microsoft Edge", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("41.0.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("Android 7.1.1", RS2.OS, "os");
         }
         [Test]
         public void MicrosoftEdge_Android_2()
@@ -257,9 +258,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Microsoft Edge", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("101.0.1210"), RS2.version, "version");
-            Assert.AreEqual("Android 12", RS2.OS, "os");
+            ClassicAssert.AreEqual("Microsoft Edge", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("101.0.1210"), RS2.version, "version");
+            ClassicAssert.AreEqual("Android 12", RS2.OS, "os");
         }
         [Test]
         public void MicrosoftEdge_Android_3()
@@ -274,9 +275,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Microsoft Edge", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("116.0.1938"), RS2.version, "version");
-            Assert.AreEqual("Android 10", RS2.OS, "os");
+            ClassicAssert.AreEqual("Microsoft Edge", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("116.0.1938"), RS2.version, "version");
+            ClassicAssert.AreEqual("Android 10", RS2.OS, "os");
         }
         #endregion
 

@@ -96,7 +96,7 @@ public static class BrowserExtention
             }
             //cheap way to sent it up the chain that this level was a sucess (even if there are no Capabilities at this level)
             result.Trace.Add(new Data.Models.Trackitem() { BrowserID = browser.Id, BrowserName = browser.Name, Name = "Success", Value = bool.TrueString });
-            browser._logger.Log(LogLevel.Information, sb.ToString());
+            browser._logger.Log(LogLevel.Debug, sb.ToString());
             sb = new System.Text.StringBuilder();
 
             foreach (var item in browser.InverseParent.Where(X => X.Type == BrowserType.GateWay && X.ParentId == browser.Id).OrderBy(X=>X.Prority).ThenBy(X=>X.Name))
@@ -117,7 +117,7 @@ public static class BrowserExtention
         }
         if (sb.Length > 0)
         {
-            browser._logger.Log(LogLevel.Information, sb.ToString());
+            browser._logger.Log(LogLevel.Debug, sb.ToString());
         }
         return result;
     }

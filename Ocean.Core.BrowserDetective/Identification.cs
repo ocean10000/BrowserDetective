@@ -8,7 +8,7 @@ namespace Ocean.Core.BrowserDetective
     {
         private ICapture _Capture;
         private Regex _RegexPattern;
-        private Match? _PatternMatch = null;
+        private Match _PatternMatch = null;
 #pragma warning disable CS8618
         public Identification(ICapture Capture)
         {
@@ -98,7 +98,7 @@ namespace Ocean.Core.BrowserDetective
         /// <param name="template">The replacement parameter is a standard regular expression replacement pattern. It can consist of literal characters and regular expression substitutions.</param>
         /// <returns>Returns the expansion of the specified replacement pattern. </returns>
         /// <exception cref="nBrowser.Exception">Missing Regular Expression Value, Match Function was not previously called</exception>
-        public string Result(string? template)
+        public string Result(string template)
         {
             if (_PatternMatch == null)
             {

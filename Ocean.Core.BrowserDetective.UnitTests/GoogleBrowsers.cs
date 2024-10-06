@@ -2,12 +2,13 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using System.Configuration;
 using Ocean.Core.BrowserDetective.Extentions;
+using NUnit.Framework.Legacy;
 
 namespace Ocean.Core.BrowserDetective.UnitTests
 {
     //This is removing a anoying warnings.
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Assertion",
-    "NUnit2005:Consider using Assert.That(actual, Is.EqualTo(expected)) instead of ClassicAssert.AreEqual(expected, actual)",
+    "NUnit2005:Consider using ClassicAssert.That(actual, Is.EqualTo(expected)) instead of ClassicClassicAssert.AreEqual(expected, actual)",
     Justification = "Reason...")]
     public class GoogleBrowsersTests
     {
@@ -34,9 +35,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("Chrome", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("94.0.4606"), RS2.version, "version");
-            Assert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
+            ClassicAssert.AreEqual("Chrome", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("94.0.4606"), RS2.version, "version");
+            ClassicAssert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
         }
         [Test]
         public void GoogleChrome_macOS_1()
@@ -46,9 +47,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("Chrome", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("94.0.4606"), RS2.version, "version");
-            Assert.AreEqual("Macintosh OS X", RS2.OS, "os");
+            ClassicAssert.AreEqual("Chrome", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("94.0.4606"), RS2.version, "version");
+            ClassicAssert.AreEqual("Macintosh OS X", RS2.OS, "os");
         }
 
         [Test]
@@ -59,9 +60,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Linux; Android 11; Pixel 5 Build/RQ3A.210805.001) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Mobile Safari/537.36");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("Chrome", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("94.0.4606"), RS2.version, "version");
-            Assert.AreEqual("Android 11", RS2.OS, "os");
+            ClassicAssert.AreEqual("Chrome", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("94.0.4606"), RS2.version, "version");
+            ClassicAssert.AreEqual("Android 11", RS2.OS, "os");
         }
 
         [Test]
@@ -72,9 +73,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Linux; Android 7.0; Redmi Note 4 Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Mobile Safari/537.36");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("Chrome", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("67.0.3396"), RS2.version, "version");
-            Assert.AreEqual("Android 7.0", RS2.OS, "os");
+            ClassicAssert.AreEqual("Chrome", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("67.0.3396"), RS2.version, "version");
+            ClassicAssert.AreEqual("Android 7.0", RS2.OS, "os");
         }
 
         [Test]
@@ -92,14 +93,14 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Chrome", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("60.0.3112"), RS2.version, "version");
-            Assert.AreEqual("Android 7.0", RS2.OS, "os");
+            ClassicAssert.AreEqual("Chrome", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("60.0.3112"), RS2.version, "version");
+            ClassicAssert.AreEqual("Android 7.0", RS2.OS, "os");
 
-            Assert.AreEqual(false, RS2.Crawler, "Crawler");
-            Assert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
-            Assert.AreEqual("SM-G892A Bulid/NRD90M; wv", RS2.mobileDeviceModel, "mobileDeviceModel");
-            Assert.AreEqual("Unknown", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("SM-G892A Bulid/NRD90M; wv", RS2.mobileDeviceModel, "mobileDeviceModel");
+            ClassicAssert.AreEqual("Unknown", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
         }
 
         //https://community.cloudflare.com/t/why-crios-instead-of-chrome/375159/3
@@ -112,9 +113,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/74.0.3729.155 Mobile/15E148 Safari/604.1");
             var RS2 = Detective.ProcessData(Header);
 
-            Assert.AreEqual("Chrome Mobile", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("74.0.3729"), RS2.version, "version");
-            Assert.AreEqual("iOS", RS2.OS, "os");
+            ClassicAssert.AreEqual("Chrome Mobile", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("74.0.3729"), RS2.version, "version");
+            ClassicAssert.AreEqual("iOS", RS2.OS, "os");
         }
         //this is Chrome Model trying to act as the Desktop Model.
         [Test]
@@ -131,9 +132,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Chrome Mobile", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("85.0"), RS2.version, "version");
-            Assert.AreEqual("iOS", RS2.OS, "os");
+            ClassicAssert.AreEqual("Chrome Mobile", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("85.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("iOS", RS2.OS, "os");
         }
         #endregion
 
@@ -151,14 +152,14 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            Assert.AreEqual("Dalvik", RS2.BrowserName, "browser");
-            Assert.AreEqual(new Version("2.1.0"), RS2.version, "version");
-            Assert.AreEqual("Android 6.0.1", RS2.OS, "os");
+            ClassicAssert.AreEqual("Dalvik", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("2.1.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("Android 6.0.1", RS2.OS, "os");
 
-            Assert.AreEqual(false, RS2.Crawler, "Crawler");
-            Assert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
-            Assert.AreEqual("SM-J700F Build/MMB29K", RS2.mobileDeviceModel, "mobileDeviceModel");
-            Assert.AreEqual("Unknown", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("SM-J700F Build/MMB29K", RS2.mobileDeviceModel, "mobileDeviceModel");
+            ClassicAssert.AreEqual("Unknown", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
         }
     }
 }

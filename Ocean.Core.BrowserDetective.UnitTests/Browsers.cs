@@ -38,6 +38,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual("Opera", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(new Version("80.0.4170"), RS2.version, "version");
             ClassicAssert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
         [Test]
         public void Opera_Linux_1()
@@ -56,9 +57,33 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual("Opera", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(new Version("10.10"), RS2.version, "version");
             ClassicAssert.AreEqual("Linux", RS2.OS, "os");
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
         #endregion
+        #region Text Browsers
+        [Test]
+        public void Lynx_1()
+        {
+            //https://lynx.invisible-island.net/current/ Lynx is a text browser for the World Wide Web. 
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Lynx/2.8.5dev.16 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/0.9.7a");
+            var RS2 = Detective.ProcessData(Header);
 
+            foreach (var item in RS2.Trace)
+            {
+                Console.WriteLine(item);
+            }
+
+            ClassicAssert.AreEqual("Lynx", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("2.8.5"), RS2.version, "version");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(string.Empty, RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
+
+        }
+        #endregion
         [Test]
         public void UCBrowser_Android_1()
         {
@@ -75,6 +100,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual("Android 7.0", RS2.OS, "os");
             ClassicAssert.AreEqual("UCBrowser", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(new Version("11.9.4"), RS2.version, "version");
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
         [Test]
         public void QQBrowser_Windows_1()
@@ -87,6 +113,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual("QQBrowser", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(new Version("10.5.3739"), RS2.version, "version");
             ClassicAssert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
 
         [Test]
@@ -100,6 +127,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual("QQBrowser", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(new Version("8.5"), RS2.version, "version");
             ClassicAssert.AreEqual("Android 7.1.1", RS2.OS, "os");
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
 
         [Test]
@@ -113,6 +141,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual("YaBrowser", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(new Version("22.11.3"), RS2.version, "version");
             ClassicAssert.AreEqual("Macintosh OS X", RS2.OS, "os");
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
 
         [Test]
@@ -135,6 +164,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual("Nokia", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
             ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
             ClassicAssert.AreEqual("SymbianOS 9.1", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
         [Test]
         public void es70_SymbianOS_1()
@@ -156,6 +186,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual("Nokia", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
             ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
             ClassicAssert.AreEqual("SymbianOS 9.1", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
 
         }
         [Test]
@@ -178,7 +209,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual("Nokia", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
             ClassicAssert.AreEqual(new Version("7.24.0"), RS2.version, "version");
             ClassicAssert.AreEqual("SymbianOS 9.2", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
-
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
 
         [Test]
@@ -197,7 +228,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual("Unknown", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
             ClassicAssert.AreEqual("Linux", RS2.OS, "os");
-
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
         [Test]
         public void Unknown_2()
@@ -216,7 +247,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
             ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual("SymbianOS 9.1", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
-
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent"); 
         }
 
         //https://github.com/codewatchorg/Burp-UserAgent/blob/master/useragents.xml

@@ -2,10 +2,20 @@
 {
     public class Result : Dictionary<string, string>
     {
-        public Result() : base() 
-        { 
+        private string[] RandomRoboBotKeywords;
+
+        public Result() : base()
+        {
             this["browser"] = string.Empty;
             this["os"] = string.Empty;
+
+            System.Reflection.Assembly asm = typeof(Data.Models.Browser).Assembly;
+            using (System.IO.Stream CP = asm.GetManifestResourceStream("Ocean.Core.BrowserDetective.Data.RandomRobotKeywords.txt"))
+            {
+                System.IO.StreamReader Read = new System.IO.StreamReader(CP, System.Text.Encoding.Default);
+                RandomRoboBotKeywords = System.Text.RegularExpressions.Regex.Split(Read.ReadToEnd(), System.Environment.NewLine);
+                Read.Close();
+            }
         }
         public string OS
         {
@@ -56,7 +66,10 @@
         {
             get
             {
-                return new Version(this["version"]);
+                if (string.IsNullOrWhiteSpace(this["version"]) == false)
+                    return new Version(this["version"]);
+                else
+                    return new Version(0, 0);
             }
         }
 
@@ -121,7 +134,86 @@
                 return string.Empty;
             }
         }
+        /// <summary>
+        /// Used to Identify Robobots that are using randomly generated Useragents
+        /// that are nonsensical in nature/gibberish.
+        /// </summary>
+        /// <remarks>
+        /// Current implementation is more of an elimination of common traits, which
+        /// most Useragent/browser have. Which leave us with what can be assumed as
+        /// randomized useragent names, which serve no purpose cept to drive stats
+        /// programs nuts.
+        /// </remarks>
+        public bool IsRandomRobobotUserAgent
+        {
+            get
+            {
+                #region  Check for Common Words in UserAgents
+                if (string.IsNullOrWhiteSpace(this.BrowserName) == false)
+                {
+                    //if a Browser name is present, then we have enough details to say it not a 
+                    //Random Gibberish in the UserAgent Header.
+                    return false;
+                }
+                else if (string.IsNullOrWhiteSpace(this.BrowserName) == false && string.Compare(this.BrowserName, "Unknown", true, System.Globalization.CultureInfo.CurrentCulture) != 0)
+                {
+                    //---------------------------------------------------------------
+                    //Browser name was able to be determined then the Useragent had
+                    //enough details, thus not a random Useragent.
+                    //---------------------------------------------------------------
+                    return false;
+                }
+                else if (string.IsNullOrEmpty(this.UserAgent) == true)
+                {
+                    //---------------------------------------------------------------
+                    //Null or empty. ^he Programer was just to lazy which to give it a
+                    //name, which is fine with me but doesn't not count as a Randomized
+                    //Browser Agent, since it doesn't have a Useragent at all to begin
+                    //with.
+                    //---------------------------------------------------------------
+                    return false;
+                }
 
+                //---------------------------------------------------------------
+                //I assume ones under 8 charactors are not really randomly named
+                //but the coder was just lazy or picked a short name.
+                //---------------------------------------------------------------
+                if (this.UserAgent.Length < 8)
+                {
+                    return false;
+                }
+
+                //---------------------------------------------------------------
+                //Up to this point I have not seen a randomly generated Agent string
+                //with a period in it.
+                //---------------------------------------------------------------
+                if (this.UserAgent.IndexOf('.') > -1)
+                {
+                    return false;
+                }
+                //---------------------------------------------------------------
+                //Compare keywords often found in useragents to the current useragent
+                //and if we find one we assume its not a randomized useragent.
+                //---------------------------------------------------------------
+                foreach (string keyword in RandomRoboBotKeywords)
+                {
+                    if (keyword.Length <= this.UserAgent.Length)
+                    {
+                        if (this.UserAgent.IndexOf(keyword, StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                #endregion
+                //---------------------------------------------------------------
+                //Since it made it though all the checks I assume that the useragent
+                //doesn't match any known format that I can determine, and label it
+                //a randomized Useragent/browser. AKA SPAM / Scraper / Pests Bots.
+                //---------------------------------------------------------------
+                return true;
+            }
+        }
         public System.Collections.Generic.List<Ocean.Core.BrowserDetective.Data.Models.Trackitem> Trace
         { get; set; } = new List<Data.Models.Trackitem>();
     }

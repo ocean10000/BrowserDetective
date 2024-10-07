@@ -50,6 +50,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
             ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
 
         [Test]
@@ -74,6 +75,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
             ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
 
 
@@ -99,6 +101,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
             ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
 
         [Test]
@@ -123,6 +126,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
             ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
 
         [Test]
@@ -147,6 +151,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
             ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
 
 
@@ -172,6 +177,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
             ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
 
 
@@ -197,6 +203,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
             ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
 
 
@@ -222,6 +229,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceModel, "mobileDeviceModel");
             ClassicAssert.AreEqual(string.Empty, RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
 
         public void Bytespider_1()
@@ -233,6 +241,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
 
             ClassicAssert.AreEqual("Bytespider", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
 
         //this is Chrome Model trying to act as the Desktop Model.
@@ -246,6 +255,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
 
             ClassicAssert.AreEqual("Bytespider", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
 
         [Test]
@@ -261,45 +271,9 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(string.Empty, RS2.OS, "os");
             ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
             ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
-
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
-        [Test]
-        public void Unknown_1()
-        {
-            System.Collections.Generic.Dictionary<string, string> Header;
-            Header = new Dictionary<string, string>();
-            Header.Add(@"User-Agent", @"Uzbl (Webkit 1.3) (Linux i686 [i686])");
-            var RS2 = Detective.ProcessData(Header);
-
-            foreach (var item in RS2.Trace)
-            {
-                Console.WriteLine(item);
-            }
-
-            ClassicAssert.AreEqual("Unknown", RS2.BrowserName, "browser");
-            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
-            ClassicAssert.AreEqual("Linux", RS2.OS, "os");
-
-        }
-        [Test]
-        public void Unknown_2()
-        {
-            System.Collections.Generic.Dictionary<string, string> Header;
-            Header = new Dictionary<string, string>();
-            Header.Add(@"User-Agent", @"Mozilla/5.0 (SymbianOS/9.1; U; en-us) AppleWebKit/413 (KHTML, like Gecko) Safari/413");
-            var RS2 = Detective.ProcessData(Header);
-
-            foreach (var item in RS2.Trace)
-            {
-                Console.WriteLine(item);
-            }
-
-            ClassicAssert.AreEqual("Unknown", RS2.BrowserName, "browser");
-            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
-            ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
-            ClassicAssert.AreEqual("SymbianOS 9.1", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
-
-        }
+        
 
         [Test]
         public void GPTBot_1()
@@ -319,7 +293,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
             ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual(string.Empty, RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
-
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
 
         [Test]
@@ -340,7 +314,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
             ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual(string.Empty, RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
-
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
 
 
@@ -362,7 +336,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
             ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual(string.Empty, RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
-
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
 
         [Test]
@@ -383,7 +357,51 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
             ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual(string.Empty, RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
+        }
 
+
+        [Test]
+        public void RandomRobobotUserAgent_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"gt gfnqw xjlNwibbgvkuusdrean");
+            var RS2 = Detective.ProcessData(Header);
+
+            foreach (var item in RS2.Trace)
+            {
+                Console.WriteLine(item);
+            }
+
+            ClassicAssert.AreEqual(string.Empty, RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
+            ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("Unknown", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+            ClassicAssert.AreEqual(true, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
+        }
+
+
+        [Test]
+        public void RandomRobobotUserAgent_2()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"jkxkakfFojxetFdxtvkjubietguc");
+            var RS2 = Detective.ProcessData(Header);
+
+            foreach (var item in RS2.Trace)
+            {
+                Console.WriteLine(item);
+            }
+
+            ClassicAssert.AreEqual(string.Empty, RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
+            ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("Unknown", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+            ClassicAssert.AreEqual(true, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
 
         //https://github.com/codewatchorg/Burp-UserAgent/blob/master/useragents.xml

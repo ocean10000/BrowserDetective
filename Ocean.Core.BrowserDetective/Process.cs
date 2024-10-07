@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Ocean.Core.BrowserDetective.Data.Context;
 using Ocean.Core.BrowserDetective.Data.Models;
 using Ocean.Core.BrowserDetective.Extentions;
+using System.Collections.Generic;
 
 
 namespace Ocean.Core.BrowserDetective
@@ -10,7 +11,15 @@ namespace Ocean.Core.BrowserDetective
     public class Process
     {
         ILogger _logger;
+        /// <summary>
+        /// This is the top most Default Browser Definition file.
+        /// </summary>
         public Browser DefaultBrowser = null;
+
+        /// <summary>
+        /// List of Headers used by this BrowseCap files.
+        /// </summary>
+        public List<String> Headers = new List<String>();
 
         public Process(ILogger logger)
         {
@@ -60,6 +69,13 @@ namespace Ocean.Core.BrowserDetective
 
             var sampleHeaders = Context.SampleHeaders.AsNoTracking().ToList();
             logger.Log(LogLevel.Trace, $"SampleHeaders Count {sampleHeaders.Count()}");
+
+            //-----------------------------------------------------------------------------
+            //Gets a List of Headers Used by the BrowseCap files.
+            //-----------------------------------------------------------------------------
+            var list = identifications.Where(X => X.Type == CaptureType.Header).Select(X=>X.Name).Distinct().ToList();
+            list.AddRange(captures.Where(X => X.Type == CaptureType.Header).Select(X => X.Name).Distinct().ToList());
+            Headers = list.Distinct().ToList();
 
             //-----------------------------------------------------------------------------
             //Loops though all the Browsers and builds the Browser Tree.

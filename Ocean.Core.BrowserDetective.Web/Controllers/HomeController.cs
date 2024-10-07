@@ -61,14 +61,17 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
         public IActionResult BrowserNode(long ID)
         {
             ViewBag.BrowserNodes = BrowserNodes;
+            ViewBag.parentURL = string.Empty;
+            Browser Model = null;
             if (ID > 0)
             {
-                return View("BrowserNode", BrowserList.FirstOrDefault(X => X.Id == ID));
+                Model = BrowserList.FirstOrDefault(X => X.Id == ID);
             }
             else
             {
-                return View("BrowserNode", new Browser() { Id = 0, Name = "Sample", Type = BrowserType.Browser, _logger = this._logger });
+                Model = new Browser() { Id = 0, Name = "Sample", Type = BrowserType.Browser, _logger = this._logger };
             }
+            return View("BrowserNode", Model);
         }
 
         public IActionResult BrowserNodeUpSert(Browser Model)
@@ -95,7 +98,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
             }
             BrowserList.Add(Model);
 
-            return BrowserNode(Model.Id);
+            return Redirect(Url.Action("BrowserNode", "Home", new { ID = m.Id }));
         }
 
         public IActionResult DeleteBrowserNode(long ID)
@@ -177,7 +180,8 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
                     m.Identifications.Remove(ident);
                     BrowserCapsContext.Identifications.Remove(ident);
                     BrowserCapsContext.SaveChanges();
-                    return BrowserNode(m.Id);
+
+                    return Redirect(Url.Action("BrowserNode", "Home", new { ID = m.Id }));
                 }
             }
 
@@ -236,7 +240,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
                     m.Captures.Remove(ident);
                     BrowserCapsContext.Captures.Remove(ident);
                     BrowserCapsContext.SaveChanges();
-                    return BrowserNode(m.Id);
+                    return Redirect(Url.Action("BrowserNode", "Home", new { ID = m.Id }));
                 }
             }
 
@@ -306,7 +310,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
                     m.Capabilities.Remove(ident);
                     BrowserCapsContext.Capabilities.Remove(ident);
                     BrowserCapsContext.SaveChanges();
-                    return BrowserNode(m.Id);
+                    return Redirect(Url.Action("BrowserNode", "Home", new { ID = m.Id }));
                 }
             }
 
@@ -365,7 +369,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
                     m.Samples.Remove(ident);
                     BrowserCapsContext.SampleHeaders.Remove(ident);
                     BrowserCapsContext.SaveChanges();
-                    return BrowserNode(m.Id);
+                    return Redirect(Url.Action("BrowserNode", "Home", new { ID = m.Id }));
                 }
             }
 

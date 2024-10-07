@@ -5,15 +5,8 @@
     BrowserType.Add(new SelectListItem() { Text = "Browser", Value = "1" });
     BrowserType.Add(new SelectListItem() { Text = "GateWay", Value = "2" });
 }
-@if (Model.ParentId > 0)
-{
-    <fieldset>
-        <legend>Parent</legend>
-        <a asp-controller="Home" asp-action="BrowserNode" asp-route-ID="@Model.ParentId">@Model.Parent.Name</a>
-        <br />
-    </fieldset>
-    <hr />
-}
+<!--Just a html comment.-->
+
 <fieldset>
     <legend>Brower Details</legend>
     <form asp-action="BrowserNodeUpSert" method="post">
@@ -47,7 +40,7 @@
                     @if (Model.Id > 0)
                     {
                         <input type="submit" value="Update" />
-                        <button type="button" onclick="location.href='@Url.Action("DeleteBrowserNode", "HomeController",new { ID=Model.Id})'">Delete</button>
+                        <button type="button" onclick="location.href='@Url.Action("DeleteBrowserNode", "Home",new { ID=Model.Id})'">Delete</button>
                     }
                     else
                     {
@@ -219,6 +212,15 @@
     }
 </fieldset>
 <hr />
+@if (Model?.ParentId >0)
+{
+    <fieldset>
+        <legend>Parent</legend>
+        <a asp-controller="Home" asp-action="BrowserNode" asp-route-ID="@Model?.ParentId">@Model?.Parent.Name</a>
+        <br />
+    </fieldset>
+    <hr />
+}
 <fieldset>
     <legend>Children</legend>
     @foreach (var children in Model.InverseParent)

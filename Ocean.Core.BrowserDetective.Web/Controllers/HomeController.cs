@@ -5,6 +5,7 @@ using Ocean.Core.BrowserDetective.Data.Context;
 using Ocean.Core.BrowserDetective.Data.Models;
 using Ocean.Core.BrowserDetective.Web.Models;
 using System.Diagnostics;
+using Ocean.Core.BrowserDetective.Extentions;
 
 
 namespace Ocean.Core.BrowserDetective.Web.Controllers
@@ -26,7 +27,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
             {
                 BrowserCapsContext = new Data.Context.BrowserCapsContext();
             }
-            BrowserList = BrowserCapsContext.Browsers.AsNoTracking().OrderBy(X => X.Name).ToList();
+            BrowserList = BrowserCapsContext.Browsers.AsNoTracking().OrderBy(X => X.ParentId).ThenBy(X => X.Name).ThenBy(X => X.Type).ToList();
             BrowserList.ForEach(X => X._logger = _logger);
 
             var identifications = BrowserCapsContext.Identifications.AsNoTracking().ToList();
@@ -98,7 +99,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
             }
             BrowserList.Add(Model);
 
-            return Redirect(Url.Action("BrowserNode", "Home", new { ID = m.Id }));
+            return Redirect(Url.Action("BrowserNode", "Home", new { ID = Model.Id }));
         }
 
         public IActionResult DeleteBrowserNode(long ID)
@@ -385,6 +386,23 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult UserAgent()
+        {
+            return View("UserAgent");
+        }
+
+        public IActionResult UserAgentLookup(string UserAgent)
+        {
+            var DefaultBrowser = BrowserList.Where(x => x.Name == "Default").FirstOrDefault();
+
+            System.Collections.Generic.IDictionary<string, string> header = new Dictionary<string, string>();
+            header.Add("User-Agent", UserAgent);
+
+            var Model= DefaultBrowser.Process(header);
+
+            return View("UserAgent", Model);
         }
 
         private List<SelectListItem> BrowserNodes

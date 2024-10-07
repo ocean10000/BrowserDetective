@@ -1,0 +1,56 @@
+﻿@model Ocean.Core.BrowserDetective.Result
+
+<form asp-action="UserAgentLookup">
+    <div class="row">
+        <div class="form-group col-md-5">
+            <input name="UserAgent" type="text" class="form-control" />&nbsp;
+            <input type="submit" class="form-control" />
+        </div>
+    </div>
+</form>
+<hr />
+
+@if (Model != null)
+{
+    <fieldset>
+        <legend>BrowseCap Details</legend>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            @foreach (var item in Model.Keys)
+            {
+                <tr>
+                    <td>@item</td>
+                    <td>@Model[item]</td>
+                </tr>
+            }
+        </table>
+    </fieldset>
+    <hr />
+    <fieldset>
+        <legend>Debug</legend>
+        <table>
+            <thead>
+                <tr>
+                    <th>BrowserID</th>
+                    <th>BrowserName</th>
+                    <th>Name</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            @foreach (var item in Model.Trace)
+            {
+                <tr>
+                    <td><a asp-controller="Home" asp-action="BrowserNode" asp-route-ID="@item.BrowserID">@item.BrowserID</a></td>
+                    <td>@item.BrowserName</td>
+                    <td>@item.Name</td>
+                    <td>@item.Value</td>
+                </tr>
+            }
+        </table>
+    </fieldset>
+}

@@ -273,7 +273,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
-        
+
 
         [Test]
         public void GPTBot_1()
@@ -360,6 +360,89 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
 
+        [Test]
+        public void TweetmemeBot_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Mozilla/5.0 (TweetmemeBot/4.0; +http://datasift.com/bot.html) Gecko/20100101 Firefox/31.0");
+            var RS2 = Detective.ProcessData(Header);
+
+            foreach (var item in RS2.Trace)
+            {
+                Console.WriteLine(item);
+            }
+
+            ClassicAssert.AreEqual("TweetmemeBot", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("4.0"), RS2.version, "version");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual(string.Empty, RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
+        }
+
+        [Test]
+        public void Tailrank_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.2.1; aggregator:Tailrank; http://tailrank.com/robot) Gecko/20021130");
+            var RS2 = Detective.ProcessData(Header);
+
+            foreach (var item in RS2.Trace)
+            {
+                Console.WriteLine(item);
+            }
+
+            ClassicAssert.AreEqual("Tailrank", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("1.2.1"), RS2.version, "version");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual(string.Empty, RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
+        }
+
+        [Test]
+        public void LightspeedSystemsCrawler_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"LightspeedSystemsCrawler Mozilla/5.0 (Windows; U; MSIE 9.0; Windows NT 9.0; en-US)");
+            var RS2 = Detective.ProcessData(Header);
+
+            foreach (var item in RS2.Trace)
+            {
+                Console.WriteLine(item);
+            }
+
+            ClassicAssert.AreEqual("LightspeedSystemsCrawler", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual(string.Empty, RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
+        }
+
+        [Test]
+        public void lkxscan_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"lkxscan/v0.1.0 (+https://leakix.net) l9explore/v1.0.0 (+https://github.com/LeakIX/l9explore)");
+            var RS2 = Detective.ProcessData(Header);
+
+            foreach (var item in RS2.Trace)
+            {
+                Console.WriteLine(item);
+            }
+
+            ClassicAssert.AreEqual("lkxscan", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.1.0"), RS2.version, "version");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("Unknown", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
+            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
+        }
 
         [Test]
         public void RandomRobobotUserAgent_1()

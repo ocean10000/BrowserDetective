@@ -90,16 +90,16 @@ public static class BrowserExtention
                         }
                     }
 
-                    result.Trace.Add(new Data.Models.Trackitem() { BrowserID = browser.Id, BrowserName = browser.Name, Name = item.Name, Value = result[item.Name] });
+                    result.Trace.Add(new Data.Models.Trackitem() { BrowserID = browser.Id, Type = browser.Type, BrowserName = browser.Name, Name = item.Name, Value = result[item.Name] });
                     sb.AppendLine($"{browser.Name}:Result[{item.Name}]=\"{result[item.Name]}\"");
                 }
             }
             //cheap way to sent it up the chain that this level was a sucess (even if there are no Capabilities at this level)
-            result.Trace.Add(new Data.Models.Trackitem() { BrowserID = browser.Id, BrowserName = browser.Name, Name = "Success", Value = bool.TrueString });
+            result.Trace.Add(new Data.Models.Trackitem() { BrowserID = browser.Id, Type = browser.Type, BrowserName = browser.Name, Name = "Success", Value = bool.TrueString });
             browser._logger.Log(LogLevel.Debug, sb.ToString());
             sb = new System.Text.StringBuilder();
 
-            foreach (var item in browser.InverseParent.Where(X => X.Type == BrowserType.GateWay && X.ParentId == browser.Id).OrderBy(X=>X.Prority).ThenBy(X=>X.Name))
+            foreach (var item in browser.InverseParent.Where(X => X.Type == BrowserType.GateWay && X.ParentId == browser.Id).OrderBy(X => X.Prority).ThenBy(X => X.Name))
             {
                 result = item.Process(header, result, level + 1);
             }

@@ -6,6 +6,11 @@
     <Nullable>enable</Nullable>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Copyright>2024</Copyright>
+    <Version>1.0.1</Version>
+    <RepositoryType>GIT</RepositoryType>
+    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <FileVersion>1.0.1</FileVersion>    
   </PropertyGroup>
 
   <ItemGroup>

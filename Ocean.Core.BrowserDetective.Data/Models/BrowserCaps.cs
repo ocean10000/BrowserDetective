@@ -110,6 +110,7 @@ namespace Ocean.Core.BrowserDetective.Data.Models
     {
         public virtual long BrowserID { get; set; }
         public virtual string? BrowserName { get; set; }
+        public virtual BrowserType Type { get; set; }
         public virtual string Name { get; set; } = string.Empty;
 
         public virtual string Value { get; set; } = string.Empty;

@@ -38,6 +38,7 @@
                 <tr>
                     <th>BrowserID</th>
                     <th>BrowserName</th>
+                    <th>Type</th>
                     <th>Name</th>
                     <th>Value</th>
                 </tr>
@@ -47,6 +48,7 @@
                 <tr>
                     <td><a asp-controller="Home" asp-action="BrowserNode" asp-route-ID="@item.BrowserID">@item.BrowserID</a></td>
                     <td>@item.BrowserName</td>
+                    <td>@item.Type</td>
                     <td>@item.Name</td>
                     <td>@item.Value</td>
                 </tr>

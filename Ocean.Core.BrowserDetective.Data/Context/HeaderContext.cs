@@ -6,11 +6,13 @@ namespace Ocean.Core.BrowserDetective.Data.Context
 {
     public partial class HeaderContext : DbContext
     {
+        string _Conn = string.Empty;
         public HeaderContext()
         {
         }
         public HeaderContext(string connString)
         {
+            _Conn = connString;
             this.Database.SetConnectionString(connString);
         }
 
@@ -18,7 +20,12 @@ namespace Ocean.Core.BrowserDetective.Data.Context
         {
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlite(ConfigurationManager.ConnectionStrings["Headers"].ConnectionString);
+        {
+            if (string.IsNullOrWhiteSpace(_Conn))
+                optionsBuilder.UseSqlite(ConfigurationManager.ConnectionStrings["Headers"].ConnectionString);
+            else
+                optionsBuilder.UseSqlite(_Conn);
+        }
         public virtual DbSet<Header> Headers { get; set; }
         public virtual DbSet<HeaderRaw> Raw { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

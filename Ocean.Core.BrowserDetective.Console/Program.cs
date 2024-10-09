@@ -1,18 +1,29 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using Microsoft.Extensions.Logging;
-using Ocean.Core.BrowserDetective.Extentions;
-using Ocean.Core.BrowserDetective.Data.Extentions;
 using Ocean.Core.BrowserDetective.Data.Models;
-using System.Configuration;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Ocean.Core.BrowserDetective.Extentions;
 
 using ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddFilter("Ocean.Core.BrowserDetective", LogLevel.Error).AddConsole());
 ILogger logger = factory.CreateLogger(typeof(Ocean.Core.BrowserDetective.Process));
 
-
 Ocean.Core.BrowserDetective.Data.Context.HeaderContext context = new Ocean.Core.BrowserDetective.Data.Context.HeaderContext();
-Ocean.Core.BrowserDetective.Data.Context.ResultContext resultContext = new Ocean.Core.BrowserDetective.Data.Context.ResultContext();
+Ocean.Core.BrowserDetective.Data.Context.ResultContext resultContext;
+
+var CoreResultFile = $"Core.Results.{System.DateTime.Now.ToString("yyyyMMddHH")}.db";
+if (System.IO.File.Exists("Core.Results.db"))
+{
+    if (System.IO.File.Exists(CoreResultFile))
+        System.IO.File.Delete(CoreResultFile);
+
+    System.IO.File.Copy("Core.Results.db", CoreResultFile);
+
+    resultContext = new Ocean.Core.BrowserDetective.Data.Context.ResultContext($"Data Source={CoreResultFile}");
+}
+else
+{
+    resultContext = new Ocean.Core.BrowserDetective.Data.Context.ResultContext();
+}
 
 var detective = new Ocean.Core.BrowserDetective.Process(logger);
 

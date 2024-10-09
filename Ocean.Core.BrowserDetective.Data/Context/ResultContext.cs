@@ -7,12 +7,13 @@ namespace Ocean.Core.BrowserDetective.Data.Context
 {
     public partial class ResultContext : DbContext
     {
-
+        string _Conn = string.Empty;
         public ResultContext()
         {
         }
         public ResultContext(string connString)
         {
+            _Conn = connString;
             this.Database.SetConnectionString(connString);
         }
 
@@ -20,7 +21,12 @@ namespace Ocean.Core.BrowserDetective.Data.Context
         {
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    => optionsBuilder.UseSqlite(ConfigurationManager.ConnectionStrings["Results"].ConnectionString);
+        {
+            if (string.IsNullOrWhiteSpace(_Conn))
+                optionsBuilder.UseSqlite(ConfigurationManager.ConnectionStrings["Results"].ConnectionString);
+            else
+                optionsBuilder.UseSqlite(_Conn);
+        }
 
         public virtual DbSet<ResultItem> Results { get; set; }
 

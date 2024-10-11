@@ -1,0 +1,6 @@
+﻿@model System.Collections.Generic.List<Ocean.Core.BrowserDetective.Data.Models.SampleHeader>
+@foreach(var item in Model)
+{
+    <a asp-action="UserAgentLookup2" asp-route-ID="@item.Id" asp-route-BrowserId="@item.BrowserId">@item.Value</a>
+    <br />
+}

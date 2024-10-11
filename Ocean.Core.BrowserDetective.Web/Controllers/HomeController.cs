@@ -13,12 +13,21 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private Ocean.Core.BrowserDetective.Data.Context.HeaderContext HeaderContext;
         private Ocean.Core.BrowserDetective.Data.Context.BrowserCapsContext BrowserCapsContext;
         private List<Ocean.Core.BrowserDetective.Data.Models.Browser> BrowserList;
 
         public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
             _logger = logger;
+            if (string.IsNullOrEmpty(configuration.GetConnectionString("Headers")) == false)
+            {
+                HeaderContext = new Data.Context.HeaderContext(configuration.GetConnectionString("Headers"));
+            }
+            else
+            {
+                HeaderContext = new Data.Context.HeaderContext();
+            }
             if (string.IsNullOrEmpty(configuration.GetConnectionString("BrowserCaps")) == false)
             {
                 BrowserCapsContext = new Data.Context.BrowserCapsContext(configuration.GetConnectionString("BrowserCaps"));
@@ -318,6 +327,12 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
             return NotFound();
         }
 
+        public IActionResult SamplesList()
+        {
+            var Model = BrowserCapsContext.SampleHeaders.Where(X => X.Name == "User-Agent").ToList();
+
+            return View(Model);
+        }
         [Route("~/Home/Sample/{ID}/{BrowserId}/")]
         public IActionResult Samples(long ID, long BrowserId)
         {
@@ -400,9 +415,54 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
             System.Collections.Generic.IDictionary<string, string> header = new Dictionary<string, string>();
             header.Add("User-Agent", UserAgent);
 
-            var Model= DefaultBrowser.Process(header);
+            var Model = DefaultBrowser.Process(header);
 
             return View("UserAgent", Model);
+        }
+
+        public IActionResult UserAgentLookup2(long ID, long BrowserId)
+        {
+            var DefaultBrowser = BrowserList.Where(x => x.Id == BrowserId).FirstOrDefault();
+            if (DefaultBrowser != null)
+            {
+                var sample = DefaultBrowser.Samples.FirstOrDefault(X => X.Id == ID);
+                if (sample != null)
+                {
+                    System.Collections.Generic.IDictionary<string, string> header = new Dictionary<string, string>();
+                    header.Add("User-Agent", sample.Value);
+
+                    DefaultBrowser = BrowserList.Where(x => x.Name == "Default").FirstOrDefault();
+
+                    var Model = DefaultBrowser.Process(header);
+
+                    return View("UserAgent", Model);
+                }
+            }
+
+
+            return NotFound();
+        }
+
+        public IActionResult UserAgentLookup3(long ID)
+        {
+            var h = HeaderContext.Headers.Where(X => X.Raw_ID == ID).ToList();
+            var DefaultBrowser = BrowserList.Where(x => x.Name == "Default").FirstOrDefault();
+
+            if (DefaultBrowser != null)
+            {
+                System.Collections.Generic.IDictionary<string, string> header = new Dictionary<string, string>();
+                foreach (var x in h)
+                {
+                    header.Add(x.Name,x.Value);
+                }
+
+                var Model = DefaultBrowser.Process(header);
+
+                return View("UserAgent", Model);
+            }
+
+
+            return NotFound();
         }
 
         private List<SelectListItem> BrowserNodes
@@ -417,6 +477,15 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
 
                 return item;
             }
+        }
+
+
+        public IActionResult HeaderList(long Page = 1)
+        {
+            long Offset = (Page * 50) - 50;
+            var Model = HeaderContext.Raw.FromSql($"Select * From RawHeadersData LIMIT 100 OFFSET {Offset}").ToList();
+
+            return View(Model);
         }
     }
 }

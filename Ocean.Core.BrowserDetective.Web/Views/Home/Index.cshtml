@@ -5,11 +5,9 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <a asp-action="UserAgent">Lookup</a> | <a asp-action="BrowserNode" asp-route-ID="0">Add</a>| <a asp-action="SamplesList" asp-controller="Home">Samples List</a> | <a asp-action="HeaderList" asp-controller="Home">Headers List</a>
 </div>
-<a asp-action="UserAgent" >Lookup</a><br />
-
-<a asp-action="BrowserNode" asp-route-ID="0">Add</a>
+<br />
 <table>
     @foreach(var b  in Model)
     {

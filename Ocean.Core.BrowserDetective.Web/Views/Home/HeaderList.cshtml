@@ -1,0 +1,18 @@
+﻿@model System.Collections.Generic.List<Ocean.Core.BrowserDetective.Data.Models.HeaderRaw>
+
+@for (int i = 1; i <= 100; i++)
+{
+    <a asp-action="HeaderList" asp-controller="Home" asp-route-Page="@i">Page @i</a>
+}
+<table border="1" style="width:100%">
+    @foreach (var h in Model)
+    {
+        <tr>
+            <td> <a asp-action="UserAgentLookup3" asp-route-ID="@h.ID">@h.FileName</a></td>
+            <td>@h.Stamp</td>
+        </tr>
+        <tr>
+            <td colspan="2"><pre>@h.Raw</pre></td>
+        </tr>
+    }
+</table>

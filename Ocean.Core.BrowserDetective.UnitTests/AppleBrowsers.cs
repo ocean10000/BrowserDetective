@@ -48,7 +48,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1");
             var RS2 = Detective.ProcessData(Header);
 
-            ClassicAssert.AreEqual("Safari", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual("Mobile Safari", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(new Version("15.0"), RS2.version, "version");
             ClassicAssert.AreEqual("iOS", RS2.OS, "os");
         }

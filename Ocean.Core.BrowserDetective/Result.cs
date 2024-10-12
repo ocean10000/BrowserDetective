@@ -7,7 +7,7 @@
         public Result() : base()
         {
             this["browser"] = string.Empty;
-            this["os"] = string.Empty;
+            this["OS"] = string.Empty;
 
             System.Reflection.Assembly asm = typeof(Data.Models.Browser).Assembly;
             using (System.IO.Stream CP = asm.GetManifestResourceStream("Ocean.Core.BrowserDetective.Data.RandomRobotKeywords.txt"))
@@ -216,5 +216,19 @@
         }
         public System.Collections.Generic.List<Ocean.Core.BrowserDetective.Data.Models.Trackitem> Trace
         { get; set; } = new List<Data.Models.Trackitem>();
+
+        /// <summary>
+        ///  user agent client hint request header provides the platform or operating system on which the user agent is running.
+        /// </summary>
+        public string Platform
+        {
+            get
+            {
+                if (this.ContainsKey("platform"))
+                    return this["platform"];
+                else
+                    return string.Empty;
+            }
+        }
     }
 }

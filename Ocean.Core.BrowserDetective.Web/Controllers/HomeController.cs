@@ -414,6 +414,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
 
             System.Collections.Generic.IDictionary<string, string> header = new Dictionary<string, string>();
             header.Add("User-Agent", UserAgent);
+            ViewBag.Header = header;
 
             var Model = DefaultBrowser.Process(header);
 
@@ -430,6 +431,8 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
                 {
                     System.Collections.Generic.IDictionary<string, string> header = new Dictionary<string, string>();
                     header.Add("User-Agent", sample.Value);
+
+                    ViewBag.Header = header;
 
                     DefaultBrowser = BrowserList.Where(x => x.Name == "Default").FirstOrDefault();
 
@@ -455,6 +458,8 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
                 {
                     header.Add(x.Name,x.Value);
                 }
+
+                ViewBag.Header = header;
 
                 var Model = DefaultBrowser.Process(header);
 

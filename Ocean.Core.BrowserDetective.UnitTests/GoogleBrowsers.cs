@@ -3,6 +3,10 @@ using Microsoft.Extensions.Logging.Console;
 using System.Configuration;
 using Ocean.Core.BrowserDetective.Extentions;
 using NUnit.Framework.Legacy;
+using Ocean.Core.BrowserDetective.Data.Models;
+using System.Security.Cryptography;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace Ocean.Core.BrowserDetective.UnitTests
 {
@@ -101,6 +105,80 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual("SM-G892A Bulid/NRD90M; wv", RS2.mobileDeviceModel, "mobileDeviceModel");
             ClassicAssert.AreEqual("Unknown", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+        }
+
+
+        [Test]
+        public void GoogleChrome_Android_4()
+        {
+            //RawID=181277
+
+            Dictionary<string, string> Header = new Dictionary<string, string>();
+            Header.Add("Connection", "keep-alive");
+            Header.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7");
+            Header.Add("Accept-Encoding", "gzip, deflate, br, zstd");
+            Header.Add("Accept-Language", "en-IN,en-US;q=0.9,en;q=0.8");
+            Header.Add("Host", "owenbrady.net");
+            Header.Add("Referer", "https://lm.facebook.com/");
+            Header.Add("User-Agent", "Mozilla/5.0 (Linux; Android 13; LAVA LXX504 Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/117.0.0.0 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/436.0.0.35.101;]");
+            Header.Add("sec-ch-ua", "\"Android WebView\";v=\"117\", \"Not; A = Brand\";v=\"8\", \"Chromium\";v=\"117\"");
+            Header.Add("sec-ch-ua-mobile", "?1");
+            Header.Add("sec-ch-ua-platform", "\"Android\"");
+            Header.Add("Upgrade-Insecure-Requests", "1");
+            Header.Add("Sec-Fetch-Site", "cross-site");
+            Header.Add("Sec-Fetch-Mode", "navigate");
+            Header.Add("Sec-Fetch-Dest", "document");
+
+            var RS2 = Detective.ProcessData(Header);
+
+            foreach (var item in RS2.Trace)
+            {
+                Console.WriteLine(item);
+            }
+
+            ClassicAssert.AreEqual("Chrome", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("4.0"), RS2.version, "browser");
+            ClassicAssert.AreEqual("Android 13", RS2.OS, "OS");
+            ClassicAssert.AreEqual("\"Android\"", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("Unknown", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+        }
+
+
+        [Test]
+        public void GoogleChrome_Android_5()
+        {
+            //RawID=150888
+
+            Dictionary<string, string> Header = new Dictionary<string, string>();
+            Header.Add("Connection", "keep-alive");
+            Header.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7");
+            Header.Add("Accept-Encoding", "gzip, deflate, br");
+            Header.Add("Accept-Language", "en-US,en-IN;q=0.9,en;q=0.8");
+            Header.Add("Host", "owenbrady.net");
+            Header.Add("Referer", "https://lm.facebook.com/");
+            Header.Add("User-Agent", "Mozilla/5.0 (Linux; Android 13; EB2101 Build/TP1A.220905.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/117.0.0.0 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/437.0.0.23.116;]");
+            Header.Add("sec-ch-ua", "\"Android WebView\";v=\"117\", \"Not; A = Brand\";v=\"8\", \"Chromium\";v=\"117\"");
+            Header.Add("sec-ch-ua-mobile", "?1");
+            Header.Add("sec-ch-ua-platform", "\"Android\"");
+            Header.Add("Upgrade-Insecure-Requests", "1");
+            Header.Add("X-Requested-With", "com.facebook.katana");
+            Header.Add("Sec-Fetch-Site", "cross-site");
+            Header.Add("Sec-Fetch-Mode", "navigate");
+            Header.Add("Sec-Fetch-Dest", "document");
+
+            var RS2 = Detective.ProcessData(Header);
+            ClassicAssert.AreEqual("Chrome", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("4.0"), RS2.version, "browser");
+            ClassicAssert.AreEqual("Android 13", RS2.OS, "OS");
+            ClassicAssert.AreEqual("\"Android\"", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("Unknown", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+
         }
 
         //https://community.cloudflare.com/t/why-crios-instead-of-chrome/375159/3

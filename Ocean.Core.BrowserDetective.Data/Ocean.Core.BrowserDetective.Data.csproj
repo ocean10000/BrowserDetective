@@ -7,10 +7,10 @@
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Copyright>2024</Copyright>
-    <Version>1.0.1</Version>
+    <Version>1.0.3</Version>
     <RepositoryType>GIT</RepositoryType>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
-    <FileVersion>1.0.1</FileVersion>    
+    <AssemblyVersion>1.0.3</AssemblyVersion>
+    <FileVersion>1.0.3</FileVersion>    
   </PropertyGroup>
 
   <ItemGroup>

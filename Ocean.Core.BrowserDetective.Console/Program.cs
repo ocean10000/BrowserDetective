@@ -66,7 +66,7 @@ if (detective.DefaultBrowser != null)
             AlreadyProcessedHeaders.Add(HeaderKey);
             if (dic.Count > 0)
             {
-                var h = detective.DefaultBrowser.Process(dic);
+                var h = detective.ProcessData(dic);
 
                 foreach (var n in h.Trace)
                 {

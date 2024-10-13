@@ -28,7 +28,7 @@ namespace Ocean.Core.BrowserDetective
         /// </summary>
         /// <param name="header">Header Value which the regular expression will evaluate.</param>
         /// <returns>A Match object created from the regular expression and the passed in header.</returns>
-        public Match Match(IDictionary<string, string> header, ref Result result)
+        public Match Match(Microsoft.AspNetCore.Http.IHeaderDictionary header, ref Result result)
         {
             string value = string.Empty;
 

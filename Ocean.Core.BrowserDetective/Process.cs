@@ -111,16 +111,23 @@ namespace Ocean.Core.BrowserDetective
             if (DefaultBrowser == null)
                 return new Result();
 
-            System.Collections.Generic.IDictionary<string, string> header = new Dictionary<string, string>();
+            Microsoft.AspNetCore.Http.IHeaderDictionary header = new Microsoft.AspNetCore.Http.HeaderDictionary();
             header.Add("User-Agent", userAgent);
 
             return ProcessData(header);
         }
-        public Result ProcessData(System.Collections.Generic.IDictionary<string, string> header)
+        public Result ProcessData(IDictionary<string, string> header)
         {
             if (DefaultBrowser == null)
                 return new Result();
-            return DefaultBrowser.Process(header);
+
+            Microsoft.AspNetCore.Http.IHeaderDictionary header2 = new Microsoft.AspNetCore.Http.HeaderDictionary();
+            foreach (var k in header.Keys)
+            {
+                header2.Add(k, header[k]);
+            }
+
+            return DefaultBrowser.Process(header2);
         }
         //This is more of a way to allow conversion from older version of unit test and code pre
         //dot.net core.
@@ -129,13 +136,21 @@ namespace Ocean.Core.BrowserDetective
             if (DefaultBrowser == null)
                 return new Result();
 
-            IDictionary<string, string> header2 = new Dictionary<string, string>();
+            Microsoft.AspNetCore.Http.IHeaderDictionary header2 = new Microsoft.AspNetCore.Http.HeaderDictionary();
             foreach (var k in header.AllKeys)
             {
                 header2.Add(k, header[k]);
             }
 
             return DefaultBrowser.Process(header2);
+        }
+
+        public Result ProcessData(Microsoft.AspNetCore.Http.IHeaderDictionary header)
+        {
+            if (DefaultBrowser == null)
+                return new Result();
+
+            return DefaultBrowser.Process(header);
         }
     }
 }

@@ -237,7 +237,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             System.Collections.Generic.Dictionary<string, string> Header;
             Header = new Dictionary<string, string>();
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Linux; Android 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Safari/537.36 (compatible; Bytespider; spider-feedback@bytedance.com)");
-            var RS2 = Detective.DefaultBrowser.Process(Header);
+            var RS2 = Detective.ProcessData(Header);
 
             ClassicAssert.AreEqual("Bytespider", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
@@ -251,7 +251,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             System.Collections.Generic.Dictionary<string, string> Header;
             Header = new Dictionary<string, string>();
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Linux; Android 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Safari/537.36 (compatible; Bytespider; https://zhanzhang.toutiao.com/)");
-            var RS2 = Detective.DefaultBrowser.Process(Header);
+            var RS2 = Detective.ProcessData(Header);
 
             ClassicAssert.AreEqual("Bytespider", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");

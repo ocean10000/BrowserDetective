@@ -412,8 +412,8 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
         {
             var DefaultBrowser = BrowserList.Where(x => x.Name == "Default").FirstOrDefault();
 
-            System.Collections.Generic.IDictionary<string, string> header = new Dictionary<string, string>();
-            header.Add("User-Agent", UserAgent);
+            Microsoft.AspNetCore.Http.IHeaderDictionary header = new Microsoft.AspNetCore.Http.HeaderDictionary();
+            header.Append("User-Agent", UserAgent);
             ViewBag.Header = header;
 
             var Model = DefaultBrowser.Process(header);
@@ -429,8 +429,8 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
                 var sample = DefaultBrowser.Samples.FirstOrDefault(X => X.Id == ID);
                 if (sample != null)
                 {
-                    System.Collections.Generic.IDictionary<string, string> header = new Dictionary<string, string>();
-                    header.Add("User-Agent", sample.Value);
+                    Microsoft.AspNetCore.Http.IHeaderDictionary header = new Microsoft.AspNetCore.Http.HeaderDictionary();
+                    header.Append("User-Agent", sample.Value);
 
                     ViewBag.Header = header;
 
@@ -453,10 +453,10 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
 
             if (DefaultBrowser != null)
             {
-                System.Collections.Generic.IDictionary<string, string> header = new Dictionary<string, string>();
+                Microsoft.AspNetCore.Http.IHeaderDictionary header = new Microsoft.AspNetCore.Http.HeaderDictionary();
                 foreach (var x in h)
                 {
-                    header.Add(x.Name,x.Value);
+                    header.Append(x.Name,x.Value);
                 }
 
                 ViewBag.Header = header;

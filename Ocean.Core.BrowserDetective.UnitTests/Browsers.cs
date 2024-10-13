@@ -108,7 +108,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             System.Collections.Generic.Dictionary<string, string> Header;
             Header = new Dictionary<string, string>();
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2776.145 Safari/537.36 Core/1.70.3722.400 QQBrowser/10.5.3739.400");
-            var RS2 = Detective.DefaultBrowser.Process(Header);
+            var RS2 = Detective.ProcessData(Header);
 
             ClassicAssert.AreEqual("QQBrowser", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(new Version("10.5.3739"), RS2.version, "version");
@@ -122,7 +122,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             System.Collections.Generic.Dictionary<string, string> Header;
             Header = new Dictionary<string, string>();
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Linux; U; Android 7.1.1; zh-cn; Mi Note 3 Build/NMF26X) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/8.5 Mobile Safari/537.36");
-            var RS2 = Detective.DefaultBrowser.Process(Header);
+            var RS2 = Detective.ProcessData(Header);
 
             ClassicAssert.AreEqual("QQBrowser", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(new Version("8.5"), RS2.version, "version");

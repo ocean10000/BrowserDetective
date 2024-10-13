@@ -202,7 +202,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             System.Collections.Generic.Dictionary<string, string> Header;
             Header = new Dictionary<string, string>();
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/85 Version/11.1.1 Safari/605.1.15");
-            var RS2 = Detective.DefaultBrowser.Process(Header);
+            var RS2 = Detective.ProcessData(Header);
 
 
             foreach (var item in RS2.Trace)

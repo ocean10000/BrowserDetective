@@ -8,10 +8,10 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Ocean's BrowserCap Interpreter</Title>
     <Copyright>2024</Copyright>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <RepositoryType>GIT</RepositoryType>
-    <AssemblyVersion>1.0.3</AssemblyVersion>
-    <FileVersion>1.0.3</FileVersion>
+    <AssemblyVersion>1.0.4</AssemblyVersion>
+    <FileVersion>1.0.4</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,6 +22,10 @@
     <Content Include="BrowserCaps.DB">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
   </ItemGroup>
 
   <ItemGroup>

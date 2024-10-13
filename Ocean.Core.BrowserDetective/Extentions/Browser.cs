@@ -4,11 +4,11 @@ namespace Ocean.Core.BrowserDetective.Extentions;
 
 public static class BrowserExtention
 {
-    public static Result Process(this Data.Models.Browser browser, IDictionary<string, string> header)
+    public static Result Process(this Data.Models.Browser browser, Microsoft.AspNetCore.Http.IHeaderDictionary header)
     {
         return Process(browser, header, new Result());
     }
-    public static Result Process(this Data.Models.Browser browser, IDictionary<string, string> header, Result result, int level = 0)
+    public static Result Process(this Data.Models.Browser browser, Microsoft.AspNetCore.Http.IHeaderDictionary header, Result result, int level = 0)
     {
         LinkedList<Identification> MatchList = new LinkedList<Identification>();
         System.Text.StringBuilder sb = new System.Text.StringBuilder();

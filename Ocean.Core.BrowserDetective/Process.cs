@@ -3,7 +3,6 @@ using Microsoft.Extensions.Logging;
 using Ocean.Core.BrowserDetective.Data.Context;
 using Ocean.Core.BrowserDetective.Data.Models;
 using Ocean.Core.BrowserDetective.Extentions;
-using System.Collections.Generic;
 
 
 namespace Ocean.Core.BrowserDetective
@@ -21,14 +20,19 @@ namespace Ocean.Core.BrowserDetective
         /// </summary>
         public List<String> Headers = new List<String>();
 
+        public Process()
+        {
+            ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
+            _logger = factory.CreateLogger(typeof(Ocean.Core.BrowserDetective.Process));
+            _Process();
+        }
         public Process(ILogger logger)
         {
-            //-----------------------------------------------------------------------------
-            //I am putting some logging details in this. But will probably end up 
-            //redoing this whole project to make it more modern.
-            //-----------------------------------------------------------------------------
             _logger = logger;
-
+            _Process();
+        }
+        private void _Process()
+        {
             //-----------------------------------------------------------------------------
             //SQL Lite DB Access
             //-----------------------------------------------------------------------------
@@ -56,24 +60,24 @@ namespace Ocean.Core.BrowserDetective
             //-----------------------------------------------------------------------------
             browsers.ForEach(X => X._logger = _logger);
 
-            logger.Log(LogLevel.Trace, $"Browser Count {browsers.Count()}");
+            _logger.Log(LogLevel.Trace, $"Browser Count {browsers.Count()}");
 
             var identifications = Context.Identifications.AsNoTracking().ToList();
-            logger.Log(LogLevel.Trace, $"identifications Count {identifications.Count()}");
+            _logger.Log(LogLevel.Trace, $"identifications Count {identifications.Count()}");
 
             var captures = Context.Captures.AsNoTracking().ToList();
-            logger.Log(LogLevel.Trace, $"captures Count {captures.Count()}");
+            _logger.Log(LogLevel.Trace, $"captures Count {captures.Count()}");
 
             var capabilities = Context.Capabilities.AsNoTracking().ToList();
-            logger.Log(LogLevel.Trace, $"capabilities Count {capabilities.Count()}");
+            _logger.Log(LogLevel.Trace, $"capabilities Count {capabilities.Count()}");
 
             var sampleHeaders = Context.SampleHeaders.AsNoTracking().ToList();
-            logger.Log(LogLevel.Trace, $"SampleHeaders Count {sampleHeaders.Count()}");
+            _logger.Log(LogLevel.Trace, $"SampleHeaders Count {sampleHeaders.Count()}");
 
             //-----------------------------------------------------------------------------
             //Gets a List of Headers Used by the BrowseCap files.
             //-----------------------------------------------------------------------------
-            var list = identifications.Where(X => X.Type == CaptureType.Header).Select(X=>X.Name).Distinct().ToList();
+            var list = identifications.Where(X => X.Type == CaptureType.Header).Select(X => X.Name).Distinct().ToList();
             list.AddRange(captures.Where(X => X.Type == CaptureType.Header).Select(X => X.Name).Distinct().ToList());
             Headers = list.Distinct().ToList();
 

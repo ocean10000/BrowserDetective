@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Ocean.Core.BrowserDetective.Data.Context;
 using Ocean.Core.BrowserDetective.Data.Models;
 using Ocean.Core.BrowserDetective.Extentions;
+using System.Diagnostics;
 
 
 namespace Ocean.Core.BrowserDetective
@@ -154,7 +155,29 @@ namespace Ocean.Core.BrowserDetective
             if (DefaultBrowser == null)
                 return new Result();
 
-            return DefaultBrowser.Process(header);
+            var r = DefaultBrowser.Process(header);
+            r.HeaderChecksum = HeaderChecksum(header);
+            return r;
+        }
+
+        public string HeaderChecksum(Microsoft.AspNetCore.Http.IHeaderDictionary header)
+        {
+            var AllPossibleheaders = this.Headers;
+
+            System.IO.MemoryStream stream = new System.IO.MemoryStream();
+            System.IO.StreamWriter writer = new System.IO.StreamWriter(stream, System.Text.Encoding.Default);
+            //We only care about the Headers used in the identification Process 
+            for (int i = 0; i <= AllPossibleheaders.Count - 1; i++)
+            {
+                if (String.IsNullOrEmpty(header[AllPossibleheaders[i]]) == false)
+                {
+                    writer.WriteLine(header[AllPossibleheaders[i]]);
+                }
+            }
+            writer.Flush();
+            byte[] array = stream.ToArray();
+            writer.Close();
+            return Convert.ToHexString(System.Security.Cryptography.MD5.Create().ComputeHash(array); ;
         }
     }
 }

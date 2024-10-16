@@ -3,7 +3,13 @@
     public class Result : Dictionary<string, string>
     {
         private string[] RandomRoboBotKeywords;
-
+        /// <summary>
+        /// This is a MD5 checksum based on the actual headers used, during the determination process.
+        /// </summary>
+        public string HeaderChecksum
+        {
+            get;set;
+        }
         public Result() : base()
         {
             this["browser"] = string.Empty;

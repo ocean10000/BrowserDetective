@@ -177,7 +177,7 @@ namespace Ocean.Core.BrowserDetective
             writer.Flush();
             byte[] array = stream.ToArray();
             writer.Close();
-            return Convert.ToHexString(System.Security.Cryptography.MD5.Create().ComputeHash(array); ;
+            return Convert.ToHexString(System.Security.Cryptography.MD5.Create().ComputeHash(array));
         }
     }
 }

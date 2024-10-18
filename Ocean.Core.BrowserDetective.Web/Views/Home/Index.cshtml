@@ -9,7 +9,7 @@
 </div>
 <br />
 <table>
-    @foreach(var b  in Model)
+    @foreach(var b  in Model.OrderBy(X=> X.Name))
     {
         <tr>
             <td><a asp-controller="Home" asp-action="BrowserNode" asp-route-ID="@b.Id">@b.Name</a></td>

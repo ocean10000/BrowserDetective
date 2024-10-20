@@ -190,7 +190,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            ClassicAssert.AreEqual("Microsoft Edge", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual("Microsoft Edge Legacy", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(new Version("16.16299"), RS2.version, "version");
             ClassicAssert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
         }

@@ -99,12 +99,18 @@ public static class BrowserExtention
             browser._logger.Log(LogLevel.Debug, sb.ToString());
             sb = new System.Text.StringBuilder();
 
-            foreach (var item in browser.InverseParent.Where(X => X.Type == BrowserType.GateWay && X.ParentId == browser.Id).OrderBy(X => X.Prority).ThenBy(X => X.Name))
+            //Just gathering all the child nodes together doing a presort etc. hopefully to speed things up even slightly.
+            //so the next searches will go slightly faster.
+            var children = browser.InverseParent.Where(X => X.ParentId == browser.Id).OrderBy(X => X.Type).ThenBy(X => X.Prority).ThenBy(X => X.Name).ToList();
+
+            var Nodes = children.Where(X => X.Type == BrowserType.GateWay).ToList();
+            foreach (var item in Nodes)
             {
                 result = item.Process(header, result, level + 1);
             }
 
-            foreach (var item in browser.InverseParent.Where(X => X.Type == BrowserType.Browser && X.ParentId == browser.Id).OrderBy(X => X.Prority).ThenBy(X => X.Name))
+            Nodes = children.Where(X => X.Type == BrowserType.Browser).ToList();
+            foreach (var item in Nodes)
             {
                 result = item.Process(header, result, level + 1);
 

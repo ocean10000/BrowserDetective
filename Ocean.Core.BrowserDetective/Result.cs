@@ -236,5 +236,32 @@
                     return string.Empty;
             }
         }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        public string layoutEngine
+        {
+            get
+            {
+                if (this.ContainsKey("layoutEngine"))
+                    return this["layoutEngine"];
+                else
+                    return string.Empty;
+            }
+        }
+        /// <summary>
+        ///
+        /// </summary>
+        public string layoutEngineVersion
+        {
+            get
+            {
+                if (this.ContainsKey("layoutEngineVersion"))
+                    return this["layoutEngineVersion"];
+                else
+                    return string.Empty;
+            }
+        }
     }
 }

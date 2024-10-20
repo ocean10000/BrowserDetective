@@ -70,7 +70,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
 
         public IActionResult BrowserNode(long ID)
         {
-            ViewBag.BrowserNodes = BrowserNodes;
+            ViewBag.BrowserNodes = BrowserNodes.OrderBy(X=>X.Text);
             ViewBag.parentURL = string.Empty;
             Browser Model = null;
             if (ID > 0)
@@ -483,7 +483,6 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
                 return item;
             }
         }
-
 
         public IActionResult HeaderList(long Page = 1)
         {

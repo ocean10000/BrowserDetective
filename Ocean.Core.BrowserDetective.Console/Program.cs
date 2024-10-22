@@ -33,9 +33,23 @@ System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create()
 if (detective.DefaultBrowser != null)
 {
     System.Collections.Generic.List<string> AlreadyProcessedHeaders = new List<string>();
+    //This gets the actual Headers Checked by the Browser Detective.
     var HeaderKeys = detective.Headers;
 
-    foreach (var item in context.Raw.OrderByDescending(X => X.ID))
+    //------------------------------------------------------
+    //Changed it to be Sorted from Smallest to Largest 
+    //So that the Resulting output files weill be more 
+    //Stable between releases, even after the header DB
+    //is updated with more browser files. The Oldest will
+    //not change, but new ones will be added at the end.
+    //------------------------------------------------------
+    //This was changed originally so I can see the newer changes
+    //faster to help debug the code easier.  It also took a great
+    //deal longer in the past, it doesn't require as long as a
+    //waite now, that I no longer use Google Drive to read a SQLite
+    //DB from. The speed delay was very very noticible for this case.
+    //------------------------------------------------------
+    foreach (var item in context.Raw.OrderBy(X => X.ID))
     {
         System.DateTime start = DateTime.Now;
 
@@ -53,45 +67,72 @@ if (detective.DefaultBrowser != null)
         }
 
         //------------------------------------------------------
-        //Get a MD5 has of the HeaderKey Data, I don't care that 
-        //the Hash is considered Weak. ITS FAST and Takes little 
-        //Ram and CPU to do, and little space.
+        //Making sure we have some headers to work with.
         //------------------------------------------------------
-        HeaderKey = Convert.ToHexString(md5.ComputeHash(System.Text.Encoding.ASCII.GetBytes(HeaderKey))); // .NET 5 +
-
-        //Only process the data if it doesn't already exist.
-        if (AlreadyProcessedHeaders.Contains(HeaderKey) == false)
+        if (dic.Count > 0)
         {
-            //Add it to the existing list
-            AlreadyProcessedHeaders.Add(HeaderKey);
-            if (dic.Count > 0)
-            {
-                var h = detective.ProcessData(dic);
+            //------------------------------------------------------
+            //Get a MD5 has of the HeaderKey Data, I don't care that 
+            //the Hash is considered Weak. ITS FAST and Takes little 
+            //Ram and CPU to do, and little space.
+            //------------------------------------------------------
+            HeaderKey = Convert.ToHexString(md5.ComputeHash(System.Text.Encoding.ASCII.GetBytes(HeaderKey))); // .NET 5 +
 
-                foreach (var n in h.Trace)
-                {
-                    var d = new BrowserNode() { Raw_ID = item.ID, Node_ID = n.BrowserID, Name = n.Name, Value = n.Value };
-                    resultContext.Nodes.Add(d);
-                }
-                foreach (var key in h.Keys)
-                {
-                    var r = new ResultItem() { Raw_ID = item.ID, Name = key, Value = h[key] };
-                    resultContext.Results.Add(r);
-                }
-            }
-            try
+            //Only process the data if it doesn't already exist.
+            if (AlreadyProcessedHeaders.Contains(HeaderKey) == false)
             {
-                resultContext.SaveChanges();
+                //Add it to the existing list
+                AlreadyProcessedHeaders.Add(HeaderKey);
+                if (dic.Count > 0)
+                {
+                    //------------------------------------------------------
+                    //This is to save the actuall Processing time of the 
+                    //BrowserCap, without taking into account the DB save 
+                    //operations.
+                    //------------------------------------------------------
+                    System.DateTime Processstart = DateTime.Now;
+                    var h = detective.ProcessData(dic);
+                    System.DateTime ProcessEnd = DateTime.Now;
+
+                    //------------------------------------------------------
+                    //Want to Record the Header Checksum. Since I use it to 
+                    //Reduce duplicate work.
+                    //------------------------------------------------------
+                    h["Header Checksum"] = HeaderKey;
+                    h["Process Time"] = $"{ProcessEnd.Subtract(Processstart).TotalSeconds}";
+
+                    foreach (var n in h.Trace)
+                    {
+                        var d = new BrowserNode() { Raw_ID = item.ID, Node_ID = n.BrowserID, Name = n.Name, Value = n.Value };
+                        resultContext.Nodes.Add(d);
+                    }
+                    foreach (var key in h.Keys)
+                    {
+                        var r = new ResultItem() { Raw_ID = item.ID, Name = key, Value = h[key] };
+                        resultContext.Results.Add(r);
+                    }
+                }
+                try
+                {
+                    resultContext.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    resultContext.SaveChanges();
+                }
+                //------------------------------------------------------
+                //try to write the least amount of stuff to the Console.
+                //So not to waste much time displaying extra stuff, that
+                //will be mostly ignored. Its why we write as much as we
+                //can to the db.
+                //------------------------------------------------------
+                Console.WriteLine($"{item.ID}-Seconds {DateTime.Now.Subtract(start).TotalSeconds}");
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine($"{item.ID}-Skipped-Seconds {DateTime.Now.Subtract(start).TotalSeconds}");
             }
-            Console.WriteLine($"{item.ID}-Seconds {DateTime.Now.Subtract(start).TotalSeconds}");
-        }
-        else
-        {
-            Console.WriteLine($"{item.ID}-Skipped-Seconds {DateTime.Now.Subtract(start).TotalSeconds}");
         }
     }
 }

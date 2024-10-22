@@ -20,6 +20,15 @@ public static class BrowserExtention
             result.Add(string.Empty, header["User-Agent"]);
             sb.AppendLine($"User-Agent:\"{header["User-Agent"]}\"");
         }
+        //--------------------------------------------------------
+        //This is a safty catch. Unexpected empty data.
+        //No headers means there nothing we can do or lookup
+        //exit. Hoping this will stop Stack overflows.
+        //--------------------------------------------------------
+        if (header.Count == 0)
+        {
+            return result;  
+        }
 
         //this is setup to Allow the group to fail. by one item.
         bool Success = true;

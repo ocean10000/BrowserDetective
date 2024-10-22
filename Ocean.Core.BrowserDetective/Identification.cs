@@ -40,9 +40,16 @@ namespace Ocean.Core.BrowserDetective
             {
                 value = result[_Capture.Name];
             }
-
-            _PatternMatch = _RegexPattern.Match(value);
-
+            //-------------------------------------------------
+            //Don't bother trying to run a regulare expression
+            //against a null/empty string. Lets not waste the
+            //CPU cycles on it. We do have a few cases were there
+            //is no User-Agent String.
+            //-------------------------------------------------
+            if (String.IsNullOrWhiteSpace(value) == false)
+            {
+                _PatternMatch = _RegexPattern.Match(value);
+            }
             return _PatternMatch;
         }
         /// <summary>

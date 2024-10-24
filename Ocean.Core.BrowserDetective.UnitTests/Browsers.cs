@@ -264,7 +264,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
             ClassicAssert.AreEqual("", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
-            ClassicAssert.AreEqual("", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
             ClassicAssert.AreEqual("", RS2.layoutEngineVersion, "layoutEngineVersion");
             ClassicAssert.AreEqual("KHTML", RS2.layoutEngine, "layoutEngine");
         }
@@ -289,7 +289,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
             ClassicAssert.AreEqual("", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
-            ClassicAssert.AreEqual("", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
             ClassicAssert.AreEqual("4.8.4", RS2.layoutEngineVersion, "layoutEngineVersion");
             ClassicAssert.AreEqual("KHTML", RS2.layoutEngine, "layoutEngine");
         }
@@ -318,7 +318,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
             ClassicAssert.AreEqual("", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
-            ClassicAssert.AreEqual("", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
             ClassicAssert.AreEqual("3.5.5", RS2.layoutEngineVersion, "layoutEngineVersion");
             ClassicAssert.AreEqual("KHTML", RS2.layoutEngine, "layoutEngine");
 
@@ -348,7 +348,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
             ClassicAssert.AreEqual("", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
-            ClassicAssert.AreEqual("", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
             ClassicAssert.AreEqual("", RS2.layoutEngineVersion, "layoutEngineVersion");
             ClassicAssert.AreEqual("KHTML", RS2.layoutEngine, "layoutEngine");
 

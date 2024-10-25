@@ -60,23 +60,27 @@
     </fieldset>
     <fieldset>
         <legend>Unit Test</legend>
+        @if (ViewBag.Raw_ID != null)
+        {
+            @Html.Raw("//Header.ID = "+ ViewBag.Raw_ID)
+        }
         <div>Dictionary&lt;string, string&gt; Header = new Dictionary&lt;string, string&gt;();</div>
         @foreach (var key in ViewBag.Header.Keys)
         {
             <div>Header.Add("@key","@ViewBag.Header[key]");</div>
         }
     <pre>
-    var RS2 = Detective.ProcessData(Header);
-    ClassicAssert.AreEqual("@Model.BrowserName", RS2.BrowserName, "browser");
-    ClassicAssert.AreEqual(new Version("@Model.version"), RS2.version, "browser");
-    ClassicAssert.AreEqual("@Model.OS", RS2.OS, "OS");
-    ClassicAssert.AreEqual(@Model.Crawler.ToString().ToLower(), RS2.Crawler, "Crawler");
-    ClassicAssert.AreEqual(@Model.isMobileDevice.ToString().ToLower(), RS2.isMobileDevice, "isMobileDevice");
-    ClassicAssert.AreEqual("@Model.mobileDeviceModel", RS2.mobileDeviceModel, "isMobileDevice");
-    ClassicAssert.AreEqual("@Model.mobileDeviceManufacturer", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
-    ClassicAssert.AreEqual("@Model.Platform", RS2.Platform, "Platform");
-    ClassicAssert.AreEqual("@Model.layoutEngineVersion", RS2.layoutEngineVersion, "layoutEngineVersion");
-    ClassicAssert.AreEqual("@Model.layoutEngine", RS2.layoutEngine, "layoutEngine");
+        var RS2 = Detective.ProcessData(Header);
+        ClassicAssert.AreEqual("@Model.BrowserName", RS2.BrowserName, "browser");
+        ClassicAssert.AreEqual(new Version("@Model.version"), RS2.version, "browser");
+        ClassicAssert.AreEqual("@Model.OS", RS2.OS, "OS");
+        ClassicAssert.AreEqual(@Model.Crawler.ToString().ToLower(), RS2.Crawler, "Crawler");
+        ClassicAssert.AreEqual(@Model.isMobileDevice.ToString().ToLower(), RS2.isMobileDevice, "isMobileDevice");
+        ClassicAssert.AreEqual("@Model.mobileDeviceModel", RS2.mobileDeviceModel, "isMobileDevice");
+        ClassicAssert.AreEqual("@Model.mobileDeviceManufacturer", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+        ClassicAssert.AreEqual("@Model.Platform", RS2.Platform, "Platform");
+        ClassicAssert.AreEqual("@Model.layoutEngineVersion", RS2.layoutEngineVersion, "layoutEngineVersion");
+        ClassicAssert.AreEqual("@Model.layoutEngine", RS2.layoutEngine, "layoutEngine");
     </pre>
     </fieldset>
 }

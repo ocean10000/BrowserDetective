@@ -221,9 +221,9 @@
 }
 <fieldset>
     <legend>Children</legend>
-    @foreach (var children in Model.InverseParent)
+    @foreach (var children in Model.InverseParent.OrderBy(X=>X.Prority).ThenBy(X=>X.Name))
     {
-        <a asp-controller="Home" asp-action="BrowserNode" asp-route-ID="@children.Id">@children.Name</a>
+       @children.Prority <a asp-controller="Home" asp-action="BrowserNode" asp-route-ID="@children.Id">@children.Name</a>
         <br />
     }
 </fieldset>

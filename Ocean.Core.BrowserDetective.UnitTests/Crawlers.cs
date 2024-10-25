@@ -464,8 +464,6 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual("Unknown", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
             ClassicAssert.AreEqual(true, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
-
-
         [Test]
         public void RandomRobobotUserAgent_2()
         {
@@ -488,5 +486,265 @@ namespace Ocean.Core.BrowserDetective.UnitTests
         }
 
         //https://github.com/codewatchorg/Burp-UserAgent/blob/master/useragents.xml
+
+
+        [Test]
+        public void ia_archiver_1()
+        {
+            Dictionary<string, string> Header = new Dictionary<string, string>();
+            Header.Add("Connection", "close");
+            Header.Add("From", "crawler@alexa.com");
+            Header.Add("Host", "owenbrady.net");
+            Header.Add("User-Agent", "ia_archiver (+http://www.alexa.com/site/help/webmasters; crawler@alexa.com)");
+
+            var RS2 = Detective.ProcessData(Header);
+            ClassicAssert.AreEqual("ia_archiver", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "browser");
+            ClassicAssert.AreEqual("", RS2.OS, "OS");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("", RS2.layoutEngineVersion, "layoutEngineVersion");
+            ClassicAssert.AreEqual("", RS2.layoutEngine, "layoutEngine");
+        }
+        [Test]
+        public void ia_archiver_2()
+        {
+            Dictionary<string, string> Header = new Dictionary<string, string>();
+            Header.Add("Connection", "close");
+            Header.Add("From", "crawler@alexa.com");
+            Header.Add("Host", "ocean.accesswa.net");
+            Header.Add("User-Agent", "ia_archiver");
+
+            var RS2 = Detective.ProcessData(Header);
+            ClassicAssert.AreEqual("ia_archiver", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "browser");
+            ClassicAssert.AreEqual("", RS2.OS, "OS");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("", RS2.layoutEngineVersion, "layoutEngineVersion");
+            ClassicAssert.AreEqual("", RS2.layoutEngine, "layoutEngine");
+
+        }
+        [Test]
+        public void ia_archiver_3()
+        {
+            Dictionary<string, string> Header = new Dictionary<string, string>();
+            Header.Add("Connection", "TE, close");
+            Header.Add("Host", "ocean.accesswa.net");
+            Header.Add("TE", "deflate,gzip;q=0.3");
+            Header.Add("User-Agent", "ia_archiver-web.archive.org");
+
+            var RS2 = Detective.ProcessData(Header);
+            ClassicAssert.AreEqual("ia_archiver", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "browser");
+            ClassicAssert.AreEqual("", RS2.OS, "OS");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("", RS2.layoutEngineVersion, "layoutEngineVersion");
+            ClassicAssert.AreEqual("", RS2.layoutEngine, "layoutEngine");
+        }
+        [Test]
+        public void ia_archiver_4()
+        {
+            Dictionary<string, string> Header = new Dictionary<string, string>();
+            Header.Add("Connection", "close");
+            Header.Add("From", "crawler@alexa.com");
+            Header.Add("Host", "ocean.accesswa.net");
+            Header.Add("User-Agent", "ia_archiver");
+
+            var RS2 = Detective.ProcessData(Header);
+            ClassicAssert.AreEqual("ia_archiver", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "browser");
+            ClassicAssert.AreEqual("", RS2.OS, "OS");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("", RS2.layoutEngineVersion, "layoutEngineVersion");
+            ClassicAssert.AreEqual("", RS2.layoutEngine, "layoutEngine");
+        }
+
+        [Test]
+        public void Apache_HttpClient_1()
+        {
+            Dictionary<string, string> Header = new Dictionary<string, string>();
+            Header.Add("Connection", "Keep-Alive");
+            Header.Add("Accept-Encoding", "gzip,deflate");
+            Header.Add("Host", "owenbrady.net");
+            Header.Add("User-Agent", "Apache-HttpClient/4.3 (java 1.5)");
+
+            var RS2 = Detective.ProcessData(Header);
+            ClassicAssert.AreEqual("Apache-HttpClient", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("4.3"), RS2.version, "browser");
+            ClassicAssert.AreEqual("", RS2.OS, "OS");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("", RS2.layoutEngineVersion, "layoutEngineVersion");
+            ClassicAssert.AreEqual("", RS2.layoutEngine, "layoutEngine");
+
+        }
+
+        [Test]
+        public void Baiduspider_1()
+        {
+            Dictionary<string, string> Header = new Dictionary<string, string>();
+            Header.Add("Content-Type", "text/html");
+            Header.Add("Accept", "text/html, application/xhtml+xml, */*");
+            Header.Add("Host", "owenbrady.net");
+            Header.Add("User-Agent", "Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html");
+            Header.Add("X-Forwarded-For", "123.88.167.215");
+            Header.Add("Client-IP", "123.88.167.215");
+            Header.Add("REMOTE_ADDR", "123.88.167.215");
+
+            var RS2 = Detective.ProcessData(Header);
+            ClassicAssert.AreEqual("Baiduspider", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("2.0"), RS2.version, "browser");
+            ClassicAssert.AreEqual("", RS2.OS, "OS");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("", RS2.layoutEngineVersion, "layoutEngineVersion");
+            ClassicAssert.AreEqual("", RS2.layoutEngine, "layoutEngine");
+
+        }
+
+        [Test]
+        public void Baiduspider_2()
+        {
+            Dictionary<string, string> Header = new Dictionary<string, string>();
+            Header.Add("Host", "owenbrady.net");
+            Header.Add("User-Agent", "compatible;Baiduspider/2.0; +http://www.baidu.com/search/spider.html");
+            Header.Add("X-Fowarded-For", "221.144.183.200");
+
+            var RS2 = Detective.ProcessData(Header);
+            ClassicAssert.AreEqual("Baiduspider", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("2.0"), RS2.version, "browser");
+            ClassicAssert.AreEqual("", RS2.OS, "OS");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("", RS2.layoutEngineVersion, "layoutEngineVersion");
+            ClassicAssert.AreEqual("", RS2.layoutEngine, "layoutEngine");
+
+        }
+        [Test]
+        public void Baiduspider_3()
+        {
+            Dictionary<string, string> Header = new Dictionary<string, string>();
+            Header.Add("Connection", "Close");
+            Header.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+            Header.Add("Accept-Charset", "GB2312,utf-8;q=0.7,*;q=0.7");
+            Header.Add("Accept-Encoding", "gzip, deflate");
+            Header.Add("Accept-Language", "zh-cn,zh;q=0.5");
+            Header.Add("Host", "owenbrady.net");
+            Header.Add("User-Agent", "Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)");
+
+            var RS2 = Detective.ProcessData(Header);
+            ClassicAssert.AreEqual("Baiduspider", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("2.0"), RS2.version, "browser");
+            ClassicAssert.AreEqual("", RS2.OS, "OS");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("", RS2.layoutEngineVersion, "layoutEngineVersion");
+            ClassicAssert.AreEqual("", RS2.layoutEngine, "layoutEngine");
+        }
+        [Test]
+        public void Baiduspider_4()
+        {
+            Dictionary<string, string> Header = new Dictionary<string, string>();
+            Header.Add("Connection", "Close");
+            Header.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+            Header.Add("Accept-Charset", "GB2312,utf-8;q=0.7,*;q=0.7");
+            Header.Add("Accept-Encoding", "gzip, deflate");
+            Header.Add("Accept-Language", "zh-cn,zh;q=0.5");
+            Header.Add("Host", "owenbrady.net");
+            Header.Add("User-Agent", "Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)");
+
+            var RS2 = Detective.ProcessData(Header);
+            ClassicAssert.AreEqual("Baiduspider", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("2.0"), RS2.version, "browser");
+            ClassicAssert.AreEqual("", RS2.OS, "OS");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("", RS2.layoutEngineVersion, "layoutEngineVersion");
+            ClassicAssert.AreEqual("", RS2.layoutEngine, "layoutEngine");
+
+        }
+
+        [Test]
+        public void Baiduspider_5()
+        {
+            Dictionary<string, string> Header = new Dictionary<string, string>();
+            Header.Add("Content-Length", "0");
+            Header.Add("Accept", "*/*");
+            Header.Add("Accept-Encoding", "gzip");
+            Header.Add("Accept-Language", "zh-cn,zh-tw");
+            Header.Add("Host", "owenbrady.net");
+            Header.Add("User-Agent", "Mozilla/5.0 (Linux;u;Android 2.3.7;zh-cn;) AppleWebKit/533.1 (KHTML,like Gecko) Version/4.0 Mobile Safari/533.1 (compatible; +http://www.baidu.com/search/spider.html)");
+            Header.Add("x-up-bear-type", "other");
+
+            var RS2 = Detective.ProcessData(Header);
+            ClassicAssert.AreEqual("Baiduspider", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "browser");
+            ClassicAssert.AreEqual("", RS2.OS, "OS");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("", RS2.layoutEngineVersion, "layoutEngineVersion");
+            ClassicAssert.AreEqual("", RS2.layoutEngine, "layoutEngine");
+
+
+        }
+
+        [Test]
+        public void Baiduspider_6()
+        {
+            Dictionary<string, string> Header = new Dictionary<string, string>();
+            Header.Add("Content-Length", "0");
+            Header.Add("Accept", "*/*");
+            Header.Add("Accept-Encoding", "gzip");
+            Header.Add("Accept-Language", "zh-cn,zh-tw");
+            Header.Add("Host", "owenbrady.net");
+            Header.Add("User-Agent", "Mozilla/5.0 (Linux;u;Android 2.3.7;zh-cn;) AppleWebKit/533.1 (KHTML,like Gecko) Version/4.0 Mobile Safari/533.1 (compatible; +http://www.baidu.com/search/spider.html)");
+            Header.Add("x-up-bear-type", "other");
+
+            var RS2 = Detective.ProcessData(Header);
+            ClassicAssert.AreEqual("Baiduspider", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "browser");
+            ClassicAssert.AreEqual("", RS2.OS, "OS");
+            ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("", RS2.layoutEngineVersion, "layoutEngineVersion");
+            ClassicAssert.AreEqual("", RS2.layoutEngine, "layoutEngine");
+        }
+
     }
 }

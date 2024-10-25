@@ -60,7 +60,7 @@
         {
             get
             {
-                if (bool.TryParse(this["crawler"], out bool crawler) == true)
+                if (this.ContainsKey("crawler") && string.IsNullOrWhiteSpace(this["crawler"])== false && bool.TryParse(this["crawler"], out bool crawler) == true)
                 {
                     return crawler;
                 }
@@ -72,7 +72,7 @@
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(this["version"]) == false)
+                if (this.ContainsKey("version") && string.IsNullOrWhiteSpace(this["version"]) == false)
                     return new Version(this["version"]);
                 else
                     return new Version(0, 0);
@@ -107,7 +107,7 @@
         {
             get
             {
-                if (bool.TryParse(this["isMobileDevice"], out bool MobileDevice) == true)
+                if (this.ContainsKey("isMobileDevice") && string.IsNullOrWhiteSpace(this["isMobileDevice"]) == false && bool.TryParse(this["isMobileDevice"], out bool MobileDevice) == true)
                 {
                     return MobileDevice;
                 }

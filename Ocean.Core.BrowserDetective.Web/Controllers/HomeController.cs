@@ -132,6 +132,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
                 {
                     BrowserCapsContext.SampleHeaders.Remove(m2);
                 }
+                BrowserCapsContext.Browsers.Remove(m);
 
                 BrowserCapsContext.SaveChanges();
             }
@@ -448,6 +449,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
 
         public IActionResult UserAgentLookup3(long ID)
         {
+            ViewBag.Raw_ID = ID;
             var h = HeaderContext.Headers.Where(X => X.Raw_ID == ID).ToList();
             var DefaultBrowser = BrowserList.Where(x => x.Name == "Default").FirstOrDefault();
 

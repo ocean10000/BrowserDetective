@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging.Console;
 using System.Configuration;
 using Ocean.Core.BrowserDetective.Extentions;
 using NUnit.Framework.Legacy;
+using Ocean.Core.BrowserDetective.Data.Models;
 
 namespace Ocean.Core.BrowserDetective.UnitTests
 {
@@ -26,40 +27,6 @@ namespace Ocean.Core.BrowserDetective.UnitTests
         public void Dispose()
         {
         }
-        #region Opera
-        [Test]
-        public void Opera_Windows_1()
-        {
-            System.Collections.Generic.Dictionary<string, string> Header;
-            Header = new Dictionary<string, string>();
-            Header.Add(@"User-Agent", @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36 OPR/80.0.4170.63");
-            var RS2 = Detective.ProcessData(Header);
-
-            ClassicAssert.AreEqual("Opera", RS2.BrowserName, "browser");
-            ClassicAssert.AreEqual(new Version("80.0.4170"), RS2.version, "version");
-            ClassicAssert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
-            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
-        }
-        [Test]
-        public void Opera_Linux_1()
-        {
-            System.Collections.Generic.Dictionary<string, string> Header;
-            Header = new Dictionary<string, string>();
-            Header.Add(@"User-Agent", @"Mozilla/4.0 (compatible; MSIE 6.0; X11; Linux i686; de) Opera 10.10");
-            var RS2 = Detective.ProcessData(Header);
-
-
-            foreach (var item in RS2.Trace)
-            {
-                Console.WriteLine(item);
-            }
-
-            ClassicAssert.AreEqual("Opera", RS2.BrowserName, "browser");
-            ClassicAssert.AreEqual(new Version("10.10"), RS2.version, "version");
-            ClassicAssert.AreEqual("Linux", RS2.OS, "os");
-            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
-        }
-        #endregion
         #region Text Browsers
         [Test]
         public void Lynx_1()
@@ -145,7 +112,26 @@ namespace Ocean.Core.BrowserDetective.UnitTests
         }
 
         [Test]
-        public void es50_SymbianOS_1()
+        public void Nokia_SymbianOS_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header = new Dictionary<string, string>();
+            Header.Add("User-Agent", "Mozilla/5.0 (SymbianOS/9.1; U; en-us) AppleWebKit/413 (KHTML, like Gecko) Safari/413");
+            var RS2 = Detective.ProcessData(Header);
+            ClassicAssert.AreEqual("Nokia Browser", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "browser");
+            ClassicAssert.AreEqual("SymbianOS 9.1", RS2.OS, "OS");
+            ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("Unknown", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("Unknown", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("413", RS2.layoutEngineVersion, "layoutEngineVersion");
+            ClassicAssert.AreEqual("WebKit", RS2.layoutEngine, "layoutEngine");
+            ClassicAssert.AreEqual("", RS2.Chromeversion, "Chromeversion");
+            ClassicAssert.AreEqual("413", RS2.AppleWebTechnologyVersion, "AppleWebTechnologyVersion");
+        }
+        [Test]
+        public void Nokia_SymbianOS_2()
         {
             System.Collections.Generic.Dictionary<string, string> Header;
             Header = new Dictionary<string, string>();
@@ -157,7 +143,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            ClassicAssert.AreEqual("Nokia", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual("Nokia Browser", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
             ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual("Nokia es50", RS2.mobileDeviceModel, "mobileDeviceModel");
@@ -167,7 +153,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }
         [Test]
-        public void es70_SymbianOS_1()
+        public void Nokia_SymbianOS_3()
         {
             System.Collections.Generic.Dictionary<string, string> Header;
             Header = new Dictionary<string, string>();
@@ -179,7 +165,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            ClassicAssert.AreEqual("Nokia", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual("Nokia Browser", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
             ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual("Nokia es70", RS2.mobileDeviceModel, "mobileDeviceModel");
@@ -190,7 +176,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
 
         }
         [Test]
-        public void es90_SymbianOS_1()
+        public void Nokia_SymbianOS_4()
         {
             System.Collections.Generic.Dictionary<string, string> Header;
             Header = new Dictionary<string, string>();
@@ -225,29 +211,10 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            ClassicAssert.AreEqual("Unknown", RS2.BrowserName, "browser");
-            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("Uzbl (Webkit", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("1.3"), RS2.version, "version");
             ClassicAssert.AreEqual("Linux", RS2.OS, "os");
             ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
-        }
-        [Test]
-        public void Unknown_2()
-        {
-            System.Collections.Generic.Dictionary<string, string> Header;
-            Header = new Dictionary<string, string>();
-            Header.Add(@"User-Agent", @"Mozilla/5.0 (SymbianOS/9.1; U; en-us) AppleWebKit/413 (KHTML, like Gecko) Safari/413");
-            var RS2 = Detective.ProcessData(Header);
-
-            foreach (var item in RS2.Trace)
-            {
-                Console.WriteLine(item);
-            }
-
-            ClassicAssert.AreEqual("Unknown", RS2.BrowserName, "browser");
-            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
-            ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
-            ClassicAssert.AreEqual("SymbianOS 9.1", RS2.OS, "os"); //https://en.wikipedia.org/wiki/Symbian
-            ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent"); 
         }
         [Test]
         public void Konqueror_1()

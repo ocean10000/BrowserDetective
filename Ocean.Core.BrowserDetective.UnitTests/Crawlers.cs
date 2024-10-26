@@ -457,7 +457,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            ClassicAssert.AreEqual(string.Empty, RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual("Generic Browser", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
             ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
             ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
@@ -477,7 +477,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            ClassicAssert.AreEqual(string.Empty, RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual("Generic Browser", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
             ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
             ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");

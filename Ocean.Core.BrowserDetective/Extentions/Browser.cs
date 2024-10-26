@@ -27,7 +27,7 @@ public static class BrowserExtention
         //--------------------------------------------------------
         if (header.Count == 0)
         {
-            return result;  
+            return result;
         }
 
         //this is setup to Allow the group to fail. by one item.
@@ -80,8 +80,14 @@ public static class BrowserExtention
             }
             foreach (var item in browser.Capabilities)
             {
+                string PreviousValue = string.Empty;
+                //backup the existing value
+                if (result.ContainsKey(item.Name))
+                {
+                    PreviousValue = result[item.Name];
+                }
                 //make sure we have a non-Null/non-empty value
-                if (string.IsNullOrEmpty(item.Value) == false)
+                if (string.IsNullOrWhiteSpace(item.Value) == false)
                 {
                     result[item.Name] = item.Value;
 
@@ -92,15 +98,26 @@ public static class BrowserExtention
                         foreach (var m in MatchList)
                         {
                             string v = m.Result(item.Value);
-                            if (String.IsNullOrWhiteSpace(v) == false && v.Contains("${") == false)
+                            if (v != null && String.IsNullOrWhiteSpace(v.Trim()) == false && v.Contains("${") == false)
                             {
                                 result[item.Name] = v;
                             }
                         }
                     }
 
-                    result.Trace.Add(new Data.Models.Trackitem() { BrowserID = browser.Id, Type = browser.Type, BrowserName = browser.Name, Name = item.Name, Value = result[item.Name] });
-                    sb.AppendLine($"{browser.Name}:Result[{item.Name}]=\"{result[item.Name]}\"");
+                    //only log something if the value is being replaced.
+                    if (string.IsNullOrWhiteSpace(result[item.Name]) == false)
+                    {
+
+                        result.Trace.Add(new Data.Models.Trackitem() { BrowserID = browser.Id, Type = browser.Type, BrowserName = browser.Name, Name = item.Name, Value = result[item.Name] });
+                        sb.AppendLine($"{browser.Name}:Result[{item.Name}]=\"{result[item.Name]}\"");
+
+                    }
+                    //restore the original value if no value is inserted.
+                    else
+                    {
+                        result[item.Name] = PreviousValue;
+                    }
                 }
             }
             //cheap way to sent it up the chain that this level was a sucess (even if there are no Capabilities at this level)

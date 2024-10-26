@@ -142,7 +142,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual("\"Android\"", RS2.Platform, "Platform");
             ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
             ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
-            ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("Unknown", RS2.mobileDeviceModel, "mobileDeviceModel");
             ClassicAssert.AreEqual("Unknown", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
         }
 
@@ -176,7 +176,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual("\"Android\"", RS2.Platform, "Platform");
             ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
             ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
-            ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("Unknown", RS2.mobileDeviceModel, "mobileDeviceModel");
             ClassicAssert.AreEqual("Unknown", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
 
         }

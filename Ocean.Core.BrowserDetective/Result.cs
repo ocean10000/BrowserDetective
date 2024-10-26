@@ -8,7 +8,7 @@
         /// </summary>
         public string HeaderChecksum
         {
-            get;set;
+            get; set;
         }
         public Result() : base()
         {
@@ -60,7 +60,7 @@
         {
             get
             {
-                if (this.ContainsKey("crawler") && string.IsNullOrWhiteSpace(this["crawler"])== false && bool.TryParse(this["crawler"], out bool crawler) == true)
+                if (this.ContainsKey("crawler") && string.IsNullOrWhiteSpace(this["crawler"]) == false && bool.TryParse(this["crawler"], out bool crawler) == true)
                 {
                     return crawler;
                 }
@@ -155,13 +155,11 @@
             get
             {
                 #region  Check for Common Words in UserAgents
-                if (string.IsNullOrWhiteSpace(this.BrowserName) == false)
-                {
-                    //if a Browser name is present, then we have enough details to say it not a 
-                    //Random Gibberish in the UserAgent Header.
-                    return false;
-                }
-                else if (string.IsNullOrWhiteSpace(this.BrowserName) == false && string.Compare(this.BrowserName, "Unknown", true, System.Globalization.CultureInfo.CurrentCulture) != 0)
+                if (
+                    string.IsNullOrWhiteSpace(this.BrowserName) == false && 
+                    (string.Compare(this.BrowserName, "Unknown", true, System.Globalization.CultureInfo.CurrentCulture) != 0 && 
+                    string.Compare(this.BrowserName, "Generic Browser", true, System.Globalization.CultureInfo.CurrentCulture) != 0)
+                    )
                 {
                     //---------------------------------------------------------------
                     //Browser name was able to be determined then the Useragent had
@@ -259,6 +257,33 @@
             {
                 if (this.ContainsKey("layoutEngineVersion"))
                     return this["layoutEngineVersion"];
+                else
+                    return string.Empty;
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public string Chromeversion
+        {
+            get
+            {
+                if (this.ContainsKey("Chromeversion"))
+                    return this["Chromeversion"];
+                else
+                    return string.Empty;
+            }
+        }
+        /// <summary>
+        ///
+        /// </summary>
+        public string AppleWebTechnologyVersion
+        {
+            get
+            {
+                if (this.ContainsKey("appleWebTechnologyVersion"))
+                    return this["appleWebTechnologyVersion"];
                 else
                     return string.Empty;
             }

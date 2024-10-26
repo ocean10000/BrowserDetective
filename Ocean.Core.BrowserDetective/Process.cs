@@ -106,10 +106,12 @@ namespace Ocean.Core.BrowserDetective
             //test.AddRange(captures.Where(x => x.Type == CaptureType.Header).Select(x => x.Name).Distinct().ToList());
 
             //-----------------------------------------------------------------------------
-            //Sets the Top Most Browser Object. (This is based off the original formate of the
+            //Sets the Top Most Browser Object. (This is based off the original format of the
             //Microsoft Browser Files from Dot.net 1.X to 4.7X.)
             //-----------------------------------------------------------------------------
             DefaultBrowser = browsers.Where(x => x.Name == "Default").FirstOrDefault();
+            DefaultBrowser.ParentId = null;// avoiding a loop,  which will cause a stack overflow.
+            DefaultBrowser.parentID = null;// avoiding a loop,  which will cause a stack overflow.
         }
         public Result ProcessData(string userAgent)
         {

@@ -86,6 +86,15 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
 
         public IActionResult BrowserNodeUpSert(Browser Model)
         {
+            //Special Case the Default Node can not allow a Parent.'
+            //This is suppost to be the topp most parent Node. So it
+            //can not have a Parent.
+            if (Model != null && Model.Name == "Default")
+            {
+                Model.ParentId = null;
+                Model.parentID = null;
+            }
+
             if (Model.Id > 0)
                 BrowserCapsContext.Browsers.Update(Model);
             else

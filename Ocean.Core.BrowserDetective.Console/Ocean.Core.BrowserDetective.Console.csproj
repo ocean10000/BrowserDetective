@@ -14,10 +14,14 @@
 
   <ItemGroup>
     <None Remove="Core.Results.db" />
+    <None Remove="Run.PS" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Core.Results.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Run.PS">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

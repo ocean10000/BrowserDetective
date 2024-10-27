@@ -1,6 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.InteropServices;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Xml;
 
 namespace Ocean.Core.BrowserDetective.Data.Models
 {
@@ -33,6 +36,94 @@ namespace Ocean.Core.BrowserDetective.Data.Models
         public virtual ICollection<Browser> InverseParent { get; set; } = new List<Browser>();
 
         public virtual Browser? Parent { get; set; }
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.Encoding = Encoding.UTF32;
+            settings.OmitXmlDeclaration = true;
+            using (System.Xml.XmlWriter writer = System.Xml.XmlWriter.Create(sb, settings))
+            {
+                if (Type == BrowserType.Browser)
+                {
+                    writer.WriteStartElement("Browser");
+                }
+                else
+                {
+                    writer.WriteStartElement("Gateway");
+                }
+                writer.WriteAttributeString("Id", Id.ToString());
+                writer.WriteAttributeString("ParentId", ParentId.ToString());
+                writer.WriteAttributeString("Prority", Prority.ToString());
+                writer.WriteAttributeString("Name", Name.ToString());
+                #region Sample
+                foreach (var item in Samples)
+                {
+                    writer.WriteStartElement("Samples");
+                    writer.WriteAttributeString("Name", item.Name);
+                    writer.WriteAttributeString("Value", item.Value);
+                    writer.WriteEndElement();
+                }
+                #endregion
+                #region Ident
+                foreach (var item in Identifications)
+                {
+                    writer.WriteStartElement("Identification");
+                    writer.WriteAttributeString("Type", item.Type.ToString());
+                    writer.WriteAttributeString("Name", item.Name);
+                    if (string.IsNullOrWhiteSpace(item.Match) == false)
+                    {
+                        writer.WriteAttributeString("Match", item.Match);
+                    }
+                    else if (string.IsNullOrWhiteSpace(item.NonMatch) == false)
+                    {
+                        writer.WriteAttributeString("NonMatch", item.NonMatch);
+                    }
+                    writer.WriteEndElement();
+                }
+                #endregion
+                #region Captures
+                foreach (var item in Captures)
+                {
+                    writer.WriteStartElement("Capture");
+                    writer.WriteAttributeString("Type", item.Type.ToString());
+                    writer.WriteAttributeString("Name", item.Name);
+                    if (string.IsNullOrWhiteSpace(item.Match) == false)
+                    {
+                        writer.WriteAttributeString("Match", item.Match);
+                    }
+                    else if (string.IsNullOrWhiteSpace(item.NonMatch) == false)
+                    {
+                        writer.WriteAttributeString("NonMatch", item.NonMatch);
+                    }
+                    writer.WriteEndElement();
+                }
+                #endregion
+                #region Capabilities
+                foreach (var item in Capabilities)
+                {
+                    writer.WriteStartElement("Capability");
+                    writer.WriteAttributeString("Name", item.Name);
+                    writer.WriteAttributeString("Value", item.Value);
+                    writer.WriteEndElement();
+                }
+                #endregion
+                #region Children
+                foreach (var item in InverseParent)
+                {
+                    writer.WriteStartElement("Child");
+                    writer.WriteAttributeString("Id", item.Id.ToString());
+                    writer.WriteAttributeString("Name", item.Name);
+                    writer.WriteAttributeString("Type", item.Type.ToString());
+                    writer.WriteEndElement();
+                }
+                #endregion
+                writer.WriteEndElement();
+                writer.Flush();
+            }
+            return sb.ToString();
+        }
     }
     public partial class Capability
     {

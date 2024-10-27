@@ -70,7 +70,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
 
         public IActionResult BrowserNode(long ID)
         {
-            ViewBag.BrowserNodes = BrowserNodes.OrderBy(X=>X.Text);
+            ViewBag.BrowserNodes = BrowserNodes.OrderBy(X => X.Text);
             ViewBag.parentURL = string.Empty;
             Browser Model = null;
             if (ID > 0)
@@ -467,7 +467,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
                 Microsoft.AspNetCore.Http.IHeaderDictionary header = new Microsoft.AspNetCore.Http.HeaderDictionary();
                 foreach (var x in h)
                 {
-                    header.Append(x.Name,x.Value);
+                    header.Append(x.Name, x.Value);
                 }
 
                 ViewBag.Header = header;
@@ -501,6 +501,16 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
             var Model = HeaderContext.Raw.FromSql($"Select * From RawHeadersData LIMIT 100 OFFSET {Offset}").ToList();
 
             return View(Model);
+        }
+        public IActionResult Export()
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+            foreach (var item in BrowserList.OrderBy(X=>X.Id))
+            {
+                sb.AppendLine(item.ToString());
+            }
+            return Content(sb.ToString());
         }
     }
 }

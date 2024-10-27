@@ -73,9 +73,21 @@
             get
             {
                 if (this.ContainsKey("version") && string.IsNullOrWhiteSpace(this["version"]) == false)
-                    return new Version(this["version"]);
+                {
+                    string v = this["version"].ToString();
+                    if (v.Contains("."))
+                    {
+                        return new Version(v);
+                    }
+                    else
+                    {
+                        return new Version(v + ".0");
+                    }
+                }
                 else
+                {
                     return new Version(0, 0);
+                }
             }
         }
 
@@ -156,8 +168,8 @@
             {
                 #region  Check for Common Words in UserAgents
                 if (
-                    string.IsNullOrWhiteSpace(this.BrowserName) == false && 
-                    (string.Compare(this.BrowserName, "Unknown", true, System.Globalization.CultureInfo.CurrentCulture) != 0 && 
+                    string.IsNullOrWhiteSpace(this.BrowserName) == false &&
+                    (string.Compare(this.BrowserName, "Unknown", true, System.Globalization.CultureInfo.CurrentCulture) != 0 &&
                     string.Compare(this.BrowserName, "Generic Browser", true, System.Globalization.CultureInfo.CurrentCulture) != 0)
                     )
                 {

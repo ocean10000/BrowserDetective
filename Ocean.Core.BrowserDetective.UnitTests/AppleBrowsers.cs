@@ -52,6 +52,43 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(new Version("15.0"), RS2.version, "version");
             ClassicAssert.AreEqual("iOS", RS2.OS, "os");
         }
+
+        [Test]
+        public void iCab_macOS_1()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Mozilla/5.0 (Macintosh; PPC Mac OS X 10_5_8) AppleWebKit/537.3+ (KHTML, like Gecko) iCab/5.0 Safari/533.16");
+            var RS2 = Detective.ProcessData(Header);
+
+            ClassicAssert.AreEqual("iCab", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("5.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("Macintosh OS X", RS2.OS, "os");
+        }
+        [Test]
+        public void iCab_macOS_2()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"iCab/5.0 (Macintosh; U; PPC Mac OS X)");
+            var RS2 = Detective.ProcessData(Header);
+
+            ClassicAssert.AreEqual("iCab", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("5.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("Macintosh OS X", RS2.OS, "os");
+        }
+        [Test]
+        public void iCab_macOS_3()
+        {
+            System.Collections.Generic.Dictionary<string, string> Header;
+            Header = new Dictionary<string, string>();
+            Header.Add(@"User-Agent", @"Mozilla/4.5 (compatible; iCab 2.9.1; Macintosh; U; PPC)");
+            var RS2 = Detective.ProcessData(Header);
+
+            ClassicAssert.AreEqual("iCab", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("2.9.1"), RS2.version, "version");
+            ClassicAssert.AreEqual("Macintosh PPC", RS2.OS, "os");
+        }
         #endregion
     }
 }

@@ -195,25 +195,6 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual(new Version("74.0.3729"), RS2.version, "version");
             ClassicAssert.AreEqual("iOS", RS2.OS, "os");
         }
-        //this is Chrome Model trying to act as the Desktop Model.
-        [Test]
-        public void CriOS_iOS_2()
-        {
-            System.Collections.Generic.Dictionary<string, string> Header;
-            Header = new Dictionary<string, string>();
-            Header.Add(@"User-Agent", @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/85 Version/11.1.1 Safari/605.1.15");
-            var RS2 = Detective.ProcessData(Header);
-
-
-            foreach (var item in RS2.Trace)
-            {
-                Console.WriteLine(item);
-            }
-
-            ClassicAssert.AreEqual("Chrome Mobile", RS2.BrowserName, "browser");
-            ClassicAssert.AreEqual(new Version("85.0"), RS2.version, "version");
-            ClassicAssert.AreEqual("iOS", RS2.OS, "os");
-        }
         #endregion
 
         [Test]

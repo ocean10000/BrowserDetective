@@ -187,5 +187,38 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual("537.36", RS2.AppleWebTechnologyVersion, "AppleWebTechnologyVersion");
 
         }
+
+        [Test]
+        public void OperaMini_NetFront_1()
+        {
+            //Header.ID = 261
+            Dictionary<string, string> Header = new Dictionary<string, string>();
+            Header.Add("Connection", "Keep-Alive");
+            Header.Add("Accept", "text/html, application/xml;q=0.9, application/xhtml+xml, image/png, image/jpeg, image/gif, image/x-xbitmap, */*;q=0.1");
+            Header.Add("Accept-Charset", "iso-8859-1, utf-8, utf-16, *;q=0.1");
+            Header.Add("Accept-Encoding", "deflate, gzip, x-gzip, identity, *;q=0");
+            Header.Add("Accept-Language", "en");
+            Header.Add("Host", "ocean.accesswa.net");
+            Header.Add("Referer", "http://www.google.com/m/search?site=images&client=ms-opera-mini&q=Supergirl&channel=new&start=10&sa=N");
+            Header.Add("User-Agent", "Opera/9.50 (J2ME/MIDP; Opera Mini/4.1.11320/524; U; en)");
+            Header.Add("X-OperaMini-Features", "advanced, file_system, folding");
+            Header.Add("X-OperaMini-Phone-UA", "SonyEricssonK810i/R8BA Browser/NetFront/3.3 Profile/MIDP-2.0 Configuration/CLDC-1.1");
+            Header.Add("X-OperaMini-Phone", "SonyEricsson # K810i");
+            Header.Add("x-forwarded-for", "212.152.70.12");
+
+            var RS2 = Detective.ProcessData(Header);
+            ClassicAssert.AreEqual("Opera Mini", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("4.1.11320"), RS2.version, "browser");
+            ClassicAssert.AreEqual("Unknown", RS2.OS, "OS");
+            ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("K810i", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("SonyEricsson", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("", RS2.layoutEngineVersion, "layoutEngineVersion");
+            ClassicAssert.AreEqual("", RS2.layoutEngine, "layoutEngine");
+            ClassicAssert.AreEqual("", RS2.Chromeversion, "Chromeversion");
+            ClassicAssert.AreEqual("", RS2.AppleWebTechnologyVersion, "AppleWebTechnologyVersion");
+        }
     }
 }

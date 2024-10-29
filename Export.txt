@@ -250,6 +250,7 @@
   <Capability Name="mobileDeviceModel" Value="Unknown" />
   <Child Id="884" Name="Curl" Type="Browser" />
   <Child Id="887" Name="DefaultJava" Type="Browser" />
+  <Child Id="1184" Name="Fake Mozilla2" Type="Browser" />
   <Child Id="889" Name="LWPSimple" Type="Browser" />
   <Child Id="896" Name="Malformed10" Type="Browser" />
   <Child Id="890" Name="Malformed3" Type="Browser" />
@@ -651,6 +652,7 @@
   <Capability Name="version" Value="${version}" />
   <Child Id="969" Name="AdsBotGoogle" Type="Browser" />
   <Child Id="1138" Name="Amazonbot" Type="Browser" />
+  <Child Id="1182" Name="Applebot" Type="Browser" />
   <Child Id="953" Name="AskJeeves" Type="Browser" />
   <Child Id="979" Name="BDCbot" Type="Browser" />
   <Child Id="970" Name="BaiduImagespider" Type="Browser" />
@@ -659,6 +661,7 @@
   <Child Id="941" Name="Charlotte" Type="Browser" />
   <Child Id="1141" Name="DomCopBot" Type="Browser" />
   <Child Id="942" Name="Exabot" Type="Browser" />
+  <Child Id="1183" Name="Fake Mozilla1" Type="Browser" />
   <Child Id="952" Name="Girafabot" Type="Browser" />
   <Child Id="945" Name="GoogleBot" Type="Browser" />
   <Child Id="978" Name="GooglebotMediapartnersoceanspiders" Type="Browser" />
@@ -674,6 +677,7 @@
   <Child Id="948" Name="MJ12bot" Type="Browser" />
   <Child Id="1139" Name="Mail.RU_Bot" Type="Browser" />
   <Child Id="968" Name="Malformed9" Type="Browser" />
+  <Child Id="1185" Name="MozillaSpider" Type="Browser" />
   <Child Id="1143" Name="Nicecrawler" Type="Browser" />
   <Child Id="940" Name="Nutch" Type="Browser" />
   <Child Id="974" Name="OceanSpidersFixVersion1" Type="GateWay" />
@@ -1848,6 +1852,7 @@
   <Identification Type="Header" Name="User-Agent" Match="Windows|Win|16bit|Win16" />
   <Child Id="1123" Name="Windows 10" Type="Browser" />
   <Child Id="1124" Name="Windows 11" Type="Browser" />
+  <Child Id="1181" Name="Windows Phone OS" Type="Browser" />
   <Child Id="1091" Name="Windows2000" Type="Browser" />
   <Child Id="1104" Name="Windows311" Type="Browser" />
   <Child Id="1095" Name="Windows52" Type="Browser" />
@@ -2501,5 +2506,38 @@
   <Samples Name="User-Agent" Value="Mozilla/4.5 (compatible; iCab 2.9.1; Macintosh; U; PPC)" />
   <Identification Type="Header" Name="User-Agent" Match="iCab\s(?'version'\d+\.\d+(\.\d+)?)" />
   <Capability Name="browser" Value="iCab" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1181" ParentId="1066" Prority="" Name="Windows Phone OS">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)" />
+  <Identification Type="Header" Name="User-Agent" Match="Windows\sPhone\sOS\s(?'version'\d+(\.\d+?));" />
+  <Capability Name="OS" Value="Windows Phone OS ${version}" />
+  <Capability Name="isMobileDevice" Value="True" />
+</Browser>
+<Browser Id="1182" ParentId="883" Prority="" Name="Applebot">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15 (Applebot/0.1; +http://www.apple.com/go/applebot)" />
+  <Identification Type="Header" Name="User-Agent" Match="Applebot/(?'version'\d+\.\d+)" />
+  <Capability Name="browser" Value="Applebot" />
+  <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1183" ParentId="883" Prority="" Name="Fake Mozilla1">
+  <Identification Type="Header" Name="User-Agent" Match="^Mozlila" />
+  <Capability Name="browser" Value="Malformed User-Agent" />
+  <Capability Name="version" Value="0.0" />
+  <Capability Name="isMobileDevice" Value="false" />
+</Browser>
+<Browser Id="1184" ParentId="821" Prority="" Name="Fake Mozilla2">
+  <Samples Name="User-Agent" Value="mozilla/5.0 (linux; android 6.0.1; nexus 7p build/mmb29v) applewebkit/537.37 (khtml, like gecko) chrome/48.0.1900.301 mobile safari/600.4" />
+  <Identification Type="Header" Name="User-Agent" Match="^mozilla" />
+  <Capability Name="browser" Value="Malformed User-Agent" />
+  <Capability Name="version" Value="0.0" />
+</Browser>
+<Browser Id="1185" ParentId="883" Prority="" Name="MozillaSpider">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (compatible; ImagesiftBot; +imagesift.com)" />
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (compatible; SemrushBot-BA; +http://www.semrush.com/bot.html)" />
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (compatible; VelenPublicWebCrawler/1.0; +https://velen.io)" />
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/\d\.\d[\s|\+]\(compatible;\s(?'browser'.*)/(?'version'\d+\.\d+(\.\d+)?);|^Mozilla/\d\.\d[\s|\+]\(compatible;\s(?'browser'.*);" />
+  <Capability Name="browser" Value="${browser}" />
+  <Capability Name="version" Value="0.0" />
   <Capability Name="version" Value="${version}" />
 </Browser>

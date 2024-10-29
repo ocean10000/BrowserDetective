@@ -42,8 +42,8 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            ClassicAssert.AreEqual("Mozlila", RS2.BrowserName, "browser");
-            ClassicAssert.AreEqual(new Version("5.0"), RS2.version, "version");
+            ClassicAssert.AreEqual("Malformed User-Agent", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "version");
             ClassicAssert.AreEqual(string.Empty, RS2.OS, "os");
 
             ClassicAssert.AreEqual(true, RS2.Crawler, "Crawler");

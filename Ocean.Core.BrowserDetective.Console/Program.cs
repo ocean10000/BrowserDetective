@@ -57,12 +57,11 @@ if (detective.DefaultBrowser != null)
         //Only allow headers which are in the Headers we check.
         //This is to reduce the amount of checks we have to do.
         //------------------------------------------------------
-        var headers = context.Headers.Where(X => X.Raw_ID == item.ID && HeaderKeys.Contains(X.Name)).ToList();
-        IDictionary<string, string> dic = new Dictionary<string, string>();
+        var headers = context.Headers.Where(X => X.Raw_ID == item.ID).ToList();
+        IDictionary<string, string> dic = headers.ToDictionary(X => X.Name, X => X.Value);
         string HeaderKey = string.Empty;
-        foreach (var key in headers)
+        foreach (var key in headers.Where(X=> HeaderKeys.Contains(X.Name)))
         {
-            dic.Add(key.Name, key.Value);
             HeaderKey += $"{key.Name}:{key.Value}\n";
         }
 

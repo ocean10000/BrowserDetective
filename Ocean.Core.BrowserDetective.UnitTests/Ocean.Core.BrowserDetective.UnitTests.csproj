@@ -15,6 +15,32 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\Headers2020.DB" />
+    <None Remove="Data\Headers2021.DB" />
+    <None Remove="Data\Headers2022.DB" />
+    <None Remove="Data\Headers2023.DB" />
+    <None Remove="Data\Headers2024.DB" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Data\Headers2020.DB">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Headers2021.DB">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Headers2022.DB">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Headers2023.DB">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Headers2024.DB">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />

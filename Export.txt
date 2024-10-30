@@ -1406,8 +1406,8 @@
   <Identification Type="Header" Name="User-Agent" Match="Mobile/(?'Model'\w*)" />
   <Capability Name="mobileDeviceModel" Value="iPod ${Model}" />
   <Capability Name="mobileDeviceManufacturer" Value="Apple" />
-  <Capability Name="mobileDeviceManufacturer" Value="Apple" />
   <Capability Name="browser" Value="Mobile Safari" />
+  <Capability Name="isMobileDevice" Value="True" />
 </Browser>
 <Browser Id="997" ParentId="914" Prority="" Name="Safari0001">
   <Identification Type="Header" Name="User-Agent" Match="AppleWebKit/85.7" />
@@ -1784,6 +1784,7 @@
   <Identification Type="Header" Name="User-Agent" Match="CriOS/((?'version'\d+\.\d+(\.\d+)?))" />
   <Capability Name="browser" Value="Chrome Mobile" />
   <Capability Name="version" Value="${version}" />
+  <Capability Name="isMobileDevice" Value="True" />
 </Browser>
 <Browser Id="1059" ParentId="1029" Prority="" Name="PhantomJS">
   <Identification Type="Header" Name="User-Agent" Match="Phantom(JS|js)/(?'version'\d+\.\d+(\.\d+)?)" />
@@ -2334,6 +2335,7 @@
   <Capability Name="mobileDeviceModel" Value="iPad ${Model}" />
   <Capability Name="mobileDeviceManufacturer" Value="Apple" />
   <Capability Name="browser" Value="Mobile Safari" />
+  <Capability Name="isMobileDevice" Value="True" />
 </Browser>
 <Gateway Id="1156" ParentId="851" Prority="" Name="Mozilla5CompatibleA1">
   <Samples Name="User-Agent" Value="Mozilla/5.0 (compatible; Cloudflare-AMP/1.0; +https://amp.cloudflare.com/doc/fetcher.html) AppleWebKit/534.34" />

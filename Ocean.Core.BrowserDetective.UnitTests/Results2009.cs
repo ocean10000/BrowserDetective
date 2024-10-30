@@ -69,208 +69,12 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             }
         }
         [Test]
-        public void Chromium2009()
-        {
-            System.Collections.Generic.Dictionary<long, string> FailedTest = new Dictionary<long, string>();
-            int Failed = 0;
-            //Only really care about the headers actually used in the Results table.
-            var HeaderIDs = resultContext.Result.Where(X => X.BrowserName == "Chromium").Select(X => X.Raw_ID).Distinct().ToList();
-            foreach (var HeaderID in HeaderIDs)
-            {
-                string R = UnitTests(HeaderID);
-                if (string.IsNullOrEmpty(R) == false)
-                {
-                    Failed++;
-                    FailedTest.Add(HeaderID, R);
-                }
-            }
-            Console.WriteLine($"Failed:{Failed} out of {HeaderIDs.Count}");
-            Console.WriteLine();
-            foreach (var key in FailedTest.Keys)
-            {
-                Console.WriteLine(FailedTest[key]);
-            }
-            if (FailedTest.Count > 0)
-            {
-                Assert.Fail();
-            }
-        }
-        [Test]
         public void FireFox2009()
         {
             System.Collections.Generic.Dictionary<long, string> FailedTest = new Dictionary<long, string>();
             int Failed = 0;
             //Only really care about the headers actually used in the Results table.
             var HeaderIDs = resultContext.Result.Where(X => X.BrowserName == "Firefox").Select(X => X.Raw_ID).Distinct().ToList();
-            foreach (var HeaderID in HeaderIDs)
-            {
-                string R = UnitTests(HeaderID);
-                if (string.IsNullOrEmpty(R) == false)
-                {
-                    Failed++;
-                    FailedTest.Add(HeaderID, R);
-                }
-            }
-            Console.WriteLine($"Failed:{Failed} out of {HeaderIDs.Count}");
-            Console.WriteLine();
-            foreach (var key in FailedTest.Keys)
-            {
-                Console.WriteLine(FailedTest[key]);
-            }
-            if (FailedTest.Count > 0)
-            {
-                Assert.Fail();
-            }
-        }
-
-        [Test]
-        public void GranParadiso2009()
-        {
-            System.Collections.Generic.Dictionary<long, string> FailedTest = new Dictionary<long, string>();
-            int Failed = 0;
-            //Only really care about the headers actually used in the Results table.
-            var HeaderIDs = resultContext.Result.Where(X => X.BrowserName == "GranParadiso").Select(X => X.Raw_ID).Distinct().ToList();
-            foreach (var HeaderID in HeaderIDs)
-            {
-                string R = UnitTests(HeaderID);
-                if (string.IsNullOrEmpty(R) == false)
-                {
-                    Failed++;
-                    FailedTest.Add(HeaderID, R);
-                }
-            }
-            Console.WriteLine($"Failed:{Failed} out of {HeaderIDs.Count}");
-            Console.WriteLine();
-            foreach (var key in FailedTest.Keys)
-            {
-                Console.WriteLine(FailedTest[key]);
-            }
-            if (FailedTest.Count > 0)
-            {
-                Assert.Fail();
-            }
-        }
-
-        [Test]
-        public void GenericBrowser2009()
-        {
-            System.Collections.Generic.Dictionary<long, string> FailedTest = new Dictionary<long, string>();
-            int Failed = 0;
-            //Only really care about the headers actually used in the Results table.
-            var HeaderIDs = resultContext.Result.Where(X => X.BrowserName == "Generic Browser").Select(X => X.Raw_ID).Distinct().ToList();
-            foreach (var HeaderID in HeaderIDs)
-            {
-                string R = UnitTests(HeaderID);
-                if (string.IsNullOrEmpty(R) == false)
-                {
-                    Failed++;
-                    FailedTest.Add(HeaderID, R);
-                }
-            }
-            Console.WriteLine($"Failed:{Failed} out of {HeaderIDs.Count}");
-            Console.WriteLine();
-            foreach (var key in FailedTest.Keys)
-            {
-                Console.WriteLine(FailedTest[key]);
-            }
-            if (FailedTest.Count > 0)
-            {
-                Assert.Fail();
-            }
-        }
-
-        [Test]
-        public void Iron2009()
-        {
-            System.Collections.Generic.Dictionary<long, string> FailedTest = new Dictionary<long, string>();
-            int Failed = 0;
-            //Only really care about the headers actually used in the Results table.
-            var HeaderIDs = resultContext.Result.Where(X => X.BrowserName == "Iron").Select(X => X.Raw_ID).Distinct().ToList();
-            foreach (var HeaderID in HeaderIDs)
-            {
-                string R = UnitTests(HeaderID);
-                if (string.IsNullOrEmpty(R) == false)
-                {
-                    Failed++;
-                    FailedTest.Add(HeaderID, R);
-                }
-            }
-            Console.WriteLine($"Failed:{Failed} out of {HeaderIDs.Count}");
-            Console.WriteLine();
-            foreach (var key in FailedTest.Keys)
-            {
-                Console.WriteLine(FailedTest[key]);
-            }
-            if (FailedTest.Count > 0)
-            {
-                Assert.Fail();
-            }
-        }
-
-        [Test]
-        public void Konqueror2009()
-        {
-            System.Collections.Generic.Dictionary<long, string> FailedTest = new Dictionary<long, string>();
-            int Failed = 0;
-            //Only really care about the headers actually used in the Results table.
-            var HeaderIDs = resultContext.Result.Where(X => X.BrowserName == "Konqueror").Select(X => X.Raw_ID).Distinct().ToList();
-            foreach (var HeaderID in HeaderIDs)
-            {
-                string R = UnitTests(HeaderID);
-                if (string.IsNullOrEmpty(R) == false)
-                {
-                    Failed++;
-                    FailedTest.Add(HeaderID, R);
-                }
-            }
-            Console.WriteLine($"Failed:{Failed} out of {HeaderIDs.Count}");
-            Console.WriteLine();
-            foreach (var key in FailedTest.Keys)
-            {
-                Console.WriteLine(FailedTest[key]);
-            }
-            if (FailedTest.Count > 0)
-            {
-                Assert.Fail();
-            }
-        }
-
-        [Test]
-        public void Text2009()
-        {
-            System.Collections.Generic.Dictionary<long, string> FailedTest = new Dictionary<long, string>();
-            int Failed = 0;
-            //Only really care about the headers actually used in the Results table.
-            var HeaderIDs = resultContext.Result.Where(X => X.BrowserName == "Links" || X.BrowserName == "Lynx").Select(X => X.Raw_ID).Distinct().ToList();
-            foreach (var HeaderID in HeaderIDs)
-            {
-                string R = UnitTests(HeaderID);
-                if (string.IsNullOrEmpty(R) == false)
-                {
-                    Failed++;
-                    FailedTest.Add(HeaderID, R);
-                }
-            }
-            Console.WriteLine($"Failed:{Failed} out of {HeaderIDs.Count}");
-            Console.WriteLine();
-            foreach (var key in FailedTest.Keys)
-            {
-                Console.WriteLine(FailedTest[key]);
-            }
-            if (FailedTest.Count > 0)
-            {
-                Assert.Fail();
-            }
-        }
-
-
-        [Test]
-        public void MalformedUA2009()
-        {
-            System.Collections.Generic.Dictionary<long, string> FailedTest = new Dictionary<long, string>();
-            int Failed = 0;
-            //Only really care about the headers actually used in the Results table.
-            var HeaderIDs = resultContext.Result.Where(X => X.BrowserName == "Malformed User-Agent").Select(X => X.Raw_ID).Distinct().ToList();
             foreach (var HeaderID in HeaderIDs)
             {
                 string R = UnitTests(HeaderID);
@@ -321,34 +125,6 @@ namespace Ocean.Core.BrowserDetective.UnitTests
         }
 
         [Test]
-        public void MobileSafari2009()
-        {
-            System.Collections.Generic.Dictionary<long, string> FailedTest = new Dictionary<long, string>();
-            int Failed = 0;
-            //Only really care about the headers actually used in the Results table.
-            var HeaderIDs = resultContext.Result.Where(X => X.BrowserName == "Mobile Safari").Select(X => X.Raw_ID).Distinct().ToList();
-            foreach (var HeaderID in HeaderIDs)
-            {
-                string R = UnitTests(HeaderID);
-                if (string.IsNullOrEmpty(R) == false)
-                {
-                    Failed++;
-                    FailedTest.Add(HeaderID, R);
-                }
-            }
-            Console.WriteLine($"Failed:{Failed} out of {HeaderIDs.Count}");
-            Console.WriteLine();
-            foreach (var key in FailedTest.Keys)
-            {
-                Console.WriteLine(FailedTest[key]);
-            }
-            if (FailedTest.Count > 0)
-            {
-                Assert.Fail();
-            }
-        }
-
-        [Test]
         public void Mozilla2009()
         {
             System.Collections.Generic.Dictionary<long, string> FailedTest = new Dictionary<long, string>();
@@ -375,7 +151,6 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Assert.Fail();
             }
         }
-
 
         [Test]
         public void Netscape2009()
@@ -461,35 +236,6 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Assert.Fail();
             }
         }
-
-
-        [Test]
-        public void PlayStation2009()
-        {
-            System.Collections.Generic.Dictionary<long, string> FailedTest = new Dictionary<long, string>();
-            int Failed = 0;
-            //Only really care about the headers actually used in the Results table.
-            var HeaderIDs = resultContext.Result.Where(X => X.BrowserName.StartsWith("Playstation")).Select(X => X.Raw_ID).Distinct().ToList();
-            foreach (var HeaderID in HeaderIDs)
-            {
-                string R = UnitTests(HeaderID);
-                if (string.IsNullOrEmpty(R) == false)
-                {
-                    Failed++;
-                    FailedTest.Add(HeaderID, R);
-                }
-            }
-            Console.WriteLine($"Failed:{Failed} out of {HeaderIDs.Count}");
-            Console.WriteLine();
-            foreach (var key in FailedTest.Keys)
-            {
-                Console.WriteLine(FailedTest[key]);
-            }
-            if (FailedTest.Count > 0)
-            {
-                Assert.Fail();
-            }
-        }
         [Test]
         public void Safari2009()
         {
@@ -525,6 +271,42 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             int Failed = 0;
             //Only really care about the headers actually used in the Results table.
             var HeaderIDs = resultContext.Result.Where(X => X.Crawler == "True").Select(X => X.Raw_ID).Distinct().ToList();
+            foreach (var HeaderID in HeaderIDs)
+            {
+                string R = UnitTests(HeaderID);
+                if (string.IsNullOrEmpty(R) == false)
+                {
+                    Failed++;
+                    FailedTest.Add(HeaderID, R);
+                }
+            }
+            Console.WriteLine($"Failed:{Failed} out of {HeaderIDs.Count}");
+            Console.WriteLine();
+            foreach (var key in FailedTest.Keys)
+            {
+                Console.WriteLine(FailedTest[key]);
+            }
+            if (FailedTest.Count > 0)
+            {
+                Assert.Fail();
+            }
+        }
+
+        [Test]
+        public void Misc2007()
+        {
+            System.Collections.Generic.Dictionary<long, string> FailedTest = new Dictionary<long, string>();
+            int Failed = 0;
+            //Removing the most common Browsers at this time. and grouping the rest (anything with less then 10 matches)
+            var HeaderIDs = resultContext.Result.Where(X => X.Crawler == "False" && X.isMobileDevice == "False"
+            && X.BrowserName != "Microsoft Internet Explorer"
+            && X.BrowserName != "Firefox"
+            && X.BrowserName != "Chrome"
+            && X.BrowserName != "Safari"
+            && X.BrowserName != "Opera"
+            && X.BrowserName != "Netscape"
+            && X.BrowserName != "Mozilla"
+            ).Select(X => X.Raw_ID).Distinct().ToList();
             foreach (var HeaderID in HeaderIDs)
             {
                 string R = UnitTests(HeaderID);

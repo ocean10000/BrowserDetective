@@ -15,6 +15,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\Core.Results.2007.db" />
+    <None Remove="Data\Core.Results.2008.db" />
+    <None Remove="Data\Core.Results.2009.db" />
+    <None Remove="Data\Core.Results.2010.db" />
+    <None Remove="Data\Core.Results.2011.db" />
+    <None Remove="Data\Core.Results.2012.db" />
+    <None Remove="Data\Core.Results.2013.db" />
+    <None Remove="Data\Core.Results.2014.db" />
     <None Remove="Data\Core.Results.2015.db" />
     <None Remove="Data\Core.Results.2016.db" />
     <None Remove="Data\Core.Results.2017.db" />
@@ -25,6 +33,15 @@
     <None Remove="Data\Core.Results.2022.db" />
     <None Remove="Data\Core.Results.2023.db" />
     <None Remove="Data\Core.Results.2024.db" />
+    <None Remove="Data\Headers2006.DB" />
+    <None Remove="Data\Headers2007.DB" />
+    <None Remove="Data\Headers2008.DB" />
+    <None Remove="Data\Headers2009.DB" />
+    <None Remove="Data\Headers2010.DB" />
+    <None Remove="Data\Headers2011.DB" />
+    <None Remove="Data\Headers2012.DB" />
+    <None Remove="Data\Headers2013.DB" />
+    <None Remove="Data\Headers2014.DB" />
     <None Remove="Data\Headers2015.DB" />
     <None Remove="Data\Headers2016.DB" />
     <None Remove="Data\Headers2017.DB" />
@@ -38,6 +55,30 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Data\Core.Results.2007.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Core.Results.2008.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Core.Results.2009.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Core.Results.2010.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Core.Results.2011.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Core.Results.2012.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Core.Results.2013.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Core.Results.2014.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\Core.Results.2015.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -66,6 +107,33 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Core.Results.2024.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Headers2006.DB">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Headers2007.DB">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Headers2008.DB">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Headers2009.DB">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Headers2010.DB">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Headers2011.DB">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Headers2012.DB">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Headers2013.DB">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Headers2014.DB">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Headers2015.DB">

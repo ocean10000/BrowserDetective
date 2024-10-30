@@ -15,10 +15,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\Core.Results.2015.db" />
+    <None Remove="Data\Core.Results.2016.db" />
+    <None Remove="Data\Core.Results.2017.db" />
+    <None Remove="Data\Core.Results.2018.db" />
+    <None Remove="Data\Core.Results.2019.db" />
+    <None Remove="Data\Core.Results.2020.db" />
     <None Remove="Data\Core.Results.2021.db" />
     <None Remove="Data\Core.Results.2022.db" />
     <None Remove="Data\Core.Results.2023.db" />
     <None Remove="Data\Core.Results.2024.db" />
+    <None Remove="Data\Headers2015.DB" />
+    <None Remove="Data\Headers2016.DB" />
+    <None Remove="Data\Headers2017.DB" />
+    <None Remove="Data\Headers2018.DB" />
+    <None Remove="Data\Headers2019.DB" />
     <None Remove="Data\Headers2020.DB" />
     <None Remove="Data\Headers2021.DB" />
     <None Remove="Data\Headers2022.DB" />
@@ -27,6 +38,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Data\Core.Results.2015.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Core.Results.2016.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Core.Results.2017.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Core.Results.2018.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Core.Results.2019.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Core.Results.2020.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\Core.Results.2021.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -37,6 +66,21 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Core.Results.2024.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Headers2015.DB">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Headers2016.DB">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Headers2017.DB">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Headers2018.DB">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Headers2019.DB">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Headers2020.DB">

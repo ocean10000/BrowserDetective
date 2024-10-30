@@ -60,7 +60,7 @@ if (detective.DefaultBrowser != null)
         var headers = context.Headers.Where(X => X.Raw_ID == item.ID).ToList();
         IDictionary<string, string> dic = headers.ToDictionary(X => X.Name, X => X.Value);
         string HeaderKey = string.Empty;
-        foreach (var key in headers.Where(X=> HeaderKeys.Contains(X.Name)))
+        foreach (var key in headers.Where(X => HeaderKeys.Contains(X.Name)))
         {
             HeaderKey += $"{key.Name}:{key.Value}\n";
         }
@@ -100,16 +100,69 @@ if (detective.DefaultBrowser != null)
                     h["Header Checksum"] = HeaderKey;
                     h["Process Time"] = $"{ProcessEnd.Subtract(Processstart).TotalSeconds}";
 
-                    foreach (var n in h.Trace)
+                    //foreach (var n in h.Trace)
+                    //{
+                    //    var d = new BrowserNode() { Raw_ID = item.ID, Node_ID = n.BrowserID, Name = n.Name, Value = n.Value };
+                    //    resultContext.Nodes.Add(d);
+                    //}
+                    BrowserResult flatResult = new BrowserResult() { Raw_ID = item.ID, Stamp= item.Stamp };
+                    if (dic.ContainsKey("User-Agent"))
                     {
-                        var d = new BrowserNode() { Raw_ID = item.ID, Node_ID = n.BrowserID, Name = n.Name, Value = n.Value };
-                        resultContext.Nodes.Add(d);
+                        flatResult.UserAgent = dic["User-Agent"];
                     }
                     foreach (var key in h.Keys)
                     {
                         var r = new ResultItem() { Raw_ID = item.ID, Name = key, Value = h[key] };
                         resultContext.Results.Add(r);
+                        switch (key)
+                        {
+                            case "browser":
+                                flatResult.BrowserName = h[key];
+                                break;
+                            case "version":
+                                flatResult.version = h[key];
+                                break;
+                            case "OS":
+                                flatResult.OS = h[key];
+                                break;
+                            case "isMobileDevice":
+                                flatResult.isMobileDevice = h[key];
+                                break;
+                            case "crawler":
+                                flatResult.Crawler = h[key];
+                                break;
+                            case "mobileDeviceModel":
+                                flatResult.mobileDeviceModel = h[key];
+                                break;
+                            case "mobileDeviceManufacturer":
+                                flatResult.mobileDeviceManufacturer = h[key];
+                                break;
+                            case "appleWebTechnologyVersion":
+                                flatResult.appleWebTechnologyVersion = h[key];
+                                break;
+                            case "platform":
+                                flatResult.appleWebTechnologyVersion = h[key];
+                                break;
+                            case "Chromeversion":
+                                flatResult.Chromeversion = h[key];
+                                break;
+                            case "layoutEngine":
+                                flatResult.layoutEngine = h[key];
+                                break;
+                            case "layoutEngineVersion":
+                                flatResult.layoutEngine = h[key];
+                                break;
+                            case "Header Checksum":
+                                flatResult.MD5 = h[key];
+                                break;
+                            case "Process Time":
+                                flatResult.TimeSpent = h[key];
+                                break;
+                        }
                     }
+
+                    resultContext.Result.Add(flatResult);
+
                 }
                 try
                 {
@@ -135,3 +188,4 @@ if (detective.DefaultBrowser != null)
         }
     }
 }
+

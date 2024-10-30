@@ -15,6 +15,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\Core.Results.2021.db" />
+    <None Remove="Data\Core.Results.2022.db" />
+    <None Remove="Data\Core.Results.2023.db" />
     <None Remove="Data\Core.Results.2024.db" />
     <None Remove="Data\Headers2020.DB" />
     <None Remove="Data\Headers2021.DB" />
@@ -24,6 +27,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Data\Core.Results.2021.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Core.Results.2022.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Core.Results.2023.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\Core.Results.2024.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

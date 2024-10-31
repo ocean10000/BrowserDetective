@@ -7,9 +7,10 @@ using Ocean.Core.BrowserDetective.Extentions;
 using ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddFilter("Ocean.Core.BrowserDetective", LogLevel.Error).AddConsole());
 ILogger logger = factory.CreateLogger(typeof(Ocean.Core.BrowserDetective.Process));
 
-Ocean.Core.BrowserDetective.Data.Context.HeaderContext context = new Ocean.Core.BrowserDetective.Data.Context.HeaderContext();
+Ocean.Core.BrowserDetective.Data.Context.HeaderContext context;
 Ocean.Core.BrowserDetective.Data.Context.ResultContext resultContext;
 
+context = new Ocean.Core.BrowserDetective.Data.Context.HeaderContext($"Data Source=C:\\local\\Headers.DB");
 var CoreResultFile = $"Core.Results.{System.DateTime.Now.ToString("yyyyMMddHH")}.db";
 if (System.IO.File.Exists("Core.Results.db"))
 {

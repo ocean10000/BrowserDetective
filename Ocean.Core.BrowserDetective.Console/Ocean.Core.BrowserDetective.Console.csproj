@@ -13,6 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="App.2006.config" />
     <None Remove="App.2007.config" />
     <None Remove="App.2008.config" />
     <None Remove="App.2009.config" />
@@ -42,6 +43,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App.2006.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="App.2007.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

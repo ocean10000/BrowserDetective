@@ -15,6 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\Core.Results.2006.db" />
     <None Remove="Data\Core.Results.2007.db" />
     <None Remove="Data\Core.Results.2008.db" />
     <None Remove="Data\Core.Results.2009.db" />
@@ -55,6 +56,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Data\Core.Results.2006.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\Core.Results.2007.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

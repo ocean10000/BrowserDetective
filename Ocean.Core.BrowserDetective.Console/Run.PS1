@@ -1,4 +1,7 @@
 ﻿del Ocean.Core.BrowserDetective.Console.dll.config
+copy App.2006.config Ocean.Core.BrowserDetective.Console.dll.config
+.\Ocean.Core.BrowserDetective.Console.exe
+del Ocean.Core.BrowserDetective.Console.dll.config
 copy App.2007.config Ocean.Core.BrowserDetective.Console.dll.config
 .\Ocean.Core.BrowserDetective.Console.exe
 echo 2008
@@ -69,3 +72,5 @@ echo 2024
 del Ocean.Core.BrowserDetective.Console.dll.config
 copy App.2024.config Ocean.Core.BrowserDetective.Console.dll.config
 .\Ocean.Core.BrowserDetective.Console.exe
+del Ocean.Core.BrowserDetective.Console.dll.config
+copy App.Default.config Ocean.Core.BrowserDetective.Console.dll.config

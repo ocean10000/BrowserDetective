@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging.Console;
 using System.Configuration;
 using Ocean.Core.BrowserDetective.Extentions;
 using NUnit.Framework.Legacy;
+using Ocean.Core.BrowserDetective.Data.Models;
 
 namespace Ocean.Core.BrowserDetective.UnitTests
 {
@@ -278,6 +279,25 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual("Microsoft Edge", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(new Version("116.0.1938"), RS2.version, "version");
             ClassicAssert.AreEqual("Android 10", RS2.OS, "os");
+        }
+        [Test]
+        public void IEMobile_WindowsCE_3()
+        {
+            Dictionary<string, string> Header = new Dictionary<string, string>();
+            Header.Add("User-Agent", "Mozilla/4.0 (compatible; MSIE 4.01; Windows CE; PPC; 240x320; SPV M3000; OpVer 12.16.5.111)");
+            var RS2 = Detective.ProcessData(Header);
+            ClassicAssert.AreEqual("IEMobile", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("4.1"), RS2.version, "browser");
+            ClassicAssert.AreEqual("Microsoft Windows CE", RS2.OS, "OS");
+            ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("Unknown", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("Unknown", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("", RS2.layoutEngineVersion, "layoutEngineVersion");
+            ClassicAssert.AreEqual("", RS2.layoutEngine, "layoutEngine");
+            ClassicAssert.AreEqual("", RS2.Chromeversion, "Chromeversion");
+            ClassicAssert.AreEqual("", RS2.AppleWebTechnologyVersion, "AppleWebTechnologyVersion");
         }
         #endregion
 

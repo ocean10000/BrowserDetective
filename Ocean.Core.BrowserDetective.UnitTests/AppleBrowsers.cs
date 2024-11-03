@@ -90,5 +90,26 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual("Macintosh PPC", RS2.OS, "os");
         }
         #endregion
+        [Test]
+        public void Facebook_iOS_1()
+        {
+            Dictionary<string, string> Header = new Dictionary<string, string>();
+            Header.Add("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 17_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/21D61 [FBAN/FBIOS;FBAV/463.0.4.49.101;FBBV/597123453;FBDV/iPhone12,8;FBMD/iPhone;FBSN/iOS;FBSV/17.3.1;FBSS/2;FBID/phone;FBLC/en_US;FBOP/5;FBRV/598951293");
+
+            var RS2 = Detective.ProcessData(Header);
+            ClassicAssert.AreEqual("Facebook App", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "browser");
+            ClassicAssert.AreEqual("iOS", RS2.OS, "OS");
+            ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("iPhone", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("Apple", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("605.1.15", RS2.layoutEngineVersion, "layoutEngineVersion");
+            ClassicAssert.AreEqual("WebKit", RS2.layoutEngine, "layoutEngine");
+            ClassicAssert.AreEqual("", RS2.Chromeversion, "Chromeversion");
+            ClassicAssert.AreEqual("605.1.15", RS2.AppleWebTechnologyVersion, "AppleWebTechnologyVersion");
+
+        }
     }
 }

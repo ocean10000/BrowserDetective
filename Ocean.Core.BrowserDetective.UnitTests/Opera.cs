@@ -154,8 +154,8 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual("Android 4.0.4", RS2.OS, "OS");
             ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
             ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
-            ClassicAssert.AreEqual("MW0711 Build/IMM76D", RS2.mobileDeviceModel, "isMobileDevice");
-            ClassicAssert.AreEqual("Unknown", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual("MW0711", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("Aoc", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
             ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
             ClassicAssert.AreEqual("537.36", RS2.layoutEngineVersion, "layoutEngineVersion");
             ClassicAssert.AreEqual("WebKit", RS2.layoutEngine, "layoutEngine");

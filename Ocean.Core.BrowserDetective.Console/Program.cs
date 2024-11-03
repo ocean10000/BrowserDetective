@@ -10,8 +10,8 @@ ILogger logger = factory.CreateLogger(typeof(Ocean.Core.BrowserDetective.Process
 Ocean.Core.BrowserDetective.Data.Context.HeaderContext context;
 Ocean.Core.BrowserDetective.Data.Context.ResultContext resultContext;
 
-context = new Ocean.Core.BrowserDetective.Data.Context.HeaderContext($"Data Source=C:\\local\\Headers.DB");
-var CoreResultFile = $"Core.Results.{System.DateTime.Now.ToString("yyyyMMddHH")}.db";
+context = new Ocean.Core.BrowserDetective.Data.Context.HeaderContext($"Data Source=C:\\local\\Headers2024.DB");
+var CoreResultFile = $"Core.Results.2024.db";
 if (System.IO.File.Exists("Core.Results.db"))
 {
     if (System.IO.File.Exists(CoreResultFile))

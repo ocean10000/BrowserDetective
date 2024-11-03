@@ -65,7 +65,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
             ClassicAssert.AreEqual("Android 7.0", RS2.OS, "os");
-            ClassicAssert.AreEqual("UCBrowser", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual("AliApp", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(new Version("11.9.4"), RS2.version, "version");
             ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");
         }

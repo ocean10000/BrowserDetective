@@ -50,7 +50,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
 
             ClassicAssert.AreEqual("Mobile Safari", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(new Version("15.0"), RS2.version, "version");
-            ClassicAssert.AreEqual("iOS", RS2.OS, "os");
+            ClassicAssert.AreEqual("iOS 15.0", RS2.OS, "os");
         }
 
         [Test]
@@ -99,7 +99,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             var RS2 = Detective.ProcessData(Header);
             ClassicAssert.AreEqual("Facebook App", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "browser");
-            ClassicAssert.AreEqual("iOS", RS2.OS, "OS");
+            ClassicAssert.AreEqual("iOS 17.3", RS2.OS, "OS");
             ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
             ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");
             ClassicAssert.AreEqual("iPhone", RS2.mobileDeviceModel, "isMobileDevice");

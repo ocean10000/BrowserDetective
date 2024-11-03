@@ -3,6 +3,7 @@
 using Microsoft.Extensions.Logging;
 using Ocean.Core.BrowserDetective.Data.Models;
 using Ocean.Core.BrowserDetective.Extentions;
+using System.Configuration;
 
 using ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddFilter("Ocean.Core.BrowserDetective", LogLevel.Error).AddConsole());
 ILogger logger = factory.CreateLogger(typeof(Ocean.Core.BrowserDetective.Process));
@@ -10,21 +11,15 @@ ILogger logger = factory.CreateLogger(typeof(Ocean.Core.BrowserDetective.Process
 Ocean.Core.BrowserDetective.Data.Context.HeaderContext context;
 Ocean.Core.BrowserDetective.Data.Context.ResultContext resultContext;
 
-context = new Ocean.Core.BrowserDetective.Data.Context.HeaderContext($"Data Source=C:\\local\\Headers2024.DB");
-var CoreResultFile = $"Core.Results.2024.db";
-if (System.IO.File.Exists("Core.Results.db"))
+context = new Ocean.Core.BrowserDetective.Data.Context.HeaderContext();
+resultContext = new Ocean.Core.BrowserDetective.Data.Context.ResultContext();
+var CoreResultFile = ConfigurationManager.ConnectionStrings["Results"].ConnectionString;
+CoreResultFile = CoreResultFile.Replace("Data Source=","");
+if (System.IO.File.Exists(CoreResultFile))
 {
-    if (System.IO.File.Exists(CoreResultFile))
-        System.IO.File.Delete(CoreResultFile);
-
-    System.IO.File.Copy("Core.Results.db", CoreResultFile);
-
-    resultContext = new Ocean.Core.BrowserDetective.Data.Context.ResultContext($"Data Source={CoreResultFile}");
+    System.IO.File.Delete(CoreResultFile);
 }
-else
-{
-    resultContext = new Ocean.Core.BrowserDetective.Data.Context.ResultContext();
-}
+System.IO.File.Copy("Core.Results.db", CoreResultFile);
 
 var detective = new Ocean.Core.BrowserDetective.Process(logger);
 
@@ -106,7 +101,7 @@ if (detective.DefaultBrowser != null)
                     //    var d = new BrowserNode() { Raw_ID = item.ID, Node_ID = n.BrowserID, Name = n.Name, Value = n.Value };
                     //    resultContext.Nodes.Add(d);
                     //}
-                    BrowserResult flatResult = new BrowserResult() { Raw_ID = item.ID, Stamp= item.Stamp };
+                    BrowserResult flatResult = new BrowserResult() { Raw_ID = item.ID, Stamp = item.Stamp };
                     if (dic.ContainsKey("User-Agent"))
                     {
                         flatResult.UserAgent = dic["User-Agent"];

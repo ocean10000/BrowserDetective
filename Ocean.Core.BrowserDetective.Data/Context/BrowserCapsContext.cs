@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using System.Configuration;
 
 namespace Ocean.Core.BrowserDetective.Data.Context;

@@ -13,15 +13,99 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="App.2007.config" />
+    <None Remove="App.2008.config" />
+    <None Remove="App.2009.config" />
+    <None Remove="App.2010.config" />
+    <None Remove="App.2011.config" />
+    <None Remove="App.2012.config" />
+    <None Remove="App.2013.config" />
+    <None Remove="App.2014.config" />
+    <None Remove="App.2015.config" />
+    <None Remove="App.2016.config" />
+    <None Remove="App.2017.config" />
+    <None Remove="App.2018.config" />
+    <None Remove="App.2019.config" />
+    <None Remove="App.2020.config" />
+    <None Remove="App.2021.config" />
+    <None Remove="App.2022.config" />
+    <None Remove="App.2023.config" />
+    <None Remove="App.2024.config" />
+    <None Remove="App.Config" />
+    <None Remove="App.Default.config" />
     <None Remove="Core.Results.db" />
-    <None Remove="Run.PS" />
+    <None Remove="Run.PS1" />
   </ItemGroup>
-
   <ItemGroup>
+    <Compile Update="App.*.config">
+      <DependentUpon>App.config</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.2007.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.2008.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.2009.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.2010.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.2011.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.2012.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.2013.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.2014.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.2015.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.2016.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.2017.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.2018.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.2019.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.2020.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.2021.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.2022.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.2023.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.2024.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Config">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Default.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Core.Results.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Run.PS">
+    <Content Include="Run.PS1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

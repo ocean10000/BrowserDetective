@@ -19,6 +19,7 @@
   <Child Id="812" Name="Docomo" Type="Browser" />
   <Child Id="815" Name="ELinks" Type="Browser" />
   <Child Id="824" Name="FeedfetcherGoogle" Type="Browser" />
+  <Child Id="1062" Name="GSA" Type="Browser" />
   <Child Id="823" Name="GoogleSitemaps" Type="Browser" />
   <Child Id="822" Name="GooglebotMediapartners" Type="Browser" />
   <Child Id="1165" Name="Konqueror" Type="Browser" />
@@ -1617,7 +1618,6 @@
   <Child Id="1128" Name="CriOS Desktop" Type="Browser" />
   <Child Id="1125" Name="Edg" Type="Browser" />
   <Child Id="1162" Name="EdgiOS" Type="Browser" />
-  <Child Id="1062" Name="GSA" Type="Browser" />
   <Child Id="1056" Name="Iron" Type="Browser" />
   <Child Id="1198" Name="LM" Type="GateWay" />
   <Child Id="1055" Name="Maxthon" Type="Browser" />
@@ -1814,10 +1814,14 @@
   <Capability Name="version" Value="7.0.0" />
   <Capability Name="isMobileDevice" Value="True" />
 </Browser>
-<Browser Id="1062" ParentId="1029" Prority="" Name="GSA">
+<Browser Id="1062" ParentId="799" Prority="" Name="GSA">
   <Identification Type="Header" Name="User-Agent" Match="GSA/(?'version'\d+\.\d+(\.\d+)?)" />
   <Capability Name="browser" Value="Google Search application" />
   <Capability Name="version" Value="${version}" />
+  <Capability Name="isMobileDevice" Value="False" />
+  <Capability Name="mobileDeviceModel" Value="Unknown" />
+  <Capability Name="mobileDeviceManufacturer" Value="Unknown" />
+  <Capability Name="OS" Value="Unknown" />
 </Browser>
 <Browser Id="1063" ParentId="1041" Prority="" Name="wince4Model">
   <Identification Type="Header" Name="User-Agent" Match="(?'deviceID'HTC[_-][^/|^\s]*)|(?'deviceID'Qtek[_-][^/|^\s]*)|(?'deviceID'Palm[^/|^\s]*)" />
@@ -2118,7 +2122,7 @@
   <Capability Name="OS" Value="Microsoft Windows Mobile 2003" />
 </Browser>
 <Browser Id="1122" ParentId="1107" Prority="" Name="iOS">
-  <Identification Type="Header" Name="User-Agent" Match="CPU\sOS\s(?'majoros'\d+)_(?'minoros'\d+)" />
+  <Identification Type="Header" Name="User-Agent" Match="CPU(\siPhone)?\sOS\s(?'majoros'\d+)_(?'minoros'\d+)" />
   <Capability Name="OS" Value="iOS ${majoros}.${minoros}" />
 </Browser>
 <Browser Id="1123" ParentId="1066" Prority="" Name="Windows 10">
@@ -2576,7 +2580,7 @@
 </Browser>
 <Browser Id="1191" ParentId="1205" Prority="" Name="LG">
   <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; U; Android 4.4.4; LG-D240 Build/KOT49I) AppleWebKit/601.3 (KHTML, like Gecko) Chrome/54.0.2670.123 Mobile Safari/536.0" />
-  <Identification Type="capability" Name="mobileDeviceModel" Match="LG(\s|-)?(?'Model'[^/]*)\sBuild|LG(\s|-)?(?'Model'.*)/.*\sBuild|(?'Model'LS670)\sBuild" />
+  <Identification Type="capability" Name="mobileDeviceModel" Match="LG(\s|-)?(?'Model'[^/]*)\sBuild|LG(\s|-)?(?'Model'.*)/.*\sBuild|(?'Model'LS670)\sBuild|(?'Model'LM-.*)" />
   <Capability Name="mobileDeviceManufacturer" Value="LG" />
   <Capability Name="mobileDeviceModel" Value="${Model}" />
 </Browser>
@@ -2628,7 +2632,7 @@
 </Browser>
 <Browser Id="1200" ParentId="1205" Prority="" Name="MOTOROLA ">
   <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; Android 5.1; MOTOROLA MOTO X PLAY XT1562 Build/LPH223) AppleWebKit/601.37 (KHTML, like Gecko) Chrome/55.0.3613.101 Mobile Safari/600.5" />
-  <Identification Type="Header" Name="User-Agent" Match="MOTOROLA\s(?'Model'.*)\sBuild|MOTO\s(?'Model'.*)\sBuild|(?'Model'Droid)\sBuild|(?'Model'XT.*)\sBuild|(?'Model'Milestone)\sBuild" />
+  <Identification Type="Header" Name="User-Agent" Match="MOTOROLA\s(?'Model'.*)\sBuild|MOTO\s(?'Model'.*)\sBuild|(?'Model'Droid)\sBuild|(?'Model'XT.*)\sBuild|(?'Model'Milestone|Xoom)\sBuild" />
   <Capability Name="mobileDeviceManufacturer" Value="MOTOROLA" />
   <Capability Name="mobileDeviceModel" Value="${Model}" />
 </Browser>
@@ -2643,7 +2647,10 @@
   <Capability Name="mobileDeviceModel" Value="Unknown" />
 </Browser>
 <Browser Id="1204" ParentId="1205" Prority="" Name="Xiaomi">
-  <Identification Type="capability" Name="mobileDeviceModel" Match="(?'Model'Redmi\s.*)|Xiaomi\s(?'Model'.*)\sBuild|(?'Model'M[i|I]\s.*)\sBuild|(?'Model'HM NOTE 1W)\sBuild|(?'Model'Redmi\s.*)|(?'Model'M[i|I]\s.*)" />
+  <Identification Type="capability" Name="mobileDeviceModel" Match="(?'Model'Redmi\s.*)|(?'Model'M[i|I]\s.*)\sBuild|(?'Model'HM NOTE 1W)\sBuild|(?'Model'Redmi\s.*)|(?'Model'^M[i|I]\s.*)|(?'Model'^M\d*.*)" />
+  <Identification Type="capability" Name="mobileDeviceModel" NonMatch="Moto|Unknown" />
+  <Identification Type="Header" Name="User-Agent" NonMatch="HTC\s" />
+  <Identification Type="capability" Name="mobileDeviceModel" NonMatch="MinionTab " />
   <Capability Name="mobileDeviceManufacturer" Value="Xiaomi" />
   <Capability Name="mobileDeviceModel" Value="${Model}" />
 </Browser>
@@ -2655,10 +2662,12 @@
   <Capability Name="mobileDeviceModel" Value="${deviceID}" />
   <Child Id="1207" Name="ALCATEL" Type="Browser" />
   <Child Id="1213" Name="ASUS" Type="Browser" />
+  <Child Id="1249" Name="Amazon" Type="Browser" />
   <Child Id="1238" Name="Aoc" Type="Browser" />
   <Child Id="1209" Name="Ascend " Type="Browser" />
   <Child Id="1215" Name="BLU STUDIO" Type="Browser" />
   <Child Id="1228" Name="BlackBerry" Type="Browser" />
+  <Child Id="1243" Name="Blackview" Type="Browser" />
   <Child Id="1222" Name="DigiLand" Type="Browser" />
   <Child Id="1239" Name="Digiin" Type="Browser" />
   <Child Id="1240" Name="ECS" Type="Browser" />
@@ -2670,11 +2679,14 @@
   <Child Id="1223" Name="Honor" Type="Browser" />
   <Child Id="1211" Name="Huawei2" Type="Browser" />
   <Child Id="1220" Name="Kyocera" Type="Browser" />
+  <Child Id="1244" Name="Kyocera" Type="Browser" />
   <Child Id="1229" Name="LAVA" Type="Browser" />
   <Child Id="1191" Name="LG" Type="Browser" />
   <Child Id="1237" Name="Le Pan" Type="Browser" />
+  <Child Id="1247" Name="LeEco" Type="Browser" />
   <Child Id="1192" Name="Lenovo" Type="Browser" />
   <Child Id="1200" Name="MOTOROLA " Type="Browser" />
+  <Child Id="1245" Name="MOTOROLA 2" Type="Browser" />
   <Child Id="1236" Name="Metro" Type="Browser" />
   <Child Id="1195" Name="Nexus" Type="Browser" />
   <Child Id="1193" Name="Nokia" Type="Browser" />
@@ -2687,9 +2699,12 @@
   <Child Id="1217" Name="SonyEricssonAndroid" Type="Browser" />
   <Child Id="1226" Name="T-Mobile" Type="Browser" />
   <Child Id="1214" Name="TECNO" Type="Browser" />
+  <Child Id="1251" Name="Tab inco" Type="Browser" />
   <Child Id="1216" Name="Vivo" Type="Browser" />
   <Child Id="1204" Name="Xiaomi" Type="Browser" />
   <Child Id="1225" Name="Xiaomi2" Type="Browser" />
+  <Child Id="1246" Name="Xiaomi3" Type="Browser" />
+  <Child Id="1248" Name="Xiaomi4" Type="Browser" />
   <Child Id="1194" Name="Xperia" Type="Browser" />
   <Child Id="1241" Name="ZTE" Type="Browser" />
   <Child Id="1203" Name="k" Type="Browser" />
@@ -2702,7 +2717,7 @@
 </Browser>
 <Browser Id="1207" ParentId="1205" Prority="" Name="ALCATEL">
   <Samples Name="User-Agent" Value="Mozilla/5.0 (Android; Android 4.4.1; ALCATEL ONETOUCH 7025A Build/KOT49H) AppleWebKit/535.8 (KHTML, like Gecko) Chrome/54.0.3346.191 Mobile Safari/536.8" />
-  <Identification Type="capability" Name="mobileDeviceModel" Match="ALCATEL\s(?'Model'.*)\sBuild" />
+  <Identification Type="capability" Name="mobileDeviceModel" Match="ALCATEL\s(?'Model'.*)\sBuild|(?'Model'ONE TOUCH 4015A)\sBuild" />
   <Capability Name="mobileDeviceManufacturer" Value="ALCATEL" />
   <Capability Name="mobileDeviceModel" Value="${Model}" />
 </Browser>
@@ -2724,7 +2739,7 @@
 </Browser>
 <Browser Id="1211" ParentId="1205" Prority="" Name="Huawei2">
   <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; Android 9; MHA-AL00 Build/HUAWEIMHA-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/71.0.3578.99 Mobile Safari/537.36 MMWEBID/9772 MicroMessenger/7.0.6.1460(0x27000634) Process/tools NetType/WIFI Language/zh_CN" />
-  <Identification Type="capability" Name="mobileDeviceModel" Match="(?'Model'.*)\sBuild/HUAWEI.*;" />
+  <Identification Type="capability" Name="mobileDeviceModel" Match="(\w{2}-\w{2};\s)?(HUAWEI-)?(?'Model'.*)\sBuild/HUAWEI.*;|(\w{2}-\w{2};\s)?(HUAWEI-)?(?'Model'.*)\sBuild/Huawei" />
   <Capability Name="mobileDeviceManufacturer" Value="HUAWEI" />
   <Capability Name="mobileDeviceModel" Value="${Model}" />
 </Browser>
@@ -2763,6 +2778,7 @@
 </Browser>
 <Browser Id="1218" ParentId="1205" Prority="" Name="OnePlus">
   <Identification Type="capability" Name="mobileDeviceModel" Match="(?'Model'KB2003)|(?'Model'KB2005)|ONEPLUS\s(?'Model'A.*)|(?'Model'(^A|^GM).*)" />
+  <Identification Type="capability" Name="mobileDeviceModel" NonMatch="Huawei" />
   <Capability Name="mobileDeviceManufacturer" Value="OnePlus" />
   <Capability Name="mobileDeviceModel" Value="${Model}" />
 </Browser>
@@ -2809,7 +2825,7 @@
 </Browser>
 <Browser Id="1226" ParentId="1205" Prority="" Name="T-Mobile">
   <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; U; Android 1.5; en-gb; T-Mobile_G2_Touch Build/CUPCAKE) AppleWebKit/528.5  (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1" />
-  <Identification Type="capability" Name="mobileDeviceModel" Match="T-Mobile_(?'Model'.*)\sBuild" />
+  <Identification Type="capability" Name="mobileDeviceModel" Match="T-Mobile(_|\s)(?'Model'.*)\sBuild" />
   <Capability Name="mobileDeviceManufacturer" Value="T-Mobile" />
   <Capability Name="mobileDeviceModel" Value="${Model}" />
 </Browser>
@@ -2831,10 +2847,10 @@
   <Capability Name="mobileDeviceModel" Value="${Model}" />
 </Browser>
 <Gateway Id="1230" ParentId="799" Prority="" Name="AppleMobile">
-  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/5.0 \(iPhone; CPU iPhone OS" />
+  <Identification Type="Header" Name="User-Agent" Match="^Mozilla/5.0 \((?'Model'iPad|iPhone); CPU" />
   <Capability Name="isMobileDevice" Value="True" />
   <Capability Name="mobileDeviceManufacturer" Value="Apple" />
-  <Capability Name="mobileDeviceModel" Value="iPhone" />
+  <Capability Name="mobileDeviceModel" Value="${Model}" />
 </Gateway>
 <Browser Id="1231" ParentId="1029" Prority="" Name="MobileSafari">
   <Samples Name="User-Agent" Value="Mozilla/5.0 (iPhone; CPU iPhone OS 11_8_0; like Mac OS X) AppleWebKit/601.27 (KHTML, like Gecko) Chrome/51.0.1803.135 Mobile Safari/536.9" />
@@ -2901,7 +2917,7 @@
 </Browser>
 <Browser Id="1241" ParentId="1205" Prority="" Name="ZTE">
   <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; Android 4.3; Z667G Build/JLS36C) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36" />
-  <Identification Type="capability" Name="mobileDeviceModel" Match="ZTE\s(?'Model'.*)\sBuild|(?'Model'Z.*)\sBuild" />
+  <Identification Type="capability" Name="mobileDeviceModel" Match="ZTE\s(?'Model'.*)\sBuild|(?'Model'Z.*)\sBuild|ZTE\s(?'Model'.*)" />
   <Capability Name="mobileDeviceManufacturer" Value="ZTE" />
   <Capability Name="mobileDeviceModel" Value="Model" />
   <Capability Name="mobileDeviceModel" Value="${Model}" />
@@ -2912,4 +2928,51 @@
   <Identification Type="Header" Name="User-Agent" Match="Version/(?'version'\d+\.\d+)" />
   <Capability Name="browser" Value="Android" />
   <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1243" ParentId="1205" Prority="" Name="Blackview">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; Android 11; BL5000) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Mobile Safari/537.36" />
+  <Identification Type="capability" Name="mobileDeviceModel" Match="(?'Model'BL5000)" />
+  <Capability Name="mobileDeviceManufacturer" Value="Blackview" />
+  <Capability Name="mobileDeviceModel" Value="${Model}" />
+</Browser>
+<Browser Id="1244" ParentId="1205" Prority="" Name="Kyocera">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; Android 5.1; C6740N Build/LMY47O) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.111 Mobile Safari/537.36" />
+  <Identification Type="capability" Name="mobileDeviceModel" Match="(?'Model'C6740N)\sBuild" />
+  <Capability Name="mobileDeviceManufacturer" Value="Kyocera" />
+  <Capability Name="mobileDeviceModel" Value="${Model}" />
+</Browser>
+<Browser Id="1245" ParentId="1205" Prority="" Name="MOTOROLA 2">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; Android 11; moto g power (2021) Build/RZBS31.Q2-143-27-4; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/97.0.4692.87 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/348.0.0.39.118;]" />
+  <Identification Type="Header" Name="User-Agent" Match="moto\s(?'Model'g\spower\s\(2021\))|Moto\s(?'Model'Z3 Play)|Moto\s(?'Model'G\s\(4\))" />
+  <Capability Name="mobileDeviceManufacturer" Value="MOTOROLA" />
+  <Capability Name="mobileDeviceModel" Value="${Model}" />
+</Browser>
+<Browser Id="1246" ParentId="1205" Prority="" Name="Xiaomi3">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; Android 4.4; [HM NOTE" />
+  <Identification Type="capability" Name="mobileDeviceModel" Match="(?'Model'HM NOTE 1W)\sBuild|[\[]?(?'Model'HM\sNOTE.*)" />
+  <Capability Name="mobileDeviceManufacturer" Value="Xiaomi" />
+  <Capability Name="mobileDeviceModel" Value="${Model}" />
+</Browser>
+<Browser Id="1247" ParentId="1205" Prority="" Name="LeEco">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; Android 6.0; Le X620 Build/MRA58K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Mobile Safari/537.36" />
+  <Identification Type="Header" Name="User-Agent" Match="Le\s(?'Model'X620)\sBuild" />
+  <Capability Name="mobileDeviceManufacturer" Value="LeEco" />
+  <Capability Name="mobileDeviceModel" Value="${Model}" />
+</Browser>
+<Browser Id="1248" ParentId="1205" Prority="" Name="Xiaomi4">
+  <Identification Type="capability" Name="mobileDeviceModel" Match="Xiaomi\s(?'Model'.*)\sBuild" />
+  <Capability Name="mobileDeviceManufacturer" Value="Xiaomi" />
+  <Capability Name="mobileDeviceModel" Value="${Model}" />
+</Browser>
+<Browser Id="1249" ParentId="1205" Prority="" Name="Amazon">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; Android 7.1.2; AFTMM Build/NS6265; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/70.0.3538.110 Mobile Safari/537.36" />
+  <Identification Type="capability" Name="mobileDeviceModel" Match="AFTMM Build" />
+  <Capability Name="mobileDeviceManufacturer" Value="Amazon" />
+  <Capability Name="mobileDeviceModel" Value="Fire TV Stick 4K Max" />
+</Browser>
+<Browser Id="1251" ParentId="1205" Prority="" Name="Tab inco">
+  <Samples Name="User-Agent" Value="Mozilla/5.0 (Linux; Android 4.4.2; MinionTab Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/30.0.0.0 Safari/537.36 GSA/3.1.22.935254.arm" />
+  <Identification Type="capability" Name="mobileDeviceModel" Match="MinionTab" />
+  <Capability Name="mobileDeviceManufacturer" Value="Tab inco" />
+  <Capability Name="mobileDeviceModel" Value="MinionTab" />
 </Browser>

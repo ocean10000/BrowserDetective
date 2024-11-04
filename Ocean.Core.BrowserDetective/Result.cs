@@ -13,7 +13,13 @@
         public Result() : base()
         {
             this["browser"] = string.Empty;
+            this["version"] = "0.0";
             this["OS"] = string.Empty;
+            this["crawler"] = "False";
+            this["isMobileDevice"] = "False";
+            this["mobileDeviceModel"] = "Unknown";
+            this["mobileDeviceManufacturer"] = "Unknown";
+            this["platform"] = "Unknown";
 
             System.Reflection.Assembly asm = typeof(Data.Models.Browser).Assembly;
             using (System.IO.Stream CP = asm.GetManifestResourceStream("Ocean.Core.BrowserDetective.Data.RandomRobotKeywords.txt"))

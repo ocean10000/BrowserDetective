@@ -169,10 +169,84 @@ namespace Ocean.Core.BrowserDetective.UnitTests
         public void Mobile()
         {
             //Only really care about the headers actually used in the Results table.
-            var HeaderIDs = resultContext.Result.Where(X => X.isMobileDevice == "True").Select(X => X.Raw_ID).Distinct().ToList();
+            var HeaderIDs = resultContext.Result.Where(X => X.isMobileDevice == "True"
+            && X.mobileDeviceManufacturer != "Apple"
+            && X.mobileDeviceManufacturer != "Xiaomi"
+            && X.mobileDeviceManufacturer != "SAMSUNG"
+            && X.mobileDeviceManufacturer != "Nexus"
+            && X.mobileDeviceManufacturer != "LG"
+            && X.mobileDeviceManufacturer != "HTC"
+            && X.mobileDeviceManufacturer != "MOTOROLA"
+            && X.mobileDeviceManufacturer != "Pixel"
+            && X.mobileDeviceManufacturer != "T-Mobile"
+            ).Select(X => X.Raw_ID).Distinct().ToList();
             Test(HeaderIDs);
         }
 
+
+        [Test]
+        public void Mobile_Apple()
+        {
+            //Only really care about the headers actually used in the Results table.
+            var HeaderIDs = resultContext.Result.Where(X => X.isMobileDevice == "True" && X.mobileDeviceManufacturer == "Apple").Select(X => X.Raw_ID).Distinct().ToList();
+            Test(HeaderIDs);
+        }
+        [Test]
+        public void Mobile_Xiaomi()
+        {
+            //Only really care about the headers actually used in the Results table.
+            var HeaderIDs = resultContext.Result.Where(X => X.isMobileDevice == "True" && X.mobileDeviceManufacturer== "Xiaomi").Select(X => X.Raw_ID).Distinct().ToList();
+            Test(HeaderIDs);
+        }
+        [Test]
+        public void Mobile_SAMSUNG()
+        {
+            //Only really care about the headers actually used in the Results table.
+            var HeaderIDs = resultContext.Result.Where(X => X.isMobileDevice == "True" && X.mobileDeviceManufacturer == "SAMSUNG").Select(X => X.Raw_ID).Distinct().ToList();
+            Test(HeaderIDs);
+        }
+        [Test]
+        public void Mobile_Nexus()
+        {
+            //Only really care about the headers actually used in the Results table.
+            var HeaderIDs = resultContext.Result.Where(X => X.isMobileDevice == "True" && X.mobileDeviceManufacturer == "Nexus").Select(X => X.Raw_ID).Distinct().ToList();
+            Test(HeaderIDs);
+        }
+        [Test]
+        public void Mobile_LG()
+        {
+            //Only really care about the headers actually used in the Results table.
+            var HeaderIDs = resultContext.Result.Where(X => X.isMobileDevice == "True" && X.mobileDeviceManufacturer == "LG").Select(X => X.Raw_ID).Distinct().ToList();
+            Test(HeaderIDs);
+        }
+        [Test]
+        public void Mobile_HTC()
+        {
+            //Only really care about the headers actually used in the Results table.
+            var HeaderIDs = resultContext.Result.Where(X => X.isMobileDevice == "True" && X.mobileDeviceManufacturer == "HTC").Select(X => X.Raw_ID).Distinct().ToList();
+            Test(HeaderIDs);
+        }
+        [Test]
+        public void Mobile_MOTOROLA()
+        {
+            //Only really care about the headers actually used in the Results table.
+            var HeaderIDs = resultContext.Result.Where(X => X.isMobileDevice == "True" && X.mobileDeviceManufacturer == "MOTOROLA").Select(X => X.Raw_ID).Distinct().ToList();
+            Test(HeaderIDs);
+        }
+        [Test]
+        public void Mobile_Pixel()
+        {
+            //Only really care about the headers actually used in the Results table.
+            var HeaderIDs = resultContext.Result.Where(X => X.isMobileDevice == "True" && X.mobileDeviceManufacturer == "Pixel").Select(X => X.Raw_ID).Distinct().ToList();
+            Test(HeaderIDs);
+        }
+        [Test]
+        public void Mobile_TMobile()
+        {
+            //Only really care about the headers actually used in the Results table.
+            var HeaderIDs = resultContext.Result.Where(X => X.isMobileDevice == "True" && X.mobileDeviceManufacturer == "T-Mobile").Select(X => X.Raw_ID).Distinct().ToList();
+            Test(HeaderIDs);
+        }
         [Test]
         public void Robots()
         {

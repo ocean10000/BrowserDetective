@@ -175,6 +175,7 @@
   <Child Id="855" Name="Mozilla4CompatibleA" Type="Browser" />
   <Child Id="856" Name="Mozilla4CompatibleB" Type="Browser" />
   <Child Id="857" Name="Mozilla4CompatibleC" Type="Browser" />
+  <Child Id="1253" Name="Mozilla5" Type="Browser" />
   <Child Id="852" Name="Mozilla5CompatibleA" Type="Browser" />
   <Child Id="853" Name="Mozilla5CompatibleB" Type="Browser" />
   <Child Id="854" Name="Mozilla5CompatibleC" Type="Browser" />
@@ -2984,4 +2985,10 @@
   <Identification Type="Header" Name="User-Agent" Match="(?'Browser'Sogou web spider)/(?'version'\d+\.\d+(\.\d+)?)" />
   <Capability Name="browser" Value="${Browser}" />
   <Capability Name="version" Value="${version}" />
+</Browser>
+<Browser Id="1253" ParentId="813" Prority="1" Name="Mozilla5">
+  <Identification Type="capability" Name="browser" Match="Netscape" />
+  <Identification Type="capability" Name="version" Match="5\.\d" />
+  <Identification Type="Header" Name="User-Agent" NonMatch="Mozilla/5\.0\+\(" />
+  <Capability Name="browser" Value="Generic Browser" />
 </Browser>

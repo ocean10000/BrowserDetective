@@ -193,7 +193,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
 
             ClassicAssert.AreEqual("Chrome Mobile", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(new Version("74.0.3729.0"), RS2.version, "version");
-            ClassicAssert.AreEqual("iOS", RS2.OS, "os");
+            ClassicAssert.AreEqual("iOS 12.3", RS2.OS, "os");
         }
         #endregion
 

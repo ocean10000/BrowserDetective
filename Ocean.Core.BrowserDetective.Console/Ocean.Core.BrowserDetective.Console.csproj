@@ -12,6 +12,14 @@
     <FileVersion>1.0.0</FileVersion>    
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;NU1900</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;NU1900</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Remove="App.2006.config" />
     <None Remove="App.2007.config" />

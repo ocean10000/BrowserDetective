@@ -51,9 +51,18 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header = new Dictionary<string, string>();
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0");
             var RS2 = Detective.ProcessData(Header);
-
             ClassicAssert.AreEqual("Firefox", RS2.BrowserName, "browser");
-            ClassicAssert.AreEqual("Microsoft Windows 10", RS2.OS, "os");
+            ClassicAssert.AreEqual(new Version("93.0"), RS2.version, "browser");
+            ClassicAssert.AreEqual("Microsoft Windows 10", RS2.OS, "OS");
+            ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("20100101", RS2.layoutEngineVersion, "layoutEngineVersion");
+            ClassicAssert.AreEqual("Gecko", RS2.layoutEngine, "layoutEngine");
+            ClassicAssert.AreEqual("", RS2.Chromeversion, "Chromeversion");
+            ClassicAssert.AreEqual("", RS2.AppleWebTechnologyVersion, "AppleWebTechnologyVersion");
         }
         [Test]
         public void MozillaFirefox_Windows_2()
@@ -72,8 +81,17 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"X-Forwarded-For", @"unknown");
             var RS2 = Detective.ProcessData(Header);
             ClassicAssert.AreEqual("Firefox", RS2.BrowserName, "browser");
-            ClassicAssert.AreEqual(new Version(1, 5, 0), RS2.version, "version");
-            ClassicAssert.AreEqual("Microsoft Windows XP", RS2.OS, "os");
+            ClassicAssert.AreEqual(new Version("1.5.0"), RS2.version, "browser");
+            ClassicAssert.AreEqual("Microsoft Windows XP", RS2.OS, "OS");
+            ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("20060111", RS2.layoutEngineVersion, "layoutEngineVersion");
+            ClassicAssert.AreEqual("Gecko", RS2.layoutEngine, "layoutEngine");
+            ClassicAssert.AreEqual("", RS2.Chromeversion, "Chromeversion");
+            ClassicAssert.AreEqual("", RS2.AppleWebTechnologyVersion, "AppleWebTechnologyVersion");
         }
         [Test]
         public void MozillaFirefox_macOS_1()
@@ -82,10 +100,18 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header = new Dictionary<string, string>();
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7; rv:93.0) Gecko/20100101 Firefox/93.0");
             var RS2 = Detective.ProcessData(Header);
-
             ClassicAssert.AreEqual("Firefox", RS2.BrowserName, "browser");
-            ClassicAssert.AreEqual(new Version("93.0"), RS2.version, "version");
-            ClassicAssert.AreEqual("Macintosh OS X", RS2.OS, "os");
+            ClassicAssert.AreEqual(new Version("93.0"), RS2.version, "browser");
+            ClassicAssert.AreEqual("Macintosh OS X", RS2.OS, "OS");
+            ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
+            ClassicAssert.AreEqual(false, RS2.isMobileDevice, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceModel, "isMobileDevice");
+            ClassicAssert.AreEqual("", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
+            ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
+            ClassicAssert.AreEqual("20100101", RS2.layoutEngineVersion, "layoutEngineVersion");
+            ClassicAssert.AreEqual("Gecko", RS2.layoutEngine, "layoutEngine");
+            ClassicAssert.AreEqual("", RS2.Chromeversion, "Chromeversion");
+            ClassicAssert.AreEqual("", RS2.AppleWebTechnologyVersion, "AppleWebTechnologyVersion");
         }
         #endregion
     }

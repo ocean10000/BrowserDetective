@@ -146,7 +146,7 @@ if (detective.DefaultBrowser != null)
                                 flatResult.layoutEngine = h[key];
                                 break;
                             case "layoutEngineVersion":
-                                flatResult.layoutEngine = h[key];
+                                flatResult.layoutEngineVersion = h[key];
                                 break;
                             case "Header Checksum":
                                 flatResult.MD5 = h[key];

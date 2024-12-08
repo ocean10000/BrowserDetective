@@ -137,7 +137,7 @@ if (detective.DefaultBrowser != null)
                                 flatResult.appleWebTechnologyVersion = h[key];
                                 break;
                             case "platform":
-                                flatResult.appleWebTechnologyVersion = h[key];
+                                flatResult.platform = h[key];
                                 break;
                             case "Chromeversion":
                                 flatResult.Chromeversion = h[key];

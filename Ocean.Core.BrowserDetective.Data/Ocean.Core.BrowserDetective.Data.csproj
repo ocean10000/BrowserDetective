@@ -9,8 +9,11 @@
     <Copyright>2024</Copyright>
     <Version>1.0.6</Version>
     <RepositoryType>GIT</RepositoryType>
-    <AssemblyVersion>1.0.6</AssemblyVersion>
-    <FileVersion>1.0.6</FileVersion>    
+    <AssemblyVersion>1.0.7</AssemblyVersion>
+    <FileVersion>1.0.7</FileVersion>
+    <DebugSymbols>true</DebugSymbols>
+    <EmbedAllSources>true</EmbedAllSources>
+    <DebugType>portable</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

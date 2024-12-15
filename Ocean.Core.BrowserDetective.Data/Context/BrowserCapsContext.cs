@@ -49,6 +49,7 @@ public partial class BrowserCapsContext : DbContext
     {
         modelBuilder.Entity<Models.Browser>(entity =>
         {
+            entity.ToTable("Browsers");
             entity.HasIndex(e => e.Id, "IX_Browsers_ID").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("ID");
@@ -59,10 +60,10 @@ public partial class BrowserCapsContext : DbContext
 
         modelBuilder.Entity<Models.Capability>(entity =>
         {
+            entity.ToTable("Capabilities");
             entity.HasIndex(e => e.Id, "IX_Capabilities_ID").IsUnique();
 
-            entity.Property(e => e.Id)
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.BrowserId).HasColumnName("Browser_ID");
 
             entity.HasOne(d => d.Browser).WithMany(p => p.Capabilities)

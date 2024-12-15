@@ -8,7 +8,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Ocean's BrowserCap Interpreter</Title>
     <Copyright>2024</Copyright>
-    <Version>1.0.10</Version>
+    <Version>1.0.11</Version>
     <RepositoryType>GIT</RepositoryType>
     <AssemblyVersion>1.0.11</AssemblyVersion>
     <FileVersion>1.0.11</FileVersion>

@@ -28,14 +28,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
             {
                 HeaderContext = new Data.Context.HeaderContext();
             }
-            if (string.IsNullOrEmpty(configuration.GetConnectionString("BrowserCaps")) == false)
-            {
-                BrowserCapsContext = new Data.Context.BrowserCapsContext(configuration.GetConnectionString("BrowserCaps"));
-            }
-            else
-            {
-                BrowserCapsContext = new Data.Context.BrowserCapsContext();
-            }
+            BrowserCapsContext = new Data.Context.BrowserCapsContext(configuration);
             BrowserList = BrowserCapsContext.Browsers.AsNoTracking().OrderBy(X => X.ParentId).ThenBy(X => X.Name).ThenBy(X => X.Type).ToList();
             BrowserList.ForEach(X => X._logger = _logger);
 
@@ -506,7 +499,7 @@ namespace Ocean.Core.BrowserDetective.Web.Controllers
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
-            foreach (var item in BrowserList.OrderBy(X=>X.Id))
+            foreach (var item in BrowserList.OrderBy(X => X.Id))
             {
                 sb.AppendLine(item.ToString());
             }

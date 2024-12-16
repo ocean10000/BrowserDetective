@@ -1,17 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System.Configuration;
 
 namespace Ocean.Core.BrowserDetective.Data.Context;
 
 public partial class BrowserCapsContext : DbContext
 {
+    private string Conn = string.Empty;
+    IConfiguration? configuration = null;
     public BrowserCapsContext()
     {
+    }
+    public BrowserCapsContext(IConfiguration configuration)
+    {
+        this.configuration = configuration;
     }
     public BrowserCapsContext(string ConnectionString)
     {
         if (string.IsNullOrEmpty(ConnectionString) == false)
-            this.Database.SetConnectionString(ConnectionString);
+            Conn = ConnectionString;
     }
 
     public BrowserCapsContext(DbContextOptions<BrowserCapsContext> options)
@@ -31,17 +38,39 @@ public partial class BrowserCapsContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        if (ConfigurationManager.ConnectionStrings["BrowserCaps"] == null || string.IsNullOrWhiteSpace(ConfigurationManager.ConnectionStrings["BrowserCaps"].ConnectionString))
+        if (string.IsNullOrEmpty(this.Conn) == false)
         {
-            System.IO.FileInfo file = new FileInfo("BrowserCaps.DB");
-            if (file.Exists)
-                optionsBuilder.UseSqlite("DataSource=" + file.FullName);
-            else
-                optionsBuilder.UseSqlite();
+            optionsBuilder.UseSqlite(Conn);
+            return;
+        }
+        else if (configuration != null && string.IsNullOrWhiteSpace(configuration?.GetSection("ConnectionStrings")["BrowserCaps"]) == false)
+        {
+            Conn = configuration?.GetSection("ConnectionStrings")["BrowserCaps"];
+            optionsBuilder.UseSqlite(Conn);
+            return;
+        }
+        else if (ConfigurationManager.ConnectionStrings["BrowserCaps"] != null && string.IsNullOrWhiteSpace(ConfigurationManager.ConnectionStrings["BrowserCaps"].ConnectionString) == false)
+        {
+            Conn = ConfigurationManager.ConnectionStrings["BrowserCaps"].ConnectionString;
+            optionsBuilder.UseSqlite(Conn);
+            return;
         }
         else
         {
-            optionsBuilder.UseSqlite(ConfigurationManager.ConnectionStrings["BrowserCaps"].ConnectionString);
+            //Last Ditch Attempts at finding the BrowserCaps.DB File.
+            var list = System.IO.Directory.GetFiles(System.IO.Directory.GetCurrentDirectory(), "BrowserCaps.DB", SearchOption.AllDirectories).ToList();
+
+            if (list.Count > 0)
+            {
+                var file = new FileInfo(list[0]);
+                if (file.Exists)
+                {
+                    optionsBuilder.UseSqlite("DataSource=" + file.FullName);
+                    return;
+                }
+            }
+
+            optionsBuilder.UseSqlite();
         }
     }
 

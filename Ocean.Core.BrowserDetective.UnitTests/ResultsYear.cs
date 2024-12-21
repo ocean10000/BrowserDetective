@@ -37,7 +37,6 @@ namespace Ocean.Core.BrowserDetective.UnitTests
         public void Chromium()
         {
             System.Collections.Generic.Dictionary<long, string> FailedTest = new Dictionary<long, string>();
-            int Failed = 0;
             //Only really care about the headers actually used in the Results table.
             var HeaderIDs = resultContext.Result.Where(X => X.BrowserName == "Chromium").Select(X => X.Raw_ID).Distinct().ToList();
             Test(HeaderIDs);
@@ -105,7 +104,6 @@ namespace Ocean.Core.BrowserDetective.UnitTests
         public void GenericBrowser()
         {
             System.Collections.Generic.Dictionary<long, string> FailedTest = new Dictionary<long, string>();
-            int Failed = 0;
             //Only really care about the headers actually used in the Results table.
             var HeaderIDs = resultContext.Result.Where(X => X.BrowserName == "Generic Browser").Select(X => X.Raw_ID).Distinct().ToList();
             Test(HeaderIDs);

@@ -45,7 +45,7 @@ public partial class BrowserCapsContext : DbContext
         }
         else if (configuration != null && string.IsNullOrWhiteSpace(configuration?.GetSection("ConnectionStrings")["BrowserCaps"]) == false)
         {
-            Conn = configuration?.GetSection("ConnectionStrings")["BrowserCaps"];
+            Conn = configuration.GetSection("ConnectionStrings")["BrowserCaps"];
             optionsBuilder.UseSqlite(Conn);
             return;
         }

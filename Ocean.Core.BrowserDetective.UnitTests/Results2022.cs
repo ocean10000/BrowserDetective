@@ -28,7 +28,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
 
             ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddFilter("Ocean.Core.BrowserDetective", LogLevel.Error).AddConsole());
             ILogger logger = factory.CreateLogger(typeof(Ocean.Core.BrowserDetective.Process));
-            Detective = new Ocean.Core.BrowserDetective.Process(logger);
+            Detective = new Ocean.Core.BrowserDetective.Process(logger, null);
         }
     }
 }

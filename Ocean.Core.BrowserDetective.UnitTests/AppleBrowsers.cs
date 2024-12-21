@@ -1,7 +1,4 @@
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
-using System.Configuration;
-using Ocean.Core.BrowserDetective.Extentions;
 using NUnit.Framework.Legacy;
 
 namespace Ocean.Core.BrowserDetective.UnitTests
@@ -19,7 +16,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
         {
             ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
             ILogger logger = factory.CreateLogger(typeof(Ocean.Core.BrowserDetective.Process));
-            Detective = new Ocean.Core.BrowserDetective.Process(logger);
+            Detective = new Ocean.Core.BrowserDetective.Process(logger, null);
         }
 
         [OneTimeTearDown]

@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Ocean.Core.BrowserDetective.Data.Models;
 using Ocean.Core.BrowserDetective.Extentions;
@@ -13,15 +14,32 @@ Ocean.Core.BrowserDetective.Data.Context.ResultContext resultContext;
 
 context = new Ocean.Core.BrowserDetective.Data.Context.HeaderContext();
 resultContext = new Ocean.Core.BrowserDetective.Data.Context.ResultContext();
-var CoreResultFile = ConfigurationManager.ConnectionStrings["Results"].ConnectionString;
-CoreResultFile = CoreResultFile.Replace("Data Source=","");
-if (System.IO.File.Exists(CoreResultFile))
-{
-    System.IO.File.Delete(CoreResultFile);
-}
-System.IO.File.Copy("Core.Results.db", CoreResultFile);
+var CoreResultFile =System.Configuration.ConfigurationManager.ConnectionStrings["Results"].ConnectionString;
 
-var detective = new Ocean.Core.BrowserDetective.Process(logger);
+IConfiguration configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables()
+    .AddCommandLine(args)
+    .Build();
+
+if (string.IsNullOrWhiteSpace(CoreResultFile))
+{
+    CoreResultFile = configuration.GetConnectionString("Results");
+}
+CoreResultFile = CoreResultFile?.Replace("Data Source=", "");
+
+if (string.IsNullOrWhiteSpace(CoreResultFile) == false)
+{
+    if (System.IO.File.Exists(CoreResultFile))
+    {
+        System.IO.File.Delete(CoreResultFile);
+    }
+
+    System.IO.File.Copy("Core.Results.db", CoreResultFile);
+}
+
+var detective = new Ocean.Core.BrowserDetective.Process(logger, configuration);
 
 System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create();
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Ocean.Core.BrowserDetective.Data.Context;
 using Ocean.Core.BrowserDetective.Data.Models;
@@ -11,6 +12,7 @@ namespace Ocean.Core.BrowserDetective
     public class Process
     {
         ILogger _logger;
+        IConfiguration configuration;
         /// <summary>
         /// This is the top most Default Browser Definition file.
         /// </summary>
@@ -27,8 +29,9 @@ namespace Ocean.Core.BrowserDetective
             _logger = factory.CreateLogger(typeof(Ocean.Core.BrowserDetective.Process));
             _Process();
         }
-        public Process(ILogger logger)
+        public Process(ILogger logger, IConfiguration configuration)
         {
+            this.configuration = configuration;
             _logger = logger;
             _Process();
         }
@@ -37,7 +40,7 @@ namespace Ocean.Core.BrowserDetective
             //-----------------------------------------------------------------------------
             //SQL Lite DB Access
             //-----------------------------------------------------------------------------
-            BrowserCapsContext Context = new BrowserCapsContext();
+            BrowserCapsContext Context = new BrowserCapsContext(configuration);
 
             //-----------------------------------------------------------------------------
             //The Origianl Browser definitions were stored in Xml files. But I am a DB Guy

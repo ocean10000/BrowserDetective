@@ -194,7 +194,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ocean.Core.BrowserDetective.Data\Ocean.Core.BrowserDetective.Data.csproj" />
     <ProjectReference Include="..\Ocean.Core.BrowserDetective\Ocean.Core.BrowserDetective.csproj" />
   </ItemGroup>
   <ItemGroup>

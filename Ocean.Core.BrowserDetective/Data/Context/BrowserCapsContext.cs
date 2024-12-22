@@ -49,9 +49,9 @@ public partial class BrowserCapsContext : DbContext
             optionsBuilder.UseSqlite(Conn);
             return;
         }
-        else if (ConfigurationManager.ConnectionStrings["BrowserCaps"] != null && string.IsNullOrWhiteSpace(ConfigurationManager.ConnectionStrings["BrowserCaps"].ConnectionString) == false)
+        else if (System.Configuration.ConfigurationManager.ConnectionStrings["BrowserCaps"] != null && string.IsNullOrWhiteSpace(System.Configuration.ConfigurationManager.ConnectionStrings["BrowserCaps"].ConnectionString) == false)
         {
-            Conn = ConfigurationManager.ConnectionStrings["BrowserCaps"].ConnectionString;
+            Conn = System.Configuration.ConfigurationManager.ConnectionStrings["BrowserCaps"].ConnectionString;
             optionsBuilder.UseSqlite(Conn);
             return;
         }
@@ -67,6 +67,22 @@ public partial class BrowserCapsContext : DbContext
                 {
                     optionsBuilder.UseSqlite("DataSource=" + file.FullName);
                     return;
+                }
+            }
+
+            //pulls the copy embeded in the dll, and copy it to the folder.
+            if (System.IO.File.Exists("BrowserCaps.DB") == false)
+            {
+                string Resources = "Ocean.Core.BrowserDetective.BrowserCaps.DB";
+                var a = this.GetType().Assembly;
+                var stream = a.GetManifestResourceStream(Resources);
+
+                using (System.IO.FileStream w = new FileStream("BrowserCaps.DB", FileMode.OpenOrCreate))
+                {
+                    stream.CopyTo(w);
+                    w.Flush();
+                    w.Close();
+                    optionsBuilder.UseSqlite("DataSource=BrowserCaps.DB");
                 }
             }
 

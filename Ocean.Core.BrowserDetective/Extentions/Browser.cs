@@ -153,4 +153,18 @@ public static class BrowserExtention
         }
         return result;
     }
+    public static List<KeyValuePair<Data.Models.Browser, int>> Debug(this Data.Models.Browser browser, int level)
+    {
+        List<KeyValuePair<Data.Models.Browser, int>> dic = new List<KeyValuePair<Data.Models.Browser, int>>();
+        dic.Add(new KeyValuePair<Data.Models.Browser, int>(browser, level));
+        foreach (var item in browser.InverseParent.Where(X => X.Type == BrowserType.GateWay))
+        {
+            dic.AddRange(item.Debug(level + 1));
+        }
+        foreach (var item in browser.InverseParent.Where(X => X.Type == BrowserType.Browser))
+        {
+            dic.AddRange(item.Debug(level + 1));
+        }
+        return dic;
+    }
 }

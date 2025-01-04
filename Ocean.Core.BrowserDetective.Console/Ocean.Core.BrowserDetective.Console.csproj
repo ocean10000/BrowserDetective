@@ -51,6 +51,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App.2025.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="App.2006.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

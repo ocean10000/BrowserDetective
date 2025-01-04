@@ -73,4 +73,7 @@ del Ocean.Core.BrowserDetective.Console.dll.config
 copy App.2024.config Ocean.Core.BrowserDetective.Console.dll.config
 .\Ocean.Core.BrowserDetective.Console.exe
 del Ocean.Core.BrowserDetective.Console.dll.config
+copy App.2025.config Ocean.Core.BrowserDetective.Console.dll.config
+.\Ocean.Core.BrowserDetective.Console.exe
+del Ocean.Core.BrowserDetective.Console.dll.config
 copy App.Default.config Ocean.Core.BrowserDetective.Console.dll.config

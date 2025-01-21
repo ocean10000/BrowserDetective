@@ -76,6 +76,10 @@ namespace Ocean.Core.BrowserDetective.Data.Context
                 entity.Property(e => e.Stamp).HasColumnName("Stamp");
                 entity.Property(e => e.TimeSpent).HasColumnName("TimeSpent");
                 entity.Property(e => e.MD5).HasColumnName("MD5");
+                entity.Property(e => e.browser_type).HasColumnName("browser_type");
+                entity.Property(e => e.Application_maker).HasColumnName("Application_maker");
+                entity.Property(e => e.Application).HasColumnName("Application");
+                entity.Property(e => e.Application_Version).HasColumnName("Application_Version");
             });
         }
     }

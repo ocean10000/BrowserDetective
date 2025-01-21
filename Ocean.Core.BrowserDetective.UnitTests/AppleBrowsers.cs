@@ -94,8 +94,8 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 17_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/21D61 [FBAN/FBIOS;FBAV/463.0.4.49.101;FBBV/597123453;FBDV/iPhone12,8;FBMD/iPhone;FBSN/iOS;FBSV/17.3.1;FBSS/2;FBID/phone;FBLC/en_US;FBOP/5;FBRV/598951293");
 
             var RS2 = Detective.ProcessData(Header);
-            ClassicAssert.AreEqual("Facebook App", RS2.BrowserName, "browser");
-            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "browser");
+            ClassicAssert.AreEqual("Mobile", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("21.0"), RS2.version, "browser");
             ClassicAssert.AreEqual("iOS 17.3", RS2.OS, "OS");
             ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
             ClassicAssert.AreEqual(true, RS2.isMobileDevice, "isMobileDevice");

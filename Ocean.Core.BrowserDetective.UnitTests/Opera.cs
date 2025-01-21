@@ -157,8 +157,8 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             ClassicAssert.AreEqual("MW0711", RS2.mobileDeviceModel, "isMobileDevice");
             ClassicAssert.AreEqual("Aoc", RS2.mobileDeviceManufacturer, "mobileDeviceManufacturer");
             ClassicAssert.AreEqual("Unknown", RS2.Platform, "Platform");
-            ClassicAssert.AreEqual("537.36", RS2.layoutEngineVersion, "layoutEngineVersion");
-            ClassicAssert.AreEqual("WebKit", RS2.layoutEngine, "layoutEngine");
+            ClassicAssert.AreEqual("35.0.1916", RS2.layoutEngineVersion, "layoutEngineVersion");
+            ClassicAssert.AreEqual("Blink", RS2.layoutEngine, "layoutEngine");
 
         }
         [Test]

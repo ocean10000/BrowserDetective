@@ -133,6 +133,9 @@ if (detective.DefaultBrowser != null)
                             case "browser":
                                 flatResult.BrowserName = h[key];
                                 break;
+                            case "browser_type":
+                                flatResult.browser_type = h[key];
+                                break;
                             case "version":
                                 flatResult.version = h[key];
                                 break;
@@ -171,6 +174,15 @@ if (detective.DefaultBrowser != null)
                                 break;
                             case "Process Time":
                                 flatResult.TimeSpent = h[key];
+                                break;
+                            case "Application":
+                                flatResult.Application = h[key];
+                                break;
+                            case "Application_maker":
+                                flatResult.Application_maker = h[key];
+                                break;
+                            case "Application_Version":
+                                flatResult.Application_Version = h[key];
                                 break;
                         }
                     }

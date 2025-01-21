@@ -111,7 +111,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
 
 
         [Test]
-        public void Mozilla2010()
+        public void Mozilla()
         {
             //Only really care about the headers actually used in the Results table.
             var HeaderIDs = resultContext.Result.Where(X => X.BrowserName == "Mozilla").Select(X => X.Raw_ID).Distinct().ToList();

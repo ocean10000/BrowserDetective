@@ -136,8 +136,8 @@ namespace Ocean.Core.BrowserDetective.UnitTests
                 Console.WriteLine(item);
             }
 
-            ClassicAssert.AreEqual("Facebook App", RS2.BrowserName, "browser");
-            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "browser");
+            ClassicAssert.AreEqual("Chrome Mobile", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("4.0"), RS2.version, "browser");
             ClassicAssert.AreEqual("Android 13", RS2.OS, "OS");
             ClassicAssert.AreEqual("\"Android\"", RS2.Platform, "Platform");
             ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");
@@ -170,8 +170,8 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add("Sec-Fetch-Dest", "document");
 
             var RS2 = Detective.ProcessData(Header);
-            ClassicAssert.AreEqual("Facebook App", RS2.BrowserName, "browser");
-            ClassicAssert.AreEqual(new Version("0.0"), RS2.version, "browser");
+            ClassicAssert.AreEqual("Chrome Mobile", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual(new Version("4.0"), RS2.version, "browser");
             ClassicAssert.AreEqual("Android 13", RS2.OS, "OS");
             ClassicAssert.AreEqual("\"Android\"", RS2.Platform, "Platform");
             ClassicAssert.AreEqual(false, RS2.Crawler, "Crawler");

@@ -37,5 +37,9 @@ namespace Ocean.Core.BrowserDetective.Data.Models
         public DateTime Stamp { get; set; }
         public string TimeSpent { get; set; } = string.Empty;
         public string MD5 { get; set; } = string.Empty;
+        public string browser_type { get; set; } = string.Empty;
+        public string Application { get; set; } = string.Empty;
+        public string Application_Version { get; set; } = string.Empty;
+        public string Application_maker { get; set; } = string.Empty;
     }
 }

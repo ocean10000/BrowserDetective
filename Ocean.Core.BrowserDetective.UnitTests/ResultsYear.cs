@@ -121,7 +121,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
         public void YaBrowser()
         {
             //Only really care about the headers actually used in the Results table.
-            var HeaderIDs = resultContext.Result.Where(X => X.BrowserName == "YaBrowser").Select(X => X.Raw_ID).Distinct().ToList();
+            var HeaderIDs = resultContext.Result.Where(X => X.BrowserName == "Yandex Browser").Select(X => X.Raw_ID).Distinct().ToList();
             Test(HeaderIDs);
         }
 
@@ -153,7 +153,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             && X.BrowserName != "Safari"
             && X.BrowserName != "Opera"
             && X.BrowserName != "Microsoft Edge"
-            && X.BrowserName != "YaBrowser"
+            && X.BrowserName != "Yandex Browser"
             && X.BrowserName != "QQBrowser"
             && X.BrowserName != "Generic Browser"
             && X.BrowserName != "Netscape"

@@ -105,7 +105,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             Header.Add(@"User-Agent", @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 YaBrowser/22.11.3.824 Yowser/2.5 Safari/537.36");
             var RS2 = Detective.ProcessData(Header);
 
-            ClassicAssert.AreEqual("YaBrowser", RS2.BrowserName, "browser");
+            ClassicAssert.AreEqual("Yandex Browser", RS2.BrowserName, "browser");
             ClassicAssert.AreEqual(new Version("22.11.3"), RS2.version, "version");
             ClassicAssert.AreEqual("Macintosh OS X", RS2.OS, "os");
             ClassicAssert.AreEqual(false, RS2.IsRandomRobobotUserAgent, "IsRandomRobobotUserAgent");

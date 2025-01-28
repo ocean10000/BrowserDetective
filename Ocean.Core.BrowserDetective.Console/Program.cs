@@ -184,6 +184,9 @@ if (detective.DefaultBrowser != null)
                             case "Application_Version":
                                 flatResult.Application_Version = h[key];
                                 break;
+                            case "Architecture":
+                                flatResult.Architecture  = h[key];
+                                break;
                         }
                     }
 

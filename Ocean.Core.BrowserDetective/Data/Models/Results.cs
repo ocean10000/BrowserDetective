@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 
 namespace Ocean.Core.BrowserDetective.Data.Models
 {
@@ -41,5 +42,6 @@ namespace Ocean.Core.BrowserDetective.Data.Models
         public string Application { get; set; } = string.Empty;
         public string Application_Version { get; set; } = string.Empty;
         public string Application_maker { get; set; } = string.Empty;
+        public string Architecture { get; set; } = string.Empty;
     }
 }

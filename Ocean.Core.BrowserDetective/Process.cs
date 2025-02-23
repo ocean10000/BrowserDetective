@@ -176,7 +176,9 @@ namespace Ocean.Core.BrowserDetective
             {
                 if (String.IsNullOrEmpty(header[AllPossibleheaders[i]]) == false)
                 {
-                    writer.WriteLine(header[AllPossibleheaders[i]]);
+                    //we need to skip some headers (Referrer and Cookie) as part of the checksums.
+                    if (AllPossibleheaders[i] !="Referrer" && AllPossibleheaders[i] != "Cookie")
+                        writer.WriteLine(header[AllPossibleheaders[i]]);
                 }
             }
             writer.Flush();

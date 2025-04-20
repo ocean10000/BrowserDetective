@@ -8,10 +8,10 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Ocean's BrowserCap Interpreter</Title>
     <Copyright>2025</Copyright>
-    <Version>1.0.19</Version>
+    <Version>1.0.20</Version>
     <RepositoryType>GIT</RepositoryType>
-    <AssemblyVersion>1.0.19</AssemblyVersion>
-    <FileVersion>1.0.19</FileVersion>
+    <AssemblyVersion>1.0.20</AssemblyVersion>
+    <FileVersion>1.0.20</FileVersion>
     <DebugSymbols>true</DebugSymbols>
     <EmbedAllSources>true</EmbedAllSources>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>

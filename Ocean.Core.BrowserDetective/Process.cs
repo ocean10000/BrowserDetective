@@ -43,16 +43,16 @@ namespace Ocean.Core.BrowserDetective
             BrowserCapsContext Context = new BrowserCapsContext(configuration);
 
             //-----------------------------------------------------------------------------
-            //The Origianl Browser definitions were stored in Xml files. But I am a DB Guy
+            //The Original Browser definitions were stored in Xml files. But I am a DB Guy
             //and I prefer a database interface to access data, so I dumped the Definition
             //files which I hand coded into a SQL Lite Database format, to make it easier 
             //for me to work with the data. It also pushes this away from the Microsoft
             //controled format of the past.
             //-----------------------------------------------------------------------------
             //Ok We are going to download all the browser Objects stored in the Database.
-            //no changes are going to be made this is just to dump to useable ojects.
+            //no changes are going to be made this is just to dump to useable objects.
             //-----------------------------------------------------------------------------
-            //Sorting by Parent ID, by Name, then By Type. to make searching a bit simplier.
+            //Sorting by Parent ID, by Name, then By Type. to make searching a bit simpler.
             //-----------------------------------------------------------------------------
             //AsNoTracking - Is to stop Entity Framework from trying to track these objects
             //for changes. We are not going to be making any changes from this readonly code

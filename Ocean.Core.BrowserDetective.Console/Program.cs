@@ -52,7 +52,7 @@ if (detective.DefaultBrowser != null)
 
     //------------------------------------------------------
     //Changed it to be Sorted from Smallest to Largest 
-    //So that the Resulting output files weill be more 
+    //So that the Resulting output files will be more 
     //Stable between releases, even after the header DB
     //is updated with more browser files. The Oldest will
     //not change, but new ones will be added at the end.
@@ -60,8 +60,8 @@ if (detective.DefaultBrowser != null)
     //This was changed originally so I can see the newer changes
     //faster to help debug the code easier.  It also took a great
     //deal longer in the past, it doesn't require as long as a
-    //waite now, that I no longer use Google Drive to read a SQLite
-    //DB from. The speed delay was very very noticible for this case.
+    //wait now, that I no longer use Google Drive to read a SQLite
+    //DB from. The speed delay was very very noticeable for this case.
     //------------------------------------------------------
     foreach (var item in context.Raw.OrderBy(X => X.ID))
     {

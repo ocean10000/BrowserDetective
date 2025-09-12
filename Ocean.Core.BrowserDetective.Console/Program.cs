@@ -3,8 +3,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Ocean.Core.BrowserDetective.Data.Models;
-using Ocean.Core.BrowserDetective.Extentions;
-using System.Configuration;
 
 using ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddFilter("Ocean.Core.BrowserDetective", LogLevel.Error).AddConsole());
 ILogger logger = factory.CreateLogger(typeof(Ocean.Core.BrowserDetective.Process));

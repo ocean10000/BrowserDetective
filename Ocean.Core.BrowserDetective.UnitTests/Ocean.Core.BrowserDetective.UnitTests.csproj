@@ -43,6 +43,7 @@
     <None Remove="Data\Core.Results.2023.db" />
     <None Remove="Data\Core.Results.2024.db" />
     <None Remove="Data\Core.Results.2025.db" />
+    <None Remove="Data\Core.Results.2026.db" />
     <None Remove="Data\Headers2006.DB" />
     <None Remove="Data\Headers2007.DB" />
     <None Remove="Data\Headers2008.DB" />
@@ -63,6 +64,7 @@
     <None Remove="Data\Headers2023.DB" />
     <None Remove="Data\Headers2024.DB" />
     <None Remove="Data\Headers2025.DB" />
+    <None Remove="Data\Headers2026.DB" />
   </ItemGroup>
 
   <ItemGroup>
@@ -126,6 +128,9 @@
     <Content Include="Data\Core.Results.2025.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\Core.Results.2026.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\Headers2006.DB">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -184,6 +189,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Headers2025.DB">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Headers2026.DB">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

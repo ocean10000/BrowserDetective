@@ -7,7 +7,9 @@ namespace Ocean.Core.BrowserDetective.Data.Context;
 public partial class BrowserCapsContext : DbContext
 {
     private string Conn = string.Empty;
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
     IConfiguration? configuration = null;
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
     public BrowserCapsContext()
     {
     }

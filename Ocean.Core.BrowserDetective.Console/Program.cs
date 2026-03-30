@@ -97,7 +97,7 @@ if (detective.DefaultBrowser != null)
                 if (dic.Count > 0)
                 {
                     //------------------------------------------------------
-                    //This is to save the actuall Processing time of the 
+                    //This is to save the actual Processing time of the 
                     //BrowserCap, without taking into account the DB save 
                     //operations.
                     //------------------------------------------------------

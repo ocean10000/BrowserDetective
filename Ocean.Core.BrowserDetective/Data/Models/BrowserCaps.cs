@@ -34,8 +34,9 @@ namespace Ocean.Core.BrowserDetective.Data.Models
         public virtual ICollection<SampleHeader> Samples { get; set; } = new List<SampleHeader>();
 
         public virtual ICollection<Browser> InverseParent { get; set; } = new List<Browser>();
-
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         public virtual Browser? Parent { get; set; }
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -133,7 +134,9 @@ namespace Ocean.Core.BrowserDetective.Data.Models
 
         public virtual string Name { get; set; } = null!;
 
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         public virtual string? Value { get; set; }
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
 
         public virtual Browser Browser { get; set; } = null!;
     }
@@ -147,9 +150,11 @@ namespace Ocean.Core.BrowserDetective.Data.Models
 
         public virtual string Name { get; set; } = string.Empty;
 
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         public virtual string? Match { get; set; } = null!;
 
         public virtual string? NonMatch { get; set; } = null!;
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
 
         public virtual Browser Browser { get; set; } = null!;
     }
@@ -162,10 +167,11 @@ namespace Ocean.Core.BrowserDetective.Data.Models
         public CaptureType Type { get; set; }
 
         public string Name { get; set; }
-
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         public string? Match { get; set; }
 
         public string? NonMatch { get; set; }
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
 
         public Browser Browser { get; set; }
     }
@@ -178,11 +184,11 @@ namespace Ocean.Core.BrowserDetective.Data.Models
         public virtual CaptureType Type { get; set; }
 
         public virtual string Name { get; set; } = string.Empty;
-
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         public virtual string? Match { get; set; } = null!;
 
         public virtual string? NonMatch { get; set; } = null!;
-
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         public virtual Browser Browser { get; set; } = null!;
     }
     public partial class SampleHeader
@@ -190,17 +196,20 @@ namespace Ocean.Core.BrowserDetective.Data.Models
         public virtual long Id { get; set; }
 
         public virtual long BrowserId { get; set; }
-
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         public virtual string? Name { get; set; }
 
         public virtual string? Value { get; set; }
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
     }
     //this is to allow us to track Resulting changes by Browser Id. 
     //for easier out when items changed easier.
     public partial class Trackitem
     {
         public virtual long BrowserID { get; set; }
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         public virtual string? BrowserName { get; set; }
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         public virtual BrowserType Type { get; set; }
         public virtual string Name { get; set; } = string.Empty;
 

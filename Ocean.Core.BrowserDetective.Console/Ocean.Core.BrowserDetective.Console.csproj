@@ -21,6 +21,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="bin\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <None Remove="bin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="App.2006.config" />
     <None Remove="App.2007.config" />
     <None Remove="App.2008.config" />

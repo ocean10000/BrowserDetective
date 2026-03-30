@@ -94,7 +94,6 @@ namespace Ocean.Core.BrowserDetective.UnitTests
         public void Netscape()
         {
             System.Collections.Generic.Dictionary<long, string> FailedTest = new Dictionary<long, string>();
-            int Failed = 0;
             //Only really care about the headers actually used in the Results table.
             var HeaderIDs = resultContext.Result.Where(X => X.BrowserName == "Netscape").Select(X => X.Raw_ID).Distinct().ToList();
             Test(HeaderIDs);
@@ -139,6 +138,13 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             var HeaderIDs = resultContext.Result.Where(X => X.BrowserName == "Konqueror").Select(X => X.Raw_ID).Distinct().ToList();
             Test(HeaderIDs);
         }
+        [Test]
+        public void Brave()
+        {
+            //Only really care about the headers actually used in the Results table.
+            var HeaderIDs = resultContext.Result.Where(X => X.BrowserName == "Brave").Select(X => X.Raw_ID).Distinct().ToList();
+            Test(HeaderIDs);
+        }
 
         [Test]
         public void Misc()
@@ -159,6 +165,7 @@ namespace Ocean.Core.BrowserDetective.UnitTests
             && X.BrowserName != "Netscape"
             && X.BrowserName != "Mozilla"
             && X.BrowserName != "Konqueror"
+            && X.BrowserName != "Brave"
             ).Select(X => X.Raw_ID).Distinct().ToList();
             Test(HeaderIDs);
         }

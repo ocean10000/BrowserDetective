@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Ocean's BrowserCap Interpreter</Title>
     <Copyright>2026</Copyright>
-    <Version>1.0.23</Version>
+    <Version>1.0.24</Version>
     <RepositoryType>GIT</RepositoryType>
-    <AssemblyVersion>1.0.23</AssemblyVersion>
-    <FileVersion>1.0.23</FileVersion>
+    <AssemblyVersion>1.0.24</AssemblyVersion>
+    <FileVersion>1.0.24</FileVersion>
     <DebugSymbols>true</DebugSymbols>
     <EmbedAllSources>true</EmbedAllSources>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>

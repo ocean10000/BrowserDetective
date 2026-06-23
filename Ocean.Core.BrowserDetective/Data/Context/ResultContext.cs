@@ -81,6 +81,9 @@ namespace Ocean.Core.BrowserDetective.Data.Context
                 entity.Property(e => e.Application).HasColumnName("Application");
                 entity.Property(e => e.Application_Version).HasColumnName("Application_Version");
                 entity.Property(e => e.Architecture).HasColumnName("Architecture");
+                entity.Property(e => e.MajorVersion).HasColumnName("MajorVersion");
+                entity.Property(e => e.MinorVersion).HasColumnName("MinorVersion");
+                entity.Property(e => e.MinorRevision).HasColumnName("MinorRevision");
             });
         }
     }

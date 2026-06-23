@@ -33,9 +33,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="BrowserCaps.DB">
+    <Content Include="BrowserCaps.DB">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="Data\RandomRobotKeywords.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>

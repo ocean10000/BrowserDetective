@@ -1,5 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Ocean.Core.BrowserDetective.Data.Models;
@@ -34,7 +36,7 @@ if (string.IsNullOrWhiteSpace(CoreResultFile) == false)
         System.IO.File.Delete(CoreResultFile);
     }
 
-    System.IO.File.Copy("Core.Results.db", CoreResultFile);
+    CreateDB(CoreResultFile);
 }
 
 var detective = new Ocean.Core.BrowserDetective.Process(logger, configuration);
@@ -216,3 +218,19 @@ if (detective.DefaultBrowser != null)
     }
 }
 
+void CreateDB(string DbPath)
+{
+    using var conn = new SqliteConnection($"Data Source={DbPath}");
+    conn.Open();
+    using var tx = conn.BeginTransaction();
+
+    Exec(conn, tx, resultContext.Database.GenerateCreateScript());
+
+    tx.Commit();
+}
+static void Exec(SqliteConnection c, SqliteTransaction t, string sql)
+{
+    using var cmd = c.CreateCommand();
+    cmd.Transaction = t; cmd.CommandText = sql;
+    cmd.ExecuteNonQuery();
+}
